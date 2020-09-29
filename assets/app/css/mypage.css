@@ -1,0 +1,422 @@
+
+/*mypage header*/
+.mypage-header {
+    width: 100%;
+    height: 52px;
+    background-color: #FFFFFF;
+    margin-top: 80px;
+}
+
+.mypage-header ul {
+    list-style: none;
+    margin: auto;
+    padding: 0;
+    width: 60%;
+    height: 100%;
+}
+
+.mypage-header ul li {
+    float: left;
+    width: 100%;
+    display: block;
+    position: relative;
+    height: 100%;
+    text-align: center;
+}
+
+.mypage-header ul li a {
+    display: inline-block;
+    font-family: "NotoSansCJKkr-Bold";
+    font-size: 16px;
+    line-height: 37px;
+    color: #919191;
+    cursor: pointer;
+    box-sizing: border-box;
+}
+
+.mypage-header ul li a.active {
+    color: #333;
+    border-bottom: 3px solid #ea5916;
+    padding-top: 3px;
+    line-height: 31px;
+}
+
+/*mypage body*/
+.mypage-content {
+    width: 100%;
+    height: auto;
+    background: #f8f8f8;
+    display: table;
+}
+
+.mypage-body {
+    width: 91%;
+    background-color: #fff;
+    margin: auto;
+    display: table;
+}
+
+.profile-body {
+    border-radius: 4px;
+    min-height: 180px;
+    padding-bottom: 10px;
+}
+
+.profile-cardinfo-body {
+    border-radius: 4px;
+    height: 90px;
+}
+
+.profile-body p {
+    font-size: 15px;
+    font-family: 'NotoSansCJKkr-Medium';
+    color: #eb5f1e;
+    margin-top: 15px;
+    margin-bottom: 5px;
+    margin-left: 18px;
+}
+
+.profile-img {
+    width: 40%;
+    text-align: center;
+    vertical-align: middle;
+    display: table-cell;
+    height: 130px;
+}
+
+.profile-info {
+    width: 60%;
+    display: table-cell;
+}
+
+.profile-name {
+    width: 40%;
+    float: left;
+}
+
+.profile-nick {
+    width: 60%;
+    float: left;
+}
+
+.profile-label {
+    font-size: 12px !important;
+    font-family: 'NotoSansCJKkr-DemiLight' !important;
+    color: #767676 !important;
+    margin: 0px !important;
+}
+
+.profile-label-content {
+    font-size: 13.5px !important;
+    font-family: 'NotoSansCJKkr-Medium' !important;
+    color: #000 !important;
+    margin: 0px !important;
+}
+
+.profile-nick-content {
+    padding-left: 25px;
+    background: transparent url("../../images/mobile/ic_mypage_level.png") no-repeat scroll 0px 100%;
+	background-size: 20px;
+}
+
+.profile-mimi-btn {
+    font-family: "NotoSansCJKkr-Regular";
+    font-size: 12px;
+    width: 85px;
+    height: 30px;
+    margin: 0px;
+    outline: medium none;
+    border: medium none;
+    cursor: pointer;
+    color: #e4e4e4;
+    vertical-align: middle;
+    text-align: center;
+    float: left;
+    line-height: 30px;
+}
+
+.mypage-row {
+    /*display: inline-block;*/
+    width: 100%;
+}
+
+.mypage-label {
+    display: inline-block !important;
+}
+
+.profile-title {
+    font-size: 15px;
+    font-family: 'NotoSansCJKkr-Medium';
+    color: #333;
+    line-height: 15px;
+}
+
+.profile-title a {
+    font-size: 12px;
+    font-family: 'NotoSansCJKkr-DemiLight';
+    color: #f0895a;
+    text-decoration: none;
+}
+
+.card-content {
+    font-size: 7.87px;
+    font-family: 'NotoSansCJKkr-DemiLight';
+    color: #b3b3b3;
+    line-height: 18px;
+}
+
+.profile-vertical-middle {
+    vertical-align: middle;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.profile-hr {
+    margin-bottom: 0px;
+    border: 0.5px solid #f5f5f5;
+    margin-right: 23px;
+    margin-top: 3px;
+    margin-bottom: 0px;
+}
+
+.profile-cardinfo-body div.mimi-row {
+    height: 90px;
+    margin-top: 0px;
+}
+
+.profile-cardinfo-body p {
+    margin: 0px;
+}
+
+/*비밀번호변경*/
+.pass-title-red {
+    font-size: 10.12px;
+    font-family: 'NotoSansCJKkr-DemiLight';
+    color: #ea5916;
+    text-align: center;
+    margin: 0px;
+}
+
+.pass-title-black {
+    font-size: 13.5px;
+    font-family: 'NotoSansCJKkr-Regular';
+    color: #3c3c3c;
+    text-align: center;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.profile-pwd-finish-content-red {
+    font-size: 11.25px;
+    font-family: 'NotoSansCJKkr-Medium';
+    color: #ea5916;
+    text-align: center;
+    margin: 0px;
+}
+
+.profile-pwd-finish-content-black {
+    font-size: 9px;
+    font-family: 'NotoSansCJKkr-Light';
+    color: #c3c3c3;
+    text-align: center;
+    margin-top: 5px;
+    margin-bottom: 42px;
+}
+
+.profile-form p {
+    text-align: center;
+}
+
+.card-info-img {
+    margin: 0px;
+}
+
+.card-info-img img {width: 50px;}
+
+.card-info-title {
+    font-size: 20px;
+    font-family: 'NotoSansCJKkr-Medium';
+    color: #ea5916;
+    margin-top: 5px;
+    margin-bottom: 15px;
+    line-height: 13.5px;
+}
+
+.card-info-content {
+    font-size: 12px;
+    font-family: 'NotoSansCJKkr-Light';
+    color: #c3c3c3;
+    margin-top: 0px;
+    margin-bottom: 5px;
+    line-height: 16px;
+	margin-top: 10px
+}
+
+/*switch*/
+.card-mimi-switch {
+    display: table !important;
+    height: 29px;
+    border: 1px solid #333;
+    border-radius: 4px;
+}
+
+.card-mimi-switch a {
+    display: table-cell;
+    height: 100%;
+    width: 80px;
+    vertical-align: middle;
+    text-align: center;
+    color: #9B9A9A;
+    cursor: pointer;
+    font-size: 12px;
+    font-family: 'NotoSansCJKkr-Regular';
+}
+
+.card-mimi-switch a.on {
+    background-color: #333;
+    color: #FFF;
+}
+
+/*card info intro*/
+.panelty-info {
+    font-size: 13.5px;
+    font-family: 'NotoSansCJKkr-Bold';
+    color: #ea5916;
+    margin-top: 20px;
+    margin-bottom: 8px;
+    text-align: left !important;
+}
+
+.panelty-info-mean {
+    font-size: 10px;
+    font-family: 'NotoSansCJKkr-Regular';
+    color: #777777;
+    margin-top: 0px;
+    margin-bottom: 25px;
+    text-align: left !important;
+}
+
+.panelty-regular {
+    font-size: 12px;
+    font-family: 'NotoSansCJKkr-Medium';
+    color: #ff3333;
+    margin-bottom: 2px;
+    margin-top: 0px;
+    text-align: left !important;
+}
+
+/*delivery*/
+.delivery-checkbox {
+    font-size: 9px;
+    font-family: 'NotoSansCJKkr-DemiLight';
+    color: #a4a4a4;
+    font-weight: normal;
+    line-height: 20px;
+    vertical-align: middle;
+    text-align: center;
+}
+
+.delivery-checkbox input {
+    float: left;
+}
+
+.delivery-checkbox span {
+    font-size: 12px;
+    font-family: 'NotoSansCJKkr-DemiLight';
+    color: #a4a4a4;
+    font-weight: normal;
+    line-height: 20px;
+    vertical-align: middle;
+    float: left;
+    line-height: 18px;
+}
+
+/*table*/
+.mypage-table {
+    border-top: 3px solid #333;
+    border-bottom: 2px solid #333;
+    width: 100%;
+    border-spacing: 0px;
+}
+
+.mypage-table {
+    border-spacing: 0px;
+}
+
+.mypage-table > thead > tr > th {
+    font-size: 12px;
+    color: #444444;
+    font-family: "NotoSansCJKkr-DemiLight";
+    text-align: center;
+    vertical-align: middle;
+    padding: 10px 0px;
+}
+
+.mypage-table > tbody > tr > td {
+    border-top: 1px solid #E4E4E4;
+    font-size: 12px;
+    color: #000;
+    font-family: "NotoSansCJKkr-DemiLight";
+    text-align: center;
+    vertical-align: middle;
+    padding: 7px 0px;
+}
+
+.mypage-table > tbody > tr > td:first-child {
+    width: 70px;
+    padding: 7px 0px;
+}
+
+.mypage-table > tbody > tr > td:nth-child(2) {
+    font-size: 11px;
+    color: #333;
+    font-family: "NotoSansCJKkr-DemiLight";
+    text-align: left;
+    vertical-align: middle;
+    padding: 7px;
+    width: 95px;
+    box-sizing: border-box;
+    letter-spacing: -0.5px;
+    line-height: 20px;
+}
+
+.mypage-table td a.modify-a {
+    font-size: 9px;
+    text-decoration: none;
+    outline: none;
+    cursor: pointer;
+    background-color: #333;
+    color: white;
+    padding: 3px 8px;
+    line-height: 25px;
+    border-radius: 15px;
+}
+
+.mypage-table td a.remove-a {
+    font-size: 9px;
+    text-decoration: none;
+    outline: none;
+    cursor: pointer;
+    background-color: #ea5916;
+    color: white;
+    padding: 3px 8px;
+    line-height: 25px;
+    border-radius: 15px;
+}
+
+.mypage-table tfoot tr td {
+    font-size: 10.12px;
+    font-family: 'NotoSansCJKkr-Regular';
+    color: #333;
+    background-color: #f8f8f8;
+    padding: 7px 0px;
+}
+
+.mypage-alarm-content {
+    width: 90%;
+    height: auto;
+    margin: auto;
+    display: table;
+}

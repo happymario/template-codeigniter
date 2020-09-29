@@ -1,0 +1,489 @@
+.login-header-line {
+    border: 1px solid #e6e6e6;
+}
+
+.login-menu-bottom-bar {
+    border: 1px solid #f2f2f2;
+}
+
+/* nav-bar style ------------------- start ----*/
+header.main div.login-nav {
+    width: 100%;
+    height: 37px;
+    background: #fff;
+    margin-top: 80px;
+}
+
+header.main div.login-nav > ul {
+    list-style: none;
+    margin: auto;
+    padding: 0;
+    width: 60%;
+    height: 100%;
+}
+
+header.main div.login-nav > ul > li {
+    float: left;
+    width: 50%;
+    display: block;
+    position: relative;
+    height: 100%;
+    text-align: center;
+}
+
+header.main div.login-nav > ul > li:not(:last-of-type):after {
+    content: " ";
+    position: absolute;
+    right: 0;
+    width: 1px;
+    height: 10px;
+    background: #f3f3f3;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+header.main div.login-nav > ul > li > a {
+    display: inline-block;
+    font-family: "NotoSansCJKkr-Bold";
+    font-size: 13px;
+    line-height: 37px;
+    color: #919191;
+    cursor: pointer;
+    box-sizing: border-box;
+}
+
+header.main div.login-nav > ul > li > a.active {
+    color: #333;
+    border-bottom: 3px solid #ea5916;
+    padding-top: 3px;
+    line-height: 31px;
+}
+
+/* nav-bar style ------------------- end ----*/
+
+section.mimi-body {
+    width: 100%;
+    height: auto;
+    background: white;
+    display: table;
+}
+
+.login-form-header {
+    text-align: center;
+}
+
+.login-form-header h1.login-h1 {
+    background: transparent url("../../images/mobile/ic_login_user.png") no-repeat scroll 50% 20px;
+	background-size: 35px;
+}
+
+.login-form-header h1 {
+    font-size: 33.74px;
+    color: #ea5916;
+    padding-top: 48px;
+    margin-top: 0px;
+    margin-bottom: 0px;
+}
+
+.login-form-header p {
+    font-size: 12px;
+    color: #7c7c7c;
+    font-family: 'NotoSansCJKkr-DemiLight';
+    margin-top: 0px;
+    margin-bottom: 15px;
+}
+
+.login-body {
+    margin: auto;
+    width: 70%;
+}
+
+.login-body h1 {
+    font-size: 15px;
+    color: #474747;
+    font-family: 'NotoSansCJKkr-DemiLight';
+    margin-top: 17px;
+}
+
+.mimi-row {
+    width: 100%;
+    display: table;
+}
+
+.mimi-row > * {
+    display: table-cell;
+    outline: medium none;
+}
+
+div.mimi-row {
+    display: table;
+    width: 100%;
+    margin-top: 10px;
+}
+.mimi-row .login-input {
+    display: table-cell;
+    padding-right: 10px;
+    width: 175px;
+    vertical-align: top;
+}
+.mimi-row .login-input > .mimi-input-group {
+    margin-bottom: 6px;
+}
+
+.btn-login-pad {
+    float: right;
+    vertical-align: middle;
+    width: 100%;
+    height: 68px;
+    display: table;
+}
+
+.mimi-row a.btn-login {
+    background-color: #333;
+    color: #fff;
+    height: 68px;
+    font-size: 14px;
+    display: table-cell;
+    text-align: center;
+    vertical-align: middle;
+    font-family: 'NotoSansCJKkr-Medium';
+    border-radius: 3px;
+}
+
+.mimi-input-group {
+    display: table;
+    width: 100%;
+    height: 31px;
+}
+
+.mimi-input-group > div.mimi-input {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    border: 1px solid #ddd;
+    border-radius: 3px;
+}
+
+.mimi-input > input {
+    width: 100%;
+    height: 100%;
+    text-indent: 9px;
+    font-size: 12px;
+    color: #333;
+    background-color: transparent;
+    border: none;
+    outline: none;
+    box-sizing: border-box;
+    font-family: 'NotoSansCJKkr-DemiLight';
+    line-height: 14px;
+}
+
+.mimi-input span.helper {
+    font-family: "NotoSansCJKkr-Light";
+    position: absolute;
+    right: 9px;
+    top: 9px;
+    font-size: 9px;
+    color: #EA5916;
+}
+
+.mimi-input > textarea {
+    width: 100%;
+    height: 100%;
+    padding: 10px 10px;
+    font-size: 11px;
+    color: #333;
+    background-color: transparent;
+    border: none;
+    outline: none;
+    box-sizing: border-box;
+    min-height: 170px;
+    margin: 0;
+}
+
+.links {
+    margin-top: 5px !important;
+}
+
+.links label.mimi-checkbox {
+    font-size: 11px;
+    font-family: 'NotoSansCJKkr-DemiLight';
+    color: #9b9b9b;
+    vertical-align: middle;
+    display: table-cell;
+}
+
+.links label.mimi-checkbox input {
+    margin: 5px 3px 3px 4px;
+    vertical-align: middle;
+}
+
+.links label.mimi-checkbox span{
+    vertical-align: middle;
+}
+
+.links .join-link{
+    float: right;
+    font-size: 11px;
+    padding-top: 3px;
+    font-family: 'NotoSansCJKkr-DemiLight';
+}
+
+.links .join-link a{
+    color: #9b9b9b;
+}
+
+
+.login-txt-red {
+    font-size: 10px;
+    font-family: 'NotoSansCJKkr-Light';
+    color: #eb2626;
+}
+
+.login-mimi-btn {
+    font-family: "NotoSansCJKkr-Medium";
+    font-size: 14px;
+    width: 100%;
+    height: 40px;
+    margin: 0px;
+    padding: 0px;
+    outline: medium none;
+    border: medium none;
+    border-radius: 4px;
+    cursor: pointer;
+    color: #e4e4e4;
+    vertical-align: middle;
+    text-align: center;
+    -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+    -khtml-user-select: none; /* Konqueror HTML */
+    -moz-user-select: none; /* Firefox */
+    -ms-user-select: none; /* Internet Explorer/Edge */
+    user-select: none; /* Non-prefixed version, currently supported by Chrome and Opera */
+}
+
+.h1-sns {
+    vertical-align: middle;
+    font-size: 13.5px;
+    font-family: "NotoSansCJKkr-DemiLight";
+    color: #6b6b6b;
+}
+
+.sns-links {
+    width: 100%;
+    display: table;
+}
+
+.sns-links a {
+    width: 32%;
+    border: medium none;
+    padding: 36px 0px 0px;
+    outline: medium none;
+    cursor: pointer;
+    font-size: 8.75px;
+    font-family: 'NotoSansCJKkr-Regular';
+    color: #5d5d5d;
+    display: table-cell;
+    text-align: center;
+}
+
+.sns-links a.btn-kakao {
+    background: transparent url("../../images/mobile/ic_talk.png") no-repeat scroll 50% 0px / 34px 34px;
+}
+
+.sns-links a.btn-neighbour {
+    background: transparent url("../../images/mobile/ic_naver.png") no-repeat scroll 50% 0px / 34px 34px;
+}
+
+.sns-links a.btn-facebook {
+    background: transparent url("../../images/mobile/ic_facebook.png") no-repeat scroll 50% 0px / 34px 34px;
+}
+
+/*sign up*/
+.sign-sns-cert-pad {
+    width: 100%;
+    height: 105px;
+    display: table;
+    background-color: #fbfbfb;
+    text-align: center;
+}
+
+.sign-notice-pad {
+    width: 100%;
+    height: 117px;
+    display: table;
+    background-color: #fbfbfb;
+}
+
+.sign-sns-cert-pad p {
+    font-size: 13.5px;
+    font-family: 'NotoSansCJKkr-Medium';
+    margin-top: 14px;
+    color: #3c3c3c;
+    margin-bottom: 0;
+}
+
+.sign-sns-links {
+    width: 35%;
+    margin: auto;
+    display: table;
+    margin-top: 9px !important;
+}
+
+.sign-sns-links a {
+    width: 32%;
+    border: medium none;
+    padding: 36px 0px 0px;
+    outline: medium none;
+    cursor: pointer;
+    font-size: 6.75px;
+    font-family: 'NotoSansCJKkr-Regular';
+    color: #5d5d5d;
+    display: table-cell;
+    text-align: center;
+}
+
+.sign-sns-links a.btn-kakao {
+    background: transparent url("../../images/mobile/ic_talk.png") no-repeat scroll 50% 0px / 34px 34px;
+}
+
+.sign-sns-links a.btn-neighbour {
+    background: transparent url("../../images/mobile/ic_naver.png") no-repeat scroll 50% 0px / 34px 34px;
+}
+
+.sign-sns-links a.btn-facebook {
+    background: transparent url("../../images/mobile/ic_facebook.png") no-repeat scroll 50% 0px / 34px 34px;
+}
+
+.email-atmark {
+    width: 26px;
+    font-size: 13.5px;
+    font-family: 'NotoSansCJKkr-DemiLight';
+    color: #575757;
+    text-align: center;
+}
+
+/* Select Style ==============================================================================================*/
+
+.mimi-input-group.mimi-select > .mimi-input {
+    background: url(../../images/mobile/ic_arrow_down.png) no-repeat 90% 12px white;
+    background-origin: content-box;
+    -webkit-appearance: none;
+    border-radius: 4px;
+}
+
+.mimi-input-group.mimi-select > .mimi-input.category {
+    background: url(../../images/mobile/ico_dropdown.png) no-repeat center;
+    background-position-x: calc(100% - 4.3vw);
+    background-size: 3.6vw auto;
+}
+
+.mimi-input.category input {
+    height: 10.8vw;
+    font-size: 3.75vw;
+    font-family: 'NotoSansCJKkr-Regular';
+}
+
+.mimi-input-group.mimi-select.category > .drop-list {
+    top: 11.5vw;
+}
+
+.mimi-input-group.mimi-select input {
+    cursor: pointer;
+}
+
+.mimi-input-group.mimi-select {
+    position: relative;
+}
+
+.mimi-input-group.mimi-select {
+    -webkit-appearance: none;
+}
+
+.mimi-input-group.mimi-select > .drop-list {
+    display: none;
+    position: absolute;
+    left: 0px;
+    top: 30px;
+    z-index: 10;
+    border-radius: 5px;
+    background-color: white;
+    padding: 7px 0;
+    box-shadow: 0 0 8px 0 rgba(0, 0, 0, 0.2);
+    -webkit-appearance: none;
+    width: 100%;
+    overflow-y: scroll;
+}
+
+.mimi-input-group.mimi-select > .drop-list > ul {
+    list-style: none;
+    margin: 0px;
+    padding: 0px;
+}
+
+.mimi-input-group.mimi-select > .drop-list li {
+    height: 30px;
+    cursor: pointer;
+}
+
+.mimi-input-group.mimi-select > .drop-list li a {
+    font-size: 11px;
+    padding: 3px 13px 0;
+    height: 100%;
+    display: block;
+    line-height: 30px;
+    text-decoration: none;
+    outline: none;
+    color: #333;
+}
+
+.join-btn {
+    width: 84px;
+    height: 100%;
+    font-size: 11px;
+    color: #FFF;
+    background-color: #333333;
+    border-top-left-radius: 0px;
+    border-top-right-radius: 3px;
+    border-bottom-left-radius: 0px;
+    border-bottom-right-radius: 3px;
+    display: table-cell;
+    text-align: center;
+    vertical-align: middle;
+    cursor: pointer;
+    z-index: 10;
+}
+
+.join-input {
+    border-left: 1px solid #ddd !important;
+    border-top: 1px solid #ddd !important;
+    border-bottom: 1px solid #ddd !important;
+    border-right: 0px solid #ddd !important;
+}
+
+.sign-notice-pad .mimi-box {
+    border: 1px solid #f3f3f3;
+    padding: 10px;
+}
+
+.sign-notice-pad .mimi-box p{
+    margin: 0px;
+}
+
+.sign-notice-pad .mimi-box * {
+    font-size: 10px;
+    font-family: 'NotoSansCJKkr-DemiLight';
+    color: #afafaf;
+    font-weight: normal;
+    line-height: 20px;
+    vertical-align: middle;
+    margin-bottom: 3px;
+}
+
+.mimi-inline-btn {
+    border: 1px solid #A7A7A7;
+    color: #8C8C8C;
+    font-size: 9px;
+    text-decoration: none;
+    padding: 1px 4px;
+}

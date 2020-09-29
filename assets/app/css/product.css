@@ -1,0 +1,1067 @@
+
+.pdt-image-slide {
+    width: 100%;
+    min-height: 280px;
+    position: relative;
+    /*background: #e2e2e2;*/
+}
+
+/*.pdt-image-slide > .dotted {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 30px;
+    text-align: center;
+}
+
+.pdt-image-slide > .dotted > a.dot {
+    display: inline-block;
+    width: 12px;
+    height: 12px;
+    border: 2.5px solid #ea5916;
+    border-radius: 50%;
+}*/
+
+.pdt-image-slide > .dotted > a.dot.on {
+    background: #ea5916;
+}
+
+#wrap_oos, section.main-body {
+    background: #fff;
+}
+
+section.main-body > section {
+    border-bottom: 1px solid #ebebeb;
+    padding: 17px;
+}
+
+section.main-body > section:last-of-type {
+    border: none;
+}
+
+/*상품명, 상품상태, 상품버튼*/
+section.pdt-title > h1 {
+    margin: 0;
+    padding: 0;
+    font-family: "NotoSansCJKkr-Medium";
+    font-size: 20px;
+    line-height: 26px;
+    font-weight: 100;
+}
+
+section.pdt-title > p {
+    margin: 5px;
+    padding: 0;
+    font-family: "NotoSansCJKkr-Medium";
+    font-size: 12px;
+}
+
+section.pdt-title > .pdt-buttons {
+    margin-top: 15px;
+    width: 100%;
+}
+
+section.pdt-title > .pdt-buttons > a {
+    display: inline-block;
+    width: 80px;
+    height: 28px;
+    border: 2px solid #333;
+    border-radius: 14px;
+    font-family: "NotoSansCJKkr-Bold";
+    font-size: 10.13px;
+    line-height: 24px;
+    color: #333;
+}
+
+section.pdt-title > .pdt-buttons > a.on {
+    background: #ea5916;
+    border: 2px solid #ea5916;
+    color: #fff;
+}
+
+section.pdt-price-info {
+    background-color: #fbfbfb;
+}
+
+/* 직전 판매가, 사이즈 선택, 판매중인 최저가, 입찰중인 최고가 */
+section.pdt-price-info > div.prev-sell-price {
+    height: 20px;
+    display: table;
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+section.pdt-price-info > div.prev-sell-price > .psp-label {
+    display: table-cell;
+    font-family: "NotoSansCJKkr-Medium";
+    font-size: 12px;
+    vertical-align: middle;
+}
+
+section.pdt-price-info > div.prev-sell-price > .psp-value {
+    display: table-cell;
+    vertical-align: middle;
+}
+
+section.pdt-price-info > div.prev-sell-price > .psp-value > span {
+    font-family: "NotoSansCJKkr-Bold";
+    font-size: 15px;
+    vertical-align: middle;
+}
+
+section.pdt-price-info > div.prev-sell-price > .psp-value > small {
+    font-family: "NotoSansCJKkr-DemiLight";
+    font-size: 10px;
+}
+
+.mimi-dropdown > .drop-box {
+    background-color: #FFF;
+}
+
+.mimi-dropdown > .drop-box > .btn-dropdown {
+    display: inline-block;
+    position: absolute;
+    width: 40px;
+    height: 28px;
+    right: 0;
+    top: 9px;
+    border-left: 1px solid #ededed;
+    background: url(../../images/arrow_down_orange.png) no-repeat center;
+    background-size: 14px;
+}
+
+.mimi-dropdown > ul {
+    position: absolute;
+    left: 0px;
+    right: 0px;
+    top: 45px;
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    box-shadow: 0px 2px 2px 0px #d7d7d7;
+    background: #fff;
+    max-height: 200px;
+    overflow-y: auto;
+    display: none;
+    z-index: 300;
+}
+
+.mimi-dropdown > ul > li {
+    height: 40px;
+    border-bottom: 1px solid #ebebeb;
+}
+
+.mimi-dropdown > ul > li > a {
+    display: block;
+    margin-left: 10px;
+    padding: 0 15px;
+    font-size: 12px;
+    line-height: 40px;
+}
+
+.product_size_drop > ul > li > a {
+    width: 60px;
+}
+
+.mimi-dropdown > ul > li > a:active,
+.mimi-dropdown > ul > li > a:hover,
+.mimi-dropdown > ul > li > a:focus {
+    background: #ededed;
+}
+
+.grid-cell p {
+    font-size: 18px;
+    line-height: 20px;
+    margin: 0;
+}
+
+.grid-cell .mimi-btn {
+    padding: 10px 0;
+    line-height: 24px;
+    height: 60px;
+}
+
+section.pdt-price-info div.min-max-price {
+    display: table;
+    width: 100%;
+    background: #FFF;
+    border: 1px solid #ededed;
+    border-radius: 3px;
+    margin: 15px 0;
+    height: 85px;
+    padding: 10px;
+    box-sizing: border-box;
+}
+
+section.pdt-price-info div.min-max-price > * {
+    display: table-cell;
+    width: 50%;
+}
+
+section.pdt-price-info div.min-max-price > .min-price {
+    border-right: 1px solid #f1f1f1;
+}
+
+section.pdt-price-info div.min-max-price .price-label {
+    font-size: 12px;
+    padding: 0;
+    margin: 0;
+}
+
+section.pdt-price-info div.min-max-price .price {
+    font-family: "NotoSansCJKkr-Bold";
+    font-size: 22px;
+    padding: 0;
+    margin: 0 0 -5px 0;
+}
+
+section.pdt-price-info div.min-max-price a {
+    font-family: "NotoSansCJKkr-Light";
+    font-size: 10px;
+    color: #999;
+    padding-bottom: 3px;
+    border-bottom: 1px solid #ddd;
+}
+
+section.pdt-price-info div.min-notice {
+    display: table;
+    width: 100%;
+    border: 1px solid #ff8d58;
+    border-radius: 5px;
+    margin-top: 15px;
+    padding: 10px;
+    box-sizing: border-box;
+    background: #FFF;
+}
+
+section.pdt-price-info div.min-notice .price-label {
+    font-size: 12px;
+    text-align: center;
+    padding: 0;
+    margin: 0;
+}
+
+/* 상품 정보 */
+section.pdt-info ul {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+}
+
+section.pdt-info ul > li {
+    min-height: 28px;
+    font-family: "NotoSansCJKkr-DemiLight";
+    font-size: 11.25px;
+}
+
+section.pdt-info ul > li > span.info-label {
+    line-height: 28px;
+    position: relative;
+    padding-left: 8px;
+}
+
+section.pdt-info ul > li > span.info-label:before {
+    content: '';
+    position: absolute;
+    width: 2px;
+    height: 2px;
+    background: #000;
+    display: inline-block;
+    top: 8px;
+    left: 3px;
+}
+
+section.pdt-info ul > li > span.info-value {
+    line-height: 28px;
+    color: #ababab;
+}
+
+/* 종목 설명, 연관종목 */
+section.releation-pdt > p.type-desc {
+    font-family: "NotoSansCJKkr-Light";
+    font-size: 12px;
+    padding: 0;
+    line-height: 16px;
+    margin-bottom: 2em;
+}
+
+label.section-label {
+    width: 100px;
+    height: 35px;
+    display: inline-block;
+    text-align: center;
+    background: #ea5916;
+    color: #fff;
+    font-family: "NotoSansCJkr DemiLight";
+    font-size: 12px;
+    line-height: 35px;
+    border-radius: 5px;
+}
+
+section.releation-pdt > .releation-pdt-cards {
+    width: 100%;
+    height: 200px;
+    margin-top: 10px;
+}
+
+section.releation-pdt > .releation-pdt-cards > .scroll {
+    padding-left: 17px;
+    height: 200px;
+    position: absolute;
+    overflow-x: auto;
+    width: 100%;
+    box-sizing: border-box;
+    left: 0;
+}
+
+section.releation-pdt > .releation-pdt-cards .pdt-card {
+    width: 133px;
+    float: left;
+    margin-right: 2px;
+}
+
+section.releation-pdt > .releation-pdt-cards .pdt-card > .card-image {
+    width: 100%;
+    height: 133px;
+    text-align: center;
+    display: table-cell;
+    vertical-align: middle;
+    border: 1px solid #ebebeb;
+}
+
+section.releation-pdt > .releation-pdt-cards .pdt-card > .card-image > a > img {
+    max-width: 100%;
+    max-height: 100%;
+}
+
+section.releation-pdt > .releation-pdt-cards .pdt-card > .card-pdt-name {
+    margin: 5px 0 0 0;
+    font-size: 9px;
+    line-height: 11.25px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+section.releation-pdt > .releation-pdt-cards .pdt-card > .card-price-label {
+    margin: 5px 0 -3px 0;
+    font-family: "NotoSansCJKkr-DemiLight";
+    font-size: 10px;
+}
+
+section.releation-pdt > .releation-pdt-cards .pdt-card > .card-price {
+    margin: 0;
+    font-family: "NotoSansCJKkr-Medium";
+    font-size: 16px;
+}
+
+/*최근 판매내역, 1년간 판매이력*/
+section.sell-history table.tbl-recent-sell {
+    width: 100%;
+    font-size: 11.25px;
+    margin-top: 10px;
+    border-spacing: 0;
+}
+
+section.sell-history table.tbl-recent-sell > thead {
+    font-family: "NotoSansCJKkr-Medium";
+    font-size: 10.13px;
+    text-align: center;
+}
+
+section.sell-history table.tbl-recent-sell > thead th {
+    border-bottom: 1px solid #ea5916;
+    height: 22px;
+}
+
+section.sell-history table.tbl-recent-sell > tbody {
+    font-family: "NotoSansCJKkr-Light";
+    font-size: 11.25px;
+    text-align: center;
+}
+
+section.sell-history table.tbl-recent-sell > tbody tr {
+    height: 25px;
+}
+
+section.sell-history table.tbl-recent-sell > tbody tr:nth-of-type(2n) {
+    background: #f2f2f2;
+}
+
+section.sell-history .best-in-52-weeks {
+    font-family: "NotoSansCJKkr-DemiLight";
+    font-size: 7.31px;
+    height: 13px;
+}
+
+section.sell-history .best-in-52-weeks .pull-right {
+    padding-left: 10px;
+    background: url(../../images/ic_price_chart.png) no-repeat left center;
+    background-size: 7px;
+}
+
+.price-chart > #interactive {
+    height: 200px;
+    margin-bottom: 10px;
+}
+
+section.sell-history .two-panel {
+    margin-top: 10px;
+}
+
+.two-panel {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #e8e8e8;
+    border-radius: 3px;
+    background: #fafafa;
+    display: table;
+}
+
+.two-panel > * {
+    display: table-cell;
+    width: 50%;
+    vertical-align: middle;
+}
+
+.two-panel > div.left {
+    border-right: 1px solid #e8e8e8;
+}
+
+.two-panel > .premium img {
+    width: 35px;
+}
+
+.two-panel > .premium h3 {
+    font-size: 22.5px;
+    margin: -5px 0 -8px;
+    line-height: 25px;
+}
+
+.two-panel > .premium span {
+    font-size: 9px;
+    color: #a5a5a5;
+}
+
+.two-panel > .premium p {
+    font-family: "NotoSansCJKkr-Medium";
+    font-size: 20px;
+    margin: 0;
+    letter-spacing: -1px;
+}
+
+.two-panel p.price-average {
+    margin: 0;
+    padding-left: 54px;
+    background: url(../../images/mobile/ic_won_circle.png) no-repeat 15px center;
+    background-size: 26px;
+    letter-spacing: -1px;
+    line-height: 15px;
+}
+
+.two-panel p.price-average > small,
+.two-panel p.price-max > small {
+    font-family: "NotoSansCJKkr-Medium";
+    font-size: 10px;
+    color: #ea5916;
+}
+
+.two-panel p.price-average > span,
+.two-panel p.price-max > span {
+    font-family: "NotoSansCJKkr-Medium";
+    font-size: 20px;
+    line-height: 25px;
+}
+
+.two-panel p.price-average {
+    margin: 0;
+    padding-left: 54px;
+    background: url(../../images/mobile/ic_won_circle.png) no-repeat 15px 9px;
+    background-size: 30px;
+    letter-spacing: -1px;
+    line-height: 15px;
+    border-bottom: 1px solid #e8e8e8;
+    padding-bottom: 10px;
+}
+
+.two-panel p.price-max {
+    margin: 10px 0 0 0;
+    padding-left: 54px;
+    background: url(../../images/mobile/ic_increase.png) no-repeat 15px 9px;
+    background-size: 30px;
+    letter-spacing: -1px;
+    line-height: 15px;
+}
+
+.product_share_btn {
+    /*display: inline-block;*/
+    width: 80px;
+    height: 28px;
+    border: 2px solid #333;
+    border-radius: 14px;
+    font-family: "NotoSansCJKkr-Bold";
+    font-size: 10.13px;
+    color: #333;
+}
+
+/*login 령역*/
+.login-content-pad {
+    width: 91% !important;
+    /*margin: auto;*/
+    border: 1px solid #DDD;
+    padding: 20px;
+    background: #FFF none repeat scroll 0% 0%;
+}
+
+.login-content {
+    text-align: center;
+    top: 0px;
+    padding-top: 150px;
+    padding-bottom: 350px;
+    margin: auto;
+    position: absolute;
+    width: 500px;
+}
+
+.login-content p {
+    font-size: 13.5px;
+}
+
+.sale-panelty-agree-pad {
+    width: 50%;
+    display: table !important;
+    margin: auto;
+}
+
+.step-title {
+    font-family: 'NotoSansCJKkr-Bold';
+    font-size: 5.33vw;
+    color: white;
+    margin-bottom: 1.5vw;
+}
+
+.step-desc {
+    font-family: 'NotoSansCJKkr-DemiLight';
+    font-size: 3.1vw;
+    color: white;
+    letter-spacing: -0.5px;
+}
+
+.step-desc > span {
+    color: #ff8106;
+}
+
+.level-guide {
+    font-family: 'NotoSansCJKkr-Medium';
+    font-size: 6.222vw;
+    color: #2b3139;
+}
+
+.level-title {
+    font-family: 'NotoSansCJKkr-Regular';
+    font-size: 5.333vw;
+    color: #333333;
+    display: flex;
+    align-items: center;
+}
+
+.level-desc {
+    font-family: 'NotoSansCJKkr-DemiLight';
+    font-size: 3.022vw;
+    color: #747474;
+    margin: 0.5vw 0;
+    letter-spacing: -0.5px;
+}
+
+.level {
+    border: 1px solid #ff8106;
+    display: flex;
+    border-radius: 0.7vw;
+    padding: 2vw 3.5vw;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.level.unable {
+    border-color: #a3a3a3;
+}
+
+.level + .level {
+    margin-top: 2vw;
+}
+
+.level-title > label {
+    font-family: 'NotoSansCJKkr-Regular';
+    font-size: 2.133vw;
+    color: white;
+    background-color: #e80c0c;
+    width: 9.7vw;
+    line-height: 4.4vw;
+    border-radius: 0.7vw;
+    text-align: center;
+    margin-left: 1.5vw;
+}
+
+.level-title .btn-example-img {
+    font-family: 'NotoSansCJKkr-DemiLight';
+    font-size: 2.133vw;
+    color: #333333;
+    text-align: center;
+    width: 12.4vw;
+    line-height: 4.4vw;
+    margin-left: 1.5vw;
+    border: 1px solid #e3e3e3;
+}
+
+.level-badge {
+    display: inline-block;
+    width: 16vw;
+    font-family: 'NotoSansCJKkr-DemiLight';
+    font-size: 2.667vw;
+    color: white;
+    border-radius: 3vw;
+    background-color: #ff8106;
+    line-height: 5.3vw;
+    text-align: center;
+}
+
+.level.unable .level-badge {
+    background-color: #a3a3a3;
+}
+
+.popup-handbags-step input[type="checkbox"] {
+    display: none;
+}
+
+.popup-handbags-step input[type="checkbox"] + i {
+    display: inline-block;
+    width: 4.4vw;
+    height: 4.4vw;
+    background: url("../../images/handbags/ic_radio_off.png") no-repeat center;
+    background-size: 4.4vw 4.4vw;
+    vertical-align: middle;
+    margin-right: 1.5vw;
+    transition: 0.2s;
+}
+
+.popup-handbags-step input[type="checkbox"]:checked + i {
+    background: url("../../images/handbags/ic_radio_on.png") no-repeat center;
+    background-size: 4.4vw 4.4vw;
+}
+
+.popup-handbags-step .popup-header {
+    background-color: #2b3139;
+    color: white;
+    font-family: 'NotoSansCJKkr-Regular';
+    font-size: 4.266vw;
+    text-align: center;
+    line-height: 10vw;
+    position: relative;
+    border-bottom: 1px solid white;
+}
+
+.popup-handbags-step .btn-popup-close {
+    position: absolute;
+    right: 3.7vw;
+    top: 2.1vw;
+    width: 5.3vw;
+    height: 5.3vw;
+    background: url("../../images/handbags/ic_popup_close.png") no-repeat center;
+    background-size: contain;
+}
+
+.color-primary {
+    color: #ff8106;
+}
+
+.agree-label {
+    font-family: 'NotoSansCJKkr-DemiLight';
+    color: #8d8d8d;
+    font-size: 3.022vw;
+    display: block;
+    line-height: 11vw;
+    letter-spacing: -0.7px;
+}
+
+.popup-handbags-step .btn-next-step {
+    display: inline-block;
+    background-color: #ff8400;
+    font-family: 'NotoSansCJKkr-DemiLight';
+    color: white;
+    width: 29.7vw;
+    line-height: 9.7vw;
+    text-align: center;
+    font-size: 3.555vw;
+}
+
+.popup-handbags-step .popup-footer {
+    background-color: white;
+    text-align: center;
+    padding-bottom: 4.5vw;
+    margin-top: -1px;
+}
+
+.popup-handbags-step .btn-next-step > span {
+    padding-right: 5vw;
+    background: url("../../images/handbags/btn_next_step_white.png") no-repeat right;
+    background-size: 1.5vw 3.5vw;
+}
+
+.popup-handbags-step .btn-sale-cancel {
+    display: inline-block;
+    background-color: #a3a3a3;
+    font-family: 'NotoSansCJKkr-DemiLight';
+    color: white;
+    width: 29.2vw;
+    line-height: 9.7vw;
+    text-align: center;
+    margin-left: 2vw;
+    font-size: 3.555vw;
+}
+
+.popup-handbags-step .btn-sale-cancel > span {
+    padding-right: 6vw;
+    background: url("../../images/handbags/btn_sale_cancel.png") no-repeat right;
+    background-size: 3.3vw 3.3vw;
+}
+
+.btn-slider-left {
+    position: absolute;
+    left: 0;
+    top: 50%;
+    width: 9.4vw;
+    height: 16.3vw;
+    background: url("../../images/handbags/img_slider_left_mobile.png") no-repeat center;
+    background-size: 100% 100%;
+    transform: translateY(-50%);
+}
+
+.btn-slider-right {
+    position: absolute;
+    right: 0;
+    top: 50%;
+    width: 9.4vw;
+    height: 16.3vw;
+    background: url("../../images/handbags/img_slider_right_mobile.png") no-repeat center;
+    background-size: 100% 100%;
+    transform: translateY(-50%);
+}
+
+.btn-slider-close {
+    position: absolute;
+    right: 0;
+    top: -73px;
+    width: 10.7vw;
+    height: 10.7vw;
+    background: url("../../images/handbags/ic_slider_close.png") no-repeat center;
+    background-size: 100% 100%;
+}
+
+.step-tabs-box {
+    background-color: #2b3139;
+    padding: 6vw 3.5vw;
+}
+
+.step-tabs {
+    height: 0.8vw;
+    background-color: #444a53;
+    border-radius: 0.4vw;
+}
+
+.step-tab {
+    left: 0;
+    width: 33.33333%;
+    height: 100%;
+    background-color: white;
+    border-radius: 0.4vw;
+    position: relative;
+    transition: 0.2s;
+}
+
+.level-guide .btn-product-img {
+    width: 16vw;
+    line-height: 5.3vw;
+    border: 1px solid #333333;
+    font-size: 2.488vw;
+    font-family: 'NotoSansCJKkr-DemiLight';
+    color: #333333;
+    text-align: center;
+    margin-left: 2.5vw;
+}
+
+.upload-list {
+    display: flex;
+    justify-content: space-between;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    flex-flow: wrap;
+}
+
+.upload-list li {
+    width: 26.2vw;
+    height: 26.2vw;
+    margin-bottom: 1vw;
+    border: 1px solid #dddddd;
+}
+
+.special-matters {
+    font-family: 'NotoSansCJKkr-Medium';
+    font-size: 4vw;
+    color: #333333;
+    padding-bottom: 3vw;
+    margin-top: 2vw;
+}
+
+.special-matters textarea {
+    font-family: 'NotoSansCJKkr-DemiLight';
+    font-size: 2.667vw;
+    border: 1px solid #e5e5e5;
+    outline: none;
+    width: 100%;
+    margin-top: 1vw;
+    padding: 1.5vw 2vw;
+}
+
+.btn-upload-img,
+.btn-add-upload {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.btn-upload-img span {
+    font-family: 'NotoSansCJKkr-Medium';
+    font-size: 4.44vw;
+    color: #ff8106;
+    background: url("../../images/handbags/ic_upload_img.png") no-repeat top;
+    background-size: 8.9vw 8.7vw;
+    padding-top: 11vw;
+}
+
+.btn-add-upload span {
+    width: 100%;
+    height: 100%;
+    background-color: #f4f4f4;
+    background-image: url("../../images/handbags/ic_add_upload_mobile.png");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 14.4vw 14.4vw;
+}
+
+.product-img {
+    width: 21.3vw;
+    height: 21.3vw;
+    object-fit: contain;
+    border: 1px solid #e2e2e2;
+}
+
+.table-handbags {
+    border-spacing: 0;
+    width: 100%;
+}
+
+.table-handbags td {
+    font-family: 'NotoSansCJKkr-Medium';
+    font-size: 3.022vw;
+    color: #333333;
+    padding: 2vw 0;
+    text-align: right;
+}
+
+.table-handbags tr td:first-child {
+    text-align: left;
+    padding-left: 4.5vw;
+}
+
+.table-handbags tr td:last-child {
+    padding-right: 4.5vw;
+}
+
+.tr-border td {
+    border-top: 1px solid #e2e2e2;
+    border-bottom: 1px solid #e2e2e2;
+    background-color: #fbfbfb;
+}
+
+.handbags-sale-price {
+    padding: 0 2.3vw;
+    border: 1px solid #e2e2e2;
+    width: 25vw;
+    height: 7.5vw;
+    font-family: 'NotoSansCJKkr-DemiLight';
+    font-size: 2.311vw;
+    color: #333333;
+    float: left;
+    outline: none;
+}
+
+.btn-apply-price {
+    display: inline-block;
+    width: 15vw;
+    line-height: 7.5vw;
+    height: 7.5vw;
+    font-family: 'NotoSansCJKkr-DemiLight';
+    font-size: 2.844vw;
+    color: white;
+    background-color: #ff8106;
+    text-align: center;
+    float: left;
+}
+
+.handbags-period-desc {
+    font-family: 'NotoSansCJKkr-DemiLight';
+    font-size: 2.133vw;
+    color: #808080;
+    margin-top: -3.5vw;
+    margin-bottom: 0;
+    text-align: right;
+}
+
+.handbags-period-desc span {
+    color: #ff8106;
+}
+
+.btn-instance-sale {
+    font-family: 'NotoSansCJKkr-Regular';
+    font-size: 2.133vw;
+    color: white;
+    background-color: #333333;
+    display: inline-block;
+    width: 17.7vw;
+    line-height: 5.3vw;
+    height: 5.3vw;
+    text-align: center;
+}
+
+.table-handbags td.handbags-fees {
+    font-family: 'NotoSansCJKkr-DemiLight';
+    font-size: 2.311vw;
+    color: #878787;
+}
+
+.table-handbags td.handbags-calc-price {
+    font-family: 'NotoSansCJKkr-Medium';
+    font-size: 3.022vw;
+    color: #ff8106;
+}
+
+.input-select-list {
+    position: relative;
+    display: inline-block;
+    text-align: left;
+}
+
+.handbags-sale-period {
+    width: 26.6vw;
+    height: 7.5vw;
+}
+
+.input-select-list ul {
+    display: none;
+    position: absolute;
+    left: 1px;
+    right: 1px;
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    box-shadow: 1px 1px 1px 1px #adadad;
+    background: #fff;
+    max-height: 36vw;
+    overflow-y: auto;
+    z-index: 300;
+}
+
+.input-select-list ul li {
+    cursor: pointer;
+    font-size: 2.1vw;
+    line-height: 6vw;
+    padding-left: 2.1vw;
+    font-family: 'NotoSansCJKkr-DemiLight';
+}
+
+.input-select {
+    font-family: 'NotoSansCJKkr-DemiLight';
+    font-size: 2.311vw;
+    color: #333333;
+    background: url("../../images/handbags/ic_dropdown.png") no-repeat right 2.2vw center;
+    background-size: 2.9vw 1.2vw;
+    cursor: pointer;
+    width: 100%;
+    height: 100%;
+    padding-left: 2.1vw;
+    padding-right: 5vw;
+    border: 1px solid #e2e2e2;
+    outline: none;
+}
+
+.pdt-nm {
+    font-family: 'NotoSansCJKkr-Medium';
+    font-size: 3.555vw;
+    color: #333333;
+    line-height: 1.1;
+}
+
+.input-select-list ul li:hover {
+    background-color: #eeeeee;
+}
+
+.input-select-list ul li.active {
+    color: #ea5916;
+}
+
+.pdt-color {
+    font-family: 'NotoSansCJKkr-DemiLight';
+    font-size: 2.133vw;
+    color: #aaaaaa;
+    margin-top: 1vw;
+}
+
+.pdt-price {
+    font-family: 'NotoSansCJKkr-DemiLight';
+    font-size: 2.489vw;
+    color: #ff8106;
+}
+
+.agree-box {
+    border-top: 1px solid #eeeeee;
+    padding-left: 4.5vw;
+    padding-bottom: 5vw;
+}
+
+.agree-box .agree-label {
+    letter-spacing: 0;
+}
+
+.agree-box p {
+    font-family: 'NotoSansCJKkr-DemiLight';
+    font-size: 2.311vw;
+    color: #333333;
+    margin: 0;
+    margin-top: 1.4vw;
+    margin-left: 4.5vw;
+    letter-spacing: -0.1vw;
+    line-height: 1.2;
+}
+
+.popup-chicken-help {
+    background: url("../../images/mobile/bg_chicken_help.png") no-repeat center;
+    background-size: 57vw 24vw;
+    font-family: 'NotoSansCJKkr-Medium';
+    font-size: 3vw;
+    color: #5f5f5f;
+    padding: 5.5vw 2.5vw 3.2vw 4.5vw;
+    position: absolute;
+    left: 26vw;
+    top: 85%;
+    z-index: 10;
+    width: 56vw;
+    height: 23vw;
+    /* letter-spacing: -0.5px; */
+}
+
+.popup-chicken-help span {
+    color: #e45b1b;
+}

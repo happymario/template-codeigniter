@@ -1,0 +1,51 @@
+<?php
+
+
+class Login extends CI_Controller
+{
+    public function __construct()
+    {
+        parent::__construct();
+        $this->load->helper("url");
+        $this->load->library("session");
+        $this->load->database();
+    }
+
+    public function index()
+    {
+        $this->load->view("login/index");
+    }
+
+    public function login()
+    {
+        $id = $this->input->post('id');
+        $pwd = $this->input->post('pwd');
+        $row = $this->db->get_where('tb_admin', array('id' => $id, 'pwd' => $pwd))->row();
+        if ($row == null) {
+            echo "no_exist";
+        } else {
+            $this->session->set_userdata(SESSION_ADMIN_UID, $row->uid);
+            echo "success";
+        }
+    }
+
+    public function logout()
+    {
+        $this->session->unset_userdata(SESSION_ADMIN_UID);
+        redirect('Login');
+    }
+
+    public function change_admin_info()
+    {
+        $id = $this->input->post("id");
+        $pwd = $this->input->post("pwd");
+
+        $save_data = array(
+            'id' => $id,
+            'pwd' => $pwd
+        );
+
+        $this->db->update('tb_admin', $save_data, array('uid' => $this->session->userdata(SESSION_ADMIN_UID)));
+        die ("success");
+    }
+}

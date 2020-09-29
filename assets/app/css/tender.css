@@ -1,0 +1,145 @@
+.tender-body {
+    width: 100%;
+    height: auto;
+    background: white;
+    display: table;
+}
+
+.tender-header-content {
+    width: 100%;
+    display: table;
+    height: 164px;
+    background-color: #f8f8f8;
+}
+
+.tender-info {
+    width: 91%;
+    height: 100%;
+    margin: auto;
+    background-color: #f8f8f8;
+}
+
+.tender-info img {
+	height: 30px;
+}
+
+.sale-info {
+    width: 91%;
+    height: 124px;
+    margin: 20px auto;
+    background-color: #fff;
+    border-radius: 4px;
+}
+
+.sell-info-content {
+    width: 100%;
+    margin: 24px 0px !important;
+    display: table;
+    text-align: center;
+    height: 76px;
+}
+
+.sell-info-content img {
+	height: 30px;
+}
+
+.tender-main-content {
+    width: 91%;
+    height: 100%;
+    margin: auto;
+}
+
+.tender-button-area {
+    width: 69%;
+    height: auto;
+    margin: auto;
+}
+
+.tender-circle-img {
+    width: 123px;
+    height: 123px;
+    border-radius: 61.5px;
+    background-color: #FFF;
+    position: relative;
+    margin: auto;
+    margin-top: 20.5px;
+}
+
+.tender-circle-img .tender-money-img {
+    position: absolute;
+    width: 28px;
+    height: 30px;
+    top: 24px;
+    right: 47px;
+}
+
+.tender-circle-img .tender-holding-count {
+    position: absolute;
+    width: 29px;
+    height: 29px;
+    top: 23px;
+    right: 48px;
+}
+
+.tender-title-row {
+    display: table;
+    position: absolute;
+    top: 65px;
+    width: 100%;
+    text-align: center;
+}
+
+.tender-label1 {
+    font-size: 13px;
+    font-family: 'NotoSansCJKkr-Regular';
+    color: #4a4a4a;
+    margin-top: 0px;
+    margin-bottom: 5px;
+    line-height: 13px;
+}
+
+.tender-label2 {
+    font-size: 16px;
+    font-family: 'NotoSansCJKkr-Bold';
+    color: #3e3e3e;
+    margin-top: 0px;
+    line-height: 16px;
+}
+
+.tender-title {
+    font-size: 16px;
+    font-family: 'NotoSansCJKkr-Medium';
+    color: #333;
+}
+
+.perform-tender-title-pad {
+    width: 100%;
+    vertical-align: middle;
+}
+.border-right {
+    border-right: 1px solid #ddd;
+    width: 33.33%;
+}
+
+ul.category-type {
+    margin: 0;
+    padding: 100px 4.5vw 10px 4.5vw;
+    list-style: none;
+    display: flex;
+}
+
+ul.category-type li {
+    flex: 1;
+    line-height: 12.4vw;
+    font-family: 'NotoSansCJKkr-Medium';
+    font-size: 4vw;
+    background-color: #fafafa;
+    color: #626262;
+    border: 0.1vw solid #e4e4e4;
+    text-align: center;
+}
+
+ul.category-type li.active {
+    color: #d9622f;
+    border: 0.1vw solid #d9622f;
+}

@@ -1,0 +1,10 @@
+.login-body p {
+    font-size: 10px;
+    font-family: 'NotoSansCJKkr-Light';
+    color: #acacac;
+    margin: 0px;
+}
+
+.login-body h1.find-info {
+    margin-bottom: 5px !important;
+}
