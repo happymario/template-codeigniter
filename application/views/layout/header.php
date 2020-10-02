@@ -116,8 +116,15 @@
                             <span class=""></span>
                         </a>
                     </li>
+                    <li class="nav-item <?= !empty($menu) && $menu == MENU_PHOTO_CHECK ? 'active open' : '' ?>">
+                        <a href="<?= site_url('User/photo_list') ?>" class="nav-link nav-toggle">
+                            <i class="fa fa-genderless"></i>
+                            <span class="title"><?=t('menu_photo_check') ?></span>
+                            <span class=""></span>
+                        </a>
+                    </li>
                     <li class="nav-item <?= !empty($menu) && $menu == MENU_NOTIFICATION ? 'active open' : '' ?>">
-                        <a href="<?= site_url('User') ?>" class="nav-link nav-toggle">
+                        <a href="<?= site_url('push') ?>" class="nav-link nav-toggle">
                             <i class="fa fa-genderless"></i>
                             <span class="title"><?=t('menu_notifications') ?></span>
                             <span class=""></span>

@@ -83,7 +83,7 @@
             return;
         }
 
-        if (!confirm("<?= t('msg_ask_delete')?>")
+        if (!confirm("<?= t('msg_ask_delete')?>"))
             return;
 
         $.ajax({

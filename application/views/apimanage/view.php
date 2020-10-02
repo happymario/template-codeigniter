@@ -5,7 +5,7 @@
             <span><?= $info['api_name'] ?></span>
         </div>
         <div class="col-md-12" style="margin-top: 10px;">
-            <label style="width: 100%;font-size:18px;color: black;font-weight: 700"><?=t('explain')?></label>
+            <label style="width: 100%;font-size:18px;color: black;font-weight: 700"><?=t('title')?></label>
             <span><?= $info['api_exp'] ?></span>
         </div>
 
@@ -15,14 +15,14 @@
             <table class="table table-bordered">
                 <tbody>
                 <tr>
-                    <th class="bg bg-success"><?=t('access_addr')?><</th>
+                    <th class="bg bg-success"><?=t('access_addr')?></th>
                     <th>
                         <a href="<?= site_url("api/" . $info['api_name']) ?>"
                            target="_blank"><?= site_url("api/" . $info['api_name']) ?></a>
                     </th>
                 </tr>
                 <tr>
-                    <th class="bg bg-success"><?=t('access_way')?><</th>
+                    <th class="bg bg-success"><?=t('access_way')?></th>
                     <th><?= $info['api_method'] ?></th>
                 </tr>
                 <tr>

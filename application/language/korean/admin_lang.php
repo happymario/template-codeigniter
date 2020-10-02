@@ -60,6 +60,7 @@ $lang = array(
     'menu_home' => '기본페지',
     'menu_users' => '사용자 관리',
     'menu_notifications' => '알림 관리',
+    'menu_photo_check' => '사진 검사',
     'menu_api' => 'Api',
     'menu_api_list' => 'Api List',
     'menu_api_doc' => 'Api Doc',

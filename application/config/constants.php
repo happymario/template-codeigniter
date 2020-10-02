@@ -85,32 +85,28 @@ defined('EXIT__AUTO_MIN')      OR define('EXIT__AUTO_MIN', 9); // lowest automat
 defined('EXIT__AUTO_MAX')      OR define('EXIT__AUTO_MAX', 125); // highest automatically-assigned error code
 
 
-
-// Admin
-define('VERSION', '1.0');
-define('LANGUAGE', 'english'); // english, korean
-
-
-//admin
-define('SESSION_ADMIN_UID', 'session_admin_uid');
-
-//user status
-define('USER_STATUS_NORMAL', 'y');
-define('USER_STATUS_EXIT', 'e');
-define('USER_STATUS_PAUSE', 'p');
-
 //upload
 define('UPLOAD_PATH', FCPATH . 'uploads' . DIRECTORY_SEPARATOR);
 define('UPLOAD_URL_PATH', "uploads/");
 
+//email
+defined('SMTP_EMAIL_ADDRESS')           OR  define('SMTP_EMAIL_ADDRESS', 'agbd@gmail.com');
+defined('SMTP_EMAIL_PASSWORD')           OR  define('SMTP_EMAIL_PASSWORD', 'pointphone1!');
+
+//common constants
+define('STATUS_NORMAL', '1');
+define('STATUS_DELETE', '0');
+
+define('USER_STATUS_PAUSE', '2');
+define('USER_STATUS_EXIT', '3');
+
+
 //api
 define('API_CURRENT_VERSION', 1);
-
 define('APP_VERSION', '1.0.0');
 
 // Api ResultCode
 define('STR_RESULT_CODE', 'resultcode');
-
 define('API_RESULT_SUCCESS', 0);    //성공
 define('API_RESULT_ERROR_SYSTEM', 101);  //체계 오유
 define('API_RESULT_ERROR_DB', 102);    //DB 오유
@@ -130,13 +126,12 @@ define('API_RESULT_ERROR_NICKNAME_LENGTH', 207);    //이름길이 오유
 define('API_RESULT_ERROR_EMAIL_VERIFIED', 208);    //Email인증 오유
 define('API_RESULT_ERROR_PURCHASE', 209);    //결제 오유
 
-// Status
-define('STATUS_NORMAL', 1);    // 정상
+// Admin
+define('VERSION', '1.0');
+define('LANGUAGE', 'english'); // english, korean
+define('SESSION_ADMIN_UID', 'session_admin_uid');
 
-//email
-defined('SMTP_EMAIL_ADDRESS')           OR  define('SMTP_EMAIL_ADDRESS', 'agbd@gmail.com');
-defined('SMTP_EMAIL_PASSWORD')           OR  define('SMTP_EMAIL_PASSWORD', 'pointphone1!');
-
-//메뉴
+// Menu
 define('MENU_USER', 'menu_user');
+define('MENU_PHOTO_CHECK', 'menu_photo_check');
 define('MENU_NOTIFICATION', 'menu_notification');

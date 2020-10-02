@@ -60,6 +60,7 @@ $lang = array(
     'menu_home' => 'Home',
     'menu_users' => 'Users',
     'menu_notifications' => 'Notification List',
+    'menu_photo_check' => 'Photo List',
     'menu_api' => 'Api',
     'menu_api_list' => 'Api List',
     'menu_api_doc' => 'Api Doc',

@@ -12,6 +12,13 @@ class User extends MY_Controller
         $this->load_view('user/index', array(), array('page_title' => t('menu_users'), 'menu' => MENU_USER));
     }
 
+
+    public function photo_list()
+    {
+        $this->load_view('user/photo_list', array(), array('page_title' => t('menu_photo_check'), 'menu' => MENU_PHOTO_CHECK));
+    }
+
+
     public function ajax_table()
     {
         $limit = SSP::limit($_POST);
