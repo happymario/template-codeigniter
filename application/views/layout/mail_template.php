@@ -21,7 +21,7 @@
                     <tr style='box-sizing: border-box; font-family: "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif; font-size: 14px; margin: 0; padding: 0;'>
                         <td align='center'>
                             <div style='margin-top: 20px'><img
-                                        src='<?= base_url() ?>assets/images/ic_logo.png' ALT='알고바다'
+                                        src='<?= base_url() ?>assets/images/ic_logo.png' ALT='Algobada'
                                         style='max-width: 80%;height: auto;display:block'></div>
                         </td>
                     </tr>
@@ -42,7 +42,7 @@
                                         style='box-sizing: border-box; font-family: "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif; font-size: 14px; margin: 0; padding: 0; text-align: left; vertical-align: top;'>
                                         <div style='padding: 20px 20px 20px 20px; border:3px solid #ea5916;'>
                                             <font style='font-size:11pt;font-family: "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;'>
-                                                안녕하세요! 알고바다입니다.
+                                                Hello! Algobada입니다.
                                                 <br/>
                                                 <?= $mail_description ?>
                                             </font>
@@ -83,7 +83,7 @@
                             <td class='aligncenter content-block'
                                 style='box-sizing: border-box; font-family: "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif; font-size: 12px; margin: 0; padding: 0 0 20px; text-align: center; vertical-align: top;'>
                                 <div style='box-sizing: border-box; font-family: "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif; font-size: 14px; margin: 0; padding: 0;'>
-                                    Copyright ⓒ Happymind All Rights Reserved.<br/>
+                                    Copyright ⓒ HappyMario All Rights Reserved.<br/>
                                 </div>
                             </td>
                         </tr>

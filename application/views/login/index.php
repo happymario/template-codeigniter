@@ -34,14 +34,14 @@
           style="padding: 0px;width:400px;margin-top:200px;background-color:white;margin: auto" id="login_form">
         <div class="form-actions"
              style="height: 50px;background-color:#92d050;text-align: center;padding-top: 10px;padding-bottom: 10px;">
-            <label style="color:white;font-weight: 700;font-size: 22px;">관&nbsp;&nbsp;리&nbsp;&nbsp;자</label>
+            <label style="color:white;font-weight: 700;font-size: 22px;"><?=t('login_title')?></label>
         </div>
 
         <div class="row" style="padding: 30px;">
             <div class="form-group">
                 <div class="row">
                     <div class="col-md-3">
-                        <span style="font-size: 14px;line-height: 42px;">아이디</span>
+                        <span style="font-size: 14px;line-height: 42px;"><?=t('id')?></span>
                     </div>
                     <div class="col-md-9">
                         <input class="form-control" style="background-color: white;height: 38px;" name="id" id="id">
@@ -52,7 +52,7 @@
             <div class="form-group">
                 <div class="row">
                     <div class="col-md-3">
-                        <span style="font-size: 14px;line-height: 42px;">비밀번호</span>
+                        <span style="font-size: 14px;line-height: 42px;"><?=t('pwd')?></span>
                     </div>
                     <div class="col-md-9">
                         <input type="password" class="form-control" style="background-color: white;height: 38px;"
@@ -61,7 +61,7 @@
                 </div>
             </div>
             <div class="row" style="text-align: center">
-                <button type="submit" class="btn btn-success" style="width: 200px;background: #92d050;">로그인</button>
+                <button type="submit" class="btn btn-success" style="width: 200px;background: #92d050;"><?=t('login')?></button>
             </div>
         </div>
 
@@ -81,10 +81,10 @@
             focusInvalid: false, // do not focus the last invalid input
             messages: {
                 id: {
-                    required: "아이디를 입력해주세요."
+                    required: "<?=t('msg_input_id')?>"
                 },
                 pwd: {
-                    required: '비밀번호를 입력해주세요.'
+                    required: '<?= t('msg_input_pwd')?>'
                 }
             },
             rules: {
@@ -105,7 +105,7 @@
                     .closest('.form-group').removeClass('has-error'); // set error class to the control group
             },
             beforeSubmit: function () {
-                console.log("asdf");
+                console.log("before Submit");
             },
             submitHandler: function (form) {
                 onLogin();
@@ -128,14 +128,14 @@
             success: function (data) {
                 App.unblockUI('#login_form');
                 if (data == "no_exist") {
-                    showSweetAlert("아이디와 비밀번호를 다시 확인 해주세요.", "btn-danger");
+                    showSweetAlert("<?=t('msg_user_not_matching')?>", "btn-danger");
                 } else {
                     location.href = "<?=site_url('Home')?>";
                 }
             },
             error: function (a, b, c) {
                 App.unblockUI('#login_form');
-                showSweetAlert("처리중 오류가 발생했습니다.", "btn-danger");
+                showSweetAlert("<?=t('error_server')?>", "btn-danger");
             }
         })
     }

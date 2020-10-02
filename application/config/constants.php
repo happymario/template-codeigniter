@@ -112,23 +112,23 @@ define('APP_VERSION', '1.0.0');
 define('STR_RESULT_CODE', 'resultcode');
 
 define('API_RESULT_SUCCESS', 0);    //성공
-define('API_RESULT_ERROR_SYSTEM', 101);  //시스템오류
-define('API_RESULT_ERROR_DB', 102);    //db연동오류
-define('API_RESULT_ERROR_PRIVILEGE', 103);    //권한오류
-define('API_RESULT_ERROR_PARAM', 104);    //파라미터오류
-define('API_RESULT_ERROR_UPLOAD', 105);   //파일upload오류
-define('API_RESULT_ERROR_ACCESS_TOKEN', 106);   //액세스 토큰오류
-define('API_RESULT_ERROR_CERT_KEY', 107);   //인증번호 오류
-define('API_RESULT_ERROR_LOGIN_FAILED', 201); //로그인 실패
-define('API_RESULT_ERROR_LOGIN_PASSWORD', 211); //패스워드 오류
-define('API_RESULT_ERROR_USER_NO_EXIST', 202); //회원정보존재안함
-define('API_RESULT_ERROR_EMAIL_DUPLICATE', 203);    //이메일증복오류
-define('API_RESULT_ERROR_EMAIL_NO_EXIST', 204); //회원정보존재안함
-define('API_RESULT_ERROR_USER_PAUSED', 205); //일시정지 회원
-define('API_RESULT_ERROR_NICKNAME_DUPLICATE', 206);    //닉네임증복오류
-define('API_RESULT_ERROR_NICKNAME_LENGTH', 207);    //닉네임오류
-define('API_RESULT_ERROR_EMAIL_VERIFIED', 208);    //이메일 인증오류
-define('API_RESULT_ERROR_PURCHASE', 209);    //결제오류
+define('API_RESULT_ERROR_SYSTEM', 101);  //체계 오유
+define('API_RESULT_ERROR_DB', 102);    //DB 오유
+define('API_RESULT_ERROR_PRIVILEGE', 103);    //권한 오유
+define('API_RESULT_ERROR_PARAM', 104);    //파라메터 오유
+define('API_RESULT_ERROR_UPLOAD', 105);   //파일upload 오유
+define('API_RESULT_ERROR_ACCESS_TOKEN', 106);   //접근Token 오유
+define('API_RESULT_ERROR_CERT_KEY', 107);   //인증번호 오유
+define('API_RESULT_ERROR_LOGIN_FAILED', 201); //Login 오유
+define('API_RESULT_ERROR_LOGIN_PASSWORD', 211); //비밀번호 오유
+define('API_RESULT_ERROR_USER_NO_EXIST', 202); //회원정보없음 오유
+define('API_RESULT_ERROR_EMAIL_DUPLICATE', 203);    //Email중복 오유
+define('API_RESULT_ERROR_EMAIL_NO_EXIST', 204); //Email없음 오유
+define('API_RESULT_ERROR_USER_PAUSED', 205); //정지회원 오유
+define('API_RESULT_ERROR_NICKNAME_DUPLICATE', 206);    //이름중복 오유
+define('API_RESULT_ERROR_NICKNAME_LENGTH', 207);    //이름길이 오유
+define('API_RESULT_ERROR_EMAIL_VERIFIED', 208);    //Email인증 오유
+define('API_RESULT_ERROR_PURCHASE', 209);    //결제 오유
 
 // Status
 define('STATUS_NORMAL', 1);    // 정상
@@ -136,5 +136,7 @@ define('STATUS_NORMAL', 1);    // 정상
 //email
 defined('SMTP_EMAIL_ADDRESS')           OR  define('SMTP_EMAIL_ADDRESS', 'agbd@gmail.com');
 defined('SMTP_EMAIL_PASSWORD')           OR  define('SMTP_EMAIL_PASSWORD', 'pointphone1!');
+
 //메뉴
 define('MENU_USER', 'menu_user');
+define('MENU_NOTIFICATION', 'menu_notification');

@@ -1,6 +1,6 @@
 <?php
 $lang = array(
-    //start
+    //common
     'site_name' => 'TEMPLATE',
     'manager' => 'Manager',
     'id' => 'ID',
@@ -10,18 +10,10 @@ $lang = array(
     'developer' => 'Developer',
     'logout' => 'Logout',
     'search_word' => 'Search Words',
-    'no' => 'No',
+    'number' => 'No',
     'no_data' => 'No Data',
     'all' => 'all',
-
-    //menu
-    'menu_home' => 'Home',
-    'menu_users' => 'Users',
-    'menu_alarms' => 'AlarmList',
-    'menu_api' => 'Api',
-    'menu_api_list' => 'Api List',
-    'menu_api_doc' => 'Api Doc',
-    'menu_api_code' => 'Api Error Code',
+    'error' => 'Error',
 
     //buttons
     'back' => 'Back',
@@ -33,6 +25,9 @@ $lang = array(
     'delete' => 'Delete',
     'add' => 'Add',
     'close' => 'Close',
+    'store' =>'Store',
+    'yes' =>'Yes',
+    'no' => 'No',
 
     //messages
     'msg_input_id' => 'Please input ID.',
@@ -44,6 +39,11 @@ $lang = array(
     'msg_error_occured' => 'An unexpected error occurred.',
     'msg_success_save' => 'Saved Successfully.',
     'msg_success_delete' => 'Deleted Successfully.',
+    'msg_input_varname' => 'Please input variable name.',
+    'msg_input_all' => 'Input all contents..',
+    'msg_success_oper' => 'Success operation',
+    'msg_input_name' =>'Please Input name.',
+    'msg_error_success' => 'Please fix issue.',
 
     //api errors
     'success' => 'Success',
@@ -56,6 +56,19 @@ $lang = array(
     'error_paused' => 'Your account was paused.',
     'error_email_duplicated' => 'Email is duplicated.',
 
+    //menu
+    'menu_home' => 'Home',
+    'menu_users' => 'Users',
+    'menu_notifications' => 'Notification List',
+    'menu_api' => 'Api',
+    'menu_api_list' => 'Api List',
+    'menu_api_doc' => 'Api Doc',
+    'menu_api_code' => 'Api Error Code',
+
+    // login
+    'login_title' =>'&nbsp;&nbsp;Admin&nbsp;&nbsp;',
+
+
     // home
     'plan_graph' =>'Plan Graph',
     'team' => 'Team',
@@ -63,6 +76,7 @@ $lang = array(
     'month' =>'Month',
     'plan' =>'Plan',
     'sum_up' =>'Sum up',
+    'save1' => '&nbsp;Save&nbsp;',
 
     //users
     'email' => 'Email',
@@ -76,8 +90,35 @@ $lang = array(
     'normal' => 'Normal',
     'pause' => 'Pause',
     'exit' => 'Exit',
+    'user_detail' =>'User Detail',
 
-    //alarms
+    //notifications
+    'notification' =>'Notification',
     'title' => 'Title',
-    'content' => 'Content'
+    'content' => 'Content',
+
+    //api
+    'multiple_delete' => 'Multiple Delete',
+    'gen' => '',
+    'access_way' => 'Methods',
+    'explain' => 'Explain',
+    'etc' =>'Etc',
+    'var' => 'Variable',
+    'total' => 'Total',
+    'detail_view' =>'Detail',
+    'list_go' => 'Go list',
+    'var_name' => 'Variable Name',
+    'type' => 'Type',
+    'kind' => 'Kind',
+    'order' => 'Order',
+    'list' => 'List',
+    'access_addr' => 'Access Address',
+    'access_info' => 'Access Information',
+    'ret_val' => 'Return Value',
+    'required' =>'Required',
+    'go_error_code' => 'Go Error code doc',
+    'used_status' => 'Used',
+    'use' => 'Use',
+    'no_use' => 'no use',
+    'result_view' => 'See APIProtocol.',
 );

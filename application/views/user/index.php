@@ -107,7 +107,7 @@
                                         <select class="form-control" id="status" name="status">
                                             <option value="y"><?=t('normal')?></option>
                                             <option value="p"><?=t('pause')?></option>
-                                            <option value="c"><?=t('manage')?></option>
+                                            <option value="c"><?=t('exit')?></option>
                                         </select>
                                     </td>
                                 </tr>
@@ -145,7 +145,7 @@
                 "infoFiltered": "(filtered1 from _MAX_ total entries)",
                 "lengthMenu": "_MENU_ ",
                 "search": "Search:",
-                "zeroRecords": <?= t('no_data')?>
+                "zeroRecords": '<?= t('no_data')?>'
             },
             ajax: { // define ajax settings
                 "url": "<?=site_url('User/ajax_table')?>", // ajax URL
@@ -232,8 +232,8 @@
             },
             success: function (result) {
                 hideLoading();
-                $('.modal-title').html('회원상세');
-                $('#btn_save').html('&nbsp;&nbsp;수정&nbsp;&nbsp;');
+                $('.modal-title').html('msg_input_name');
+                $('#btn_save').html('&nbsp;&nbsp;<?=t('update')?>&nbsp;&nbsp;');
                 $('#user_uid').val(user_uid);
                 $('#name').val(result.name);
                 if (result.login_type == 'naver') {
@@ -252,14 +252,14 @@
 
     $('#btn_save').click(function () {
         if ($('#name').val() == '') {
-            showNotification("오류", "이름을 입력해 주세요.", "warning");
+            showNotification("<?=t('error')?>", "<?=t('msg_input_name')?>", "warning");
             $('#name').focus();
             return;
         }
 
         if ($('#naver_tr').is(':hidden')) {
             if ($('#pwd').val() == '' && $('#pwd').val() == '') {
-                showNotification("오류", "비밀번호를 입력해 주세요.", "warning");
+                showNotification("<?=t('error')?>", "<?=t('msg_input_pwd')?>", "warning");
                 $('#pwd').focus();
                 return;
             }
@@ -275,13 +275,13 @@
             success: function (result) {
                 hideLoading();
                 if (result == 'success') {
-                    showNotification("성공", "저장되었습니다", "success");
+                    showNotification("<?=t('success')?>", "<?=t('msg_success_oper')?>", "success");
                     $('#edit_modal').modal('hide');
                     oTable.draw(true);
                 } else if (result == 'dup') {
-                    showNotification("오류", "이름이 중복됩니다.", "error");
+                    showNotification("<?=t('error')?>", "<?=t('msg_error_success')?>", "error");
                 } else {
-                    showNotification("오류", "조작이 실패하였습니다.", "error");
+                    showNotification("<?=t('error')?>","<?=t('msg_error_occured')?>","error");
                 }
             }
         });
@@ -298,15 +298,15 @@
             success: function (result) {
                 hideLoading();
                 if (result == "success") {
-                    showNotification("성공", "삭제되었습니다.", "success");
+                    showNotification("<?=t('success')?>", "<?=t('msg_success_oper')?>", "success");
                     oTable.draw(true);
                 } else {
-                    showNotification("오류", "조작이 실패하였습니다.", "error");
+                    showNotification("<?=t('error')?>", "<?=t('error_email_duplicated')?>", "error");
                 }
             },
             error: function (a, b, c) {
                 hideLoading();
-                showNotification("오류", "조작이 실패하였습니다.", "error");
+                showNotification("<?=t('error')?>","<?=t('msg_error_occured')?>","error");
             }
         });
     }

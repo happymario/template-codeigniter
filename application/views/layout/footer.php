@@ -77,7 +77,7 @@
                     <div class="form-group">
                         <div class="row">
                             <div class="col-md-3">
-                                <span style="font-size: 14px;line-height: 42px;float: right">이름</span>
+                                <span style="font-size: 14px;line-height: 42px;float: right"><?=t('name')?></span>
                             </div>
                             <div class="col-md-9">
                                 <input class="form-control" style="background-color: white;height: 38px;"
@@ -89,7 +89,7 @@
                     <div class="form-group">
                         <div class="row">
                             <div class="col-md-3">
-                                <span style="font-size: 14px;line-height: 42px;float: right">비밀번호</span>
+                                <span style="font-size: 14px;line-height: 42px;float: right"><?=t('password')?></span>
                             </div>
                             <div class="col-md-9">
                                 <input type="password" class="form-control"
@@ -100,10 +100,10 @@
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-sm green" onclick="SaveManagerSetting()"><i class="fa fa-save"></i>&nbsp;보&nbsp;관&nbsp;
+                <button type="button" class="btn btn-sm green" onclick="SaveManagerSetting()"><i class="fa fa-save"></i><?=t('save1')?>
                 </button>
                 <button type="button" class="btn btn-sm btn-danger btn-outline" data-dismiss="modal"
-                        id="btn_modal_manager_setting_cancel"><i class="fa fa-close"></i>&nbsp;아니오
+                        id="btn_modal_manager_setting_cancel"><i class="fa fa-close"></i>&nbsp;<?=t('no')?>
                 </button>
             </div>
         </div>
@@ -156,7 +156,7 @@
 
     function SaveManagerSetting() {
         if ($('#admin_id').val() == "" || $('#admin_pwd').val() == "") {
-            showNotification("오류", "모든 내용을 입력해주세요.", "warning");
+            showNotification("<?=t('error')?>", "<?=t('msg_input_all')?>", "warning");
             return;
         }
 
@@ -176,9 +176,10 @@
                 if (data == "success") {
                     $('#btn_modal_manager_setting_cancel').trigger("click");
                     showNotification("성공", "조작이 성공하였습니다.", "success");
+                    showNotification("<?=t('success')?>","<?=t('msg_sucess_oper')?>","success");
                     oTable._fnReDraw();
                 } else {
-                    showNotification("오류", "조작이 실패하였습니다.", "error");
+                    showNotification("<?=t('error')?>","<?=t('msg_error_occured')?>","error");
                 }
             }
         })

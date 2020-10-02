@@ -1,28 +1,28 @@
 <div class="row" style="margin-top: 10px;">
     <div class="col-md-12">
         <div class="col-md-12">
-            <label style="width: 100%;font-size:18px;color: black;font-weight: 700">API명</label>
+            <label style="width: 100%;font-size:18px;color: black;font-weight: 700"><?=t('name')?></label>
             <span><?= $info['api_name'] ?></span>
         </div>
         <div class="col-md-12" style="margin-top: 10px;">
-            <label style="width: 100%;font-size:18px;color: black;font-weight: 700">API설명</label>
+            <label style="width: 100%;font-size:18px;color: black;font-weight: 700"><?=t('explain')?></label>
             <span><?= $info['api_exp'] ?></span>
         </div>
 
         <div class="col-md-12" style="margin-top: 10px;">
-            <label style="width: 100%;font-size:18px;color: black;font-weight: 700">호출정보</label>
+            <label style="width: 100%;font-size:18px;color: black;font-weight: 700"><?=t('explain')?></label>
 
             <table class="table table-bordered">
                 <tbody>
                 <tr>
-                    <th class="bg bg-success">호출주소</th>
+                    <th class="bg bg-success"><?=t('access_addr')?><</th>
                     <th>
                         <a href="<?= site_url("api/" . $info['api_name']) ?>"
                            target="_blank"><?= site_url("api/" . $info['api_name']) ?></a>
                     </th>
                 </tr>
                 <tr>
-                    <th class="bg bg-success">호출방식</th>
+                    <th class="bg bg-success"><?=t('access_way')?><</th>
                     <th><?= $info['api_method'] ?></th>
                 </tr>
                 <tr>
@@ -44,12 +44,12 @@
                 <table class="table table-hover table-bordered">
                     <tbody>
                     <tr>
-                        <th style="text-align: center" class="bg bg-warning" width="120">변수명</th>
-                        <th style="text-align: center" class="bg bg-warning" width="100">타입</th>
-                        <th style="text-align: center" class="bg bg-warning" width="80">종류</th>
-                        <th style="text-align: center" class="bg bg-warning">설명</th>
+                        <th style="text-align: center" class="bg bg-warning" width="120"><?=t('var_name')?></th>
+                        <th style="text-align: center" class="bg bg-warning" width="100"><?=t('type')?></th>
+                        <th style="text-align: center" class="bg bg-warning" width="80"><?=t('kind')?></th>
+                        <th style="text-align: center" class="bg bg-warning"><?=t('explain')?><</th>
                         <th style="text-align: center" class="bg bg-warning" width="250" style="text-align: center">
-                            <button type="button" class="btn btn-xs btn-success" onclick="testResult()">결과보기</button>
+                            <button type="button" class="btn btn-xs btn-success" onclick="testResult()"><?=t('result_view')?></button>
                         </th>
                     </tr>
                     <tr style="display: none">
@@ -57,7 +57,7 @@
                         <td>String</td>
                         <td>생략가능</td>
                         <td style="text-align: left;">
-                            오류메시지 언어: 'korean'인 경우 한글, 생략 또는 기타 영문(default)
+                            오유문자렬 언어: 'korean/english', 기정값 english
                         </td>
                         <td>
                             <select name="lang">
@@ -102,52 +102,52 @@
         </div>
 
         <div class="col-md-12" style="margin-top: 10px;">
-            <label style="width: 100%;font-size:18px;color: black;font-weight: 700">리턴값</label>
+            <label style="width: 100%;font-size:18px;color: black;font-weight: 700"><?=t('ret_val')?></label>
 
             <table class="table table-hover table-bordered">
                 <tbody>
                 <tr>
-                    <th colspan="2" style="text-align: center" class="bg bg-warning" width="120">변수명</th>
-                    <th style="text-align: center" class="bg bg-warning" width="100">타입</th>
-                    <th style="text-align: center" class="bg bg-warning" width="80">종류</th>
-                    <th style="text-align: center" class="bg bg-warning">설명</th>
+                    <th colspan="2" style="text-align: center" class="bg bg-warning" width="120"><?=t('var_name')?></th>
+                    <th style="text-align: center" class="bg bg-warning" width="100"><?=t('type')?></th>
+                    <th style="text-align: center" class="bg bg-warning" width="80"><?=t('kind')?></th>
+                    <th style="text-align: center" class="bg bg-warning"><?=t('explain')?></th>
                 </tr>
                 <tr>
                     <td colspan="2">result</td>
                     <td>Integer</td>
-                    <td>필수</td>
+                    <td><?=t('required')?></td>
                     <td style="text-align: left;">
-                        <strong>0: 성공</strong><br>
-                        기타 오류 &nbsp;&nbsp; <a target="_blank" href="<?= site_url('apiManage/apierrors') ?>">오류코드표 바로가기</a>
+                        <strong>0: <?=t('success')?></strong><br>
+                        기타 오유 &nbsp;&nbsp; <a target="_blank" href="<?= site_url('apiManage/apierrors') ?>"><?=t('go_error_code')?></a>
                     </td>
                 </tr>
                 <tr>
                     <td colspan="2">msg</td>
                     <td>String</td>
-                    <td>필수</td>
+                    <td><?=t('required')?></td>
                     <td style="text-align: left;">
-                        <strong>오류메시지(사용자용)</strong><br>
+                        <strong>오유문자렬(사용자용)</strong><br>
                         성공인 경우 '성공', 'Success'<br>
-                        오류인 경우 오류메시지
+                        오유인 경우 오유문자렬
                     </td>
                 </tr>
                 <tr>
                     <td colspan="2">reason</td>
                     <td>String</td>
-                    <td>필수</td>
+                    <td><?=t('required')?></td>
                     <td style="text-align: left;">
-                        <strong>오류원인(개발자용)</strong><br>
-                        성공인 경우 빈 문자열<br>
-                        오류인 경우 오류원인
+                        <strong>오유원인(개발자용)</strong><br>
+                        성공인 경우 빈 문자렬<br>
+                        오유인 경우 오유문자렬
                     </td>
                 </tr>
                 <tr>
                     <td colspan="2">data</td>
                     <td>Object</td>
-                    <td>성공시</td>
+                    <td><?=t('success')?>일때</td>
                     <td style="text-align: left;">
                         <strong>성공인 경우에만 존재함</strong><br><br>
-                        <strong style="color: red;font-size: small">※아래의 필드들은 data object 내부변수들임</strong>
+                        <strong style="color: red;font-size: small">※아래의 마당들은 data object 내부변수들임</strong>
                     </td>
                 </tr>
 

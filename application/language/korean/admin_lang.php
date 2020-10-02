@@ -1,6 +1,6 @@
 <?php
 $lang = array(
-    //start
+    //common
     'site_name' => 'Template',
     'manager' => '관리자',
     'id' => '식별자',
@@ -10,18 +10,10 @@ $lang = array(
     'developer' => '개발자',
     'logout' => 'Logout',
     'search_word' => '검색어',
-    'no' => '번호',
+    'number' => '번호',
     'no_data' => '데이터가 없습니다.',
     'all' => '전체',
-
-    //menu
-    'menu_home' => '기본페지',
-    'menu_users' => '사용자 관리',
-    'menu_alarms' => '알림 관리',
-    'menu_api' => 'Api',
-    'menu_api_list' => 'Api List',
-    'menu_api_doc' => 'Api Doc',
-    'menu_api_code' => 'Api Error Code',
+    'error' => '오류',
 
     //buttons
     'back' => '뒤로',
@@ -33,6 +25,9 @@ $lang = array(
     'delete' => '삭제',
     'add' => '추가',
     'close' => '닫기',
+    'store' =>'저장',
+    'yes' =>'예',
+    'no' => '아니요',
     
     //messages
     'msg_input_id' => '식별자를 입력해주십시오.',
@@ -44,6 +39,11 @@ $lang = array(
     'msg_error_occured' => '예상치 않은 오유가 발생했습니다.',
     'msg_success_save' => '성공적으로 보관되였습니다.',
     'msg_success_delete' => '성공적으로 삭제되였습니다.',
+    'msg_input_varname' => '변수명을 입력해주십시오.',
+    'msg_input_all' => '모든 내용을 입력해주십시오.',
+    'msg_success_oper' => '조작이 성공하였습니다.',
+    'msg_input_name' =>'이름을 입력해 주세요.',
+    'msg_error_success' => '오유를 수정해주세요.',
 
     //api errors
     'success' => '성공',
@@ -56,6 +56,19 @@ $lang = array(
     'error_paused' => '정지된 유저입니다.',
     'error_email_duplicated' => 'Email이 중복되였습니다.',
 
+    //menu
+    'menu_home' => '기본페지',
+    'menu_users' => '사용자 관리',
+    'menu_notifications' => '알림 관리',
+    'menu_api' => 'Api',
+    'menu_api_list' => 'Api List',
+    'menu_api_doc' => 'Api Doc',
+    'menu_api_code' => 'Api Error Code',
+
+    // login
+    'login_title' =>'관&nbsp;&nbsp;리&nbsp;&nbsp;자',
+
+
     // home
     'plan_graph' =>'실적 그라프',
     'team' => '팀',
@@ -63,6 +76,7 @@ $lang = array(
     'month' =>'월',
     'plan' =>'계획',
     'sum_up' =>'실적',
+    'save1' => '&nbsp;보&nbsp;관&nbsp;',
     
     //users
     'email' => '식별자',
@@ -76,8 +90,35 @@ $lang = array(
     'normal' => '정상',
     'pause' => '정지',
     'exit' => '탈퇴',
+    'user_detail' =>'회원상세',
     
-    //alarms
+    //notifications
+    'notification' =>'알림',
     'title' => '제목',
-    'content' => '내용'
+    'content' => '내용',
+
+    //api
+    'multiple_delete' => '다중삭제',
+    'gen' => '건',
+    'access_way' => '호출방식',
+    'explain' => '설명',
+    'etc' =>'비고',
+    'var' => '변수',
+    'total' => '전체',
+    'detail_view' =>'상세보기',
+    'list_go' => '목록가기',
+    'var_name' => '변수명',
+    'type' => '형태',
+    'kind' => '종류',
+    'order' => '순서',
+    'list' => '목록',
+    'access_addr' => '호출주소',
+    'access_info' => '호출정보',
+    'ret_val' => '리턴값',
+    'required' =>'필수',
+    'go_error_code' => '오유코드표 가기',
+    'used_status' => '사용여부',
+    'use' => '사용',
+    'no_use' => '사용안함',
+    'result_view' => '결과보기',
 );

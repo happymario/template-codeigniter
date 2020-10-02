@@ -9,6 +9,8 @@ class Login extends CI_Controller
         $this->load->helper("url");
         $this->load->library("session");
         $this->load->database();
+
+        $this->lang->load('admin', LANGUAGE);
     }
 
     public function index()

@@ -1,17 +1,17 @@
 <div class="col-md-12" style="margin-top: 10px;">
-    <label>전체 : <span><?=count($arr_output)?></span>건</label>
+    <label><?=t('total')?> : <span><?=count($arr_output)?></span><?=t('gen')?></label>
 </div>
 
 <div class="col-md-12" id="div_api_input_table">
     <table id="api_input_table" class="table table-bordered">
         <thead style="background-color: #36c6d3">
         <th style="width: 5%;text-align: center"></th>
-        <th style="width: 15%;text-align: center">변수명</th>
-        <th style="width: 15%;text-align: center">타입</th>
-        <th style="width: 10%;text-align: center">종류</th>
-        <th style="width: 40%;text-align: center">설명</th>
-        <th style="width: 8%;text-align: center">순서</th>
-        <th style="width: 6%;text-align: center">수정</th>
+        <th style="width: 15%;text-align: center"><?=t('var_name')?></th>
+        <th style="width: 15%;text-align: center"><?=t('type')?></th>
+        <th style="width: 10%;text-align: center"><?=t('kind')?></th>
+        <th style="width: 40%;text-align: center"><?=t('explain')?></th>
+        <th style="width: 8%;text-align: center"><?=t('order')?></th>
+        <th style="width: 6%;text-align: center"><?=t('update')?></th>
         </thead>
         <tbody>
         <?php

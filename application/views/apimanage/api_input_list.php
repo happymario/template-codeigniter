@@ -2,28 +2,28 @@
     <div class="col-md-12">
         <div class="col-md-12">
             <div class="btn-group"  style="float: right;margin-top: 20px;">
-                <button type="button" class="btn red" style="font-size: 13px;" id="btnMultiDel"><i class="fa fa-trash-o"></i>&nbsp;다중삭제</button>
-                <a type="button" class="btn btn-success" style="font-size: 13px;" href="<?=site_url('apiManage/api_output_list')?>?id=<?=$api_idx?>">Output 목록가기</a>
-                <a type="button" class="btn btn-primary" style="font-size: 13px;" href="<?=site_url('apiManage/edit_api_input_data')?>?ai_idx=0&api_idx=<?=$api_idx?>"><i class="fa fa-plus"></i>&nbsp;Input변수 추가</a>
+                <button type="button" class="btn red" style="font-size: 13px;" id="btnMultiDel"><i class="fa fa-trash-o"></i>&nbsp;<?=t('multiple_delete')?></button>
+                <a type="button" class="btn btn-success" style="font-size: 13px;" href="<?=site_url('apiManage/api_output_list')?>?id=<?=$api_idx?>">Output <?=t('list_go')?></a>
+                <a type="button" class="btn btn-primary" style="font-size: 13px;" href="<?=site_url('apiManage/edit_api_input_data')?>?ai_idx=0&api_idx=<?=$api_idx?>"><i class="fa fa-plus"></i>&nbsp;Input <?=t('var')?><?=t('add')?></a>
             </div>
         </div>
     </div>
 
     <div class="col-md-12" id="div_api_input_table">
         <div class="col-md-12" style="margin-top: 10px;">
-            <label>전체 : <span><?=count($arr_input)?></span>건</label>
+            <label><?=t('total')?>  : <span><?=count($arr_input)?></span><?=t('gen')?> </label>
         </div>
 
         <div class="col-md-12">
             <table id="api_input_table" class="table table-bordered">
                 <thead style="background-color: #36c6d3">
                 <th style="width: 5%;text-align: center"></th>
-                <th style="width: 15%;text-align: center">변수명</th>
-                <th style="width: 15%;text-align: center">타입</th>
-                <th style="width: 10%;text-align: center">종류</th>
-                <th style="width: 40%;text-align: center">설명</th>
-                <th style="width: 8%;text-align: center">순서</th>
-                <th style="width: 6%;text-align: center">수정</th>
+                <th style="width: 15%;text-align: center"><?=t('var_name')?></th>
+                <th style="width: 15%;text-align: center"><?=t('type')?></th>
+                <th style="width: 10%;text-align: center"><?=t('kind')?></th>
+                <th style="width: 40%;text-align: center"><?=t('explain')?></th>
+                <th style="width: 8%;text-align: center"><?=t('order')?></th>
+                <th style="width: 6%;text-align: center"><?=t('update')?></th>
                 </thead>
                 <tbody>
                 <?php
@@ -52,10 +52,11 @@
         $('#left_menu_apimanage_parent').children("a:eq(0)").children("span:eq(1)").addClass("selected");
         $('#left_menu_apimanage_parent').children("a:eq(0)").children("span:eq(2)").addClass("open");
         $('#left_menu_apimanage_parent').children("ul:eq(0)").children("li:eq(0)").addClass("open");
-        $('#page_title').html("<?=$api_name?>:Input목록");
+        $('#page_title').html("<?=$api_name?>:Input <?=t('list')?>");
     })
 
     $("#btnMultiDel").click(function () {
+
         var chks = document.getElementsByName("chk");
         var obj = new Object();
 
@@ -71,7 +72,7 @@
             return;
         }
 
-        if (!confirm("삭제하시겠습니까?"))
+        if (!confirm("<?=t('msg_ask_delete')?>"))
             return;
 
         $.ajax({
@@ -90,7 +91,7 @@
                     drawTable();
                 }else{
                     App.unblockUI('#total_body');
-                    showNotification("오류","조작이 실패하였습니다.","error");
+                    showNotification("<?=t('error')?>", "<?=t('msg_error_occured')?>", "error");
                 }
             }
         })

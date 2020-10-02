@@ -4,8 +4,8 @@
             <table id="api_manage_table" class="table table-bordered">
                 <thead style="background-color: #36c6d3">
                 <th style="width: 20px;text-align: center">No.</th>
-                <th style="width: 15%;text-align: center">이름</th>
-                <th style="width: 40%;text-align: center">설명</th>
+                <th style="width: 15%;text-align: center"><?=t('name')?></th>
+                <th style="width: 40%;text-align: center"><?=t('explain')?></th>
                 <th style="text-align: center">URL</th>
                 </thead>
                 <tbody>
@@ -34,6 +34,6 @@
         $('#left_menu_apimanage_parent').children("a:eq(0)").children("span:eq(1)").addClass("selected");
         $('#left_menu_apimanage_parent').children("a:eq(0)").children("span:eq(2)").addClass("open");
         $('#left_menu_apimanage_parent').children("ul:eq(0)").children("li:eq(1)").addClass("open");
-        $('#page_title').html("_API문서보기");
+        $('#page_title').html("<?=t('menu_api_doc')?>");
     })
 </script>

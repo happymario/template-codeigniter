@@ -4,7 +4,7 @@
             <input class="hidden" name="api_idx" value="<?=$api_idx?>">
             <div class="col-md-12">
                 <div class="col-md-2">
-                    <label style="font-size: 13px;float: right;font-weight: 700;line-height: 30px;">API이름</label>
+                    <label style="font-size: 13px;float: right;font-weight: 700;line-height: 30px;">API<?=t('name')?></label>
                 </div>
                 <div class="col-md-10">
                     <input class="form-control" id="api_name" name="api_name" value="<?php echo  $api_idx > 0  ? $api_name : ""; ?>">
@@ -13,7 +13,7 @@
 
             <div class="col-md-12" style="margin-top: 10px;">
                 <div class="col-md-2">
-                    <label style="font-size: 13px;float: right;font-weight: 700;">설명</label>
+                    <label style="font-size: 13px;float: right;font-weight: 700;"><?=t('explain')?></label>
                 </div>
                 <div class="col-md-10">
                     <textarea class="form-control" rows="6" name="api_exp"><?php echo  $api_idx > 0  ? $api_exp : ""; ?></textarea>
@@ -22,7 +22,7 @@
 
             <div class="col-md-12" style="margin-top: 10px;">
                 <div class="col-md-2">
-                    <label style="font-size: 13px;float: right;font-weight: 700;">호출방식</label>
+                    <label style="font-size: 13px;float: right;font-weight: 700;"><?=t('access_way')?></label>
                 </div>
                 <div class="col-md-10">
                     <div class="col-md-2" style="padding: 0px;">
@@ -36,13 +36,13 @@
 
             <div class="col-md-12" style="margin-top: 10px;">
                 <div class="col-md-2">
-                    <label style="font-size: 13px;float: right;font-weight: 700;">사용여부</label>
+                    <label style="font-size: 13px;float: right;font-weight: 700;"><?=t('used_status')?></label>
                 </div>
                 <div class="col-md-10">
                     <div class="col-md-2" style="padding: 0px;">
                         <select class="form-control" name="api_use" id="api_use">
-                            <option value="1">사용</option>
-                            <option value="0">사용안함</option>
+                            <option value="1"><?=t('use')?></option>
+                            <option value="0"><?=t('no_use')?></option>
                         </select>
                     </div>
                 </div>
@@ -50,7 +50,7 @@
             
             <div class="col-md-12" style="margin-top: 10px;">
                 <div class="col-md-2">
-                    <label style="font-size: 13px;float: right;font-weight: 700;line-height: 30px;">형태</label>
+                    <label style="font-size: 13px;float: right;font-weight: 700;line-height: 30px;"><?=t('type')?></label>
                 </div>
                 <div class="col-md-10">
                     <input class="form-control" name="api_status"  value="<?php echo  $api_idx > 0  ? $api_status : ""; ?>">
@@ -59,7 +59,7 @@
             
             <div class="col-md-12" style="margin-top: 10px;">
                 <div class="col-md-2">
-                    <label style="font-size: 13px;float: right;font-weight: 700;">비고</label>
+                    <label style="font-size: 13px;float: right;font-weight: 700;"><?=t('etc')?></label>
                 </div>
                 <div class="col-md-10">
                     <textarea class="form-control" rows="6" name="api_bigo"><?php echo  $api_idx > 0  ? $api_bigo : ""; ?></textarea>
@@ -69,8 +69,8 @@
             <div class="col-md-12" style="margin-top: 10px;">
                 <div class="col-md-12">
                     <div style="float: right;">
-                        <a class="btn btn-danger" onclick="history.go(-1)">취소</a>
-                        <a class="btn btn-success" onclick="add_api()">추가</a>
+                        <a class="btn btn-danger" onclick="history.go(-1)"><?=t('cancel')?></a>
+                        <a class="btn btn-success" onclick="add_api()"><?=t('add')?></a>
                     </div>
                 </div>
             </div>
@@ -86,7 +86,7 @@
         $('#left_menu_apimanage_parent').children("a:eq(0)").children("span:eq(1)").addClass("selected");
         $('#left_menu_apimanage_parent').children("a:eq(0)").children("span:eq(2)").addClass("open");
         $('#left_menu_apimanage_parent').children("ul:eq(0)").children("li:eq(0)").addClass("open");
-        $('#page_title').html("_API추가");
+        $('#page_title').html("API<?=t('add')?>");
 
         if('<?=$api_idx?>' != '0'){
             $('#api_method').val('<?=$api_method?>');
@@ -96,7 +96,7 @@
 
     function add_api(){
         if($('#api_name').val() == ""){
-            showNotification("오류","API이름을 입력해주세요.","warning");
+            showNotification("<?=t('error')?>","API<?=t('name')?>","warning");
             return;
         }
 
@@ -121,7 +121,7 @@
             if(data == "success"){
                 $('#frm_go_apimanage').submit();
             }else{
-                showNotification("오류","조작이 실패하였습니다.","error");
+                showNotification("<?=t('error')?>","<?=t('msg_error_occured')?>","error");
             }
         }
     }

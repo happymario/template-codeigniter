@@ -116,6 +116,13 @@
                             <span class=""></span>
                         </a>
                     </li>
+                    <li class="nav-item <?= !empty($menu) && $menu == MENU_NOTIFICATION ? 'active open' : '' ?>">
+                        <a href="<?= site_url('User') ?>" class="nav-link nav-toggle">
+                            <i class="fa fa-genderless"></i>
+                            <span class="title"><?=t('menu_notifications') ?></span>
+                            <span class=""></span>
+                        </a>
+                    </li>
                     <li class="nav-item" id="left_menu_apimanage_parent">
                         <a href="javascript:;" class="nav-link nav-toggle">
                             <i class="fa fa-genderless"></i>
