@@ -143,6 +143,54 @@ function send_push($fcm_key, $dev_type = 'android', $dev_token = '', $push_type 
     return true;
 }
 
+
+function send_push_gotify($push_key, $dev_type = 'android', $dev_token = '', $push_type = 0, $title = '', $content = '', $target_url = '', $data=null)
+{
+//    if (empty($dev_token)) {
+//        return false;
+//    }
+
+    if(empty($push_key)) {
+        return false;
+    }
+
+    $fields = [
+        'title' => $title,
+        'message' => $content,
+        'priority' => 5
+    ];
+
+    $fields['extras'] = [
+        'type' => $push_type,
+        'message' => $content,
+        'title' => $title,
+        'targetUrl' => $target_url
+    ];
+    if ($data != null) {
+        $fields['extras'] = array_merge($fields['data'], $data);
+    }
+
+    $url = "http://192.168.0.13/message?token=$push_key";
+
+    $ch = curl_init();
+    curl_setopt($ch, CURLOPT_URL, $url);
+    curl_setopt($ch, CURLOPT_HTTPHEADER, array(
+            'Content-Type:application/json',
+            'Authorization:key=' . $push_key)
+    );
+    curl_setopt($ch, CURLOPT_TIMEOUT, 60);
+    curl_setopt($ch, CURLOPT_POST, 'post');
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+    curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+    curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($fields));
+
+    $response = curl_exec($ch);
+    curl_close($ch);
+
+    return $response;
+}
+
+
 function make_directory($path)
 {
     $dirs = explode(DIRECTORY_SEPARATOR, $path);
