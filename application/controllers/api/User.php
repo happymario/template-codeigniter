@@ -14,62 +14,114 @@ class User extends ApiBase
         parent::__construct();
     }
 
-    public function login()
+    private function _generate_access_token()
     {
-        $this->_set_api_params([
-            new ApiParamModel('email', ''),
-            new ApiParamModel('pwd', 'required')
-        ]);
-
-        $email = $this->api_params->email;
-        $pwd = $this->api_params->pwd;
-        $user_row = $this->db->get_where('tb_user', array('id' => $email, 'pwd' => $pwd))->row();
-        $cur_time = date("Y-m-d H:i:s", time());
-
-        if ($user_row === null) {
-            $this->_response_error(API_RESULT_ERROR_USER_NO_EXIST);
-        }
-
-        if ($user_row->status != 1) {
-            $this->_response_error(STATUS_NORMAL);
-        }
-
-        $update_data['login_time'] = $cur_time;
-        $this->db->update('tb_user', $update_data, array('uid' => $user_row->uid));
-
-        $this->_response_success(array(
-            'user_uid' => (int)$user_row->uid
-        ));
+        return sha1(date('Y-m-d H:i:s'));
     }
-
 
     public function signup()
     {
         $this->_set_api_params([
-            new ApiParamModel('email', 'required'),
-            new ApiParamModel('pwd', 'required')
+            new ApiParamModel('id', 'required'),
+            new ApiParamModel('pwd', 'required'),
+            new ApiParamModel('profile_url', 'required'),
+            new ApiParamModel('name', 'required'),
         ]);
 
-        $email = $this->api_params->email;
-        if (!empty($email) && $this->_email_duplicated($email)) {
+        $id = $this->api_params->id;
+        $duplicate = $this->userModel->id_duplicated($id);
+        if ($duplicate == true) {
             $this->_response_error(API_RESULT_ERROR_EMAIL_DUPLICATE);
         }
 
-        $insert_data = [
-            'id' => $this->api_params->email,
-            'pwd' => $this->api_params->pwd,
-        ];
+        $save_data = (array)$this->api_params;
+        $insert_uid = $this->userModel->save_by_uid($save_data);
 
-        $this->db->insert('tb_user', $insert_data);
+        $this->_response_success();
+    }
+
+    public function login()
+    {
+        $this->_set_api_params([
+            new ApiParamModel('id', 'required'),
+            new ApiParamModel('pwd', 'required'),
+            new ApiParamModel('dev_type', 'required|in_list[android,web]'),
+            new ApiParamModel('push_token', ''),
+        ]);
+
+        $id = $this->api_params->id;
+        $pwd = $this->api_params->pwd;
+        $dev_type = $this->api_params->dev_type;
+        $push_token = $this->api_params->push_token;
+
+        $user_row = $this->userModel->get_row_by_id($id);
+        if ($user_row === null) {
+            $this->_response_error(API_RESULT_ERROR_USER_NO_EXIST);
+        }
+
+        if ($user_row->pwd != $pwd) {
+            $this->_response_error(API_RESULT_ERROR_LOGIN_FAILED);
+        }
+
+        if ($user_row->status != STATUS_NORMAL) {
+            $this->_response_error(API_RESULT_ERROR_USER_PAUSED);
+        }
+
+        $cur_time = getTimeStampString();
+        $access_token = $this->_generate_access_token();
+
+        $save_data = array(
+            'access_token' => $access_token,
+            'dev_type' => $dev_type,
+            'login_time' => $cur_time,
+            'logout' => STATUS_OFF
+        );
+        if (!empty($push_token)) {
+            $save_data['dev_token'] = $push_token;
+        }
+
+        $this->userModel->save_by_uid($save_data, $user_row->uid);
 
         $this->_response_success(array(
-            'user_uid' => $this->db->insert_id()
+            "access_token" => $access_token,
+            "reg_time" => $user_row->reg_time,
+            "id" => $user_row->id,
+            "name" => $user_row->name,
+            "profile_url" => $user_row->profile_url,
+            "profile_url_check" => $user_row->profile_url_check,
+            "status" => $user_row->status,
         ));
     }
 
-    public function _email_duplicated($email)
+    public function logout()
     {
-        $dup_row = $this->db->get_where('tb_user', array('id' => $email))->row();
-        return ($dup_row != null);
+        $this->_set_api_params([
+            new ApiParamModel('access_token', 'required')
+        ]);
+
+        $access_token = $this->api_params->access_token;
+        $this->_check_access_token($access_token);
+
+        $user_uid = $this->_get_user_uid($access_token);
+        $save_data = array("logout" => STATUS_ON);
+        $this->userModel->save_by_uid($save_data, $user_uid);
+
+        $this->_response_success();
+    }
+
+    public function signout()
+    {
+        $this->_set_api_params([
+            new ApiParamModel('access_token', 'required')
+        ]);
+
+        $access_token = $this->api_params->access_token;
+        $this->_check_access_token($access_token);
+
+        $user_uid = $this->_get_user_uid($access_token);
+        $save_data = array("status" => USER_STATUS_EXIT, "logout" => STATUS_ON);
+        $this->userModel->save_by_uid($save_data, $user_uid);
+
+        $this->_response_success();
     }
 }

@@ -47,7 +47,7 @@
                         <th style="text-align: center" class="bg bg-warning" width="120"><?=t('var_name')?></th>
                         <th style="text-align: center" class="bg bg-warning" width="100"><?=t('type')?></th>
                         <th style="text-align: center" class="bg bg-warning" width="80"><?=t('kind')?></th>
-                        <th style="text-align: center" class="bg bg-warning"><?=t('explain')?><</th>
+                        <th style="text-align: center" class="bg bg-warning"><?=t('explain')?></th>
                         <th style="text-align: center" class="bg bg-warning" width="250" style="text-align: center">
                             <button type="button" class="btn btn-xs btn-success" onclick="testResult()"><?=t('result_view')?></button>
                         </th>

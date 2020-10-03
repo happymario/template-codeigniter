@@ -28,7 +28,7 @@ class ApiInputModel extends MY_Model{
 
     function __construct()
     {
-        parent::__construct();
+        parent::__construct("tb_api_input");
         $this->load->database();
     }
 

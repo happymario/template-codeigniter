@@ -40,7 +40,6 @@ class MY_Model extends CI_Model
     /* --------------------------------------------------------------
      * GENERIC METHODS
      * ------------------------------------------------------------ */
-
     /**
      * Initialise the model, tie into the CodeIgniter superobject and
      * try our best to guess the table name.
@@ -358,5 +357,73 @@ class MY_Model extends CI_Model
         $result = $this->db->update($this->_table);
 
         return $result;
+    }
+
+    public function save_by_uid($save_data, $uid = 0)
+    {
+        if ($uid > 0) {
+            if (!$this->db->update($this->_table, $save_data, array('uid' => $uid))) {
+                return FALSE;
+            }
+            return $uid;
+        }
+        if (!$this->db->insert($this->_table, $save_data)) {
+            return FALSE;
+        }
+        return $this->db->insert_id();
+    }
+
+    public function get_result()
+    {
+        return $this->db->get($this->_table)->result();
+    }
+
+    public function get_result_by_status()
+    {
+        return $this->db->get_where($this->_table, array('status' => STATUS_NORMAL))->result();
+    }
+
+    public function get_cnt()
+    {
+        return $this->db->select('count(*) as cnt')->get($this->_table)->row('cnt');
+    }
+
+    public function get_ok_cnt()
+    {
+        return $this->db->select('count(*) as cnt')->get_where($this->_table, array('status' => STATUS_NORMAL))->row('cnt');
+    }
+
+    public function get_existing_cnt()
+    {
+        return $this->db->select('count(*) as cnt')->get_where($this->_table, array('status<>' => STATUS_DELETE))->row('cnt');
+    }
+
+    public function get_row()
+    {
+        return $this->db->get($this->_table)->row();
+    }
+
+    public function get_field_by_uid($uid, $field) {
+        return $this->db->get_where($this->_table, array('uid' => $uid))->row($field);
+    }
+
+    public function get_row_by_uid($uid, $uid_field_nm = 'uid')
+    {
+        return $this->db->get_where($this->_table, array($uid_field_nm => $uid))->row();
+    }
+
+    public function get_row_array_by_uid($uid, $uid_field_nm = 'uid')
+    {
+        return $this->db->get_where($this->_table, array($uid_field_nm => $uid))->row_array();
+    }
+
+    public function delete_row_by_status($uid)
+    {
+        return $this->db->update($this->_table, array('status' => STATUS_DELETE), array('uid' => $uid));
+    }
+
+    public function delete_row($uid)
+    {
+        return $this->db->delete($this->_table, array('uid' => $uid));
     }
 }

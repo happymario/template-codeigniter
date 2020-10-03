@@ -85,6 +85,11 @@ defined('EXIT__AUTO_MIN')      OR define('EXIT__AUTO_MIN', 9); // lowest automat
 defined('EXIT__AUTO_MAX')      OR define('EXIT__AUTO_MAX', 125); // highest automatically-assigned error code
 
 
+//test mode
+define('LOCAL_TEST_MODE', true); // local test 의미
+define('RELEASE_TEST_MODE', true); // realserver test 의미
+
+
 //upload
 define('UPLOAD_PATH', FCPATH . 'uploads' . DIRECTORY_SEPARATOR);
 define('UPLOAD_URL_PATH', "uploads/");
@@ -100,6 +105,8 @@ define('STATUS_DELETE', '0');
 define('USER_STATUS_PAUSE', '2');
 define('USER_STATUS_EXIT', '3');
 
+define('STATUS_ON', 1);
+define('STATUS_OFF', 0);
 
 //api
 define('API_CURRENT_VERSION', 1);

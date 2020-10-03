@@ -17,7 +17,11 @@ class ApiBase extends CI_Controller {
     public function __construct() {
         parent::__construct();
         $this->api_params = new stdClass();
+
         $this->load->database();
+        $this->load->helper('url');
+        $this->load->model('UserModel', 'userModel');
+
         $this->lang->load('admin', LANGUAGE);
     }
 
@@ -89,7 +93,7 @@ class ApiBase extends CI_Controller {
                     $msg = $iskorean ? '잘못된 인증번호입니다.' : 'Cert key is wrong';
                     break;
                 case API_RESULT_ERROR_LOGIN_FAILED:
-                    $msg = $iskorean ? '이름 혹은 비밀번호 오류입니다.' : 'Invalid user name or password.';
+                    $msg = $iskorean ? '아이디 혹은 비밀번호 오류입니다.' : 'Invalid user name or password.';
                     break;
                 case API_RESULT_ERROR_LOGIN_PASSWORD:
                     $msg = $iskorean ? '잘못된 비밀번호 입니다.' : 'Invalid password.';
@@ -145,22 +149,30 @@ class ApiBase extends CI_Controller {
     }
 
     protected function _get_user_from_user_uid($user_uid) {
-        $sql = 'select * from tb_user where user_uid = ? and user_status > 0 limit 1';
+        $sql = 'select * from tb_user where uid = ? and status <> '.STATUS_DELETE.' limit 1';
         $usr_row = $this->db->query($sql, [$user_uid])->row();
         if ($usr_row === null) {
-            $this->_response_error(API_RESULT_ERROR_ACCESS_TOKEN);
+            $this->_response_error(API_RESULT_ERROR_USER_NO_EXIST);
         }
 
         return $usr_row;
     }
 
-    protected function _get_today_date() {
-        if (isset($_POST['curdate']) && !empty($_POST['curdate']) &&
-            preg_match('/^[0-9]{4}-(0[1-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1])$/', $_POST['curdate'])) {
-            return $_POST['curdate'];
+    public function _check_access_token($access_token)
+    {
+        if ($this->userModel->invalid_access_token($access_token)) {
+            $this->_response_error(API_RESULT_ERROR_ACCESS_TOKEN);
         }
+    }
 
-        return getTimeStampString(null, true);
+    public function _get_user_uid($access_token)
+    {
+        return $this->userModel->get_user_uid_by_access_token($access_token);
+    }
+
+    public function _get_user_info($access_token)
+    {
+        return $this->userModel->get_user_info_by_access_token($access_token);
     }
 }
 
