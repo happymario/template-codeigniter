@@ -405,3 +405,11 @@ function t($line) {
     $CI = &get_instance();
     return $CI->lang->line($line);
 }
+
+function isEmpty($var) {
+    if($var == null || empty($var)) {
+        return true;
+    }
+
+    return false;
+}

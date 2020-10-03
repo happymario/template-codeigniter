@@ -14,6 +14,7 @@ $lang = array(
     'no_data' => 'No Data',
     'all' => 'all',
     'error' => 'Error',
+    'no_data_1' => 'No',
 
     //buttons
     'back' => 'Back',
@@ -32,7 +33,7 @@ $lang = array(
     //messages
     'msg_input_id' => 'Please input ID.',
     'msg_input_pwd' => 'Please input password.',
-    'msg_input_email' => 'Please input email.',
+    'msg_input_email' => 'Please input valid email.',
     'msg_select_photo' => 'Please select photo.',
     'msg_ask_delete' => 'Are you sure you want to delete it?',
     'msg_user_not_matching' => 'Id or password is not correct.',
@@ -44,6 +45,7 @@ $lang = array(
     'msg_success_oper' => 'Success operation',
     'msg_input_name' =>'Please Input name.',
     'msg_error_success' => 'Please fix issue.',
+    'msg_invalid_profile_img_size' => 'Valid image size is 1:1(ratio).',
 
     //api errors
     'success' => 'Success',
@@ -54,7 +56,7 @@ $lang = array(
     'error_email_pwd' => 'Invalid user email or password.',
     'error_no_user' => 'This user is not a subscribed member.',
     'error_paused' => 'Your account was paused.',
-    'error_email_duplicated' => 'Email is duplicated.',
+    'error_email_duplicated' => 'Email Or Name is duplicated.',
 
     //menu
     'menu_home' => 'Home',
@@ -86,12 +88,15 @@ $lang = array(
     'status' => 'Status',
     'manage' => 'manage',
     'add_user' => 'Add User',
+    'input_id' =>'Input ID',
     'input_name' =>'Input Name',
     'input_password' => 'Input Password',
     'normal' => 'Normal',
     'pause' => 'Pause',
     'exit' => 'Exit',
     'user_detail' =>'User Detail',
+    'file_select' => 'File Select',
+    'select_photo' => 'Select Photo',
 
     //notifications
     'notification' =>'Notification',

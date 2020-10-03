@@ -45,4 +45,22 @@ class MY_Controller extends CI_Controller
         $min_level = $this->db->get_where('tb_privilege', array('privilege_name' => $privilege))->row('min_level');
         return ($min_level >= $level);
     }
+
+    public function upload_file($file)
+    {
+        $upload_file_name_only = getUniqueString();
+        $upload_file_name_ext = pathinfo($file["name"], PATHINFO_EXTENSION);
+        $file_name = $upload_file_name_only . '.' . $upload_file_name_ext;
+
+        $file_path = make_directory('temp') . DIRECTORY_SEPARATOR . $file_name;
+
+        if (!move_uploaded_file($file['tmp_name'], $file_path)) {
+            return null;
+        }
+
+        return [
+            'file_name' => $file_name,
+            'file_url' => get_temp_image_url($file_name)
+        ];
+    }
 }

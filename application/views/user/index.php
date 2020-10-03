@@ -1,34 +1,3 @@
-<style>
-    .modal .table {
-        border-spacing: 0 20px;
-        border-collapse: initial;
-    }
-
-    .modal table > tbody > tr > td {
-        border-top: none;
-    }
-
-    .modal .center_align_title_td {
-        text-align: left !important;
-        padding-left: 20px;
-    }
-
-    .modal .fields_td {
-        text-align: left;
-        padding-left: 20px;
-    }
-
-    .link {
-        cursor: pointer;
-        color: #5b9bd5;
-        text-decoration: underline;
-    }
-
-    .link.red {
-        color: red;
-    }
-</style>
-
 <div class="row" style="margin-top: 20px;">
     <form id="frm_search" role="form">
         <div class="col-md-12">
@@ -38,7 +7,7 @@
                     <tr>
                         <td width="20%" class="center_align_title_td"><?=t('search_word')?></td>
                         <td width="80%" class="padding_1">
-                            <input class="form-control" id="search_name" placeholder="<?=t('name')?>">
+                            <input class="form-control" id="search_keyword" placeholder="<?=t('name')?>">
                         </td>
                     </tr>
                     </tbody>
@@ -59,10 +28,10 @@
     <div class="col-md-12" style="margin-top: 20px;">
         <table id="tbl_user" class="table table-bordered table-primary" style="width: 100%">
             <thead class="th_custom_color">
-            <th><?=t('no')?></th>
+            <th><?=t('number')?></th>
             <th><?=t('email')?></th>
             <th><?=t('name')?></th>
-            <th><?=t('picture')?></th>
+            <th><?=t('photo')?></th>
             <th><?=t('status')?></th>
             <th><?=t('manage')?></th>
             </thead>
@@ -73,62 +42,9 @@
     </div>
 </div>
 
-<div class="modal fade in" id="edit_modal" tabindex="-1" aria-hidden="true"
-     style="display: none; padding-right: 16px;">
-    <div class="modal-dialog modal-lg">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
-                <h4 class="modal-title"><?=t('add_user')?></h4>
-            </div>
-            <div class="modal-body">
-                <form id="frm_edit">
-                    <div class="row">
-                        <div class="col-md-12">
-                            <table class="table">
-                                <tbody>
-                                <tr>
-                                    <td width="30%" class="center_align_title_td"><?=t('name')?></td>
-                                    <td width="70%" class="fields_td">
-                                        <input type="text" class="form-control" id="name" name="name"
-                                               placeholder="<?=t('input_name')?>"/>
-                                    </td>
-                                </tr>
-                                <tr id="normal_tr">
-                                    <td class="center_align_title_td"><?=t('pwd')?></td>
-                                    <td class="fields_td">
-                                        <input type="text" numberonly class="form-control" id="pwd" name="pwd"
-                                               placeholder="<?=t('input_password')?>"/>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="center_align_title_td"><?=t('status')?></td>
-                                    <td class="fields_td">
-                                        <select class="form-control" id="status" name="status">
-                                            <option value="y"><?=t('normal')?></option>
-                                            <option value="p"><?=t('pause')?></option>
-                                            <option value="c"><?=t('exit')?></option>
-                                        </select>
-                                    </td>
-                                </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                    <input type="hidden" id="user_uid" name="user_uid"/>
-                </form>
-            </div>
-            <div class="modal-footer" style="text-align: center; border-top: none;">
-                <button type="button" class="btn dark" id="btn_save">&nbsp;&nbsp;<?=t('add')?>&nbsp;&nbsp;
-                </button>
-                <button type="button" class="btn dark btn-outline" id="btn_cancel" data-dismiss="modal">&nbsp;&nbsp;<?=t('close')?>&nbsp;&nbsp;
-                </button>
-            </div>
-        </div>
-    </div>
-    <!-- /.modal-content -->
-</div>
-<!-- /.modal-dialog -->
+<?php
+require dirname(__FILE__) . "/edit_popup.php";
+?>
 
 <script>
     var oTable;
@@ -159,12 +75,26 @@
             ],
             order: [],
             createdRow: function (row, data, dataIndex) {
-                if (data['login_type'] != 'normal') {
-                    $('td:eq(2)', row).css('color', '#00b050').html('SNS');
-                } else {
-                    $('td:eq(2)', row).html('<?= t('normal')?>');
+                if(empty(data['profile_url']) == false) {
+                    $('td:eq(3)', row).html('<img style="width: 80px;height:80px;" class="img image-popup-no-margins" src="' + data['profile_url'] + '"/>');
                 }
-                $('td:eq(4)', row).html(data['status'] == 'y' ? '<?= t('normal')?>' : '<?= t('pause')?>');
+                else {
+                    $('td:eq(3)', row).html('<?= t('no_data_1')?>');
+                }
+
+                $('td:eq(4)', row).html('<?= t('normal')?>');
+                if(data['status'] == '<?=STATUS_NORMAL?>'){
+                    $('td:eq(4)', row).html('<?= t('normal')?>');
+                }
+                if(data['status'] == '<?=STATUS_DELETE?>'){
+                    $('td:eq(4)', row).html('<?= t('delete')?>');
+                }
+                if(data['status'] == '<?=USER_STATUS_PAUSE?>'){
+                    $('td:eq(4)', row).html('<?= t('normal')?>');
+                }
+                if(data['status'] == '<?=USER_STATUS_EXIT?>'){
+                    $('td:eq(4)', row).html('<?= t('exit')?>');
+                }
 
                 $('td:last', row).html("<a class='btn-edit' onclick='onUserDetail(" + data['uid'] + ")'><?= t('modify')?></a>&nbsp;&nbsp;" +
                     "<a class='btn-delete' data-value='" + data['uid'] + "'><?= t('delete')?></a>");
@@ -196,7 +126,7 @@
     });
 
     function onSetSearchParams(data) {
-        data['search_name'] = $('#search_name').val();
+        data['search_keyword'] = $("#search_keyword").val();
     }
 
     function onSearch() {
@@ -211,20 +141,12 @@
     }
 
     function onUserReg() {
-        $('.modal-title').html('<?= t('add_user')?>');
-        $('#btn_save').html('&nbsp;&nbsp;<?= t('add')?>&nbsp;&nbsp;');
-        $('#name').val('');
-        $('#pwd').val('');
-        $('#status').val('y');
-        $('#user_uid').val('0');
-        $('#normal_tr').show();
-        $('#naver_tr').hide();
-        $('#edit_modal').modal();
+        showEditPopup(null);
     }
 
     function onUserDetail(user_uid) {
         $.ajax({
-            url: '<?= site_url("User/get_contents/") ?>' + user_uid,
+            url: '<?= site_url("user/ajax_detail/") ?>' + user_uid,
             type: 'GET',
             dataType: 'json',
             beforeSend: function () {
@@ -232,64 +154,14 @@
             },
             success: function (result) {
                 hideLoading();
-                $('.modal-title').html('msg_input_name');
-                $('#btn_save').html('&nbsp;&nbsp;<?=t('update')?>&nbsp;&nbsp;');
-                $('#user_uid').val(user_uid);
-                $('#name').val(result.name);
-                if (result.login_type == 'naver') {
-                    $('#naver_tr').show();
-                    $('#normal_tr').hide();
-                } else {
-                    $('#naver_tr').hide();
-                    $('#normal_tr').show();
-                    $('#pwd').val(result.pwd);
-                }
-                $('#status').val(result.status);
-                $('#edit_modal').modal();
+                showEditPopup(result);
             }
         });
     }
 
-    $('#btn_save').click(function () {
-        if ($('#name').val() == '') {
-            showNotification("<?=t('error')?>", "<?=t('msg_input_name')?>", "warning");
-            $('#name').focus();
-            return;
-        }
-
-        if ($('#naver_tr').is(':hidden')) {
-            if ($('#pwd').val() == '' && $('#pwd').val() == '') {
-                showNotification("<?=t('error')?>", "<?=t('msg_input_pwd')?>", "warning");
-                $('#pwd').focus();
-                return;
-            }
-        }
-
-        $.ajax({
-            url: '<?= site_url("User/save") ?>',
-            type: 'POST',
-            data: $('#frm_edit').serialize(),
-            beforeSend: function () {
-                showLoading();
-            },
-            success: function (result) {
-                hideLoading();
-                if (result == 'success') {
-                    showNotification("<?=t('success')?>", "<?=t('msg_success_oper')?>", "success");
-                    $('#edit_modal').modal('hide');
-                    oTable.draw(true);
-                } else if (result == 'dup') {
-                    showNotification("<?=t('error')?>", "<?=t('msg_error_success')?>", "error");
-                } else {
-                    showNotification("<?=t('error')?>","<?=t('msg_error_occured')?>","error");
-                }
-            }
-        });
-    });
-
     function onDelete(user_uid) {
         $.ajax({
-            url: '<?= site_url("User/delete") ?>',
+            url: '<?= site_url("user/ajax_delete") ?>',
             type: 'post',
             data: 'user_uid=' + user_uid,
             beforeSend: function () {
@@ -297,11 +169,11 @@
             },
             success: function (result) {
                 hideLoading();
-                if (result == "success") {
+                if (result == "<?=AJAX_RESULT_SUCCESS?>") {
                     showNotification("<?=t('success')?>", "<?=t('msg_success_oper')?>", "success");
                     oTable.draw(true);
                 } else {
-                    showNotification("<?=t('error')?>", "<?=t('error_email_duplicated')?>", "error");
+                    showNotification("<?=t('error')?>", "<?=t('msg_error_occured')?>", "error");
                 }
             },
             error: function (a, b, c) {

@@ -14,7 +14,8 @@ $lang = array(
     'no_data' => '데이터가 없습니다.',
     'all' => '전체',
     'error' => '오류',
-
+    'no_data_1' => '없음',
+    
     //buttons
     'back' => '뒤로',
     'save' => '보관',
@@ -32,7 +33,7 @@ $lang = array(
     //messages
     'msg_input_id' => '식별자를 입력해주십시오.',
     'msg_input_pwd' => '비밀번호를 입력해주십시오.',
-    'msg_input_email' => 'Email을 입력해주십시오.',
+    'msg_input_email' => '유효한 Email을 입력해주십시오.',
     'msg_select_photo' => '사진을 선택해주십시오.',
     'msg_ask_delete' => '정말 삭제하시겠습니까?',
     'msg_user_not_matching' => '식별자 또는 비밀번호가 맞지 않습니다.',
@@ -44,6 +45,7 @@ $lang = array(
     'msg_success_oper' => '조작이 성공하였습니다.',
     'msg_input_name' =>'이름을 입력해 주세요.',
     'msg_error_success' => '오유를 수정해주세요.',
+    'msg_invalid_profile_img_size' => '1:1비률의 사진을 선택해주십시오.',
 
     //api errors
     'success' => '성공',
@@ -54,7 +56,7 @@ $lang = array(
     'error_email_pwd' => 'Email 또는 비밀번호가 맞지 않습니다.',
     'error_no_user' => '존재하지 않는 유저입니다.',
     'error_paused' => '정지된 유저입니다.',
-    'error_email_duplicated' => 'Email이 중복되였습니다.',
+    'error_email_duplicated' => 'Email 또는 이름이 중복되였습니다.',
 
     //menu
     'menu_home' => '기본페지',
@@ -86,13 +88,16 @@ $lang = array(
     'status' => '상태',
     'manage' => '관리',
     'add_user' => '회원추가',
+    'input_id' =>'식별자 입력',
     'input_name' =>'이름 입력',
     'input_password' => '비밀번호 입력',
     'normal' => '정상',
     'pause' => '정지',
     'exit' => '탈퇴',
     'user_detail' =>'회원상세',
-    
+    'file_select' => '화일선택',
+    'select_photo' => '사진을 선택해주세요.',
+
     //notifications
     'notification' =>'알림',
     'title' => '제목',

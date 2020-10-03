@@ -184,6 +184,49 @@
             }
         })
     }
+
+    $(function() {
+        $("#frm_search").submit(function() { return false; }); // input refresh submit 막기
+        $("#search_keyword").keydown(function(key) { // 키보드 enter로 처리
+            if (key.keyCode == 13) {
+                onSearch();
+            }
+        });
+
+        $(document).on('click', '.image-popup-no-margins', function (e) {
+            e.preventDefault();
+
+            if($(this).attr('type') == 'youtube') {
+                window.open($(this).attr('media'), '_blank');
+                return;
+            }
+
+            if($(this).attr('src') == '') {
+                return;
+            }
+
+            $.magnificPopup.open({
+                closeOnContentClick: false,
+                closeBtnInside: false,
+                fixedContentPos: true,
+                mainClass: 'mfp-no-margins mfp-with-zoom', // class to remove default margin from left and right side
+                image: {
+                    verticalFit: true
+                },
+                zoom: {
+                    enabled: true,
+                    duration: 300 // don't foget to change the duration also in CSS
+                },
+                items: {
+                    src: '<div class="zoom"> <img class="img-responsive thumbnail media" style="margin: 0 auto;max-height:700px;" src="' + $(this).attr('src') + '"/> </div>',
+                    type: 'inline'
+                },
+                type: 'inline'
+            });
+
+            zoom({"zoom":"zoom"}, {"scaleDefault":1.5, "scaleMin":(700/$(window).height())});
+        });
+    });
 </script>
 </body>
 

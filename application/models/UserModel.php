@@ -20,8 +20,28 @@ class UserModel extends MY_Model
 
     public function id_duplicated($id)
     {
-        return ($this->db->select('count(*) as cnt')->get_where($this->_table, array('id' => $id))->row('cnt') > 0);
+        $dup_cnt = $this->db->select('count(*) as cnt')->get_where($this->_table, array('id' => $id))->row('cnt');
+        return ($dup_cnt > 0);
     }
+
+    public function id_duplicated_1($user_uid, $id)
+    {
+        $dup_cnt = $this->db->select('count(*) as cnt')->get_where($this->_table, array('uid<>' => $user_uid, 'id' => $id))->row('cnt');
+        return ($dup_cnt > 0);
+    }
+
+    public function name_duplicated($name)
+    {
+        $dup_cnt = $this->db->select('count(*) as cnt')->get_where($this->_table, array('name' => $name))->row('cnt');
+        return ($dup_cnt > 0);
+    }
+
+    public function name_duplicated_1($user_uid, $name)
+    {
+        $dup_cnt = $this->db->select('count(*) as cnt')->get_where($this->_table, array('uid<>' => $user_uid, 'name' => $name))->row('cnt');
+        return ($dup_cnt > 0);
+    }
+
 
     public function invalid_access_token($access_token)
     {

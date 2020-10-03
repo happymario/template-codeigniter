@@ -124,12 +124,6 @@
     padding: 0px;
 }
 
-.modal .center_align_title_td {
-    text-align: left !important;
-    padding-left: 20px;
-    background: #ffffff;
-}
-
 .modal .fields_td {
     text-align: left;
 }
@@ -149,6 +143,7 @@
 .profile{
     width: 100px;
     height: 100px;
+    display: inline;
 }
 
 .profile .bg {
@@ -168,4 +163,20 @@
     height: 20px;
     position:absolute;
     margin-left: 80px;
+}
+
+.title-flex {
+    display: flex;
+    padding: 10px 20px;
+    align-items: center;
+}
+
+.title-flex label{
+    width:130px;
+    margin: 0px;
+    padding: 7.5px;
+}
+
+.mfp-with-zoom {
+    z-index: 99999;
 }

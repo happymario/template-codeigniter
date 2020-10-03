@@ -107,6 +107,7 @@ define('USER_STATUS_EXIT', '3');
 
 define('STATUS_ON', 1);
 define('STATUS_OFF', 0);
+define('STATUS_CHECK', '2');
 
 //api
 define('API_CURRENT_VERSION', 1);
@@ -139,10 +140,16 @@ define('PUSH_TYPE_NOTICE', 0);    // 공동
 
 // Admin
 define('VERSION', '1.0');
-define('LANGUAGE', 'english'); // english, korean
+define('LANGUAGE', 'korean'); // english, korean
 define('SESSION_ADMIN_UID', 'session_admin_uid');
 
 // Menu
 define('MENU_USER', 'menu_user');
 define('MENU_PHOTO_CHECK', 'menu_photo_check');
 define('MENU_NOTIFICATION', 'menu_notification');
+
+//ajax result error
+define('AJAX_RESULT_SUCCESS', 'success');
+define('AJAX_RESULT_ERROR', 'error');
+define('AJAX_RESULT_DUP', 'dup');
+define('AJAX_RESULT_EMPTY', 'empty');

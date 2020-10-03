@@ -248,3 +248,11 @@ function digitTime (i) {
     }
     return x;
 }
+
+function empty(data) {
+    if(data == null || typeof data == undefined || data == "") {
+        return true;
+    }
+
+    return false;
+}
