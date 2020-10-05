@@ -407,7 +407,7 @@ function t($line) {
 }
 
 function isEmpty($var) {
-    if($var == null || empty($var)) {
+    if($var == null || $var == '') {
         return true;
     }
 

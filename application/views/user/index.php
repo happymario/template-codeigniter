@@ -123,6 +123,10 @@ require dirname(__FILE__) . "/edit_popup.php";
                 });
             }
         });
+
+        $('input[numberonly]').on('input', function (e) {
+            $(this).val($(this).val().replace(new RegExp('[^0-9]', 'g'), ''));
+        });
     });
 
     function onSetSearchParams(data) {
@@ -182,8 +186,4 @@ require dirname(__FILE__) . "/edit_popup.php";
             }
         });
     }
-
-    $('input[numberonly]').on('input', function (e) {
-        $(this).val($(this).val().replace(new RegExp('[^0-9]', 'g'), ''));
-    });
 </script>

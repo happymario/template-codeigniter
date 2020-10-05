@@ -42,8 +42,6 @@
               type="text/css"/>
         <link href="<?= base_url() ?>assets/metronic/global/plugins/icheck/skins/all.css" rel="stylesheet"
               type="text/css"/>
-        <link href="<?= base_url() ?>assets/metronic/pages/magnific-popup/magnific-popup.css" rel="stylesheet"
-              type="text/css"/>
 
         <script src="<?= base_url() ?>assets/metronic/global/plugins/jquery.min.js" type="text/javascript"></script>
         <script src="<?= base_url() ?>assets/common/js/jquery.form.js" type="text/javascript"></script>

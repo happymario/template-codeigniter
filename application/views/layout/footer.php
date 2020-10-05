@@ -1,5 +1,4 @@
 <div class="quick-nav-overlay"></div>
-<script src="<?= base_url() ?>assets/metronic/pages/magnific-popup/magnific-popup.js" type="text/javascript"></script>
 <script src="<?= base_url() ?>assets/metronic/global/plugins/jquery-validation/js/jquery.validate.min.js"
         type="text/javascript"></script>
 <script src="<?= base_url() ?>assets/metronic/global/plugins/jquery-validation/js/additional-methods.min.js"
@@ -54,10 +53,12 @@
 <script src="<?= base_url() ?>assets/common/js/PSVNavBar.js" type="text/javascript"></script>
 <script src="<?= base_url() ?>assets/common/js/PSVNavBarButton.js" type="text/javascript"></script>
 <script src="<?= base_url() ?>assets/common/js/d3.min.js" type="text/javascript"></script>
+<link href="<?= base_url() ?>assets/common/plugins/magnific-popup/magnific-popup.css" rel="stylesheet" type="text/css"/>
+<script src="<?= base_url() ?>assets/common/plugins/magnific-popup/magnific-popup.js" type="text/javascript"></script>
 <link href="<?= base_url() ?>assets/common/plugins/image-picker/image-picker.css" rel="stylesheet" type="text/css"/>
 <script src="<?= base_url() ?>assets/common/plugins/image-picker/image-picker.js" type="text/javascript"></script>
-<script src="<?= base_url() ?>assets/admin/js/directive.js" type="text/javascript"></script>
 
+<script src="<?= base_url() ?>assets/admin/js/directive.js" type="text/javascript"></script>
 <script src="<?= base_url() ?>assets/admin/js/common.js" type="text/javascript"></script>
 <!--<script src="--><? //=base_url()?><!--assets/pages/scripts/form-input-mask.min.js" type="text/javascript"></script>-->
 <!-- END CORE PLUGINS -->

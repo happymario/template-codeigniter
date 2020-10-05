@@ -98,6 +98,11 @@ $lang = array(
     'file_select' => 'File Select',
     'select_photo' => 'Select Photo',
 
+    //photos
+    'agree' =>'Agree',
+    'refuse' =>'Refuse',
+    'checking' => 'Check',
+
     //notifications
     'notification' =>'Notification',
     'title' => 'Title',

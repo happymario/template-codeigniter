@@ -17,13 +17,13 @@
 </style>
 
 <div class="row">
-    <div class="col-md-12" style="margin-left: 40px;margin-top: 20px;">
+    <div class="col-md-12" style="margin-top: 20px;">
         <span style="font-weight: bold;font-size: 16px;"><?=t('plan_graph')?></span>
         <span style="display:inline-block;border:1px solid black;height:10px;width:17px"/>
     </div>
     <div class="col-md-12 main-padding" style="margin-top: 20px;">
         <!-- BEGIN CHART PORTLET-->
-        <div class="col-md-4 portlet light bordered">
+        <div class="col-md-5 portlet light bordered">
             <div class="portlet-title">
                 <div class="caption">
                     <i class="icon-bar-chart font-green-haze"></i>
@@ -55,7 +55,7 @@
         <!-- END CHART PORTLET-->
 
         <!-- BEGIN CHART PORTLET-->
-        <div class="col-md-3 portlet light bordered" style="margin-left: 10px;">
+        <div class="col-md-5 portlet light bordered" style="margin-left: 10px;">
             <div class="portlet-title">
                 <div class="caption">
                     <i class="icon-bar-chart font-green-haze"></i>

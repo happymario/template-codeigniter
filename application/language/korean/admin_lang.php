@@ -97,6 +97,11 @@ $lang = array(
     'user_detail' =>'회원상세',
     'file_select' => '화일선택',
     'select_photo' => '사진을 선택해주세요.',
+    
+    //photos
+    'agree' =>'승인',
+    'refuse' =>'거절',
+    'checking' => '심사중',
 
     //notifications
     'notification' =>'알림',

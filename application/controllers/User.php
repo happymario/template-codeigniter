@@ -142,4 +142,70 @@ EOT;
         $this->userModel->delete_row_by_status($user_uid);
         die (AJAX_RESULT_SUCCESS);
     }
+
+    public function ajax_photo_list() {
+        $page_num = $this->input->get('page');
+        $status = $this->input->get('status');
+        if(isEmpty($page_num)) {
+            die(AJAX_RESULT_ERROR);
+        }
+
+        $count_per_page = API_PAGE_CNT;
+        $page_start = API_PAGE_CNT * $page_num;
+        $where = "H.profile_url_check=".$status." AND H.profile_url<>''";
+        $order_by = "H.reg_time desc";
+        $select_list = "H.*";
+
+        $sql = <<<EOF
+                SELECT
+                  $select_list
+                FROM
+                    tb_user H
+                WHERE
+                    {$where}
+EOF;
+        $sql_list =  $sql." order by {$order_by} LIMIT {$page_start},{$count_per_page}";
+
+        $query = $this->db->query($sql_list);
+        $list = $query->result_array();
+
+        $sql_count = str_replace($select_list, "count(*) as cnt", $sql);
+        $result_total_count = (int)$this->db->query($sql_count)->row('cnt');
+        $result_total_page = (int)($result_total_count / $count_per_page + 1);
+        $is_last = $result_total_page - 1 <= (int)$page_num;
+
+        for ($i = 0; $i < count($list); $i++) {
+            $data = $list[$i];
+            $new_data = array();
+            $new_data = $data;
+            $new_data['reg_time'] = $data['reg_time'];
+            $list[$i] = $new_data;
+        }
+
+        die(json_encode([
+            'total_count' => $result_total_count,
+            'total_page' => $result_total_page,
+            'is_last' => $is_last,
+            'list' => $list
+        ]));
+    }
+
+    public function ajax_change_photo_status()
+    {
+        $user_uid = $this->input->post('user_uid');
+        $status = $this->input->post('status');
+
+        if(isEmpty($user_uid)) {
+            die(AJAX_RESULT_ERROR);
+        }
+
+        if($status < STATUS_DELETE  ||  $status > STATUS_CHECK) {
+            die(AJAX_RESULT_ERROR);
+        }
+
+        $save_data = ["profile_url_check" => $status];
+
+        $this->userModel->save_by_uid($save_data, $user_uid);
+        die (AJAX_RESULT_SUCCESS);
+    }
 }
