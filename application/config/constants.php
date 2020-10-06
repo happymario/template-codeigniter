@@ -147,9 +147,14 @@ define('SESSION_ADMIN_UID', 'session_admin_uid');
 define('MENU_USER', 'menu_user');
 define('MENU_PHOTO_CHECK', 'menu_photo_check');
 define('MENU_NOTIFICATION', 'menu_notification');
+define('MENU_STATISTIC', 'menu_statistic');
 
 //ajax result error
 define('AJAX_RESULT_SUCCESS', 'success');
 define('AJAX_RESULT_ERROR', 'error');
 define('AJAX_RESULT_DUP', 'dup');
 define('AJAX_RESULT_EMPTY', 'empty');
+
+//년도
+define('STATISTIC_MIN_YEAR', 2010);
+define('STATISTIC_MAX_YEAR', 2110);

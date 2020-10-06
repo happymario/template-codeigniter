@@ -82,7 +82,7 @@
                 var img = new Image();
                 img.onload = function() {
                     if(this.width > 0 && this.width != this.height) {
-                        showNotification("<?=t('error')?>", '<?= t("msg_invalid_profile_img_size") ?>', "warning");
+                        showNotification("<?=t('error')?>", '<?= t("msg_select_profile_img_size") ?>', "warning");
                         return false;
                     }
 

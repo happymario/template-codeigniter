@@ -15,6 +15,9 @@ $lang = array(
     'all' => '전체',
     'error' => '오류',
     'no_data_1' => '없음',
+    'year' => '년',
+    'month' =>'월',
+    'day' => '일',
     
     //buttons
     'back' => '뒤로',
@@ -31,21 +34,27 @@ $lang = array(
     'no' => '아니요',
     
     //messages
+    'msg_success_save' => '성공적으로 보관되였습니다.',
+    'msg_success_delete' => '성공적으로 삭제되였습니다.',
+    'msg_success_oper' => '조작이 성공하였습니다.',
+
+    'msg_error_occured' => '예상치 않은 오유가 발생했습니다.',
+    'msg_error_fix' => '오유를 수정해주십시오.',
+    'msg_error_not_matching_user' => '식별자 또는 비밀번호가 맞지 않습니다.',
+
+    'msg_ask_delete' => '정말 삭제하시겠습니까?',
+
     'msg_input_id' => '식별자를 입력해주십시오.',
     'msg_input_pwd' => '비밀번호를 입력해주십시오.',
     'msg_input_email' => '유효한 Email을 입력해주십시오.',
-    'msg_select_photo' => '사진을 선택해주십시오.',
-    'msg_ask_delete' => '정말 삭제하시겠습니까?',
-    'msg_user_not_matching' => '식별자 또는 비밀번호가 맞지 않습니다.',
-    'msg_error_occured' => '예상치 않은 오유가 발생했습니다.',
-    'msg_success_save' => '성공적으로 보관되였습니다.',
-    'msg_success_delete' => '성공적으로 삭제되였습니다.',
     'msg_input_varname' => '변수명을 입력해주십시오.',
-    'msg_input_all' => '모든 내용을 입력해주십시오.',
-    'msg_success_oper' => '조작이 성공하였습니다.',
     'msg_input_name' =>'이름을 입력해 주세요.',
-    'msg_error_success' => '오유를 수정해주세요.',
-    'msg_invalid_profile_img_size' => '1:1비률의 사진을 선택해주십시오.',
+    'msg_input_all' => '모든 내용을 입력해주십시오.',
+
+    'msg_select_photo' => '사진을 선택해주십시오.',
+    'msg_select_list' => '항목들을 선택해주십시오.',
+    'msg_select_profile_img_size' => '1:1비률의 사진을 선택해주십시오.',
+
 
     //api errors
     'success' => '성공',
@@ -63,6 +72,7 @@ $lang = array(
     'menu_users' => '사용자 관리',
     'menu_notifications' => '알림 관리',
     'menu_photo_check' => '사진 검사',
+    'menu_statistic' => '통계',
     'menu_api' => 'Api',
     'menu_api_list' => 'Api List',
     'menu_api_doc' => 'Api Doc',
@@ -76,7 +86,6 @@ $lang = array(
     'plan_graph' =>'실적 그라프',
     'team' => '팀',
     'plan_pie' =>'실적 분포',
-    'month' =>'월',
     'plan' =>'계획',
     'sum_up' =>'실적',
     'save1' => '&nbsp;보&nbsp;관&nbsp;',
@@ -107,7 +116,19 @@ $lang = array(
     'notification' =>'알림',
     'title' => '제목',
     'content' => '내용',
+    'date_time' => '전송시간',
+    'send' => '전송',
+    'resend' => '재전송',
 
+    // statistic
+    'statistic' =>'통계',
+    'sender' =>'발송자',
+    'receiver' =>'수신자',
+    'total_count' =>'총 개수:',
+    'date' =>'날자',
+    'send_count' =>'보낸 개수',
+    'signup_count' =>'가입자수',
+    
     //api
     'multiple_delete' => '다중삭제',
     'gen' => '건',

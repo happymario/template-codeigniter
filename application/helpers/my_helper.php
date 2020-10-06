@@ -155,6 +155,7 @@ function send_push_gotify($push_key, $dev_type = 'android', $dev_token = '', $pu
     }
 
     $fields = [
+        'client_token' => $dev_token,
         'title' => $title,
         'message' => $content,
         'priority' => 5
@@ -164,7 +165,8 @@ function send_push_gotify($push_key, $dev_type = 'android', $dev_token = '', $pu
         'type' => $push_type,
         'message' => $content,
         'title' => $title,
-        'targetUrl' => $target_url
+        'targetUrl' => $target_url,
+        'dev_type' => $dev_type
     ];
     if ($data != null) {
         $fields['extras'] = array_merge($fields['data'], $data);

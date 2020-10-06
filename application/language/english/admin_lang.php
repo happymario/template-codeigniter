@@ -15,6 +15,9 @@ $lang = array(
     'all' => 'all',
     'error' => 'Error',
     'no_data_1' => 'No',
+    'year' =>'Year',
+    'month' =>'Month',
+    'day' =>'day',
 
     //buttons
     'back' => 'Back',
@@ -31,21 +34,26 @@ $lang = array(
     'no' => 'No',
 
     //messages
+    'msg_success_save' => 'Saved Successfully.',
+    'msg_success_delete' => 'Deleted Successfully.',
+    'msg_success_oper' => 'Success operation',
+
+    'msg_error_not_matching_user' => 'Id or password is not correct.',
+    'msg_error_occured' => 'An unexpected error occurred.',
+    'msg_error_fix' => 'Please fix issue.',
+
+    'msg_ask_delete' => 'Are you sure you want to delete it?',
+
     'msg_input_id' => 'Please input ID.',
     'msg_input_pwd' => 'Please input password.',
     'msg_input_email' => 'Please input valid email.',
-    'msg_select_photo' => 'Please select photo.',
-    'msg_ask_delete' => 'Are you sure you want to delete it?',
-    'msg_user_not_matching' => 'Id or password is not correct.',
-    'msg_error_occured' => 'An unexpected error occurred.',
-    'msg_success_save' => 'Saved Successfully.',
-    'msg_success_delete' => 'Deleted Successfully.',
     'msg_input_varname' => 'Please input variable name.',
     'msg_input_all' => 'Input all contents..',
-    'msg_success_oper' => 'Success operation',
     'msg_input_name' =>'Please Input name.',
-    'msg_error_success' => 'Please fix issue.',
-    'msg_invalid_profile_img_size' => 'Valid image size is 1:1(ratio).',
+
+    'msg_select_photo' => 'Please select photo.',
+    'msg_select_list' => 'Please check list.',
+    'msg_select_profile_img_size' => 'Valid image size is 1:1(ratio).',
 
     //api errors
     'success' => 'Success',
@@ -63,6 +71,7 @@ $lang = array(
     'menu_users' => 'Users',
     'menu_notifications' => 'Notification List',
     'menu_photo_check' => 'Photo List',
+    'menu_statistic' => 'Statistic',
     'menu_api' => 'Api',
     'menu_api_list' => 'Api List',
     'menu_api_doc' => 'Api Doc',
@@ -76,7 +85,6 @@ $lang = array(
     'plan_graph' =>'Plan Graph',
     'team' => 'Team',
     'plan_pie' =>'Plan Piechart',
-    'month' =>'Month',
     'plan' =>'Plan',
     'sum_up' =>'Sum up',
     'save1' => '&nbsp;Save&nbsp;',
@@ -107,7 +115,19 @@ $lang = array(
     'notification' =>'Notification',
     'title' => 'Title',
     'content' => 'Content',
+    'date_time' => 'Time',
+    'send' => 'Send',
+    'resend' => 'ReSend',
 
+    // statistic
+    'statistic' =>'Statistic',
+    'sender' =>'Sender',
+    'receiver' =>'Receiver',
+    'total_count' =>'Total:',
+    'date' =>'Date',
+    'send_count' =>'Send',
+    'signup_count' =>'Signup',
+    
     //api
     'multiple_delete' => 'Multiple Delete',
     'gen' => '',

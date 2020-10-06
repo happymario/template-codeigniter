@@ -128,7 +128,7 @@
             success: function (data) {
                 App.unblockUI('#login_form');
                 if (data == "no_exist") {
-                    showSweetAlert("<?=t('msg_user_not_matching')?>", "btn-danger");
+                    showSweetAlert("<?=t('msg_error_not_matching_user')?>", "btn-danger");
                 } else {
                     location.href = "<?=site_url('Home')?>";
                 }

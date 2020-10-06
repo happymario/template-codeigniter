@@ -167,7 +167,7 @@
                     $('#user_'+user_uid).remove();
 
                 } else {
-                    showNotification("<?=t('error')?>", "<?=t('msg_error_occured')?>", "error");
+                    showNotification("<?=t('error')?>", "<?=t('msg_error_fix')?>", "error");
                 }
             },
             error: function (a, b, c) {
