@@ -86,7 +86,7 @@
                         return false;
                     }
 
-                    readURL(getId_1('#profile_img'), this);
+                    readURL(getId_1('#profile_img'), $(getId_1('#uploadfile'))[0]);
                     $(getId_1("#profile_img")).show();
                 };
                 img.onerror = function() {

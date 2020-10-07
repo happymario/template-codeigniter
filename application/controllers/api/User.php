@@ -24,8 +24,8 @@ class User extends ApiBase
         $this->_set_api_params([
             new ApiParamModel('id', 'required'),
             new ApiParamModel('pwd', 'required'),
-            new ApiParamModel('profile_url', 'required'),
             new ApiParamModel('name', 'required'),
+            new ApiParamModel('profile_url', ''),
         ]);
 
         $id = $this->api_params->id;
