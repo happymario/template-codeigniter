@@ -10,6 +10,7 @@ application/logs/*
 
 uploads/*
 !uploads/index.html
+!uploads/screenshot.png
 
 composer.lock
 

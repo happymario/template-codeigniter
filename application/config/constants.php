@@ -140,7 +140,7 @@ define('PUSH_TYPE_NOTICE', 0);    // 공동
 
 // Admin
 define('VERSION', '1.0');
-define('LANGUAGE', 'korean'); // english, korean
+define('LANGUAGE', 'english'); // english, korean
 define('SESSION_ADMIN_UID', 'session_admin_uid');
 
 // Menu
