@@ -21,7 +21,7 @@
                             <table class="table">
                                 <tbody>
                                 <tr>
-                                    <td class="center_align_title_td"><?=t('title')?></td>
+                                    <td class="center_align_title_td col-md-2"><?=t('title')?></td>
                                     <td class="fields_td">
                                         <input type="text" class="form-control" id="title" name="title" placeholder=""/>
                                     </td>
@@ -31,6 +31,12 @@
                                     <td class="fields_td">
                                             <textarea type="text" class="form-control" id="content" name="content"
                                                       placeholder="" rows="5" style="resize: none;"></textarea>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><?=t('send_100')?></td>
+                                    <td class="fields_td">
+                                        <input type='checkbox' id="cb_check_all"/>
                                     </td>
                                 </tr>
                                 </tbody>
@@ -68,7 +74,8 @@
                 type: 'POST',
                 data: {
                     title: $(getId_1('#title')).val(),
-                    content: $(getId_1('#content')).val()
+                    content: $(getId_1('#content')).val(),
+                    once_100: $(getId_1('#cb_check_all'))[0].checked,
                 },
                 beforeSend: function () {
                     showLoading();

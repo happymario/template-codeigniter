@@ -119,7 +119,8 @@ $lang = array(
     'date_time' => '전송시간',
     'send' => '전송',
     'resend' => '재전송',
-
+    'send_100' => '단번 100개 전송',
+    
     // statistic
     'statistic' =>'통계',
     'sender' =>'발송자',

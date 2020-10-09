@@ -98,6 +98,7 @@ EOT;
     {
         $title = $this->input->post('title');
         $content = $this->input->post('content');
+        $once_100 = $this->input->post('once_100');
 
         if(isEmpty($title) || isEmpty($content)) {
             die(AJAX_RESULT_ERROR);
@@ -108,17 +109,32 @@ EOT;
             die(AJAX_RESULT_ERROR);
         }
 
-        $strresponse = send_push_gotify($setting->gotify_app_key, null, null, PUSH_TYPE_NOTICE, $title, $content);
-        $response = json_decode($strresponse);
-        // 성공이면
-        if(array_key_exists('id', $response)) {
+        $count = 0;
+        $max = 1;
+        if($once_100 == "true") {
+            $max = 100;
+        }
+
+        for($i = 0; $i < $max;$i++) {
+            //$strresponse = send_push_gotify($setting->gotify_app_key, null, null, PUSH_TYPE_NOTICE, $title, $content);
+            $strresponse = send_push_openfire('192.168.0.13', 'happymario', 'push', PUSH_TYPE_NOTICE, $title, $content);
+            $response = json_decode($strresponse);
+
+            // 성공이면
+            if(array_key_exists('id', $response)) {
+                $count +=  1;
+            }
+        }
+
+        if($count > 0) {
             $save_data = [
                 'sender_type' => 'admin',
                 'sender_uid' => $this->_get_my_uid(),
                 'receiver_uid' => null,
                 'type' => PUSH_TYPE_NOTICE,
                 'title' => $title,
-                'message'=> $content
+                'message'=> $content,
+                'data' => json_encode(array("count" => $count))
             ];
             $this->pushModel->insert($save_data);
             die(AJAX_RESULT_SUCCESS);

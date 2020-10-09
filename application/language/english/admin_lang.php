@@ -118,6 +118,7 @@ $lang = array(
     'date_time' => 'Time',
     'send' => 'Send',
     'resend' => 'ReSend',
+    'send_100' => 'Send 100 times once',
 
     // statistic
     'statistic' =>'Statistic',
