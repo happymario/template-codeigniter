@@ -46,7 +46,7 @@
 
                     <div class="row">
                         <div class="col-md-6" style="padding: 10px 20px;">
-                            <div class="profile">
+                            <div class="profile" style="display:inline;">
                                 <img src="<?= base_url() ?>assets/admin/img/img_photo_default.png" alt="" class="bg"/>
                                 <img id="profile_img" name="profile_img" class="img image-popup-no-margins"/>
                                 <img src="<?= base_url() ?>assets/admin/img/ic_close_black.png" alt="" style="" id="img_del" class="del"/>

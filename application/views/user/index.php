@@ -33,6 +33,7 @@
             <th><?=t('name')?></th>
             <th><?=t('photo')?></th>
             <th><?=t('status')?></th>
+            <th>Backup</th>
             <th><?=t('manage')?></th>
             </thead>
             <tbody>
@@ -95,7 +96,12 @@ require dirname(__FILE__) . "/edit_popup.php";
                 if(data['status'] == '<?=USER_STATUS_EXIT?>'){
                     $('td:eq(4)', row).html('<?= t('exit')?>');
                 }
-
+                if(data['backup_url']  == null || data['backup_url'] == "") {
+                    $('td:eq(5)', row).html('<?= t('no_data_1')?>');
+                }
+                else {
+                    $('td:eq(5)', row).html('<a href="' + data['backup_url'] + '">'+ data['backup_url'] + "</a>");
+                }
                 $('td:last', row).html("<a class='btn-edit' onclick='onUserDetail(" + data['uid'] + ")'><?= t('modify')?></a>&nbsp;&nbsp;" +
                     "<a class='btn-delete' data-value='" + data['uid'] + "'><?= t('delete')?></a>");
             },

@@ -86,9 +86,7 @@ defined('EXIT__AUTO_MAX')      OR define('EXIT__AUTO_MAX', 125); // highest auto
 
 
 //test mode
-define('LOCAL_TEST_MODE', true); // local test 의미
-define('RELEASE_TEST_MODE', true); // realserver test 의미
-
+define('TEST_LOCAL_MODE', true); // true: local test, false: real server
 
 //upload
 define('UPLOAD_PATH', FCPATH . 'uploads' . DIRECTORY_SEPARATOR);
@@ -120,8 +118,8 @@ define('API_RESULT_SUCCESS', 0);    //성공
 define('API_RESULT_ERROR_SYSTEM', 101);  //체계 오유
 define('API_RESULT_ERROR_DB', 102);    //DB 오유
 define('API_RESULT_ERROR_PRIVILEGE', 103);    //권한 오유
-define('API_RESULT_ERROR_PARAM', 104);    //파라메터 오유
-define('API_RESULT_ERROR_UPLOAD', 105);   //파일upload 오유
+define('API_RESULT_ERROR_PARAM', 104);    //Parameter 오유
+define('API_RESULT_ERROR_UPLOAD', 105);   //화일upload 오유
 define('API_RESULT_ERROR_ACCESS_TOKEN', 106);   //접근Token 오유
 define('API_RESULT_ERROR_CERT_KEY', 107);   //인증번호 오유
 define('API_RESULT_ERROR_LOGIN_FAILED', 201); //Login 오유
@@ -140,7 +138,7 @@ define('PUSH_TYPE_NOTICE', 0);    // 공동
 
 // Admin
 define('VERSION', '1.0');
-define('LANGUAGE', 'english'); // english, korean
+define('LANGUAGE', 'korean'); // english, korean
 define('SESSION_ADMIN_UID', 'session_admin_uid');
 
 // Menu
@@ -148,6 +146,8 @@ define('MENU_USER', 'menu_user');
 define('MENU_PHOTO_CHECK', 'menu_photo_check');
 define('MENU_NOTIFICATION', 'menu_notification');
 define('MENU_STATISTIC', 'menu_statistic');
+define('MENU_NOTICE', 'menu_notice');
+define('MENU_SETTING', 'menu_setting');
 
 //ajax result error
 define('AJAX_RESULT_SUCCESS', 'success');

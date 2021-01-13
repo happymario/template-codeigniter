@@ -50,7 +50,6 @@ $lang = array(
     'msg_input_varname' => 'Please input variable name.',
     'msg_input_all' => 'Input all contents..',
     'msg_input_name' =>'Please Input name.',
-
     'msg_select_photo' => 'Please select photo.',
     'msg_select_list' => 'Please check list.',
     'msg_select_profile_img_size' => 'Valid image size is 1:1(ratio).',
@@ -72,6 +71,8 @@ $lang = array(
     'menu_notifications' => 'Notification List',
     'menu_photo_check' => 'Photo List',
     'menu_statistic' => 'Statistic',
+    'menu_notice' => 'Notice List',
+    'menu_setting' => 'App Setting',
     'menu_api' => 'Api',
     'menu_api_list' => 'Api List',
     'menu_api_doc' => 'Api Doc',
@@ -129,6 +130,16 @@ $lang = array(
     'send_count' =>'Send',
     'signup_count' =>'Signup',
     
+    // notice
+    'notice' =>'Notice',
+    'maker' =>'Writer',
+    'update_date' =>'UpdateDate',
+    'msg_input_title' => 'Please input title.',
+    'msg_input_content' => 'Please input content.',
+
+    // setting
+    'qa_phone' => "Client Center",
+    'use_agreement' => "Use Agreement",
     //api
     'multiple_delete' => 'Multiple Delete',
     'gen' => '',

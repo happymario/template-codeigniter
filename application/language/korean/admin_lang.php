@@ -38,9 +38,9 @@ $lang = array(
     'msg_success_delete' => '성공적으로 삭제되였습니다.',
     'msg_success_oper' => '조작이 성공하였습니다.',
 
+    'msg_error_not_matching_user' => '식별자 또는 비밀번호가 맞지 않습니다.',
     'msg_error_occured' => '예상치 않은 오유가 발생했습니다.',
     'msg_error_fix' => '오유를 수정해주십시오.',
-    'msg_error_not_matching_user' => '식별자 또는 비밀번호가 맞지 않습니다.',
 
     'msg_ask_delete' => '정말 삭제하시겠습니까?',
 
@@ -48,9 +48,8 @@ $lang = array(
     'msg_input_pwd' => '비밀번호를 입력해주십시오.',
     'msg_input_email' => '유효한 Email을 입력해주십시오.',
     'msg_input_varname' => '변수명을 입력해주십시오.',
-    'msg_input_name' =>'이름을 입력해 주세요.',
     'msg_input_all' => '모든 내용을 입력해주십시오.',
-
+    'msg_input_name' =>'이름을 입력해 주세요.',
     'msg_select_photo' => '사진을 선택해주십시오.',
     'msg_select_list' => '항목들을 선택해주십시오.',
     'msg_select_profile_img_size' => '1:1비률의 사진을 선택해주십시오.',
@@ -60,7 +59,7 @@ $lang = array(
     'success' => '성공',
     'error_server' => '서버 내부 오유입니다.',
     'error_db' => 'DB 련결중 오유가 발생했습니다.',
-    'error_params' => '파라메터가 잘못 입력되였습니다.',
+    'error_params' => 'Parameter가 잘못 입력되였습니다.',
     'error_access_token' => '인증유효기간이 완료되였습니다. 다시 Login해주십시오.',
     'error_email_pwd' => 'Email 또는 비밀번호가 맞지 않습니다.',
     'error_no_user' => '존재하지 않는 유저입니다.',
@@ -73,6 +72,8 @@ $lang = array(
     'menu_notifications' => '알림 관리',
     'menu_photo_check' => '사진 검사',
     'menu_statistic' => '통계',
+    'menu_notice' => '공지사항',
+    'menu_setting' => 'App설정',
     'menu_api' => 'Api',
     'menu_api_list' => 'Api List',
     'menu_api_doc' => 'Api Doc',
@@ -129,7 +130,18 @@ $lang = array(
     'date' =>'날자',
     'send_count' =>'보낸 개수',
     'signup_count' =>'가입자수',
-    
+
+    // notice
+    'notice' =>'공지사항',
+    'maker' =>'작성자',
+    'update_date' =>'수정날자',
+    'msg_input_title' => '제목을 입력해주십시오.',
+    'msg_input_content' => '내용을 입력해주십시오.',
+
+    // setting
+    'qa_phone' => "문의전화번호",
+    'use_agreement' => "리용약관",
+
     //api
     'multiple_delete' => '다중삭제',
     'gen' => '건',

@@ -7,7 +7,7 @@ use Fabiang\Xmpp\Protocol\Roster;
 use Fabiang\Xmpp\Protocol\Presence;
 
 function send_email($target_email, $subject, $mail_description = '', $mail_important_string = '', $mail_footer = '') {
-    if(LOCAL_TEST_MODE == true) {
+    if(TEST_LOCAL_MODE == true) {
         return true;
     }
     $CI = & get_instance();
@@ -36,7 +36,7 @@ function send_email($target_email, $subject, $mail_description = '', $mail_impor
 
     $CI->email->message($email_content);
     $CI->email->to(trim($target_email));
-    $result = $CI->email->send();  // TRUE/FALSE파라메터 줄수 있는데 이메일발송후 mail초기화여부 결정
+    $result = $CI->email->send();  // TRUE/FALSE Parameter 줄수 있는데 이메일발송후 mail초기화여부 결정
     if($result == false) {
         echo $CI->email->print_debugger(); // 오유찍기
     }
@@ -44,7 +44,7 @@ function send_email($target_email, $subject, $mail_description = '', $mail_impor
 }
 
 function send_sms($phone, $text) {
-    if(LOCAL_TEST_MODE == true) {
+    if(TEST_LOCAL_MODE == true) {
         return true;
     }
 
@@ -98,7 +98,7 @@ function send_push($fcm_key, $dev_type = 'android', $dev_token = '', $push_type 
         return false;
     }
 
-    if(LOCAL_TEST_MODE == true) {
+    if(TEST_LOCAL_MODE == true) {
         return false;
     }
 
@@ -274,14 +274,14 @@ function make_directory($path)
     return $mkpath;
 }
 
-function get_temp_image_url($file_name)
+function get_temp_image_url($file_name, $dir="temp")
 {
     if (is_http_url($file_name))
         return $file_name;
 
-    $file_path = make_directory('temp') . DIRECTORY_SEPARATOR . $file_name;
+    $file_path = make_directory($dir) . DIRECTORY_SEPARATOR . $file_name;
 
-    return (file_exists($file_path) && is_file($file_path)) ? base_url(UPLOAD_URL_PATH . 'temp/' . $file_name) : get_default_image_url();
+    return (file_exists($file_path) && is_file($file_path)) ? base_url(UPLOAD_URL_PATH . $dir.'/' . $file_name) : get_default_image_url();
 }
 
 function get_real_image_url($image_url)

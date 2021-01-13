@@ -61,7 +61,7 @@ EOT;
             $temp[$column_index++] = $temp['name'] = $row->name;
             $temp[$column_index++] = $temp['profile_url'] = $row->profile_url;
             $temp[$column_index++] = $temp['status'] = $row->status;
-            $temp[$column_index++] = $temp['status'] = $row->status;
+            $temp[$column_index++] = $temp['backup_url'] = $row->backup_url;
             $temp[$column_index++] = $temp['profile_url_check'] = $row->profile_url_check;
             $temp[$column_index++] = $temp['uid'] = $row->uid;
             $return_data[] = $temp;

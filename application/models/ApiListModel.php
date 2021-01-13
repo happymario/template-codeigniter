@@ -74,7 +74,7 @@ class ApiListModel extends MY_Model {
         if ($usable_only) {
             $this->db->where('api_use', 1);
         }
-        $this->db->order_by("api_idx", "asc");
+        $this->db->order_by("api_name", "asc");
         $result = $this->db->get()->result();
 
         foreach ($result as $row) {

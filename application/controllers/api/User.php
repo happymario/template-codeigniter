@@ -89,6 +89,7 @@ class User extends ApiBase
             "name" => $user_row->name,
             "profile_url" => $user_row->profile_url,
             "profile_url_check" => $user_row->profile_url_check,
+            "backup_url" => $user_row->backup_url,
             "status" => $user_row->status,
         ));
     }
@@ -123,5 +124,38 @@ class User extends ApiBase
         $this->userModel->save_by_uid($save_data, $user_uid);
 
         $this->_response_success();
+    }
+
+    public function backup() {
+        $this->_set_api_params([
+            new ApiParamModel('access_token', 'required')
+        ]);
+
+        $access_token = $this->api_params->access_token;
+        $this->_check_access_token($access_token);
+
+        $user_uid = $this->_get_user_uid($access_token);
+
+        if (!isset($_FILES['uploadfile'])) {
+            $this->_response_error(API_RESULT_ERROR_PARAM);
+        }
+
+        $upload_file_name_only = getUniqueString();
+        $upload_file_name_ext = pathinfo($_FILES['uploadfile']["name"], PATHINFO_EXTENSION);
+        $file_name = $upload_file_name_only . '.' . $upload_file_name_ext;
+
+        $file_path = make_directory('user') . DIRECTORY_SEPARATOR . $file_name;
+
+        if (!move_uploaded_file($_FILES['uploadfile']['tmp_name'], $file_path)) {
+            $this->_response_error(API_RESULT_ERROR_UPLOAD);
+        }
+
+        $backup_url = get_temp_image_url($file_name, "user");
+        $save_data = array("backup_url" => $backup_url);
+        $this->userModel->save_by_uid($save_data, $user_uid);
+
+        $this->_response_success([
+            'url' => $backup_url
+        ]);
     }
 }

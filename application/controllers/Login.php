@@ -18,6 +18,17 @@ class Login extends CI_Controller
         $this->load->view("login/index");
     }
 
+    public function term()  {
+        $term_kind = $this->input->get('term_kind');
+
+        $this->db->select('*');
+        $setting = $this->db->get_where('tb_setting', array('status' => STATUS_NORMAL))->row();
+
+        $title = t('use_agreement');
+        $term = $setting->use_agreement;
+        $this->load->view("layout/term", array('page_title' => $title, 'term' => $term));
+    }
+    
     public function login()
     {
         $id = $this->input->post('id');

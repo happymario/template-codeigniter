@@ -136,6 +136,22 @@
                         </a>
                     </li>
 
+                    <li class="nav-item <?= !empty($menu) && $menu == MENU_NOTICE ? 'active open' : '' ?>">
+                        <a href="<?= site_url('appmanage/notice_list') ?>" class="nav-link nav-toggle">
+                            <i class="fa fa-genderless"></i>
+                            <span class="title"><?=t('menu_notice') ?></span>
+                            <span class=""></span>
+                        </a>
+                    </li>
+
+                    <li class="nav-item <?= !empty($menu) && $menu == MENU_SETTING ? 'active open' : '' ?>">
+                        <a href="<?= site_url('appmanage/setting') ?>" class="nav-link nav-toggle">
+                            <i class="fa fa-genderless"></i>
+                            <span class="title"><?=t('menu_setting') ?></span>
+                            <span class=""></span>
+                        </a>
+                    </li>
+
                     <li class="nav-item" id="left_menu_apimanage_parent">
                         <a href="javascript:;" class="nav-link nav-toggle">
                             <i class="fa fa-genderless"></i>
