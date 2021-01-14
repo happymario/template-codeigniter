@@ -80,6 +80,10 @@ class Common extends ApiBase
         $info = array();
         $info["api_ver"] = VERSION;
 
+        $sql = "select * from tb_setting where status !=".STATUS_DELETE;
+        $setting = $this->db->query($sql)->row();
+        $info["client_center"] = $setting->client_phone;
+
         $this->_response_success($info);
     }
 }
