@@ -454,7 +454,7 @@ function valid_url($url) {
 }
 
 
-function log_txt($title = "", $data) {
+function log_txt($title = "", $data = "") {
     $now = date("Y-m-d H:i:s.v");
     $log_txt = json_encode($data);
 
