@@ -1,74 +1,63 @@
-# CodeIgniter Template
+# CodeIgniter 4 Application Starter
 
-Integrate RESTfull API, Base Model&Controller Template module and Push send module
+## What is CodeIgniter?
 
+CodeIgniter is a PHP full-stack web framework that is light, fast, flexible and secure.
+More information can be found at the [official site](http://codeigniter.com).
 
+This repository holds a composer-installable app starter.
+It has been built from the
+[development repository](https://github.com/codeigniter4/CodeIgniter4).
 
-## Features
+More information about the plans for version 4 can be found in [the announcement](http://forum.codeigniter.com/thread-62615.html) on the forums.
 
-* Provide Base Controller and Model  Template Module
-* User create, update, remove
-* User Photo review, agree, delete
-* Push send, delete by Gotify or Openfire
-* Support API Doc template
-* Draw graphs of statistic with pie and stick chart
+The user guide corresponding to this version of the framework can be found
+[here](https://codeigniter4.github.io/userguide/).
 
-## Installtaion
+## Installation & updates
 
-It requires PHP 7.0 over, Mysql 5.0 over.
+`composer create-project codeigniter4/appstarter` then `composer update` whenever
+there is a new release of the framework.
 
-You can install it easily [XAMPP](https://www.apachefriends.org/index.html)  and edit your site place in 'httpd.conf'.
+When updating, check the release notes to see if there are any changes you might need to apply
+to your `app` folder. The affected files can be copied or merged from
+`vendor/codeigniter4/framework/app`.
 
-```
-listen 9901
-<VirtualHost *:9901>
-    ServerAdmin happymario81@gmail.com
-    DocumentRoot "D:\server\template-codeigniter"
-    ServerName victoria.com/templates
-</VirtualHost>
-<Directory "D:\server\template-codeigniter">
-    Options Indexes FollowSymLinks Includes ExecCGI
-    AllowOverride All
-    Require all granted
-</Directory>
-```
+## Setup
 
-[Github](http://github.com/): clone source.
+Copy `env` to `.env` and tailor for your app, specifically the baseURL
+and any database settings.
 
-```
-$ git clone https://github.com/happymario/template-codeigniter.git
-```
+## Important Change with index.php
 
-And edit 'template-codeigniter/config.js'.
+`index.php` is no longer in the root of the project! It has been moved inside the *public* folder,
+for better security and separation of components.
 
-```
-$config['base_url'] = 'http://codeigniter.app:9901/';
-```
+This means that you should configure your web server to "point" to your project's *public* folder, and
+not to the project root. A better practice would be to configure a virtual host to point there. A poor practice would be to point your web server to the project root and expect to enter *public/...*, as the rest of your logic and the
+framework are exposed.
 
-And you have to install sql on mysql server with 'database/init.sql'.
+**Please** read the user guide for a better explanation of how CI4 works!
 
+## Repository Management
 
+We use Github issues, in our main repository, to track **BUGS** and to track approved **DEVELOPMENT** work packages.
+We use our [forum](http://forum.codeigniter.com) to provide SUPPORT and to discuss
+FEATURE REQUESTS.
 
-Last, open youre browser url: http://codeigniter.app:9901
+This repository is a "distribution" one, built by our release preparation script.
+Problems with it can be raised on our forum, or as issues in the main repository.
 
-## Screenshot
+## Server Requirements
 
-<img src="https://github.com/happymario/template-codeigniter/blob/master/uploads/screenshot.png" alt="screenshot" />
+PHP version 7.3 or higher is required, with the following extensions installed:
 
+- [intl](http://php.net/manual/en/intl.requirements.php)
+- [libcurl](http://php.net/manual/en/curl.requirements.php) if you plan to use the HTTP\CURLRequest library
 
+Additionally, make sure that the following extensions are enabled in your PHP:
 
-## Reference
-
-* [Codeigniter-restserver][1]: A fully RESTful server implementation for CodeIgniter using one library, one config file and one controller.
-* [codeigniter-base-model][2]: CodeIgniter base CRUD model to remove repetition and increase productivity
-* [CodeIgniter-Template][3]: A Lightweight Codeigniter Template Libray
-* [Gotify-server][4]: i18n library for CodeIgniter 2.1.x
-* [Openfire-server][5]: codeigniter native session
-* [D3.js][6]: Minimal Templating on Steroids
-
-[1]: https://codeigniter.com/
-[2]: https://github.com/appleboy/Codeigniter-Base-Model
-[3]: https://github.com/appleboy/CodeIgniter-Template
-[4]: https://gotify.net/
-[5]: https://www.igniterealtime.org/projects/openfire/
-[6]: https://d3js.org/
+- json (enabled by default - don't turn it off)
+- [mbstring](http://php.net/manual/en/mbstring.installation.php)
+- [mysqlnd](http://php.net/manual/en/mysqlnd.install.php)
+- xml (enabled by default - don't turn it off)
