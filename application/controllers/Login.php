@@ -18,6 +18,10 @@ class Login extends CI_Controller
         $this->load->view("login/index");
     }
 
+    public function test() {
+        echo  phpinfo();
+    }
+
     public function term()  {
         $term_kind = $this->input->get('term_kind');
 
