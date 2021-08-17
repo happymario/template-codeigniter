@@ -1,0 +1,414 @@
+.holding-info-content {
+    width: 91%;
+    /*height: 94px;*/
+    background: #fff;
+    border-radius: 4px;
+    display: table;
+    margin: auto;
+    padding-bottom: 15px;
+}
+
+.holding-chart-content {
+    width: 91%;
+    height: auto;
+    background: transparent;
+    display: table;
+    margin: auto;
+}
+
+.holding-title {
+    font-size: 15px;
+    font-family: 'NotoSansCJKkr-Bold';
+    color: #333;
+    padding-left: 10px;
+}
+
+.holding-info {
+    width: 50%;
+    text-align: left;
+    /*vertical-align: middle;*/
+    display: table-cell;
+    height: 100%;
+    padding-left: 10px;
+}
+
+.holding-info p {
+    font-size: 13px;
+    font-family: 'NotoSansCJKkr-DemiLight';
+    color: #828282;
+    margin: 0px;
+    line-height: 13px;
+}
+
+.mimi-chart-group {
+    display: table-cell;
+}
+
+.mimi-chart-group h3 {
+    font-size: 14px;
+    font-family: 'NotoSansCJKkr-Bold';
+    color: #333;
+    text-align: center;
+    margin-top: 22px;
+    margin-bottom: 7px;
+}
+
+.mimi-chart-group:first-of-type {
+    position: relative;
+}
+
+.mimi-chart-group > div.mimi-pie-chart {
+    width: 102px;
+    height: 102px;
+    margin: 0px auto;
+    padding: 0px 20px;
+    position: relative;
+}
+
+.holding_share_btn {
+    width: 100px;
+    position: relative;
+    display: table-cell;
+    text-align: center;
+}
+
+.btn-share {
+    font-size: 10.12px;
+    font-family: "NotoSansCJKkr-Bold";
+    color: #333;
+    padding: 5px 10px;
+    border-radius: 14px;
+    border: 2px solid #333;
+}
+
+.share-btn-content {
+    width: 80px;
+    margin: auto;
+    display: table;
+}
+
+.holding-list-body {
+    width: 100%;
+    display: table;
+    background-color: #fff;
+}
+
+.holding-list-content {
+    width: 91%;
+    display: table;
+    background-color: #fff;
+    margin: auto;
+}
+
+.holding-add {
+    /*float: right;*/
+    font-size: 13px;
+    font-family: 'NotoSansCJKkr-DemiLight';
+    text-decoration: none;
+    display: table-cell;
+    margin-top: 11px;
+    text-align: right;
+    color: #ea5916 !important;
+}
+
+/*종목검색관련*/
+.popup-search-content h1 {
+    font-size: 14.62px;
+    font-family: 'NotoSansCJKkr-Medium';
+    color: #333;
+    line-height: 14.62px;
+}
+
+.popup-search-content p {
+    font-size: 7.87px;
+    font-family: 'NotoSansCJKkr-DemiLight';
+    color: #878787;
+    line-height: 7.87px;
+}
+
+.holding-item-search {
+    width: 100%;
+    position: relative;
+}
+
+.holding-item-search input[type="text"] {
+    width: 100%;
+    height: 28px;
+    border: 2px solid #f3f3f3;
+    outline: medium none;
+    padding-left: 10px;
+    padding-right: 30px;
+    border-radius: 4px;
+    font-size: 9px;
+    color: #333;
+}
+
+.holding-item-search > a {
+    background: transparent url("../../images/mobile/ic_panelty_search.png") no-repeat;
+    width: 12px;
+    height: 13px;
+    border: medium none;
+    position: absolute;
+    right: 8px;
+    top: 10px;
+    cursor: pointer;
+    outline: medium none;
+}
+
+/*종목추가팝업관련*/
+.add-holding-content-body {
+    width: 100%;
+    background: #fff;
+    display: table;
+    height: auto;
+}
+
+.holding-item-info {
+    width: 90%;
+    display: table;
+    height: auto;
+    margin: auto;
+}
+
+.holding-item-info .add-info-content {
+    width: 100%;
+    display: table;
+    height: 150px;
+    border-radius: 4px;
+    background-color: #fafafa;
+    border: 1px solid #eaeaea;
+}
+
+.add-info-content .add-content {
+    width: 90%;
+    background-color: transparent;
+    margin: auto;
+    display: table;
+}
+
+.holding-item-img {
+    width: 114px;
+    height: 98px;
+    border: 1px solid #E3E3E3;
+    box-sizing: border-box;
+}
+
+.holding-item-img > p {
+    margin: 0px;
+    padding: 0px;
+    display: table;
+    height: 100%;
+    text-align: center;
+}
+
+.holding-item-img > p > a {
+    display: table-cell;
+    vertical-align: middle;
+    text-align: center;
+}
+
+.holding-item-img img {
+    max-width: 100%;
+    max-height: 100%;
+    width: 114px;
+    height: 98px;
+}
+
+.holding-item-info-content {
+    vertical-align: top;
+    padding-left: 8px;
+}
+
+.holding-item-info-content h1.name {
+    font-size: 17.99px;
+    font-family: 'NotoSansCJKkr-DemiLight';
+    color: #333;
+    line-height: 24px;
+}
+
+.holding-item-info-content p.color {
+    font-size: 9px;
+    color: #6f6f6f;
+    font-family: 'NotoSansCJKkr-DemiLight';
+    line-height: 10px;
+}
+
+.holding-item-info-content p.price {
+    font-size: 10.12px;
+    color: #d02727;
+    font-family: 'NotoSansCJKkr-Medium';
+    margin: 0px;
+    line-height: 16px;
+}
+
+p.item-label {
+    font-size: 11.25px;
+    font-family: 'NotoSansCJKkr-Regular';
+    color: #333;
+    line-height: 11.25px;
+    margin: 10px 0px;
+}
+
+div.holding-search {
+    background: #fff;
+    border-radius: 4px;
+    width: 169px;
+    height: 29px;
+    border: 2px solid #e8e8e8;
+}
+
+div.holding-search span.search-result {
+    font-family: "NotoSansCJKkr-Regular";
+    font-size: 11.25px;
+    line-height: 29px;
+    padding-left: 9px;
+    color: #333;
+}
+
+div.holding-search a.btn-search-drop {
+    float: right;
+    width: 26px;
+    height: 21px;
+    margin-top: 3px;
+    display: inline-block;
+    border-left: 1px solid #f3f3f3;
+    background: url(../../images/mobile/ic_arrow_down_orange.png) no-repeat center;
+    background-size: 12px;
+    cursor: pointer;
+}
+
+.holding-add-search {
+    width: 169px;
+    position: relative;
+}
+
+.holding-add-search input[type="text"] {
+    width: 100%;
+    height: 28px;
+    border: 2px solid #e8e8e8;
+    outline: medium none;
+    padding-left: 8px;
+    padding-right: 27px;
+    border-radius: 4px;
+    font-size: 11.25px;
+    color: #333;
+}
+
+.holding-add-search a.date {
+    background: transparent url("../../images/mobile/ic_holding_date.png") no-repeat;
+    width: 12px;
+    height: 12px;
+    border: medium none;
+    position: absolute;
+    right: 7px;
+    top: 9px;
+    cursor: pointer;
+    outline: medium none;
+}
+
+.holding-add-search a.won {
+    background: transparent url("../../images/mobile/ic_holding_won.png") no-repeat;
+    width: 12px;
+    height: 12px;
+    border: medium none;
+    position: absolute;
+    right: 7px;
+    top: 9px;
+    cursor: pointer;
+    outline: medium none;
+}
+
+.holding-radio-label {
+    float: left;
+    position: relative;
+    cursor: pointer;
+    padding-left: 17px;
+    font-size: 11.25px;
+    font-family: 'NotoSansCJKkr-Regular';
+    color: #333;
+    line-height: 11.25px;
+}
+
+.holding-radio-label input[type='radio'] {
+    visibility: hidden;
+    position: absolute;
+}
+
+.holding-radio-label input[type="radio"]:checked ~ span.check {
+    opacity: 1;
+    transform: scale(1);
+}
+
+.holding-radio-label span.check {
+    top: 2px;
+    left: 2px;
+    width: 10px;
+    height: 10px;
+    background: #EA5916 none repeat scroll 0% 0%;
+    opacity: 0;
+    z-index: 6;
+    border-radius: 50% !important;
+    display: block;
+    position: absolute;
+    transition-duration: 0.3s;
+    transform: scale(0);
+}
+
+.holding-radio-label span.box {
+    top: 0px;
+    border: 1px solid #D1D1D1;
+    height: 14px;
+    width: 14px;
+    border-radius: 50% !important;
+    z-index: 5;
+    display: block;
+    position: absolute;
+    left: 0px;
+    transition-duration: 0.3s;
+    box-sizing: border-box;
+}
+
+/*drop list*/
+.holding-drop > .drop-list {
+    display: none;
+    position: absolute;
+    z-index: 10;
+    border-radius: 5px;
+    background-color: #fafafa;
+    padding: 7px 0;
+    box-shadow: 0 0 8px 0 rgba(0, 0, 0, 0.2);
+    max-height: 128px;
+    overflow-y: scroll;
+    width: 169px;
+}
+
+.holding-drop > .drop-list > ul {
+    list-style: none;
+    margin: 0px;
+    padding: 0px;
+}
+
+.holding-drop > .drop-list li {
+    height: 34px;
+    margin-bottom: 6px;
+}
+
+.holding-drop > .drop-list li a {
+    font-size: 11.25px;
+    padding: 3px 13px 0;
+    height: 100%;
+    display: block;
+    line-height: 34px;
+    text-decoration: none;
+    outline: none;
+    color: #333;
+}
+
+.holding-drop > .drop-list li a:hover {
+    background: #e3eaf2;
+}
+
+.holding-drop > .drop-list::-webkit-scrollbar {
+    -webkit-appearance: none;
+    display: none;
+}

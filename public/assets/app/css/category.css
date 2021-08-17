@@ -1,0 +1,307 @@
+.category-body {
+    width: 100%;
+    /*display: table;*/
+    height: auto;
+    background-color: #fff;
+    overflow: hidden;
+}
+
+.category-filter {
+    width: 100%;
+    height: 29px;
+    background-color: #f7f7f7;
+    font-size: 12px;
+    font-family: 'NotoSansCJKkr-DemiLight';
+    color: #333;
+    display: table-cell;
+    vertical-align: middle;
+    padding: 0px 15px;
+}
+
+.category-filter-content {
+    width: 100%;
+    height: auto;
+    background-color: #fff;
+    display: table;
+}
+
+.category-title-label {
+    width: 100%;
+    height: 34px;
+    font-size: 13.5px;
+    font-family: 'NotoSansCJKkr-Bold';
+    color: #fff;
+    vertical-align: middle;
+    padding: 0px 17px;
+    background-color: #333;
+}
+
+.filter-content ul {
+    list-style: outside none none;
+    margin: 0px;
+    padding: 0px;
+}
+
+.filter-content ul li {
+    height: 24px;
+    margin-bottom: 2px;
+    cursor: pointer;
+}
+
+.filter-content ul li a {
+    font-size: 10.13px;
+    height: 100%;
+    display: block;
+    line-height: 24px;
+    text-decoration: none;
+    outline: medium none;
+    color: #737373;
+    vertical-align: middle;
+    padding-left: 28px;
+}
+
+.filter-content ul li a.active span{
+    color: #EA5916;
+    background-color: transparent;
+    border-bottom: 2px solid #F4AC8A !important;
+    text-decoration: none;
+    font-size: 10.13px;
+    height: 100%;
+}
+
+.filter-selected-content {
+    width: 100%;
+    display: table;
+    min-height: 28px;
+    padding: 0 15px;
+}
+
+.filter-selected-content label {
+    font-size: 10.13px;
+    font-family: 'NotoSansCJKkr-DemiLight';
+    /*padding-left: 28px;*/
+    width: 100%;
+    height: 100%;
+    vertical-align: middle;
+}
+
+.filter-selected-content label span {
+    /*float: right;*/
+    margin-top: 4px;
+}
+
+.selected-list, .selected-color-list {
+    /*width: 71%;*/
+    display: inline-block;
+}
+
+.selected-list > span, .selected-color-list > span {
+    background: #fff url("../../images/tag_delete.png") no-repeat scroll 100% center;
+    background-size: 6px 10px;
+    padding-right: 10px;
+    padding-left: 7px;
+    color: #333;
+    font-family: "NotoSansCJKkr-Light";
+    cursor: pointer;
+    font-size: 10.13px;
+}
+
+.color-btn {
+    width: 18px;
+    height: 20px;
+    padding: 1px;
+    outline: 0;
+    display: inline-block;
+    box-shadow: none;
+    border: 1px solid transparent;
+    position: relative;
+}
+.color-btn.active:before {
+    content: '✔';
+    color: #000;
+    font-size: 20px;
+    position: absolute;
+    left: 1px;
+    top: -6px;
+}
+.color-btn.active:after {
+    content: '✔';
+    color: #fff;
+    font-size: 20px;
+    position: absolute;
+    left: 0px;
+    top: -7px;
+}
+
+.popular-select-content {
+    width: 100%;
+    display: table;
+    height: 68px;
+    background-color: #f7f7f7;
+}
+
+.popular-search {
+    background: #fff;
+    border-radius: 4px;
+    width: 328px;
+    height: 29px;
+    border: 2px solid #e8e8e8;
+    margin: auto;
+    display: table;
+}
+
+div.popular-search span.search-result {
+    font-family: "NotoSansCJKkr-Regular";
+    font-size: 11.25px;
+    line-height: 29px;
+    padding-left: 9px;
+    color: #333;
+}
+
+div.popular-search a.btn-search-drop {
+    float: right;
+    width: 26px;
+    height: 21px;
+    margin-top: 3px;
+    display: inline-block;
+    border-left: 1px solid #f3f3f3;
+    background: url(../../images/mobile/ic_arrow_down_orange.png) no-repeat center;
+    background-size: 12px;
+    cursor: pointer;
+}
+
+p.popular-label {
+    font-size: 7.88px;
+    color: #ea5916;
+    font-family: 'NotoSansCJKkr-DemiLight';
+    line-height: 10px;
+    padding-left: 17px;
+}
+
+/*종목리스트관련*/
+.category-item-content {
+    width: 100%;
+    display: block;
+    background: #FFFFFF;
+    margin: auto;
+    overflow: hidden;
+}
+
+.category-card {
+    display: block;
+    width: 44%;
+    float: left;
+    margin-top: 20px;
+	margin: 0 3% 0 3%;
+}
+
+.category-image {
+    width: 100%;
+    overflow: hidden;
+}
+
+.category-image a {
+    width: 100%;
+    overflow: hidden;
+}
+
+.category-image a img {
+    max-width: 100%;
+    width: 100% !important;
+    height: 100%;
+    min-height: 1px;
+    overflow: hidden;
+}
+
+.category-pdt-name {
+    font-size: 12px;
+    font-family: 'NotoSansCJKkr-DemiLight';
+    color: #333;
+    margin: 0px;
+    line-height: 16px;
+    padding-right: 15px;
+    letter-spacing: -0.5px;
+    white-space: normal;
+    overflow: hidden;
+	width: 180px;
+	word-wrap: break-word;
+	max-height: 32px;
+	display: -webkit-box;
+	-webkit-line-clamp: 2;
+	-webkit-box-orient: vertical;
+}
+/*.category-pdt-name {
+    width: 90%;
+    font-size: 11.25px;
+    font-family: 'NotoSansCJKkr-DemiLight';
+    color: #333;
+    margin: 0;
+    !* hide text if it more than N lines  *!
+    overflow: hidden;
+    !* for set '...' in absolute position *!
+    position: relative;
+    !* use this value to count block height *!
+    line-height: 1.2em;
+    !* max-height = line-height (1.2) * lines max number (3) *!
+    max-height: 2.4em;
+    !* fix problem when last visible word doesn't adjoin right side  *!
+    text-align: inherit; !*justify*!
+    !* place for '...' *!
+    margin-right: -1em;
+    padding-right: 1em;
+}
+!* create the ... *!
+.category-pdt-name:before {
+    !* points in the end *!
+    content: '...';
+    !* absolute position *!
+    position: absolute;
+    !* set position to right bottom corner of block *!
+    right: 4px;
+    bottom: 0;
+}
+!* hide ... if we have text, which is less than or equal to max lines *!
+.category-pdt-name:after {
+    !* points in the end *!
+    content: '';
+    !* absolute position *!
+    position: absolute;
+    !* set position to right bottom corner of text *!
+    right: 0;
+    !* set width and height *!
+    width: 1em;
+    height: 1em;
+    margin-top: 0.2em;
+    !* bg color = bg color under block *!
+    background: white;
+}*/
+
+.category-min-price-label {
+    font-size: 12px;
+    font-family: 'NotoSansCJKkr-Medium';
+    margin-bottom: 0px;
+    height: 1em;
+    line-height: 1em;
+}
+
+.category-min-price {
+    font-size: 24px;
+    font-family: 'NotoSansCJKkr-Regular';
+    margin-top: 0;
+}
+
+.category-no-result-content {
+    width: 46%;
+    display: table;
+    background: #FFFFFF;
+    margin: auto;
+    text-align: center;
+    margin-top: 55px;
+}
+
+.category-no-result-content p {
+    font-size: 13.5px;
+    font-family: 'NotoSansCJKkr-DemiLight';
+    color: #333;
+    line-height: 13.5px;
+}

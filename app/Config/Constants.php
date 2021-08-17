@@ -77,3 +77,94 @@ defined('EXIT_USER_INPUT')     || define('EXIT_USER_INPUT', 7); // invalid user 
 defined('EXIT_DATABASE')       || define('EXIT_DATABASE', 8); // database error
 defined('EXIT__AUTO_MIN')      || define('EXIT__AUTO_MIN', 9); // lowest automatically-assigned error code
 defined('EXIT__AUTO_MAX')      || define('EXIT__AUTO_MAX', 125); // highest automatically-assigned error code
+
+
+/*
+ |--------------------------------------------------------------------------
+ | Backend API Constants
+ |--------------------------------------------------------------------------
+ |
+ | Provide API Constants
+ | require information to be in seconds.
+ */
+define('TEST_LOCAL_MODE', true); // test local server
+define('TEST_RELEASE_MODE', true); // test release server
+
+define('API_VERSION', 1);
+define('APP_VERSION', '1.0.0');
+define('ADMIN_VERSION', '1.0');
+
+//upload
+define('UPLOAD_PATH', FCPATH . 'uploads' . DIRECTORY_SEPARATOR);
+define('UPLOAD_URL_PATH', "uploads/");
+
+//email
+defined('SMTP_EMAIL_ADDRESS')           OR  define('SMTP_EMAIL_ADDRESS', 'agbd@gmail.com');
+defined('SMTP_EMAIL_PASSWORD')           OR  define('SMTP_EMAIL_PASSWORD', 'pointphone1!');
+
+//common constants
+define('API_PAGE_CNT', 30);
+define('STATUS_NORMAL', '1');
+define('STATUS_DELETE', '0');
+define('STATUS_ON', 1);
+define('STATUS_OFF', 0);
+define('STATUS_CHECK', '2');
+
+// user status
+define('USER_STATUS_PAUSE', '2');
+define('USER_STATUS_EXIT', '3');
+
+// Api ResultCode
+define('STR_RESULT_CODE', 'resultcode');
+define('API_RESULT_SUCCESS', 0);    //성공
+define('API_RESULT_ERROR_SYSTEM', 101);  //체계 오유
+define('API_RESULT_ERROR_DB', 102);    //DB 오유
+define('API_RESULT_ERROR_PRIVILEGE', 103);    //권한 오유
+define('API_RESULT_ERROR_PARAM', 104);    //Parameter 오유
+define('API_RESULT_ERROR_UPLOAD', 105);   //화일upload 오유
+define('API_RESULT_ERROR_ACCESS_TOKEN', 106);   //접근Token 오유
+define('API_RESULT_ERROR_CERT_KEY', 107);   //인증번호 오유
+define('API_RESULT_ERROR_LOGIN_FAILED', 201); //Login 오유
+define('API_RESULT_ERROR_LOGIN_PASSWORD', 211); //비밀번호 오유
+define('API_RESULT_ERROR_USER_NO_EXIST', 202); //회원정보없음 오유
+define('API_RESULT_ERROR_EMAIL_DUPLICATE', 203);    //Email중복 오유
+define('API_RESULT_ERROR_EMAIL_NO_EXIST', 204); //Email없음 오유
+define('API_RESULT_ERROR_USER_PAUSED', 205); //정지회원 오유
+define('API_RESULT_ERROR_NICKNAME_DUPLICATE', 206);    //이름중복 오유
+define('API_RESULT_ERROR_NICKNAME_LENGTH', 207);    //이름길이 오유
+define('API_RESULT_ERROR_EMAIL_VERIFIED', 208);    //Email인증 오유
+define('API_RESULT_ERROR_PURCHASE', 209);    //결제 오유
+
+// push type
+define('PUSH_TYPE_NOTICE', 0);    // 공동
+
+/*
+ |--------------------------------------------------------------------------
+ | Admin Constants
+ |--------------------------------------------------------------------------
+ |
+ | Provide Admin Constants
+ | require information to be in seconds.
+ */
+defined('DEFAULT_LANGUAGE_FILE_NAME') || define('DEFAULT_LANGUAGE_FILE_NAME', "trans_lang"); // logout event
+defined('DEFAULT_LOCATION') || define('DEFAULT_LOCATION', "Kr"); // logout event
+define('SESSION_ADMIN_UID', 'session_admin_uid');
+
+//ajax result error
+define('AJAX_RESULT_SUCCESS', 'success');
+define('AJAX_RESULT_ERROR', 'error');
+define('AJAX_RESULT_DUP', 'dup');
+define('AJAX_RESULT_EMPTY', 'empty');
+
+
+// Menu
+define('MENU_USER', 'menu_user');
+define('MENU_PHOTO_CHECK', 'menu_photo_check');
+define('MENU_NOTIFICATION', 'menu_notification');
+define('MENU_STATISTIC', 'menu_statistic');
+define('MENU_NOTICE', 'menu_notice');
+define('MENU_SETTING', 'menu_setting');
+
+// Year
+define('STATISTIC_MIN_YEAR', 2010);
+define('STATISTIC_MAX_YEAR', 2110);
