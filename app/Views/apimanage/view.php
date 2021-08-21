@@ -118,7 +118,7 @@
                     <td><?=t('required')?></td>
                     <td style="text-align: left;">
                         <strong>0: <?=t('success')?></strong><br>
-                        기타 오유 &nbsp;&nbsp; <a target="_blank" href="<?= site_url('apiManage/apierrors') ?>"><?=t('go_error_code')?></a>
+                        기타 오유 &nbsp;&nbsp; <a target="_blank" href="<?= site_url('admin/apimanage/apierrors') ?>"><?=t('go_error_code')?></a>
                     </td>
                 </tr>
                 <tr>

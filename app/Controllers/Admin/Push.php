@@ -23,7 +23,7 @@ class Push extends AdminBase
     public function ajax_table()
     {
         $limit = SSP::limit($_POST);
-        $search_keyword = $this->input->post('search_keyword');
+        $search_keyword = $this->request->getPost('search_keyword');
 
         $status = STATUS_DELETE;
         $where = "E.status != $status and E.sender_uid = A.uid";
@@ -96,9 +96,9 @@ EOT;
 
     public function ajax_send_gotify()
     {
-        $title = $this->input->post('title');
-        $content = $this->input->post('content');
-        $once_100 = $this->input->post('once_100');
+        $title = $this->request->getPost('title');
+        $content = $this->request->getPost('content');
+        $once_100 = $this->request->getPost('once_100');
 
         if(isEmpty($title) || isEmpty($content)) {
             die(AJAX_RESULT_ERROR);
@@ -146,7 +146,7 @@ EOT;
 
     public function ajax_resend_gotify()
     {
-        $uids = $this->input->post('uids');
+        $uids = $this->request->getPost('uids');
 
         $arr_uid = json_decode($uids);
 

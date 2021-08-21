@@ -24,7 +24,7 @@
                 <td><?=$arr_output[$i]['ai_ness']?></td>
                 <td style="text-align: left;white-space: pre-wrap;"><?=$arr_output[$i]['ai_exp']?></td>
                 <td><?=$arr_output[$i]['ai_sort']?></td>
-                <td><a href="<?=site_url('apiManage/edit_api_output_data')?>?ai_idx=<?=$arr_output[$i]['ai_idx']?>&api_idx=<?=$api_idx?>"><i class="fa fa-edit"></i></a></td>
+                <td><a href="<?=site_url('admin/apimanage/edit_api_output_data')?>?ai_idx=<?=$arr_output[$i]['ai_idx']?>&api_idx=<?=$api_idx?>"><i class="fa fa-edit"></i></a></td>
             </tr>
             <?php
         }

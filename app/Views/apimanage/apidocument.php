@@ -12,9 +12,9 @@
                 <?php
                 for($i=0;$i<count($apilist);$i++) {
                     ?>
-                    <tr <?= ($apilist[$i]['api_ver'] > API_CURRENT_VERSION) ? 'style="background-color: rgba(255, 0, 0, 0.08)"' : '' ?>>
+                    <tr <?= ($apilist[$i]['api_ver'] > API_VERSION) ? 'style="background-color: rgba(255, 0, 0, 0.08)"' : '' ?>>
                         <td><?=$i+1?></td>
-                        <td><a style="cursor: pointer;" href="<?=site_url('apiManage/view')?>?api_idx=<?=$apilist[$i]['api_idx']?>"><?=$apilist[$i]['api_name']?></a></td>
+                        <td><a style="cursor: pointer;" href="<?=site_url('admin/apimanage/view')?>?api_idx=<?=$apilist[$i]['api_idx']?>"><?=$apilist[$i]['api_name']?></a></td>
                         <td><?=$apilist[$i]['api_exp']?></td>
                         <td><a style="cursor: pointer;" target="_blank" href="<?=site_url("api/".$apilist[$i]['api_name'])?>"><?=site_url("api/".$apilist[$i]['api_name'])?></a></td>
                     </tr>

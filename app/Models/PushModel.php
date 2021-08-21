@@ -12,10 +12,11 @@ class PushModel extends BaseModel
     /**
      * 테이블명
      */
-    public $_table = 'tb_push_his';
+    public $table = 'tb_push_his';
 
-    public function __construct($_table = "")
+
+    protected function initialize()
     {
-        parent::__construct();
+        parent::initialize();
     }
 }

@@ -24,8 +24,8 @@
                 <td><?=$apilist[$i]['api_method']?></td>
                 <td><?=$apilist[$i]['api_exp']?></td>
                 <td><?=$apilist[$i]['api_bigo']?></td>
-                <td style="padding: 0px;"><a class="btn blue btn-sm" style="margin: 0px;padding: 3px 10px 3px 10px ;" href="<?=site_url('apiManage/api_input_list')?>?id=<?=$apilist[$i]['api_idx']?>"><?=t('detail_view')?></a></td>
-                <td style="padding: 0px;"><a class="btn blue btn-sm" style="margin: 0px;padding: 3px 10px 3px 10px ;" href="<?=site_url('apiManage/api_output_list')?>?id=<?=$apilist[$i]['api_idx']?>"><?=t('detail_view')?></a></td>
+                <td style="padding: 0px;"><a class="btn blue btn-sm" style="margin: 0px;padding: 3px 10px 3px 10px ;" href="<?=site_url('admin/apimanage/api_input_list')?>?id=<?=$apilist[$i]['api_idx']?>"><?=t('detail_view')?></a></td>
+                <td style="padding: 0px;"><a class="btn blue btn-sm" style="margin: 0px;padding: 3px 10px 3px 10px ;" href="<?=site_url('admin/apimanage/api_output_list')?>?id=<?=$apilist[$i]['api_idx']?>"><?=t('detail_view')?></a></td>
                 <td><a onclick="Edit('<?=$apilist[$i]['api_idx']?>')"><i class="fa fa-edit"></i></a></td>
             </tr>
             <?php

@@ -24,7 +24,7 @@ class User extends AdminBase
     public function ajax_table()
     {
         $limit = SSP::limit($_POST);
-        $search_name = $this->input->post('search_keyword');
+        $search_name = $this->request->getPost('search_keyword');
 
         $where = 'U.status <> '.STATUS_DELETE;
         if (!empty($search_name)) {
@@ -85,11 +85,11 @@ EOT;
 
     public function ajax_save()
     {
-        $user_uid = $this->input->post('user_uid');
-        $id = $this->input->post('id');
-        $name = $this->input->post('name');
-        $pwd = $this->input->post('pwd');
-        $status = $this->input->post('status');
+        $user_uid = $this->request->getPost('user_uid');
+        $id = $this->request->getPost('id');
+        $name = $this->request->getPost('name');
+        $pwd = $this->request->getPost('pwd');
+        $status = $this->request->getPost('status');
 
         if(isEmpty($id) || isEmpty($name) || isEmpty($pwd) || isEmpty($status)) {
             die(AJAX_RESULT_ERROR);
@@ -135,7 +135,7 @@ EOT;
 
     public function ajax_delete()
     {
-        $user_uid = $this->input->post('user_uid');
+        $user_uid = $this->request->getPost('user_uid');
         if(isEmpty($user_uid)) {
             die(AJAX_RESULT_ERROR);
         }
@@ -145,8 +145,8 @@ EOT;
     }
 
     public function ajax_photo_list() {
-        $page_num = $this->input->get('page');
-        $status = $this->input->get('status');
+        $page_num = $this->request->getGet('page');
+        $status = $this->request->getGet('status');
         if(isEmpty($page_num)) {
             die(AJAX_RESULT_ERROR);
         }
@@ -193,8 +193,8 @@ EOF;
 
     public function ajax_change_photo_status()
     {
-        $user_uid = $this->input->post('user_uid');
-        $status = $this->input->post('status');
+        $user_uid = $this->request->getPost('user_uid');
+        $status = $this->request->getPost('status');
 
         if(isEmpty($user_uid)) {
             die(AJAX_RESULT_ERROR);

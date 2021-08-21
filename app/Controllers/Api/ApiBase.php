@@ -3,6 +3,10 @@
 namespace App\Controllers\Api;
 
 use App\Controllers\BaseController;
+use CodeIgniter\HTTP\RequestInterface;
+use CodeIgniter\HTTP\ResponseInterface;
+
+use Psr\Log\LoggerInterface;
 
 /**
  * Created by Star_Man
@@ -15,28 +19,27 @@ class ApiBase extends BaseController {
 
     /**
      * ApiBase constructor.
-     * @param $api_params
      */
-    public function __construct() {
-        parent::__construct();
-        $this->api_params = new stdClass();
+    public function initController(RequestInterface $request, ResponseInterface $response, LoggerInterface $logger)
+    {
+        // Do Not Edit This Line
+        parent::initController($request, $response, $logger);
 
-        $this->load->database();
-        $this->load->helper('url');
-        $this->load->model('UserModel', 'userModel');
-
-        $this->lang->load('admin', LANGUAGE);
+        $this->api_params = new \stdClass();
+        $this->userModel = model("UserModel");
     }
 
     protected function _set_api_params($params = array()) {
-        $this->load->library('form_validation');
-//        if ('english' !== $this->input->post('lang')) {
-            $this->config->set_item('language', 'korean');
-//        } else {
-//            $this->config->set_item('language', 'english');
-//        }
+        $validation =  \Config\Services::validation();
 
-        if ('1' === $this->input->post('pretty')) {
+        $config = config( 'App' );
+        if ('english' !== $this->request->getPost('lang')) {
+            $config->defaultLocale = "Kr";
+        } else {
+            $config->defaultLocale = "En";
+        }
+
+        if ('1' === $this->request->getPost('pretty')) {
             define('API_RESPONSE_PRETTY', true);
         }
 
@@ -48,27 +51,28 @@ class ApiBase extends BaseController {
                 continue;
             }
 
-            $this->api_params->{$param->variable_name} = $this->input->post($param->variable_name);
+            $this->api_params->{$param->variable_name} = $this->request->getPost($param->variable_name);
 
             if (!empty($param->rules)) {
                 if (strpos($param->rules, 'required') !== false) {
                     $required_params[] = $param->variable_name;
-                    $this->form_validation->set_rules($param->variable_name, $param->variable_name, $param->rules);
+                    $validation->setRule($param->variable_name, $param->variable_name, $param->rules);
                     $validation_flag = true;
-                } else if ($this->input->post($param->variable_name) !== null || trim($this->input->post($param->variable_name)) !== '') {
-                    $this->form_validation->set_rules($param->variable_name, $param->variable_name, $param->rules);
+                } else if ($this->request->getPost($param->variable_name) !== null || trim($this->request->getPost($param->variable_name)) !== '') {
+                    $validation->setRule($param->variable_name, $param->variable_name, $param->rules);
                     $validation_flag = true;
                 }
             }
         }
 
-        if ($validation_flag && $this->form_validation->run() === FALSE) {
-            $this->_response_error(API_RESULT_ERROR_PARAM, '', trim($this->form_validation->error_string(' ', ' ')));
+        if ($validation_flag && $validation->run() === FALSE) {
+            $this->_response_error(API_RESULT_ERROR_PARAM, '', trim($validation->getErrors('')));
         }
     }
 
-    protected function _response_error($error_code, $msg = '', $reason = '') {
-        $iskorean = $this->config->item('language') === 'korean';
+    public function _response_error($error_code, $msg = '', $reason = '') {
+        $config = config( 'App' );
+        $iskorean =  $config->defaultLocale === 'Kr';
         if (empty($msg)) {
             switch ($error_code) {
                 default:
@@ -133,10 +137,11 @@ class ApiBase extends BaseController {
         exit(0);
     }
 
-    protected function _response_success($responseArray = null) {
-        $iskorean = $this->config->item('language') === 'korean';
+    public function _response_success($responseArray = null) {
+        $config = config( 'App' );
+        $iskorean =  $config->defaultLocale === 'Kr';
 
-        $responseArray = empty($responseArray) ? new stdClass() : $responseArray;
+        $responseArray = empty($responseArray) ? new \stdClass() : $responseArray;
         $result = array('data' => $responseArray);
         $result['result'] = API_RESULT_SUCCESS;
         $result['msg'] = $iskorean ? '성공' : 'Success';
@@ -151,7 +156,7 @@ class ApiBase extends BaseController {
         exit(0);
     }
 
-    protected function _get_user_from_user_uid($user_uid) {
+    public function _get_user_from_user_uid($user_uid) {
         $sql = 'select * from tb_user where uid = ? and status <> '.STATUS_DELETE.' limit 1';
         $usr_row = $this->db->query($sql, [$user_uid])->row();
         if ($usr_row === null) {
@@ -176,25 +181,5 @@ class ApiBase extends BaseController {
     public function _get_user_info($access_token)
     {
         return $this->userModel->get_user_info_by_access_token($access_token);
-    }
-}
-
-class ApiParamModel {
-    public $variable_name = '';
-
-    /**
-     * http://www.ciboard.co.kr/user_guide/kr/libraries/form_validation.html#rule-reference
-     */
-    public $rules = '';
-
-    /**
-     * ApiParamModel constructor.
-     * @param $variable_name
-     * @param $description
-     * @param $rules
-     */
-    public function __construct($variable_name, $rules) {
-        $this->variable_name = $variable_name;
-        $this->rules = $rules;
     }
 }

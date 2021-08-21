@@ -25,12 +25,13 @@ class Login extends AdminBase
      *************************************************************************/
     public function index()
     {
+        //$this->cachePage(1000); // 1000s
         echo view("login/index");
     }
 
     public function term()
     {
-        $term_kind = $this->input->get('term_kind');
+        $term_kind = $this->request->getGet('term_kind');
 
         $this->db->select('*');
         $setting = $this->db->get_where('tb_setting', array('status' => STATUS_NORMAL))->row();
@@ -69,8 +70,8 @@ class Login extends AdminBase
 
     public function ajax_change_admin_info()
     {
-        $id = $this->input->post("id");
-        $pwd = $this->input->post("pwd");
+        $id = $this->request->getPost("id");
+        $pwd = $this->request->getPost("pwd");
 
         $save_data = array(
             'id' => $id,

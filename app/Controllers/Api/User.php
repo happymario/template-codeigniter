@@ -6,12 +6,17 @@
 
 namespace App\Controllers\Api;
 
+use App\Entities\ApiParamModel;
+use CodeIgniter\HTTP\RequestInterface;
+use CodeIgniter\HTTP\ResponseInterface;
+use Psr\Log\LoggerInterface;
+
 class User extends ApiBase
 {
-
-    public function __construct()
+    public function initController(RequestInterface $request, ResponseInterface $response, LoggerInterface $logger)
     {
-        parent::__construct();
+        // Do Not Edit This Line
+        parent::initController($request, $response, $logger);
     }
 
     private function _generate_access_token()
@@ -21,21 +26,23 @@ class User extends ApiBase
 
     public function signup()
     {
-        $this->_set_api_params([
+        $data = $this->request->getPost();
+
+        $user = new \App\Entities\User();
+        $user->set_api_params($this, $data,  [
             new ApiParamModel('id', 'required'),
             new ApiParamModel('pwd', 'required'),
             new ApiParamModel('name', 'required'),
             new ApiParamModel('profile_url', ''),
         ]);
 
-        $id = $this->api_params->id;
+        $id = $user->id;
         $duplicate = $this->userModel->id_duplicated($id);
         if ($duplicate == true) {
             $this->_response_error(API_RESULT_ERROR_EMAIL_DUPLICATE);
         }
 
-        $save_data = (array)$this->api_params;
-        $insert_uid = $this->userModel->save_by_uid($save_data);
+        $insert_uid = $this->userModel->save($user);
 
         $this->_response_success();
     }

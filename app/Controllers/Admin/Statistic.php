@@ -18,9 +18,9 @@ class Statistic extends AdminBase
     }
 
     public function ajax_daily_list(){
-        $year = $this->input->post("search_year");
-        $month = $this->input->post("search_month");
-        $keyword = $this->input->post("search_keyword");
+        $year = $this->request->getPost("search_year");
+        $month = $this->request->getPost("search_month");
+        $keyword = $this->request->getPost("search_keyword");
 
         if($month < 10) {
             $month = "0".$month;
@@ -91,7 +91,7 @@ class Statistic extends AdminBase
 
 
     public function ajax_daily_total() {
-        $keyword = $this->input->post("search_keyword");
+        $keyword = $this->request->getPost("search_keyword");
         $where = "status !=".STATUS_DELETE;
         if($keyword != null) {
             $where .= " and (title like '%$keyword%' or message like '%$keyword%')";

@@ -3,8 +3,8 @@
         <div class="col-md-12">
             <div class="btn-group"  style="float: right;margin-top: 20px;">
                 <button type="button" class="btn red" style="font-size: 13px;" id="btnMultiDel"><i class="fa fa-trash-o"></i>&nbsp;<?=t('multiple_delete')?></button>
-                <a type="button" class="btn btn-success" style="font-size: 13px;" href="<?=site_url('apiManage/api_input_list')?>?id=<?=$api_idx?>">Input <?=t('list_go')?></a>
-                <a type="button" class="btn btn-primary" style="font-size: 13px;" href="<?=site_url('apiManage/edit_api_output_data')?>?ai_idx=0&api_idx=<?=$api_idx?>"><i class="fa fa-plus"></i>&nbsp;Output <?=t('var')?><?=t('add')?></a>
+                <a type="button" class="btn btn-success" style="font-size: 13px;" href="<?=site_url('admin/apimanage/api_input_list')?>?id=<?=$api_idx?>">Input <?=t('list_go')?></a>
+                <a type="button" class="btn btn-primary" style="font-size: 13px;" href="<?=site_url('admin/apimanage/edit_api_output_data')?>?ai_idx=0&api_idx=<?=$api_idx?>"><i class="fa fa-plus"></i>&nbsp;Output <?=t('var')?><?=t('add')?></a>
             </div>
         </div>
     </div>
@@ -36,7 +36,7 @@
                         <td><?=$arr_output[$i]['ai_ness']?></td>
                         <td style="text-align: left;white-space: pre-wrap;"><?=$arr_output[$i]['ai_exp']?></td>
                         <td><?=$arr_output[$i]['ai_sort']?></td>
-                        <td><a href="<?=site_url('apiManage/edit_api_output_data')?>?ai_idx=<?=$arr_output[$i]['ai_idx']?>&api_idx=<?=$api_idx?>"><i class="fa fa-edit"></i></a></td>
+                        <td><a href="<?=site_url('admin/apimanage/edit_api_output_data')?>?ai_idx=<?=$arr_output[$i]['ai_idx']?>&api_idx=<?=$api_idx?>"><i class="fa fa-edit"></i></a></td>
                     </tr>
                     <?php
                 }
@@ -76,7 +76,7 @@
 
         $.ajax({
             type:'post',
-            url:'<?=site_url("apiManage/delete_api_output_data")?>',
+            url:'<?=site_url("admin/apimanage/delete_api_output_data")?>',
             data:'id=' + JSON.stringify(obj) + '&api_idx=<?=$api_idx?>',
             beforeSend:function(){
                 App.blockUI({
@@ -99,7 +99,7 @@
     function drawTable(){
         $.ajax({
             type:'post',
-            url:'<?=site_url("apiManage/draw_api_output_list")?>',
+            url:'<?=site_url("admin/apimanage/draw_api_output_list")?>',
             data:'api_idx=' + '<?=$api_idx?>',
             success:function(data){
                 App.unblockUI('#total_body');

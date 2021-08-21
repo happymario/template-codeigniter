@@ -32,6 +32,7 @@ $lang = array(
     'store' =>'저장',
     'yes' =>'예',
     'no' => '아니요',
+    'update' => '변경',
     
     //messages
     'msg_success_save' => '성공적으로 보관되였습니다.',

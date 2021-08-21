@@ -1,6 +1,6 @@
 <div class="row" style="margin-top: 30px;">
     <div class="col-md-12">
-        <form method="post" action="<?=site_url('apiManage/api_write')?>" id="api_save_form">
+        <form method="post" action="<?=site_url('admin/apimanage/api_write')?>" id="api_save_form">
             <input class="hidden" name="api_idx" value="<?=$api_idx?>">
             <div class="col-md-12">
                 <div class="col-md-2">
@@ -78,7 +78,7 @@
     </div>
 </div>
 
-<form class="hidden" method="get" action="<?=site_url('apiManage/apimanage')?>" id="frm_go_apimanage">
+<form class="hidden" method="get" action="<?=site_url('admin/apimanage/apimanage')?>" id="frm_go_apimanage">
 </form>
 <script>
     $(document).ready(function(){

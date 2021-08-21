@@ -2,7 +2,7 @@
 
 </style>
 
-<form id="frm_setting" role="form" action="<?= site_url("AppManage/setting") ?>" method="post">
+<form id="frm_setting" role="form" action="<?= site_url("Appmanage/setting") ?>" method="post">
     <div class="row" style="margin-top: 20px;">
         <div class="col-md-12" style="background: white;">
             <div class="col-md-6">

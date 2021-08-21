@@ -108,28 +108,28 @@
                 <ul class="page-sidebar-menu  page-header-fixed " data-keep-expanded="false" data-auto-scroll="true"
                     data-slide-speed="200">
                     <li class="nav-item <?= !empty($menu) && $menu == MENU_USER ? 'active open' : '' ?>">
-                        <a href="<?= site_url('User') ?>" class="nav-link nav-toggle">
+                        <a href="<?= site_url('admin/user') ?>" class="nav-link nav-toggle">
                             <i class="fa fa-genderless"></i>
                             <span class="title"><?=t('menu_users') ?></span>
                             <span class=""></span>
                         </a>
                     </li>
                     <li class="nav-item <?= !empty($menu) && $menu == MENU_PHOTO_CHECK ? 'active open' : '' ?>">
-                        <a href="<?= site_url('User/photo_list') ?>" class="nav-link nav-toggle">
+                        <a href="<?= site_url('admin/user/photo_list') ?>" class="nav-link nav-toggle">
                             <i class="fa fa-genderless"></i>
                             <span class="title"><?=t('menu_photo_check') ?></span>
                             <span class=""></span>
                         </a>
                     </li>
                     <li class="nav-item <?= !empty($menu) && $menu == MENU_NOTIFICATION ? 'active open' : '' ?>">
-                        <a href="<?= site_url('push') ?>" class="nav-link nav-toggle">
+                        <a href="<?= site_url('admin/push') ?>" class="nav-link nav-toggle">
                             <i class="fa fa-genderless"></i>
                             <span class="title"><?=t('menu_notifications') ?></span>
                             <span class=""></span>
                         </a>
                     </li>
                     <li class="nav-item <?= !empty($menu) && $menu == MENU_STATISTIC ? 'active open' : '' ?>">
-                        <a href="<?= site_url('statistic') ?>" class="nav-link nav-toggle">
+                        <a href="<?= site_url('admin/statistic') ?>" class="nav-link nav-toggle">
                             <i class="fa fa-genderless"></i>
                             <span class="title"><?=t('menu_statistic') ?></span>
                             <span class=""></span>
@@ -137,7 +137,7 @@
                     </li>
 
                     <li class="nav-item <?= !empty($menu) && $menu == MENU_NOTICE ? 'active open' : '' ?>">
-                        <a href="<?= site_url('appmanage/notice_list') ?>" class="nav-link nav-toggle">
+                        <a href="<?= site_url('admin/appmanage/notice_list') ?>" class="nav-link nav-toggle">
                             <i class="fa fa-genderless"></i>
                             <span class="title"><?=t('menu_notice') ?></span>
                             <span class=""></span>
@@ -145,7 +145,7 @@
                     </li>
 
                     <li class="nav-item <?= !empty($menu) && $menu == MENU_SETTING ? 'active open' : '' ?>">
-                        <a href="<?= site_url('appmanage/setting') ?>" class="nav-link nav-toggle">
+                        <a href="<?= site_url('admin/appmanage/setting') ?>" class="nav-link nav-toggle">
                             <i class="fa fa-genderless"></i>
                             <span class="title"><?=t('menu_setting') ?></span>
                             <span class=""></span>
@@ -161,17 +161,17 @@
                         </a>
                         <ul class="sub-menu">
                             <li class="nav-item">
-                                <a href="<?= site_url('apiManage/apimanage') ?>" class="nav-link ">
+                                <a href="<?= site_url('admin/apimanage/apimanage') ?>" class="nav-link ">
                                     <span class="title"><?=t('menu_api_list') ?></span>
                                 </a>
                             </li>
                             <li class="nav-item  ">
-                                <a href="<?= site_url('apiManage/apidocument') ?>" class="nav-link ">
+                                <a href="<?= site_url('admin/apimanage/apidocument') ?>" class="nav-link ">
                                     <span class="title"><?=t('menu_api_doc') ?></span>
                                 </a>
                             </li>
                             <li class="nav-item  ">
-                                <a href="<?= site_url('apiManage/apierrors') ?>" class="nav-link ">
+                                <a href="<?= site_url('admin/apimanage/apierrors') ?>" class="nav-link ">
                                     <span class="title"><?=t('menu_api_code') ?></span>
                                 </a>
                             </li>

@@ -7,7 +7,7 @@
  */
 namespace App\Controllers\Admin;
 
-class AppManage  extends AdminBase
+class Appmanage  extends AdminBase
 {
     public function __construct()
     {
@@ -21,8 +21,8 @@ class AppManage  extends AdminBase
 
     public function setting()
     {
-        $use_agreement = $this->input->post('use_agreement');
-        $client_phone = $this->input->post('client_phone');
+        $use_agreement = $this->request->getPost('use_agreement');
+        $client_phone = $this->request->getPost('client_phone');
 
         $save_data = [];
         if($client_phone != null) {
@@ -44,7 +44,7 @@ class AppManage  extends AdminBase
 
     public function ajax_notice_list() {
         $limit = SSP::limit($_POST);
-        $search_keyword = $this->input->post('search_keyword');
+        $search_keyword = $this->request->getPost('search_keyword');
 
         $status = STATUS_DELETE;
         $where = "E.status != $status and E.admin_uid = A.uid";
@@ -110,9 +110,9 @@ EOT;
 
     public function ajax_notice_save()
     {
-        $uid = $this->input->post('uid');
-        $title = $this->input->post('title');
-        $content = $this->input->post('content');
+        $uid = $this->request->getPost('uid');
+        $title = $this->request->getPost('title');
+        $content = $this->request->getPost('content');
 
         $save_data = ["admin_uid" => $_SESSION[SESSION_ADMIN_UID], "title"=>$title, "content"=>$content];
         if (isset($_FILES['uploadfile']) == true) {
@@ -121,7 +121,7 @@ EOT;
                 $save_data['image_url'] = $upload_result['file_url'];
             }
         }
-        else if($this->input->post('img_src') == "") {
+        else if($this->request->getPost('img_src') == "") {
             $save_data['image_url'] = '';
         }
 
@@ -134,7 +134,7 @@ EOT;
     }
 
     public function ajax_notice_delete() {
-        $uid = $this->input->post('uid');
+        $uid = $this->request->getPost('uid');
         $this->db->update('tb_notice', array("status"=>STATUS_DELETE), ["uid" => $uid]);
         die ("success");
     }

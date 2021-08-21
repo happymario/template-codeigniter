@@ -3,7 +3,7 @@
         <div class="col-md-12">
             <div class="btn-group"  style="float: right;margin-top: 20px;">
                 <button type="button" class="btn red" style="font-size: 13px;" id="btnMultiDel"><i class="fa fa-trash-o"></i>&nbsp;<?=t('multiple_delete')?></button>
-                <a type="button" class="btn btn-primary" style="font-size: 13px;" href="<?=site_url('apiManage/write')?>"><i class="fa fa-plus"></i>&nbsp;API<?=t('add')?></a>
+                <a type="button" class="btn btn-primary" style="font-size: 13px;" href="<?=site_url('admin/apimanage/write')?>"><i class="fa fa-plus"></i>&nbsp;API<?=t('add')?></a>
             </div>
         </div>
     </div>
@@ -35,8 +35,8 @@
                             <td><?=$apilist[$i]['api_method']?></td>
                             <td><?=$apilist[$i]['api_exp']?></td>
                             <td><?=$apilist[$i]['api_bigo']?></td>
-                            <td style="padding: 0px;"><a class="btn blue btn-sm" style="margin: 0px;padding: 3px 10px 3px 10px ;" href="<?=site_url('apiManage/api_input_list')?>?id=<?=$apilist[$i]['api_idx']?>"><?=t('detail_view')?></a></td>
-                            <td style="padding: 0px;"><a class="btn blue btn-sm" style="margin: 0px;padding: 3px 10px 3px 10px ;" href="<?=site_url('apiManage/api_output_list')?>?id=<?=$apilist[$i]['api_idx']?>"><?=t('detail_view')?></a></td>
+                            <td style="padding: 0px;"><a class="btn blue btn-sm" style="margin: 0px;padding: 3px 10px 3px 10px ;" href="<?=site_url('admin/apimanage/api_input_list')?>?id=<?=$apilist[$i]['api_idx']?>"><?=t('detail_view')?></a></td>
+                            <td style="padding: 0px;"><a class="btn blue btn-sm" style="margin: 0px;padding: 3px 10px 3px 10px ;" href="<?=site_url('admin/apimanage/api_output_list')?>?id=<?=$apilist[$i]['api_idx']?>"><?=t('detail_view')?></a></td>
                             <td><a onclick="Edit('<?=$apilist[$i]['api_idx']?>')"><i class="fa fa-edit"></i></a></td>
                         </tr>
                         <?php
@@ -49,7 +49,7 @@
 
 </div>
 
-<form class="hidden" method="post" id="frm_go_apiwrite" action="<?=site_url('apiManage/write')?>">
+<form class="hidden" method="post" id="frm_go_apiwrite" action="<?=site_url('admin/apimanage/write')?>">
     <input class="hidden" name="api_idx" id="api_idx" value="0">
 </form>
 
@@ -88,8 +88,8 @@
 
         $.ajax({
             type:'post',
-            url:'<?=site_url("apiManage/delete_api_list")?>',
-            data:'id=' + JSON.stringify(obj),
+            url:'<?=site_url("admin/apimanage/delete_api_list")?>',
+            data:{'id': obj },
             beforeSend:function(){
                 App.blockUI({
                     animate: true,
@@ -111,7 +111,7 @@
     function drawTable(){
         $.ajax({
             type:'post',
-            url:'<?=site_url("apiManage/draw_apilist_table")?>',
+            url:'<?=site_url("admin/apimanage/draw_apilist_table")?>',
             success:function(data){
                 App.unblockUI('#total_body');
                 $('#div_api_manage_table').html(data);
