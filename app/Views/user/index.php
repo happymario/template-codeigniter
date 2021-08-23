@@ -65,7 +65,7 @@ require dirname(__FILE__) . "/edit_popup.php";
                 "zeroRecords": '<?= t('no_data')?>'
             },
             ajax: { // define ajax settings
-                "url": "<?=site_url('User/ajax_table')?>", // ajax URL
+                "url": "<?=site_url('admin/user/ajax_table')?>", // ajax URL
                 "type": "POST",
                 "data": function (data) {
                     onSetSearchParams(data);
@@ -156,7 +156,7 @@ require dirname(__FILE__) . "/edit_popup.php";
 
     function onUserDetail(user_uid) {
         $.ajax({
-            url: '<?= site_url("user/ajax_detail/") ?>' + user_uid,
+            url: '<?= site_url("admin/user/ajax_detail/") ?>' + user_uid,
             type: 'GET',
             dataType: 'json',
             beforeSend: function () {
@@ -171,7 +171,7 @@ require dirname(__FILE__) . "/edit_popup.php";
 
     function onDelete(user_uid) {
         $.ajax({
-            url: '<?= site_url("user/ajax_delete") ?>',
+            url: '<?= site_url("admin/user/ajax_delete") ?>',
             type: 'post',
             data: 'user_uid=' + user_uid,
             beforeSend: function () {

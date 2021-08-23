@@ -33,18 +33,18 @@ class Login extends AdminBase
     {
         $term_kind = $this->request->getGet('term_kind');
 
-        $this->db->select('*');
-        $setting = $this->db->get_where('tb_setting', array('status' => STATUS_NORMAL))->row();
+        $setting_model = model("SettingModel");
+        $setting = $setting_model->asObject()->where('status<>', STATUS_DELETE)->first();
 
         $title = t('use_agreement');
         $term = $setting->use_agreement;
-        $this->load->view("layout/term", array('page_title' => $title, 'term' => $term));
+        $this->load_origin_view("layout/term", array('page_title' => $title, 'term' => $term));
     }
 
     public function logout()
     {
-        $this->session->unset_userdata(SESSION_ADMIN_UID);
-        redirect('Login');
+        $this->remove_my_uid();
+        return redirect()->to(site_url('admin/login'));
     }
 
 
@@ -78,7 +78,9 @@ class Login extends AdminBase
             'pwd' => $pwd
         );
 
-        $this->db->update('tb_admin', $save_data, array('uid' => $this->session->userdata(SESSION_ADMIN_UID)));
+        $session = session();
+        $adminUid = $session->get(SESSION_ADMIN_UID);
+        $this->db->update('tb_admin', $save_data, array('uid' => $adminUid));
         die ("success");
     }
 }

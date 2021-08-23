@@ -8,7 +8,7 @@ class AdminModel extends BaseModel
 {
     protected $table = 'tb_admin';
     protected $primaryKey = 'uid';
-    public $allow_search_field = ["uid", "id", "status"];
+    private $allow_search_field = ["uid", "id", "status"];
 
     protected function initialize()
     {

@@ -158,6 +158,10 @@ function send_push_gotify($push_key, $dev_type = 'android', $dev_token = '', $pu
         return false;
     }
 
+    if(TEST_LOCAL_MODE == true) {
+        return false;
+    }
+
     $fields = [
         'client_token' => $dev_token,
         'title' => $title,
@@ -198,6 +202,10 @@ function send_push_gotify($push_key, $dev_type = 'android', $dev_token = '', $pu
 
 function send_push_openfire($server_addr, $domain, $room_name, $dev_type = 'android', $push_type = 0, $title = '', $content = '', $target_url = '', $data=null)
 {
+    if(TEST_LOCAL_MODE == true) {
+        return false;
+    }
+
     $port = 5222;
     $id = null;
     try {

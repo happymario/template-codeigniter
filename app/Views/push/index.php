@@ -78,7 +78,7 @@ require dirname(__FILE__) . "/send_popup.php";
                 "zeroRecords": '<?= t('no_data')?>'
             },
             ajax: { // define ajax settings
-                "url": "<?=site_url('push/ajax_table')?>", // ajax URL
+                "url": "<?=site_url('admin/push/ajax_table')?>", // ajax URL
                 "type": "POST",
                 "data": function (data) {
                     onSetSearchParams(data);
@@ -171,12 +171,36 @@ require dirname(__FILE__) . "/send_popup.php";
         reqSendPush(arrId);
     }
 
+    function onDelete(uid) {
+        $.ajax({
+            url: '<?= site_url("admin/push/ajax_push_delete") ?>',
+            type: 'post',
+            data: 'uid=' + uid,
+            beforeSend: function () {
+                showLoading();
+            },
+            success: function (result) {
+                hideLoading();
+                if (result == '<?=AJAX_RESULT_SUCCESS?>') {
+                    showNotification("<?=t('success')?>", "<?=t('msg_success_oper')?>", "success");
+                    oTable.draw(true);
+                } else {
+                    showNotification("<?=t('error')?>", "<?=t('msg_error_fix')?>", "error");
+                }
+            },
+            error: function (a, b, c) {
+                hideLoading();
+                showNotification("<?=t('error')?>", "<?=t('msg_error_occured')?>", "error");
+            }
+        });
+    }
+
     function reqSendPush(arrUid) {
         $.ajax({
-            url: '<?= site_url("Push/ajax_resend_gotify") ?>',
+            url: '<?= site_url("admin/push/ajax_resend_gotify") ?>',
             type: 'POST',
             data: {
-                uids: JSON.stringify(arrUid)
+                uids: arrUid
             },
             beforeSend: function () {
                 showLoading();

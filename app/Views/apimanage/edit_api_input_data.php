@@ -90,7 +90,7 @@
         $('#left_menu_apimanage_parent').children("a:eq(0)").children("span:eq(1)").addClass("selected");
         $('#left_menu_apimanage_parent').children("a:eq(0)").children("span:eq(2)").addClass("open");
         $('#left_menu_apimanage_parent').children("ul:eq(0)").children("li:eq(0)").addClass("open");
-        $('#page_title').html("Input <?=t('variable')?> <?=t('add')?>");
+        $('#page_title').html("Input <?=t('var')?> <?=t('add')?>");
 
         if('<?=$ai_idx?>' != '0'){
             $('#ai_type').val('<?=$ai_type?>');

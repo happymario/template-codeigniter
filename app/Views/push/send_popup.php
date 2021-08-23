@@ -70,7 +70,7 @@
             }
 
             $.ajax({
-                url: '<?= site_url("push/ajax_send_gotify") ?>',
+                url: '<?= site_url("admin/push/ajax_send_push") ?>',
                 type: 'POST',
                 data: {
                     title: $(getId_1('#title')).val(),

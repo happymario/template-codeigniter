@@ -12,7 +12,17 @@ class BaseModel extends Model
         return $this->where($this->primaryKey, $uid)->first();
     }
 
-    public function deleteAll($arr_id) {
+    public function deleteAll($arr_id, $with_status = false) {
+        if($with_status == true) {
+            $this->update($arr_id, ["status" => STATUS_DELETE]);
+        }
         return $this->doDelete($arr_id);
+    }
+
+    public function deleteById($id, $with_status = false) {
+        if($with_status == true) {
+            $this->update($id, ["status" => STATUS_DELETE]);
+        }
+        return $this->doDelete(array($id));
     }
 }

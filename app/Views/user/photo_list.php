@@ -122,7 +122,7 @@
         });
         gLoading = true;
         $.ajax({
-            url: '<?= site_url("user/ajax_photo_list") ?>',
+            url: '<?= site_url("admin/user/ajax_photo_list") ?>',
             type: 'GET',
             dataType: 'json',
             data: {
@@ -154,7 +154,7 @@
 
     function reqChangePhotoStatus(user_uid, status) {
         $.ajax({
-            url: '<?= site_url("user/ajax_change_photo_status") ?>',
+            url: '<?= site_url("admin/user/ajax_change_photo_status") ?>',
             type: 'post',
             data: {'user_uid':user_uid, "status":status},
             beforeSend: function () {

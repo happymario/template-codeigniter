@@ -55,7 +55,7 @@
     <div class="page-header navbar navbar-fixed-top">
         <div class="page-header-inner ">
             <div class="page-logo" style="margin-top: -9px;">
-                <a href="<?= site_url('Home') ?>">
+                <a href="<?= site_url('admin/home') ?>">
 <!--                <img src="--><?//= base_url() ?><!--assets/images/ic_logo.png" style="width: 30px;height: 30px;" alt=""-->
 <!--                     class="logo-default"/>-->
                     <h3 style="color: white;margin-top: 20px;"><b><?=t('site_name')?> <?=ADMIN_VERSION?></b></h3>
@@ -92,7 +92,7 @@
                                     <i class="icon-user"></i> <?=t('setting')?>  </a>
                             </li>
                             <li>
-                                <a href="<?= site_url('login/logout') ?>">
+                                <a href="<?= site_url('admin/login/logout') ?>">
                                     <i class="icon-key"></i> <?=t('logout')?>  </a>
                             </li>
                         </ul>

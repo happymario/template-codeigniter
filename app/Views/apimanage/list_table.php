@@ -10,8 +10,8 @@
         <th style="width: 10%;text-align: center"><?=t('access_way')?></th>
         <th style="width: 30%;text-align: center"><?=t('explain')?></th>
         <th style="width: 14%;text-align: center"><?=t('etc')?></th>
-        <th style="width: 10%;text-align: center">INPUT <?=t('variable')?></th>
-        <th style="width: 10%;text-align: center">OUTPUT <?=t('variable')?></th>
+        <th style="width: 10%;text-align: center">INPUT <?=t('var')?></th>
+        <th style="width: 10%;text-align: center">OUTPUT <?=t('var')?></th>
         <th style="width: 6%;text-align: center"><?=t('update')?></th>
         </thead>
         <tbody>

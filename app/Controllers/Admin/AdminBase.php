@@ -76,4 +76,9 @@ class AdminBase extends BaseController
         $session = session();
         $session->set(SESSION_ADMIN_UID, $uid);
     }
+
+    public function remove_my_uid() {
+        $session = session();
+        $session->remove(SESSION_ADMIN_UID);
+    }
 }

@@ -166,7 +166,7 @@ $lang = array(
     'used_status' => '사용여부',
     'use' => '사용',
     'no_use' => '사용안함',
-    'result_view' => '결과보기',
+    'result_view' => '결과보기'
 );
 
 return $lang;

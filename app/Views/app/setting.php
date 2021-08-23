@@ -2,11 +2,11 @@
 
 </style>
 
-<form id="frm_setting" role="form" action="<?= site_url("Appmanage/setting") ?>" method="post">
+<form id="frm_setting" role="form" action="<?= site_url("admin/appmanage/setting") ?>" method="post">
     <div class="row" style="margin-top: 20px;">
         <div class="col-md-12" style="background: white;">
             <div class="col-md-6">
-                <input class="form-control" id="client_phone" name="client_phone" placeholder="<?=t('qa_phone')?>" value=<?= $setting->client_phone ?>>
+                <input class="form-control" id="client_phone" name="client_phone" placeholder="<?=t('qa_phone')?>" value='<?= $setting->client_phone ?>'>
             </div>
             <button class="btn blue" style="margin-left: 20px;" type="submit">&nbsp;&nbsp;<?=t('save')?>&nbsp;&nbsp;</button>
         </div>
@@ -15,7 +15,7 @@
             <table class="table table-bordered">
                 <tbody>
                 <tr>
-                    <td style="text-align: left"> <a href="<?= site_url("login/term") ?>"> <?=t('use_agreement')?> </a></td>
+                    <td style="text-align: left"> <a href="<?= site_url("admin/login/term") ?>"> <?=t('use_agreement')?> </a></td>
                 </tr>
                 <tr>
                     <td class="fields_td" style="text-align: left;">

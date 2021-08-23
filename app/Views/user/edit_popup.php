@@ -143,7 +143,7 @@
             }
 
             $.ajax({
-                url: '<?= site_url("user/ajax_save") ?>',
+                url: '<?= site_url("admin/user/ajax_save") ?>',
                 type: 'POST',
                 data: data,
                 processData: false,

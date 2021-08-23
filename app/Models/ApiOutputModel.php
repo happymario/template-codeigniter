@@ -14,24 +14,7 @@ class ApiOutputModel extends BaseModel {
      */
     protected $table = 'tb_api_output';
     protected $primaryKey = 'ai_idx';
-
-    public function select_max_sort($api_idx)
-    {
-        $this->db->select_max('ai_sort');
-        $this->db->where('api_idx', $api_idx);
-        $qry = $this->db->get($this->_table);
-        $result = $qry->row_array();
-        return $result['ai_sort'];
-    }
-
-    public function update_sort($api_idx, $ai_sort)
-    {
-        $this->db->where('api_idx', $api_idx);
-        $this->db->where('ai_sort >=', $ai_sort);
-        $this->db->set('ai_sort', 'ai_sort+1', false);
-        $result = $this->db->update($this->_table);
-        return $result;
-    }
+    protected $allowedFields = ["api_idx", "ai_name", "ai_type", "ai_value", "ai_ness", "ai_exp", "ai_sort", "ai_bigo"];
 
     public function getListByApiIdx($api_idx){
         $this->select("*");

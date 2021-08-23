@@ -77,7 +77,7 @@
         $.ajax({
             type:'post',
             url:'<?=site_url("admin/apimanage/delete_api_output_data")?>',
-            data:'id=' + JSON.stringify(obj) + '&api_idx=<?=$api_idx?>',
+            data:{'id': obj, 'api_idx':'<?=$api_idx?>'},
             beforeSend:function(){
                 App.blockUI({
                     animate: true,

@@ -7,103 +7,66 @@
  */
 namespace App\Controllers\Admin;
 
+use CodeIgniter\HTTP\RequestInterface;
+use CodeIgniter\HTTP\ResponseInterface;
+use Psr\Log\LoggerInterface;
+
 class Appmanage  extends AdminBase
 {
-    public function __construct()
+    /************************************************************************
+     * Overrides
+     *************************************************************************/
+    public function initController(RequestInterface $request, ResponseInterface $response, LoggerInterface $logger)
     {
-        parent::__construct();
+        parent::initController($request, $response, $logger);
+
+        $this->setting_model = model("SettingModel");
+        $this->notice_model = model("NoticeModel");
     }
 
+
+    /************************************************************************
+     * View
+     *************************************************************************/
     public function notice_list()
     {
         $this->load_view('app/notice_list', array(), array('page_title' => t('menu_notice'), 'menu' => MENU_NOTICE));
     }
 
+
     public function setting()
     {
-        $use_agreement = $this->request->getPost('use_agreement');
-        $client_phone = $this->request->getPost('client_phone');
-
-        $save_data = [];
-        if($client_phone != null) {
-            $save_data['client_phone'] = $client_phone;
-        }
-        if($use_agreement != null) {
-            $save_data['use_agreement'] = $use_agreement;
+        if ($this->request->getMethod() === 'post' && $this->validate([
+                'use_agreement' => 'required',
+                'client_phone'  => 'required',
+            ])) {
+            $save_data = $this->request->getPost();
+            $this->setting_model->updateData($save_data);
         }
 
-        if(empty($save_data) == false) {
-            $this->db->update('tb_setting', $save_data, ["status!=" => STATUS_DELETE]);
-        }
-
-        $sql = "select * from tb_setting where status !=".STATUS_DELETE;
-        $setting = $this->db->query($sql)->row();
-
+        $setting = $this->setting_model->asObject()->where('status<>', STATUS_DELETE)->first();
         $this->load_view('app/setting', array("setting" => $setting), array('page_title' => t('menu_setting'), 'menu' => MENU_SETTING));
     }
 
+
+    /************************************************************************
+     * AJAX APIs
+     *************************************************************************/
     public function ajax_notice_list() {
-        $limit = SSP::limit($_POST);
-        $search_keyword = $this->request->getPost('search_keyword');
+        $start = $this->request->getPost('start');
+        $length = $this->request->getPost('length');
+        $order = $this->request->getPost('order');
+        $keyword = $this->request->getPost('search_keyword');
 
-        $status = STATUS_DELETE;
-        $where = "E.status != $status and E.admin_uid = A.uid";
-        if (!empty($search_keyword)) {
-            $where .= " and (E.title like '%$search_keyword%' or E.content like '%$search_keyword%')";
-        }
-        $select_list = "E.*, A.id as admin_id";
+        $data = $this->notice_model->datatable_list($start, $length, $order, $keyword);
 
-        $order_by = " E.edt_time desc";
-        if(array_key_exists("order", $_POST)) {
-            $dir = $_POST['order'][0]['dir'];
-            $order_by = " E.edt_time ".$dir;
-        }
-
-        $sql = <<<EOT
-            select $select_list
-            from tb_notice E, tb_admin A
-            where $where 
-EOT;
-        $sql_total = $sql." order by $order_by". ' ' . $limit;
-        $arr_data = $this->db->query($sql_total)->result();
-
-        $sql_count = str_replace($select_list, "count(E.uid) as cnt", $sql);
-        $total_data_cnt = (int)$this->db->query($sql_count)->row('cnt');
-
-        if (count($arr_data) > 0) {
-            $recordsTotal = $total_data_cnt;
-            $recordsFiltered = $recordsTotal;
-        } else {
-            $recordsTotal = 0;
-            $recordsFiltered = $recordsTotal;
-        }
-
-        $return_data = array();
-
-        $row_index = 1;
-        foreach ($arr_data as $row) {
-            $column_index = 0;
-            $temp = array();
-            $temp[$column_index++] = $temp['index'] = $recordsFiltered - ($_POST['start'] + $row_index) + 1;
-            $temp[$column_index++] = $temp['title'] = $row->title;
-            $temp[$column_index++] = $temp['content'] = $row->content;
-            $temp[$column_index++] = $temp['image_url'] = $row->image_url;
-            $temp[$column_index++] = $temp['admin_id'] = $row->admin_id;
-            $temp[$column_index++] = $temp['edt_time'] = $row->edt_time;
-            $temp[$column_index++] = $temp['uid'] = $row->uid;
-            $temp[$column_index++] = $temp['admin_uid'] = $row->admin_uid;
-            $return_data[] = $temp;
-
-            $row_index++;
-        }
-
-        echo json_encode(SSP::generateOutData($_POST, $return_data, $recordsTotal, $recordsFiltered));
+        echo json_encode($data);
     }
 
 
     public function ajax_notice_detail($notice_uid)
     {
-        $response_data = $this->db->query("select * from tb_notice where uid = $notice_uid")->row();
+        $response_data = $this->notice_model->where("uid", $notice_uid)->first();
         die (json_encode($response_data));
     }
 
@@ -126,16 +89,16 @@ EOT;
         }
 
         if ($uid > 0) {
-            $this->db->update('tb_notice', $save_data, ["uid" => $uid]);
-        } else {
-            $this->db->insert('tb_notice', $save_data);
+            $save_data["uid"] = $uid;
         }
+        $this->notice_model->save($save_data);
+
         die ("success");
     }
 
     public function ajax_notice_delete() {
         $uid = $this->request->getPost('uid');
-        $this->db->update('tb_notice', array("status"=>STATUS_DELETE), ["uid" => $uid]);
+        $this->notice_model->deleteById($uid, true);
         die ("success");
     }
 }

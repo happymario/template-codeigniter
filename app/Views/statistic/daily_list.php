@@ -86,7 +86,7 @@
                 "zeroRecords": '<?= t('no_data')?>'
             },
             ajax: { // define ajax settings
-                "url": "<?=site_url('statistic/ajax_daily_list')?>", // ajax URL
+                "url": "<?=site_url('admin/statistic/ajax_daily_list')?>", // ajax URL
                 "type": "POST",
                 "data": function (data) {
                     onSetSearchParams(data);
@@ -132,7 +132,7 @@
 
     function reqTotalTime() {
         $.ajax({
-            url: '<?= site_url("statistic/ajax_daily_total") ?>',
+            url: '<?= site_url("admin/statistic/ajax_daily_total") ?>',
             type: 'POST',
             data: {
                 search_keyword: $('#search_keyword').val()

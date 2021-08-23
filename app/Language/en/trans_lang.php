@@ -164,6 +164,7 @@ $lang = array(
     'use' => 'Use',
     'no_use' => 'no use',
     'result_view' => 'See APIProtocol.',
+    'variable ' => 'Variable'
 );
 
 return $lang;

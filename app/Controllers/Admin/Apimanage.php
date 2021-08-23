@@ -44,7 +44,7 @@ class Apimanage extends AdminBase {
         $arr_list = $this->api_list_model->getTotalApiList();
         $result = array();
         $result['apilist'] = $arr_list;
-        $this->load->view("apimanage/list_table",$result);
+        $this->load_origin_view("apimanage/list_table",$result);
     }
 
     public function write(){
@@ -136,7 +136,7 @@ class Apimanage extends AdminBase {
     public function delete_api_input_data(){
         $arr_id = $this->request->getPost("id");
         $api_idx = $this->request->getPost('api_idx');
-        if($this->api_list_model->deleteAllByApiIdx($api_idx, $arr_id)){
+        if($this->api_input_model->deleteAllByApiIdx($api_idx, $arr_id)){
             echo "success";
         }else{
             echo "error";
@@ -148,11 +148,11 @@ class Apimanage extends AdminBase {
         $api_model = $this->api_list_model->findById($api_idx);
 
         $data['api_idx'] = $api_idx;
-        $data['api_name'] = $api_model->api_name;
+        $data['api_name'] = $api_model["api_name"];
         $arr_input_list = $this->api_input_model->getListByApiIdx($api_idx);
         $data['arr_input'] = $arr_input_list;
 
-        $this->load->view("apimanage/api_input_table",$data);
+        $this->load_origin_view("apimanage/api_input_table",$data);
     }
 
     public function api_output_list(){
@@ -161,7 +161,7 @@ class Apimanage extends AdminBase {
 
 
         $data['api_idx'] = $api_idx;
-        $data['api_name'] = $api_model->api_name;
+        $data['api_name'] = $api_model["api_name"];
 
         $arr_output_list = $this->api_output_model->getListByApiIdx($api_idx);
         $data['arr_output'] = $arr_output_list;
@@ -181,7 +181,7 @@ class Apimanage extends AdminBase {
         $data['ai_sort'] = "";
         $data['ai_bigo'] = "";
 
-        if($this->request->getGet("ai_idx") != null){
+        if($this->request->getGet("ai_idx") != null && $this->request->getGet("ai_idx") != '0'){
             $ai_idx = $this->request->getGet("ai_idx");
             $data =$this->api_output_model->findById($ai_idx);
         }
@@ -220,7 +220,7 @@ class Apimanage extends AdminBase {
         $arr_output_list = $this->api_output_model->getListByApiIdx($api_idx);
         $data['arr_output'] = $arr_output_list;
 
-        $this->load->view("apimanage/api_output_table",$data);
+        $this->load_origin_view("apimanage/api_output_table",$data);
     }
 
     public function apidocument(){

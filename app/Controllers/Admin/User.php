@@ -1,14 +1,25 @@
 <?php
 namespace App\Controllers\Admin;
 
+use CodeIgniter\HTTP\RequestInterface;
+use CodeIgniter\HTTP\ResponseInterface;
+use Psr\Log\LoggerInterface;
+
 class User extends AdminBase
 {
-    public function __construct()
+    /************************************************************************
+     * Overrides
+     *************************************************************************/
+    public function initController(RequestInterface $request, ResponseInterface $response, LoggerInterface $logger)
     {
-        parent::__construct();
-        $this->load->model('UserModel', 'userModel');
+        parent::initController($request, $response, $logger);
+
+        $this->user_model = model("UserModel");
     }
 
+    /************************************************************************
+     * View
+     *************************************************************************/
     public function index()
     {
         $this->load_view('user/index', array(), array('page_title' => t('menu_users'), 'menu' => MENU_USER));
@@ -21,65 +32,27 @@ class User extends AdminBase
     }
 
 
+    /************************************************************************
+     * Ajax
+     *************************************************************************/
     public function ajax_table()
     {
-        $limit = SSP::limit($_POST);
-        $search_name = $this->request->getPost('search_keyword');
+        $start = $this->request->getPost('start');
+        $length = $this->request->getPost('length');
+        $keyword = $this->request->getPost('search_keyword');
 
-        $where = 'U.status <> '.STATUS_DELETE;
-        if (!empty($search_name)) {
-            $where .= " and name like '%$search_name%'";
-        }
-        $select_list = "U.*";
+        $data = $this->user_model->datatable_list($start, $length, $keyword);
 
-        $sql_total = <<<EOT
-            select U.*
-            from tb_user U
-            where $where
-EOT;
-        $sql_count = str_replace($select_list,"count(*) as cnt", $sql_total);
-        $sql = $sql_total . ' order by U.uid desc ' . $limit;
-
-        $arr_data = $this->db->query($sql)->result();
-        $total_data_cnt = (int)$this->db->query($sql_count)->row('cnt');
-
-        if (count($arr_data) > 0) {
-            $recordsTotal = $total_data_cnt;
-            $recordsFiltered = $recordsTotal;
-        } else {
-            $recordsTotal = 0;
-            $recordsFiltered = $recordsTotal;
-        }
-
-        $return_data = array();
-
-        $row_index = 1;
-        foreach ($arr_data as $row) {
-            $column_index = 0;
-            $temp = array();
-            $temp[$column_index++] = $temp['index'] = $recordsFiltered - ($_POST['start'] + $row_index) + 1;
-            $temp[$column_index++] = $temp['id'] = $row->id;
-            $temp[$column_index++] = $temp['name'] = $row->name;
-            $temp[$column_index++] = $temp['profile_url'] = $row->profile_url;
-            $temp[$column_index++] = $temp['status'] = $row->status;
-            $temp[$column_index++] = $temp['backup_url'] = $row->backup_url;
-            $temp[$column_index++] = $temp['profile_url_check'] = $row->profile_url_check;
-            $temp[$column_index++] = $temp['uid'] = $row->uid;
-            $return_data[] = $temp;
-
-            $row_index++;
-        }
-
-        echo json_encode(SSP::generateOutData($_POST, $return_data, $recordsTotal, $recordsFiltered));
+        echo json_encode($data);
     }
 
     public function ajax_detail($user_uid)
     {
-        if(isEmpty($user_uid)) {
+        if($user_uid == null) {
             die(AJAX_RESULT_ERROR);
         }
 
-        $response_data = $this->userModel->get_row_by_uid($user_uid);
+        $response_data = $this->user_model->findById($user_uid);
         die (json_encode($response_data));
     }
 
@@ -91,26 +64,26 @@ EOT;
         $pwd = $this->request->getPost('pwd');
         $status = $this->request->getPost('status');
 
-        if(isEmpty($id) || isEmpty($name) || isEmpty($pwd) || isEmpty($status)) {
+        if(!$this->validate(['id' => 'required', 'name '  => 'required', 'pwd '  => 'required', 'status '  => 'required'])) {
             die(AJAX_RESULT_ERROR);
         }
 
         if($user_uid != null) {
-            $is_duplicate = $this->userModel->id_duplicated_1($user_uid, $id);
+            $is_duplicate = $this->user_model->id_duplicated_1($user_uid, $id);
             if ($is_duplicate == true) {
                 die(AJAX_RESULT_DUP);
             }
 
-            $is_duplicate = $this->userModel->name_duplicated_1($user_uid, $name);
+            $is_duplicate = $this->user_model->name_duplicated_1($user_uid, $name);
             if ($is_duplicate == true) {
                 die(AJAX_RESULT_DUP);
             }
         }
         else {
-            if($this->userModel->id_duplicated($id)) {
+            if($this->user_model->id_duplicated($id)) {
                 die(AJAX_RESULT_DUP);
             }
-            if($this->userModel->name_duplicated($name)) {
+            if($this->user_model->name_duplicated($name)) {
                 die(AJAX_RESULT_DUP);
             }
         }
@@ -128,7 +101,11 @@ EOT;
                 $save_data['profile_url_check'] = STATUS_NORMAL;
             }
         }
-        $this->userModel->save_by_uid($save_data, $user_uid);
+
+        if($user_uid != null) {
+            $save_data["uid"] = $user_uid;
+        }
+        $this->user_model->save($save_data);
 
         die (AJAX_RESULT_SUCCESS);
     }
@@ -136,59 +113,24 @@ EOT;
     public function ajax_delete()
     {
         $user_uid = $this->request->getPost('user_uid');
-        if(isEmpty($user_uid)) {
+        if($user_uid == null) {
             die(AJAX_RESULT_ERROR);
         }
 
-        $this->userModel->delete_row_by_status($user_uid);
+        $this->user_model->deleteById($user_uid);
         die (AJAX_RESULT_SUCCESS);
     }
 
     public function ajax_photo_list() {
         $page_num = $this->request->getGet('page');
         $status = $this->request->getGet('status');
-        if(isEmpty($page_num)) {
+        if($page_num === null) {
             die(AJAX_RESULT_ERROR);
         }
 
-        $count_per_page = API_PAGE_CNT;
-        $page_start = API_PAGE_CNT * $page_num;
-        $where = "H.profile_url_check=".$status." AND H.profile_url<>''";
-        $order_by = "H.reg_time desc";
-        $select_list = "H.*";
+        $data = $this->user_model->photo_list($page_num, $status);
 
-        $sql = <<<EOF
-                SELECT
-                  $select_list
-                FROM
-                    tb_user H
-                WHERE
-                    {$where}
-EOF;
-        $sql_list =  $sql." order by {$order_by} LIMIT {$page_start},{$count_per_page}";
-
-        $query = $this->db->query($sql_list);
-        $list = $query->result_array();
-
-        $sql_count = str_replace($select_list, "count(*) as cnt", $sql);
-        $result_total_count = (int)$this->db->query($sql_count)->row('cnt');
-        $result_total_page = (int)($result_total_count / $count_per_page + 1);
-        $is_last = $result_total_page - 1 <= (int)$page_num;
-
-        for ($i = 0; $i < count($list); $i++) {
-            $data = $list[$i];
-            $new_data = array();
-            $new_data = $data;
-            $new_data['reg_time'] = $data['reg_time'];
-            $list[$i] = $new_data;
-        }
-
-        die(json_encode([
-            'total_count' => $result_total_count,
-            'total_page' => $result_total_page,
-            'is_last' => $is_last,
-            'list' => $list
-        ]));
+        die(json_encode($data));
     }
 
     public function ajax_change_photo_status()
@@ -196,7 +138,7 @@ EOF;
         $user_uid = $this->request->getPost('user_uid');
         $status = $this->request->getPost('status');
 
-        if(isEmpty($user_uid)) {
+        if($user_uid == null) {
             die(AJAX_RESULT_ERROR);
         }
 
@@ -204,9 +146,9 @@ EOF;
             die(AJAX_RESULT_ERROR);
         }
 
-        $save_data = ["profile_url_check" => $status];
+        $save_data = ["profile_url_check" => $status, "uid" => $user_uid];
 
-        $this->userModel->save_by_uid($save_data, $user_uid);
+        $this->user_model->save($save_data);
         die (AJAX_RESULT_SUCCESS);
     }
 }
