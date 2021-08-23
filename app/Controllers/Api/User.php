@@ -6,7 +6,6 @@
 
 namespace App\Controllers\Api;
 
-use App\Entities\ApiParamModel;
 use CodeIgniter\HTTP\RequestInterface;
 use CodeIgniter\HTTP\ResponseInterface;
 use Psr\Log\LoggerInterface;
@@ -17,6 +16,8 @@ class User extends ApiBase
     {
         // Do Not Edit This Line
         parent::initController($request, $response, $logger);
+
+        $this->user_model = model("UserModel");
     }
 
     private function _generate_access_token()
@@ -26,47 +27,48 @@ class User extends ApiBase
 
     public function signup()
     {
-        $data = $this->request->getPost();
-
-        $user = new \App\Entities\User();
-        $user->set_api_params($this, $data,  [
+        $this->set_api_params([
             new ApiParamModel('id', 'required'),
             new ApiParamModel('pwd', 'required'),
             new ApiParamModel('name', 'required'),
             new ApiParamModel('profile_url', ''),
         ]);
 
-        $id = $user->id;
-        $duplicate = $this->userModel->id_duplicated($id);
+        $id = $this->request->getPost("id");
+
+        $duplicate = $this->user_model->id_duplicated($id);
         if ($duplicate == true) {
             $this->_response_error(API_RESULT_ERROR_EMAIL_DUPLICATE);
         }
 
-        $insert_uid = $this->userModel->save($user);
+        $user = new \App\Entities\User();
+        $user->fill($this->request->getPost());
+        $this->user_model->save($user);
 
         $this->_response_success();
     }
 
     public function login()
     {
-        $this->_set_api_params([
+        $this->set_api_params([
             new ApiParamModel('id', 'required'),
             new ApiParamModel('pwd', 'required'),
             new ApiParamModel('dev_type', 'required|in_list[android,web]'),
             new ApiParamModel('push_token', ''),
         ]);
 
-        $id = $this->api_params->id;
-        $pwd = $this->api_params->pwd;
-        $dev_type = $this->api_params->dev_type;
-        $push_token = $this->api_params->push_token;
+        $id = $this->request->getPost("id");
+        $pwd = $this->request->getPost("pwd");
+        $dev_type = $this->request->getPost("dev_type");
+        $push_token = $this->request->getPost("push_token");
 
-        $user_row = $this->userModel->get_row_by_id($id);
+        $user_row = $this->user_model->get_row_by_id($id);
         if ($user_row === null) {
             $this->_response_error(API_RESULT_ERROR_USER_NO_EXIST);
         }
 
-        if ($user_row->pwd != $pwd) {
+        $user = new \App\Entities\User();
+        if (!$user->checkPwd($pwd, $user_row->pwd)) {
             $this->_response_error(API_RESULT_ERROR_LOGIN_FAILED);
         }
 
@@ -74,7 +76,7 @@ class User extends ApiBase
             $this->_response_error(API_RESULT_ERROR_USER_PAUSED);
         }
 
-        $cur_time = getTimeStampString();
+        $cur_time = get_time_stamp_str();
         $access_token = $this->_generate_access_token();
 
         $save_data = array(
@@ -86,8 +88,7 @@ class User extends ApiBase
         if (!empty($push_token)) {
             $save_data['dev_token'] = $push_token;
         }
-
-        $this->userModel->save_by_uid($save_data, $user_row->uid);
+        $this->user_model->saveById($user_row->uid, $save_data);
 
         $this->_response_success(array(
             "access_token" => $access_token,
@@ -103,38 +104,38 @@ class User extends ApiBase
 
     public function logout()
     {
-        $this->_set_api_params([
+        $this->set_api_params([
             new ApiParamModel('access_token', 'required')
         ]);
 
-        $access_token = $this->api_params->access_token;
+        $access_token = $this->request->getPost("access_token");
         $this->_check_access_token($access_token);
 
         $user_uid = $this->_get_user_uid($access_token);
         $save_data = array("logout" => STATUS_ON);
-        $this->userModel->save_by_uid($save_data, $user_uid);
+        $this->user_model->saveById($user_uid, $save_data);
 
         $this->_response_success();
     }
 
     public function signout()
     {
-        $this->_set_api_params([
+        $this->set_api_params([
             new ApiParamModel('access_token', 'required')
         ]);
 
-        $access_token = $this->api_params->access_token;
+        $access_token = $this->request->getPost("access_token");
         $this->_check_access_token($access_token);
 
         $user_uid = $this->_get_user_uid($access_token);
         $save_data = array("status" => USER_STATUS_EXIT, "logout" => STATUS_ON);
-        $this->userModel->save_by_uid($save_data, $user_uid);
+        $this->user_model->saveById($user_uid, $save_data);
 
         $this->_response_success();
     }
 
     public function backup() {
-        $this->_set_api_params([
+        $this->set_api_params([
             new ApiParamModel('access_token', 'required')
         ]);
 
@@ -147,7 +148,7 @@ class User extends ApiBase
             $this->_response_error(API_RESULT_ERROR_PARAM);
         }
 
-        $upload_file_name_only = getUniqueString();
+        $upload_file_name_only = get_unique_str();
         $upload_file_name_ext = pathinfo($_FILES['uploadfile']["name"], PATHINFO_EXTENSION);
         $file_name = $upload_file_name_only . '.' . $upload_file_name_ext;
 
@@ -159,7 +160,7 @@ class User extends ApiBase
 
         $backup_url = get_temp_image_url($file_name, "user");
         $save_data = array("backup_url" => $backup_url);
-        $this->userModel->save_by_uid($save_data, $user_uid);
+        $this->user_model->saveById($save_data, $user_uid);
 
         $this->_response_success([
             'url' => $backup_url

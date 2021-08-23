@@ -6,24 +6,33 @@
 
 namespace App\Controllers\Api;
 
+use CodeIgniter\HTTP\RequestInterface;
+use CodeIgniter\HTTP\ResponseInterface;
+use Psr\Log\LoggerInterface;
+
 class Common extends ApiBase
 {
-    public function __construct()
+    /************************************************************************
+     * Overrides
+     *************************************************************************/
+    public function initController(RequestInterface $request, ResponseInterface $response, LoggerInterface $logger)
     {
-        parent::__construct();
-        $this->load->helper('url');
+        parent::initController($request, $response, $logger);
     }
 
 
+    /************************************************************************
+     * APIs
+     *************************************************************************/
     public function upload_file()
     {
-        $this->_set_api_params();
+        $this->set_api_params();
 
         if (!isset($_FILES['uploadfile'])) {
             $this->_response_error(API_RESULT_ERROR_PARAM);
         }
 
-        $upload_file_name_only = getUniqueString();
+        $upload_file_name_only = get_unique_str();
         $upload_file_name_ext = pathinfo($_FILES['uploadfile']["name"], PATHINFO_EXTENSION);
         $file_name = $upload_file_name_only . '.' . $upload_file_name_ext;
 
@@ -42,7 +51,7 @@ class Common extends ApiBase
 
     public function multi_upload_file()
     {
-        $this->_set_api_params([
+        $this->set_api_params([
             new ApiParamModel('uploadfile', '')
         ]);
         if (isset($_FILES['uploadfile']) == false) {
@@ -52,7 +61,7 @@ class Common extends ApiBase
         $dateYm = date('Ym');
         $result = array();
         for ($i = 0; $i < count($_FILES['uploadfile']['name']); $i++) {
-            $upload_file_name_only = getUniqueString();
+            $upload_file_name_only = get_unique_str();
             $upload_file_name_ext = pathinfo($_FILES['uploadfile']["name"][$i], PATHINFO_EXTENSION);
 
             $file_name = $upload_file_name_only . '.' . $upload_file_name_ext;
@@ -73,16 +82,16 @@ class Common extends ApiBase
 
 
     public function app_info() {
-        $this->_set_api_params([
+        $this->set_api_params([
             new ApiParamModel('dev_type', 'required|in_list[android,web]')
         ]);
 
         $info = array();
-        $info["api_ver"] = VERSION;
+        $info["api_ver"] = API_VERSION;
 
-        $sql = "select * from tb_setting where status !=".STATUS_DELETE;
-        $setting = $this->db->query($sql)->row();
-        $info["client_center"] = $setting->client_phone;
+        $setting_model = model("SettingModel");
+        $setting = $setting_model->where("status!=", STATUS_DELETE)->first();
+        $info["client_center"] = $setting["client_phone"];
 
         $this->_response_success($info);
     }

@@ -14,7 +14,7 @@ class ApiListModel extends BaseModel {
      */
     protected $table = 'tb_api_list';
     protected $primaryKey = 'api_idx';
-    protected $allowedFields = ["api_name", "api_exp", "api_url", "api_use", "api_status", "api_bigo", "api_ver"];
+    protected $allowedFields = ["api_name", "api_exp", "api_url", "api_use", "api_status", "api_bigo", "api_ver", "api_method"];
 
     public function getTotalApiList($usable_only = false) {
         $this->select("*");

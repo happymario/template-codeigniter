@@ -6,17 +6,28 @@
 
 namespace App\Controllers\Api;
 
+use CodeIgniter\HTTP\RequestInterface;
+use CodeIgniter\HTTP\ResponseInterface;
+use Psr\Log\LoggerInterface;
+
 class Purchase extends ApiBase
 {
 
-    public function __construct()
+    /************************************************************************
+     * Overrides
+     *************************************************************************/
+    public function initController(RequestInterface $request, ResponseInterface $response, LoggerInterface $logger)
     {
-        parent::__construct();
+        parent::initController($request, $response, $logger);
     }
 
+
+    /************************************************************************
+     * APIs
+     *************************************************************************/
     public function android()
     {
-        $this->_set_api_params([
+        $this->set_api_params([
             new ApiParamModel('uuid', 'required'),
             new ApiParamModel('purchase_data', ''),
             new ApiParamModel('data_signature', ''),
@@ -36,7 +47,7 @@ class Purchase extends ApiBase
         $purchase_info_arr = json_decode($purchase_data, true);
         if ($purchase_info_arr === null || !is_array($purchase_info_arr)) {
             $insert_data = [
-                'reg_time' => getTimeStampString(),
+                'reg_time' => get_time_stamp_str(),
                 'uuid' => $uuid,
                 'order_id' => '',
                 'package_name' => '',
@@ -89,7 +100,7 @@ class Purchase extends ApiBase
 
     public function ios()
     {
-        $this->_set_api_params([
+        $this->set_api_params([
             new ApiParamModel('uuid', 'required'),
             new ApiParamModel('receipt', ''),
         ]);

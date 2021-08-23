@@ -29,17 +29,18 @@ class ApiBase extends BaseController {
         $this->userModel = model("UserModel");
     }
 
-    protected function _set_api_params($params = array()) {
+    public function set_api_params($params = array()) {
+        $data = $this->request->getPost();
         $validation =  \Config\Services::validation();
 
         $config = config( 'App' );
-        if ('english' !== $this->request->getPost('lang')) {
+        if (array_key_exists("lang", $data) == true && 'english' !== $data['lang']) {
             $config->defaultLocale = "Kr";
         } else {
-            $config->defaultLocale = "En";
+            $config->defaultLocale = DEFAULT_LOCATION;
         }
 
-        if ('1' === $this->request->getPost('pretty')) {
+        if (array_key_exists("pretty", $data) == true && '1' === $data['pretty']) {
             define('API_RESPONSE_PRETTY', true);
         }
 
@@ -47,26 +48,24 @@ class ApiBase extends BaseController {
         $required_params = [];
         $validation_flag = false;
         foreach ($params as $param) {
-            if (!is_a($param, 'ApiParamModel')) {
+            if (!is_a($param, 'App\Entities\ApiParamModel')) {
                 continue;
             }
-
-            $this->api_params->{$param->variable_name} = $this->request->getPost($param->variable_name);
 
             if (!empty($param->rules)) {
                 if (strpos($param->rules, 'required') !== false) {
                     $required_params[] = $param->variable_name;
                     $validation->setRule($param->variable_name, $param->variable_name, $param->rules);
                     $validation_flag = true;
-                } else if ($this->request->getPost($param->variable_name) !== null || trim($this->request->getPost($param->variable_name)) !== '') {
+                } else if ($data[$param->variable_name] !== null || trim($data[$param->variable_name]) !== '') {
                     $validation->setRule($param->variable_name, $param->variable_name, $param->rules);
                     $validation_flag = true;
                 }
             }
         }
 
-        if ($validation_flag && $validation->run() === FALSE) {
-            $this->_response_error(API_RESULT_ERROR_PARAM, '', trim($validation->getErrors('')));
+        if ($validation_flag && $validation->run($data) === FALSE) {
+            $this->_response_error(API_RESULT_ERROR_PARAM, '', $validation->getErrors(''));
         }
     }
 
@@ -181,5 +180,26 @@ class ApiBase extends BaseController {
     public function _get_user_info($access_token)
     {
         return $this->userModel->get_user_info_by_access_token($access_token);
+    }
+}
+
+
+class ApiParamModel {
+    public $variable_name = '';
+
+    /**
+     * http://www.ciboard.co.kr/user_guide/kr/libraries/form_validation.html#rule-reference
+     */
+    public $rules = '';
+
+    /**
+     * ApiParamModel constructor.
+     * @param $variable_name
+     * @param $description
+     * @param $rules
+     */
+    public function __construct($variable_name, $rules) {
+        $this->variable_name = $variable_name;
+        $this->rules = $rules;
     }
 }

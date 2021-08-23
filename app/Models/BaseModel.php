@@ -25,4 +25,13 @@ class BaseModel extends Model
         }
         return $this->doDelete(array($id));
     }
+
+    public function saveById($id, $data) {
+        if($id == null) {
+            $this->insert($data);
+        }
+        else {
+            $this->where("uid", $id)->update($id, $data);
+        }
+    }
 }
