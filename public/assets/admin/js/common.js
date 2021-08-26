@@ -29,13 +29,13 @@ jQuery(function () {
 });
 
 
-$(document).ajaxStart(function () {
-    showLoading();
-});
-
-$(document).ajaxComplete(function () {
-    hideLoading();
-});
+// $(document).ajaxStart(function () {
+//     showLoading();
+// });
+//
+// $(document).ajaxComplete(function () {
+//     hideLoading();
+// });
 
 $(function () {
     $('input[numberonly]').on('input', function (e) {
@@ -59,16 +59,17 @@ if (!String.prototype.startsWith) {
 function showSweetAlert(message, button_type) {
     var sa_message = message;
 
-    swal({
-            title: '',
-            text: sa_message,
-            type: '',
-            confirmButtonClass: button_type,
-            confirmButtonText: "확인"
-        },
-
-        function (isConfirm) {
-        });
+    swal.fire({
+        text: sa_message,
+        icon: "success",
+        buttonsStyling: false,
+        confirmButtonText: "확인",
+        customClass: {
+            confirmButton: button_type
+        }
+    }).then(function() {
+        KTUtil.scrollTop();
+    });
 }
 
 function showSweetConfirm(message, button_type, callback) {
@@ -155,7 +156,7 @@ function check_required(element, message, force_force) {
 }
 
 function showLoading() {
-    App.blockUI({
+    KTApp.blockUI({
         animate: true,
         target: '#total_body',
         boxed: false
