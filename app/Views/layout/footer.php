@@ -37,18 +37,18 @@
     <!-- Popups -->
     <div class="quick-nav-overlay"></div>
     <a class="btn blue btn-outline sbold hidden" data-toggle="modal" href="#modal_manager_setting"
-       id="btn_show_manager_setting_modal"></a>
+       id="btn_show_manager_setting_modal" style="display: none;"></a>
     <div class="modal fade" id="modal_manager_setting" tabindex="-1" role="dialog" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-body">
-                    <div class="row" style="padding: 20px;padding-bottom: 0px;">
+                    <div class="row" style="padding-bottom: 0px;">
                         <div class="form-group">
                             <div class="row">
-                                <div class="col-md-3">
+                                <div class="col-md-4">
                                     <span style="font-size: 14px;line-height: 42px;float: right"><?=t('name')?></span>
                                 </div>
-                                <div class="col-md-9">
+                                <div class="col-md-8">
                                     <input class="form-control" style="background-color: white;height: 38px;"
                                            id="admin_id">
                                 </div>
@@ -57,10 +57,10 @@
 
                         <div class="form-group">
                             <div class="row">
-                                <div class="col-md-3">
-                                    <span style="font-size: 14px;line-height: 42px;float: right"><?=t('password')?></span>
+                                <div class="col-md-4">
+                                    <span style="font-size: 14px;line-height: 42px;float: right"><?=t('pwd')?></span>
                                 </div>
-                                <div class="col-md-9">
+                                <div class="col-md-8">
                                     <input type="password" class="form-control"
                                            style="background-color: white;height: 38px;" id="admin_pwd">
                                 </div>
@@ -97,7 +97,6 @@
     <!--end::Page Vendors-->
 
     <!--begin::Page Scripts(used by this page)-->
-    <script src="<?= base_url() ?>/assets/metronic/js/pages/crud/datatables/basic/basic.js"></script>
     <script src="<?= base_url() ?>/assets/common/js/three.min.js" type="text/javascript"></script>
     <script src="<?= base_url() ?>/assets/common/js/sphoords.js" type="text/javascript"></script>
     <script src="<?= base_url() ?>/assets/common/js/PhotoSphereViewer.js" type="text/javascript"></script>

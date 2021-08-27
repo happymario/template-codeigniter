@@ -156,28 +156,15 @@ function check_required(element, message, force_force) {
 }
 
 function showLoading() {
-    KTApp.blockUI({
-        animate: true,
-        target: '#total_body',
-        boxed: false
+    KTApp.block('#total_body', {
+        overlayColor: 'red',
+        opacity: 0.1,
+        state: 'primary' // a bootstrap color
     });
 }
 
 function hideLoading() {
-    App.unblockUI('#total_body');
-}
-
-
-function showLoading2(css_id) {
-    App.blockUI({
-        animate: true,
-        target:  css_id,
-        boxed: false
-    });
-}
-
-function hideLoading2(css_id) {
-    App.unblockUI(css_id);
+    KTApp.unblock('#total_body');
 }
 
 

@@ -16,6 +16,7 @@
         <!--begin::Page Vendors Styles(used by this page)-->
         <link href="<?= base_url() ?>/assets/metronic/plugins/custom/fullcalendar/fullcalendar.bundle.css"
               rel="stylesheet" type="text/css"/>
+        <link href="<?= base_url() ?>/assets/metronic/plugins/custom/datatables/datatables.bundle.css" rel="stylesheet" type="text/css" />
         <!--end::Page Vendors Styles-->
         <!--begin::Global Theme Styles(used by all pages)-->
         <link href="<?= base_url() ?>/assets/metronic/plugins/global/plugins.bundle.css" rel="stylesheet"
@@ -52,8 +53,8 @@
         <div id="kt_header_mobile" class="header-mobile align-items-center header-mobile-fixed">
             <!--begin::Logo-->
             <a href="<?= site_url('admin/home') ?>">
-<!--                <img alt="Logo" src="assets/media/logos/logo-light.png" />-->
-                <h3 style="color: white;margin-top: 20px;"><b><?= t('site_name') ?> <?= ADMIN_VERSION ?></b></h3>
+                <img alt="Logo" src="<?= base_url() ?>/assets/admin/img/ic_logo.png"/>
+<!--                <h3 style="color: white;margin-top: 20px;"><b>--><?//= t('site_name') ?><!-- --><?//= ADMIN_VERSION ?><!--</b></h3>-->
             </a>
             <!--end::Logo-->
             <!--begin::Toolbar-->
@@ -96,8 +97,8 @@
                     <div class="brand flex-column-auto" id="kt_brand">
                         <!--begin::Logo-->
                         <a href="<?= site_url('admin/home') ?>" class="brand-logo">
-<!--                            <img alt="Logo" src="assets/media/logos/logo-light.png" />-->
-                            <h3 style="color: white;margin-top: 20px;"><b><?= t('site_name') ?> <?= ADMIN_VERSION ?></b></h3>
+                            <img alt="Logo" src="<?= base_url() ?>/assets/admin/img/ic_logo.png" style="width: 100px;"/>
+<!--                            <h3 style="color: white;margin-top: 20px;"><b>--><?//= t('site_name') ?><!-- --><?//= ADMIN_VERSION ?><!--</b></h3>-->
                         </a>
                         <!--end::Logo-->
                         <!--begin::Toggle-->
@@ -121,10 +122,10 @@
                     <!--begin::Aside Menu-->
                     <div class="aside-menu-wrapper flex-column-fluid" id="kt_aside_menu_wrapper">
                         <!--begin::Menu Container-->
-                        <div id="kt_aside_menu" class="aside-men umy-4" data-menu-vertical="1" data-menu-scroll="1" data-menu-dropdown-timeout="500">
+                        <div id="kt_aside_menu" class="aside-menu umy-4" data-menu-vertical="1" data-menu-scroll="1" data-menu-dropdown-timeout="500">
                             <!--begin::Menu Nav-->
                             <ul class="menu-nav">
-                                <li class="menu-item <?= !empty($menu) && $menu == MENU_USER ? 'active open' : '' ?>" aria-haspopup="true">
+                                <li class="menu-item <?= !empty($menu) && $menu == MENU_USER ? 'menu-item-active' : '' ?>" aria-haspopup="true">
                                     <a href="<?= site_url('admin/user') ?>" class="menu-link">
 										<span class="svg-icon menu-icon">
 											<!--begin::Svg Icon | path:assets/media/svg/icons/Design/Layers.svg-->
@@ -141,7 +142,7 @@
                                     </a>
                                 </li>
 
-                                <li class="menu-item <?= !empty($menu) && $menu == MENU_PHOTO_CHECK ? 'active open' : '' ?>" aria-haspopup="true">
+                                <li class="menu-item <?= !empty($menu) && $menu == MENU_PHOTO_CHECK ? 'menu-item-active' : '' ?>" aria-haspopup="true">
                                     <a href="<?= site_url('admin/user/photo_list') ?>" class="menu-link">
 										<span class="svg-icon menu-icon">
 											<!--begin::Svg Icon | path:assets/media/svg/icons/Layout/Layout-4-blocks.svg-->
@@ -158,7 +159,7 @@
                                     </a>
                                 </li>
 
-                                <li class="menu-item <?= !empty($menu) && $menu == MENU_NOTIFICATION ? 'active open' : '' ?>" aria-haspopup="true">
+                                <li class="menu-item <?= !empty($menu) && $menu == MENU_NOTIFICATION ? 'menu-item-active' : '' ?>" aria-haspopup="true">
                                     <a href="<?= site_url('admin/push') ?>" class="menu-link">
 										<span class="svg-icon menu-icon">
 										    <!--begin::Svg Icon | path:assets/media/svg/icons/Layout/Layout-horizontal.svg-->
@@ -175,7 +176,7 @@
                                     </a>
                                 </li>
 
-                                <li class="menu-item <?= !empty($menu) && $menu == MENU_STATISTIC ? 'active open' : '' ?>" aria-haspopup="true">
+                                <li class="menu-item <?= !empty($menu) && $menu == MENU_STATISTIC ? 'menu-item-active' : '' ?>" aria-haspopup="true">
                                     <a href="<?= site_url('admin/statistic') ?>" class="menu-link">
 										<span class="svg-icon menu-icon">
 										    <!--begin::Svg Icon | path:assets/media/svg/icons/Layout/Layout-left-panel-2.svg-->
@@ -192,7 +193,7 @@
                                     </a>
                                 </li>
 
-                                <li class="menu-item <?= !empty($menu) && $menu == MENU_NOTICE ? 'active open' : '' ?>" aria-haspopup="true">
+                                <li class="menu-item <?= !empty($menu) && $menu == MENU_NOTICE ? 'menu-item-active' : '' ?>" aria-haspopup="true">
                                     <a href="<?= site_url('admin/appmanage/notice_list') ?>" class="menu-link">
 										<span class="svg-icon menu-icon">
 											<!--begin::Svg Icon | path:assets/media/svg/icons/Design/PenAndRuller.svg-->
@@ -209,7 +210,7 @@
                                     </a>
                                 </li>
 
-                                <li class="menu-item <?= !empty($menu) && $menu == MENU_SETTING ? 'active open' : '' ?>" aria-haspopup="true">
+                                <li class="menu-item <?= !empty($menu) && $menu == MENU_SETTING ? 'menu-item-active' : '' ?>" aria-haspopup="true">
                                     <a href="<?= site_url('admin/appmanage/setting') ?>" class="menu-link">
 										<span class="svg-icon menu-icon">
 											<!--begin::Svg Icon | path:assets/media/svg/icons/General/Settings-1.svg-->
@@ -292,7 +293,7 @@
                 <!--end::Aside-->
 
                 <!--begin::Wrapper-->
-                <div class="d-flex flex-column flex-row-fluid wrapper" id="kt_wrapper">
+                <div class="d-flex flex-column flex-row-fluid wrapper" id="kt_wrapper" style="padding-top: 65px;">
                     <!--begin::Header-->
                     <div id="kt_header" class="header header-fixed">
                         <!--begin::Container-->
@@ -301,53 +302,20 @@
                             <div class="header-menu-wrapper header-menu-wrapper-left" id="kt_header_menu_wrapper">
                                 <!--begin::Header Menu-->
                                 <div id="kt_header_menu" class="header-menu header-menu-mobile header-menu-layout-default">
-                                    <!--begin::Header Nav-->
-                                    <ul class="menu-nav">
-                                        <li class="menu-item menu-item-submenu menu-item-rel menu-item-active" data-menu-toggle="click" aria-haspopup="true">
-                                            <a href="javascript:;" class="menu-link menu-toggle">
-                                                <span class="menu-text"><?= t('manager') ?></span>
-                                                <i class="menu-arrow"></i>
-                                            </a>
-                                            <div class="menu-submenu menu-submenu-classic menu-submenu-left">
-                                                <ul class="menu-subnav">
-                                                    <li class="menu-item" aria-haspopup="true">
-                                                        <a onclick="ShowManagerSettingDialog()"> class="menu-link">
-                                                        <span class="svg-icon menu-icon">
-                                                            <!--begin::Svg Icon | path:assets/media/svg/icons/Clothes/Briefcase.svg-->
-                                                            <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
-                                                                <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-                                                                    <rect x="0" y="0" width="24" height="24" />
-                                                                    <path d="M5.84026576,8 L18.1597342,8 C19.1999115,8 20.0664437,8.79732479 20.1528258,9.83390904 L20.8194924,17.833909 C20.9112219,18.9346631 20.0932459,19.901362 18.9924919,19.9930915 C18.9372479,19.9976952 18.8818364,20 18.8264009,20 L5.1735991,20 C4.0690296,20 3.1735991,19.1045695 3.1735991,18 C3.1735991,17.9445645 3.17590391,17.889153 3.18050758,17.833909 L3.84717425,9.83390904 C3.93355627,8.79732479 4.80008849,8 5.84026576,8 Z M10.5,10 C10.2238576,10 10,10.2238576 10,10.5 L10,11.5 C10,11.7761424 10.2238576,12 10.5,12 L13.5,12 C13.7761424,12 14,11.7761424 14,11.5 L14,10.5 C14,10.2238576 13.7761424,10 13.5,10 L10.5,10 Z" fill="#000000" />
-                                                                    <path d="M10,8 L8,8 L8,7 C8,5.34314575 9.34314575,4 11,4 L13,4 C14.6568542,4 16,5.34314575 16,7 L16,8 L14,8 L14,7 C14,6.44771525 13.5522847,6 13,6 L11,6 C10.4477153,6 10,6.44771525 10,7 L10,8 Z" fill="#000000" fill-rule="nonzero" opacity="0.3" />
-                                                                </g>
-                                                            </svg>
-                                                            <!--end::Svg Icon-->
-                                                        </span>
-                                                            <span class="menu-text"><?= t('setting') ?></span>
-                                                        </a>
-                                                    </li>
-                                                    <li class="menu-item" aria-haspopup="true">
-                                                        <a onclick="<?= site_url('admin/login/logout') ?>"> class="menu-link">
-                                                            <span class="svg-icon menu-icon">
-                                                            <!--begin::Svg Icon | path:assets/media/svg/icons/Clothes/Briefcase.svg-->
-                                                            <svg xmlns="http://www.w3.org/2000/svg" width="24px"
-                                                                 height="24px" viewBox="0 0 24 24" version="1.1">
-                                                                <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-                                                                    <rect x="0" y="0" width="24" height="24" />
-                                                                    <path d="M5.84026576,8 L18.1597342,8 C19.1999115,8 20.0664437,8.79732479 20.1528258,9.83390904 L20.8194924,17.833909 C20.9112219,18.9346631 20.0932459,19.901362 18.9924919,19.9930915 C18.9372479,19.9976952 18.8818364,20 18.8264009,20 L5.1735991,20 C4.0690296,20 3.1735991,19.1045695 3.1735991,18 C3.1735991,17.9445645 3.17590391,17.889153 3.18050758,17.833909 L3.84717425,9.83390904 C3.93355627,8.79732479 4.80008849,8 5.84026576,8 Z M10.5,10 C10.2238576,10 10,10.2238576 10,10.5 L10,11.5 C10,11.7761424 10.2238576,12 10.5,12 L13.5,12 C13.7761424,12 14,11.7761424 14,11.5 L14,10.5 C14,10.2238576 13.7761424,10 13.5,10 L10.5,10 Z" fill="#000000" />
-                                                                    <path d="M10,8 L8,8 L8,7 C8,5.34314575 9.34314575,4 11,4 L13,4 C14.6568542,4 16,5.34314575 16,7 L16,8 L14,8 L14,7 C14,6.44771525 13.5522847,6 13,6 L11,6 C10.4477153,6 10,6.44771525 10,7 L10,8 Z" fill="#000000" fill-rule="nonzero" opacity="0.3" />
-                                                                </g>
-                                                            </svg>
-                                                                <!--end::Svg Icon-->
-                                                        </span>
-                                                            <span class="menu-text"><?= t('logout') ?></span>
-                                                        </a>
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                        </li>
-                                    </ul>
-                                    <!--end::Header Nav-->
+                                    <!--begin::Page Heading-->
+                                    <div class="d-flex d-flex align-items-center flex-wrap mr-5">
+                                        <!--begin::Page Title-->
+                                        <h5 class="text-dark font-weight-bold my-1 mr-5" style="font-weight: 900 !important;"><?= $page_title == null? '': $page_title ?></h5>
+                                        <!--end::Page Title-->
+                                        <!--begin::Breadcrumb-->
+                                        <ul class="breadcrumb breadcrumb-transparent breadcrumb-dot font-weight-bold p-0 my-2 font-size-sm">
+                                            <li class="breadcrumb-item text-muted">
+                                                <a href="" class="text-muted" id="btn_top_menu_back" onclick="history.go(-1)">&nbsp;뒤&nbsp;로&nbsp;</a>
+                                            </li>
+                                        </ul>
+                                        <!--end::Breadcrumb-->
+                                    </div>
+                                    <!--end::Page Heading-->
                                 </div>
                                 <!--end::Header Menu-->
                             </div>
@@ -355,7 +323,44 @@
 
                             <!--begin::Topbar-->
                             <div class="topbar">
+                                <!--begin::User-->
+                                <div class="dropdown" id="kt_quick_search_toggle">
+                                    <!--begin::Toggle-->
+                                    <div class="topbar-item" data-toggle="dropdown" data-offset="10px,0px">
+                                        <div class="btn btn-icon btn-icon-mobile w-auto btn-clean d-flex align-items-center btn-lg px-2" id="kt_quick_user_toggle">
+                                            <span class="text-muted font-weight-bold font-size-base d-none d-md-inline mr-1">Hi,</span>
+                                            <span class="text-dark-50 font-weight-bolder font-size-base d-none d-md-inline mr-3"><?= t('manager') ?></span>
+                                            <span class="symbol symbol-lg-35 symbol-25 symbol-light-success">
+                                                <span class="symbol-label font-size-h5 font-weight-bold">S</span>
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <!--end::Toggle-->
+                                    <!--begin::Dropdown-->
+                                    <div class="dropdown-menu p-0 m-0 dropdown-menu-anim-up dropdown-menu-sm dropdown-menu-right">
+                                        <div class="quick-search quick-search-dropdown">
+                                            <ul class="navi navi-hover py-4">
+                                                <!--begin::Item-->
+                                                <li class="navi-item">
+                                                    <a onclick="ShowManagerSettingDialog()" class="navi-link">
+                                                        <span class="navi-text"><?= t('setting') ?></span>
+                                                    </a>
+                                                </li>
+                                                <!--end::Item-->
 
+                                                <!--begin::Item-->
+                                                <li class="navi-item">
+                                                    <a onclick="<?=site_url("admin/login/logout")?>" class="navi-link">
+                                                        <span class="navi-text"><?= t('logout') ?></span>
+                                                    </a>
+                                                </li>
+                                                <!--end::Item-->
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <!--end::Dropdown-->
+                                </div>
+                                <!--end::User-->
                             </div>
                             <!--end::Topbar-->
                         </div>
@@ -366,25 +371,10 @@
                     <!--begin::Content-->
                     <div class="content d-flex flex-column flex-column-fluid" id="kt_content">
                         <!--begin::Subheader-->
-                        <div class="subheader py-2 py-lg-6 subheader-solid" id="kt_subheader">
+                        <div class="subheader py-2 py-lg-6 subheader-solid" id="kt_subheader" style="display: none;">
                             <div class="container-fluid d-flex align-items-center justify-content-between flex-wrap flex-sm-nowrap">
                                 <!--begin::Info-->
                                 <div class="d-flex align-items-center flex-wrap mr-1">
-                                    <!--begin::Page Heading-->
-                                    <div class="d-flex align-items-baseline flex-wrap mr-5">
-                                        <!--begin::Page Title-->
-                                        <h5 class="text-dark font-weight-bold my-1 mr-5"><?= $page_title == null? '': $page_title ?></h5>
-                                        <!--end::Page Title-->
-                                        <!--begin::Breadcrumb-->
-                                        <ul class="breadcrumb breadcrumb-transparent breadcrumb-dot font-weight-bold p-0 my-2 font-size-sm">
-                                            <li class="breadcrumb-item text-muted">
-                                                <a class="btn btn-sm btn-danger pull-right hidden" id="btn_top_menu_back" onclick="history.go(-1)"
-                                                   style="margin-top: 7px;border-radius: 5px !important;">&nbsp;뒤&nbsp;로&nbsp;</a>
-                                            </li>
-                                        </ul>
-                                        <!--end::Breadcrumb-->
-                                    </div>
-                                    <!--end::Page Heading-->
                                 </div>
                                 <!--end::Info-->
                                 <!--begin::Toolbar-->

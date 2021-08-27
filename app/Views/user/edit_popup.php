@@ -59,9 +59,9 @@
                 </form>
             </div>
             <div class="modal-footer" style="text-align: center; border-top: none; margin-top: 30px;">
-                <button type="button" class="btn dark" id="btn_save">&nbsp;&nbsp;<?=t('add')?>&nbsp;&nbsp;
+                <button type="button" class="btn btn-primary" id="btn_save">&nbsp;&nbsp;<?=t('add')?>&nbsp;&nbsp;
                 </button>
-                <button type="button" class="btn dark btn-outline" id="btn_cancel" data-dismiss="modal">&nbsp;&nbsp;<?=t('close')?>&nbsp;&nbsp;
+                <button type="button" class="btn dark btn-secondary" id="btn_cancel" data-dismiss="modal">&nbsp;&nbsp;<?=t('close')?>&nbsp;&nbsp;
                 </button>
             </div>
         </div>
