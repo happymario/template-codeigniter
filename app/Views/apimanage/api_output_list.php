@@ -1,4 +1,4 @@
-<div class="row">
+<div class="row"  style="background: white">
     <div class="col-md-12">
         <div class="col-md-12">
             <div class="btn-group"  style="float: right;margin-top: 20px;">

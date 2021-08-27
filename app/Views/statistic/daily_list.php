@@ -2,64 +2,72 @@
 
 </style>
 
-<div class="row" style="margin-top: 20px;">
-    <form id="frm_search" role="form">
-        <div class="col-md-12">
-            <div class="col-md-12" style="background: white;">
-                <table class="table table-bordered">
-                    <tbody>
-                    <tr>
-                        <td width="5%" class="center_align_title_td"><?=t('year')?></td>
-                        <td width="20%" class="padding_1">
-                            <select id="search_year" name="search_year" class="form-control">
-                                <?php
-                                for ($i = STATISTIC_MIN_YEAR; $i <= STATISTIC_MAX_YEAR; $i++) {
-                                    if ($i == date('Y')) {
-                                        echo '<option value="' . $i . '" selected>' . $i .t('year'). '</option>';
-                                    } else {
-                                        echo '<option value="' . $i . '">' . $i . t('year').'</option>';
+<!--begin::SearchForm-->
+<div class="card card-custom">
+    <div class="card-body">
+        <form id="frm_search" role="form">
+            <div class="col-md-12">
+                <div class="col-md-12" style="background: white;">
+                    <table class="table table-bordered">
+                        <tbody>
+                        <tr>
+                            <td width="5%" class="center_align_title_td"><?= t('year') ?></td>
+                            <td width="20%" class="padding_1">
+                                <select id="search_year" name="search_year" class="form-control">
+                                    <?php
+                                    for ($i = STATISTIC_MIN_YEAR; $i <= STATISTIC_MAX_YEAR; $i++) {
+                                        if ($i == date('Y')) {
+                                            echo '<option value="' . $i . '" selected>' . $i . t('year') . '</option>';
+                                        } else {
+                                            echo '<option value="' . $i . '">' . $i . t('year') . '</option>';
+                                        }
                                     }
-                                }
-                                ?>
-                            </select>
-                        </td>
-                        <td width="5%" class="center_align_title_td"><?=t('month')?></td>
-                        <td width="20%" class="padding_1">
-                            <select id="search_month" name="search_month" class="form-control">
-                                <?php
-                                for ($i = 1; $i <= 12; $i++) {
-                                    if ($i == date('m')) {
-                                        echo '<option value="' . $i . '" selected>' . $i . t('month').'</option>';
-                                    } else {
-                                        echo '<option value="' . $i . '">' . $i . t('month').'</option>';
+                                    ?>
+                                </select>
+                            </td>
+                            <td width="5%" class="center_align_title_td"><?= t('month') ?></td>
+                            <td width="20%" class="padding_1">
+                                <select id="search_month" name="search_month" class="form-control">
+                                    <?php
+                                    for ($i = 1; $i <= 12; $i++) {
+                                        if ($i == date('m')) {
+                                            echo '<option value="' . $i . '" selected>' . $i . t('month') . '</option>';
+                                        } else {
+                                            echo '<option value="' . $i . '">' . $i . t('month') . '</option>';
+                                        }
                                     }
-                                }
-                                ?>
-                            </select>
-                        </td>
-                        <td width="10%" class="center_align_title_td"><?=t('search_word')?></td>
-                        <td width="40%" class="padding_1">
-                            <input class="form-control" id="search_keyword" placeholder="">
-                        </td>
-                    </tr>
-                    </tbody>
-                </table>
-            </div>
+                                    ?>
+                                </select>
+                            </td>
+                            <td width="10%" class="center_align_title_td"><?= t('search_word') ?></td>
+                            <td width="40%" class="padding_1">
+                                <input class="form-control" id="search_keyword" placeholder="">
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
 
-            <div class="col-md-12" align="center" style="margin-top: 16px;">
-                <a class="btn dark" onclick="onSearch()">&nbsp;<?=t('search')?></a>
-                <a class="btn dark btn-outline" onclick="onInit()">&nbsp;&nbsp;<?=t('initialize')?>&nbsp;&nbsp;</a>
+                <div class="col-md-12" align="center" style="margin-top: 16px;">
+                    <a class="btn btn-primary" onclick="onSearch()">&nbsp;<?= t('search') ?></a>
+                    <a class="btn btn-secondary" onclick="onInit()">&nbsp;&nbsp;<?= t('initialize') ?>&nbsp;&nbsp;</a>
+                </div>
             </div>
-        </div>
-    </form>
+        </form>
+    </div>
+</div>
+<!--end::SearchForm-->
 
+<div class="card card-custom" style="margin-top: 20px;">
     <div class="col-md-12" style="margin-top: 20px;">
-        <p><span style='font-weight: 700'><?=t('total_count')?></span> <span style='font-weight: 700;' class='color_white_blue' id="total_count"></span></p>
-        <table id="tbl_datatable" class="table table-bordered table-primary" style="width: 100%">
+        <p><span style='font-weight: 700'><?= t('total_count') ?></span> <span style='font-weight: 700;'
+                                                                               class='color_white_blue'
+                                                                               id="total_count"></span></p>
+        <table id="tbl_datatable" class="table table-bordered" style="width: 100%">
             <thead class="th_custom_color">
-            <th><?=t('date')?></th>
-            <th><?=t('send_count')?></th>
-            <th><?=t('signup_count')?></th>
+            <th><?= t('date') ?></th>
+            <th><?= t('send_count') ?></th>
+            <th><?= t('signup_count') ?></th>
             </thead>
             <tbody>
 
@@ -76,6 +84,7 @@
             processing: true,
             serverSide: true,
             autoWidth: false,
+            responsive:true,
             language: {
                 "emptyTable": '<?=t('no_data')?>',
                 "info": "<span style='font-weight: 700'><?= t('all')?></span> <span style='font-weight: 700;' class='color_white_blue'>_TOTAL_</span>",

@@ -21,7 +21,7 @@
                             <table class="table">
                                 <tbody>
                                 <tr>
-                                    <td class="center_align_title_td col-md-2"><?=t('title')?></td>
+                                    <td class="center_align_title_td"><?=t('title')?></td>
                                     <td class="fields_td">
                                         <input type="text" class="form-control" id="title" name="title" placeholder=""/>
                                     </td>
@@ -47,9 +47,9 @@
                 </form>
             </div>
             <div class="modal-footer" style="text-align: center; border-top: none;">
-                <button type="button" class="btn dark" id="btn_save">&nbsp;&nbsp;<?=t('add')?>&nbsp;&nbsp;
+                <button type="button" class="btn btn-primary" id="btn_save">&nbsp;&nbsp;<?=t('add')?>&nbsp;&nbsp;
                 </button>
-                <button type="button" class="btn dark btn-outline" id="btn_cancel" data-dismiss="modal">&nbsp;&nbsp;<?=t('close')?>&nbsp;&nbsp;
+                <button type="button" class="btn btn-secondary btn-outline" id="btn_cancel" data-dismiss="modal">&nbsp;&nbsp;<?=t('close')?>&nbsp;&nbsp;
                 </button>
             </div>
         </div>

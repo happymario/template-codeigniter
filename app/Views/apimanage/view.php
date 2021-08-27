@@ -1,4 +1,4 @@
-<div class="row" style="margin-top: 10px;">
+<div class="row" style="margin-top: 10px;background: white;">
     <div class="col-md-12">
         <div class="col-md-12">
             <label style="width: 100%;font-size:18px;color: black;font-weight: 700"><?=t('name')?></label>

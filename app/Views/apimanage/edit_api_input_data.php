@@ -1,4 +1,4 @@
-<div class="row" style="margin-top: 30px;">
+<div class="row" style="margin-top: 30px;"  style="background: white">
     <div class="col-md-12">
         <form method="post" action="<?=site_url('admin/apimanage/api_input_edit')?>" id="frm_api_input_edit">
             <input class="hidden" name="ai_idx" value="<?=$ai_idx?>">

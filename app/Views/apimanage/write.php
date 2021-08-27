@@ -1,4 +1,4 @@
-<div class="row" style="margin-top: 30px;">
+<div class="row" style="margin-top: 30px;background: white;">
     <div class="col-md-12">
         <form method="post" action="<?=site_url('admin/apimanage/api_write')?>" id="api_save_form">
             <input class="hidden" name="api_idx" value="<?=$api_idx?>">

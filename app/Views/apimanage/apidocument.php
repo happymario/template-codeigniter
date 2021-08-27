@@ -1,4 +1,4 @@
-<div class="row">
+<div class="row" style="background: white;">
     <div class="col-md-12" style="margin-top: 10px;">
         <div class="col-md-12">
             <table id="api_manage_table" class="table table-bordered">

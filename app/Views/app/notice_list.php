@@ -2,52 +2,72 @@
 
 </style>
 
-<div class="row" style="margin-top: 20px;">
-    <form id="frm_search" role="form">
-        <div class="col-md-12">
-            <div class="col-md-12" style="background: white;">
-                <div class="col-md-8">
+<!--begin::SearchForm-->
+<div class="card card-custom">
+    <div class="card-body">
+        <!--begin: Search Form-->
+        <form id="frm_search" role="form">
+            <div class="col-md-12">
+                <div class="col-md-12" style="background: white;">
                     <div class="col-md-12">
-                        <table class="table table-bordered">
-                            <tbody>
-                            <tr>
-                                <td width="20%" class="center_align_title_td"><?=t('search_word')?></td>
-                                <td width="80%" class="padding_1">
-                                    <input class="form-control" id="search_keyword" placeholder="<?=t('title')?>, <?=t('content')?>">
-                                </td>
-                            </tr>
-                            </tbody>
-                        </table>
+                        <div class="col-md-12">
+                            <table class="table table-bordered">
+                                <tbody>
+                                <tr>
+                                    <td width="20%" class="center_align_title_td"><?= t('search_word') ?></td>
+                                    <td width="80%" class="padding_1">
+                                        <input class="form-control" id="search_keyword"
+                                               placeholder="<?= t('title') ?>, <?= t('content') ?>">
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                 </div>
-            </div>
 
-            <div class="col-md-12" align="center" style="margin-top: 16px;">
-                <a class="btn dark" onclick="onSearch()">&nbsp;&nbsp;<?=t('search')?>&nbsp;&nbsp;</a>
-                <a class="btn dark btn-outline" onclick="onInit()">&nbsp;&nbsp;<?=t('initialize')?>&nbsp;&nbsp;</a>
+                <div class="col-md-12" align="center" style="margin-top: 16px;">
+                    <a class="btn btn-primary" onclick="onSearch()">&nbsp;&nbsp;<?= t('search') ?>&nbsp;&nbsp;</a>
+                    <a class="btn btn-secondary btn-outline" onclick="onInit()">&nbsp;&nbsp;<?= t('initialize') ?>
+                        &nbsp;&nbsp;</a>
+                </div>
             </div>
+        </form>
+    </div>
+</div>
+<!--end::SearchForm-->
 
+<div class="card card-custom" style="margin-top: 20px;">
+    <div class="card-header">
+        <div class="card-title">
+											<span class="card-icon">
+												<i class="flaticon2-supermarket text-primary"></i>
+											</span>
+            <h3 class="card-label">User Table</h3>
+        </div>
+        <div class="card-toolbar">
             <div class="col-md-12" align="right">
-                <a class="btn blue" onclick="onReg()">&nbsp;&nbsp;<?=t('add')?>&nbsp;&nbsp;</a>
+                <a class="btn btn-primary" onclick="onReg()">&nbsp;&nbsp;<?= t('add') ?>&nbsp;&nbsp;</a>
             </div>
         </div>
-    </form>
+    </div>
+    <div class="card-body">
+        <div class="col-md-12" style="margin-top: 20px;">
+            <table id="tbl_datatable" class="table table-bordered" style="width: 100%">
+                <thead class="th_custom_color">
+                <th class="no-sort">No</th>
+                <th class="no-sort"><?= t('title') ?></th>
+                <th class="no-sort"><?= t('content') ?></th>
+                <th class="no-sort"><?= t('photo') ?></th>
+                <th class="no-sort"><?= t('maker') ?></th>
+                <th><?= t('update_date') ?></th>
+                <th class="no-sort"><?= t('manage') ?></th>
+                </thead>
+                <tbody>
 
-    <div class="col-md-12" style="margin-top: 20px;">
-        <table id="tbl_datatable" class="table table-bordered table-primary" style="width: 100%">
-            <thead class="th_custom_color">
-            <th class="no-sort">No</th>
-            <th class="no-sort"><?=t('title')?></th>
-            <th class="no-sort"><?=t('content')?></th>
-            <th class="no-sort"><?=t('photo')?></th>
-            <th class="no-sort"><?=t('maker')?></th>
-            <th><?=t('update_date')?></th>
-            <th class="no-sort"><?=t('manage')?></th>
-            </thead>
-            <tbody>
-
-            </tbody>
-        </table>
+                </tbody>
+            </table>
+        </div>
     </div>
 </div>
 
@@ -57,36 +77,38 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
-                <h4 class="modal-title"><?=t('add')?></h4>
+                <h4 class="modal-title"><?= t('add') ?></h4>
             </div>
             <div class="modal-body">
-                <form id="frm_edit"  method="post" enctype="multipart/form-data">
+                <form id="frm_edit" method="post" enctype="multipart/form-data">
                     <div class="row">
                         <div class="col-md-12">
                             <table class="table">
                                 <tbody>
                                 <tr>
-                                    <td class="center_align_title_td"><?=t('title')?></td>
+                                    <td class="center_align_title_td"><?= t('title') ?></td>
                                     <td class="fields_td">
                                         <input type="text" class="form-control" id="title" name="title" placeholder=""/>
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td class="center_align_title_td"><?=t('content')?></td>
+                                    <td class="center_align_title_td"><?= t('content') ?></td>
                                     <td class="fields_td">
                                             <textarea type="text" class="form-control" id="content" name="content"
                                                       placeholder="" rows="5" style="resize: none;"></textarea>
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td  class="center_align_title_td"><?=t('photo')?></td>
-                                    <td  class="fields_td">
+                                    <td class="center_align_title_td"><?= t('photo') ?></td>
+                                    <td class="fields_td">
                                         <div class="profile" id="profile">
-                                            <img src="<?= base_url() ?>/assets/admin/img/img_photo_default.png" alt="" class="bg"/>
+                                            <img src="<?= base_url() ?>/assets/admin/img/img_photo_default.png" alt=""
+                                                 class="bg"/>
                                             <img alt="" style="" id="img_src" class="img"/>
-                                            <img src="<?= base_url() ?>/assets/admin/img/ic_close_black.png" alt="" style="" id="img_del" class="del"/>
+                                            <img src="<?= base_url() ?>/assets/admin/img/ic_close_black.png" alt=""
+                                                 style="" id="img_del" class="del"/>
                                             <input type="file" id="uploadfile" name="uploadfile" style="display: none;">
-                                        </div> 
+                                        </div>
                                     </td>
                                 </tr>
                                 </tbody>
@@ -97,9 +119,11 @@
                 </form>
             </div>
             <div class="modal-footer" style="text-align: center; border-top: none;">
-                <button type="button" class="btn dark" id="btn_save" onclick="onEdit()">&nbsp;&nbsp;<?=t('add')?>&nbsp;&nbsp;
+                <button type="button" class="btn dark" id="btn_save" onclick="onEdit()">&nbsp;&nbsp;<?= t('add') ?>
+                    &nbsp;&nbsp;
                 </button>
-                <button type="button" class="btn dark btn-outline" id="btn_cancel" data-dismiss="modal">&nbsp;&nbsp;<?=t('close')?>&nbsp;&nbsp;
+                <button type="button" class="btn dark btn-outline" id="btn_cancel" data-dismiss="modal">
+                    &nbsp;&nbsp;<?= t('close') ?>&nbsp;&nbsp;
                 </button>
             </div>
         </div>
@@ -118,6 +142,8 @@
             processing: true,
             serverSide: true,
             autoWidth: false,
+            searching: false,
+            responsive:true,
             language: {
                 "emptyTable": '<?=t('no_data')?>',
                 "info": "<span style='font-weight: 700'><?= t('all')?></span> <span style='font-weight: 700;' class='color_white_blue'>_TOTAL_</span>",
@@ -135,15 +161,14 @@
                 },
             },
             columnDefs: [
-                { data: "reg_time", orderable: true },
-                { orderable: false, targets: "no-sort"}
+                {data: "reg_time", orderable: true},
+                {orderable: false, targets: "no-sort"}
             ],
             order: [],
             createdRow: function (row, data, dataIndex) {
-                if(data['image_url'] != null && data['image_url'] != "") {
-                    $('td:eq(3)', row).html("<img class=\"img image-popup-no-margins\" src='"+data['image_url']+"' style='width: 180px;height: 100px;'/>");
-                }
-                else {
+                if (data['image_url'] != null && data['image_url'] != "") {
+                    $('td:eq(3)', row).html("<img class=\"img image-popup-no-margins\" src='" + data['image_url'] + "' style='width: 180px;height: 100px;'/>");
+                } else {
                     $('td:eq(3)', row).text("~");
                 }
                 $('td:last', row).html(
@@ -155,22 +180,7 @@
                 [10, 20, 50, 100], // change per page values here
             ],
             // set the initial value
-            pageLength: 10,
-            pagingType: 'bootstrap_full_number', // pagination type
-            "dom": "<'row'<'col-md-6 col-sm-12'i><'col-md-6 col-sm-12'l>r><'table-scrollable't><'row'<'col-md-3 col-sm-12'><'col-md-6 col-sm-12'p>>",
-            fnDrawCallback: function (oSettings) {
-                $('.btn-delete').confirmation({
-                    title: '<?= t('msg_ask_delete')?>',
-                    onConfirm: function () {
-                        onDelete($(this).data("value"));
-                    },
-                    onCancel: $.noop,
-                    btnOkClass: 'btn-sm btn-primary',
-                    btnOkLabel: '&nbsp;&nbsp;<?= t('yes')?>&nbsp;&nbsp;&nbsp;',
-                    btnCancelClass: 'btn-sm btn-danger',
-                    btnCancelLabel: '<?= t('no')?>',
-                });
-            }
+            pageLength: 10
         });
 
         $('input[numberonly]').on('input', function (e) {
@@ -208,7 +218,7 @@
         $('#frm_search').trigger('reset');
         onSearch();
     }
-    
+
     function onReg() {
         $('#target_url').val("");
         $("#edit_modal #img_src").attr("src", "");
@@ -217,7 +227,7 @@
         $('#title').val('');
         $('#content').val('');
 
-        $('#edit_modal .modal-title').text('<?php echo t('notice').' '.t('add')?>');
+        $('#edit_modal .modal-title').text('<?php echo t('notice') . ' ' . t('add')?>');
         $('#edit_modal #btn_save').text('<?=t('add')?>');
         $('#edit_modal').modal();
     }
@@ -240,7 +250,7 @@
                 $("#uploadfile").val('');
 
                 $('#uid').val(result.uid);
-                $('#edit_modal .modal-title').text('<?php echo t('notice').t('modify')?>');
+                $('#edit_modal .modal-title').text('<?php echo t('notice') . t('modify')?>');
                 $('#edit_modal #btn_save').text('<?=t('modify')?>');
                 $('#edit_modal').modal();
             }
@@ -248,12 +258,12 @@
     }
 
     function onEdit() {
-        if($('#title').val() == '') {
+        if ($('#title').val() == '') {
             showNotification("<?=t('error')?>", "<?=t('msg_input_title')?>", "warning");
             return;
         }
 
-        if($('#content').val() == '') {
+        if ($('#content').val() == '') {
             showNotification("<?=t('error')?>", "<?=t('msg_input_content')?>", "warning");
             return;
         }
@@ -268,11 +278,11 @@
 
         //File data
         var file_data = $('input[name="uploadfile"]')[0].files;
-        if(file_data.length > 0) {
+        if (file_data.length > 0) {
             data.append("uploadfile", file_data[0]);
         }
 
-        if($('#img_src').attr('src') == '') {
+        if ($('#img_src').attr('src') == '') {
             data.append('img_src', '');
         }
 

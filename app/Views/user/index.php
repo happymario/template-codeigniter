@@ -167,6 +167,7 @@ require dirname(__FILE__) . "/edit_popup.php";
             serverSide: true,
             autoWidth: false,
             searching: false,
+            responsive: true,
             language: {
                 "emptyTable": '<?=t('no_data')?>',
                 "info": "<span style='font-weight: 700'><?= t('all')?></span> <span style='font-weight: 700;' class='color_white_blue'>_TOTAL_</span>",

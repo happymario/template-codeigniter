@@ -1,4 +1,4 @@
-<div class="col-md-12" style="margin-top: 10px;">
+<div class="col-md-12" style="margin-top: 10px;"  style="background: white">
     <label><?=t('total')?>  : <span><?=count($arr_input)?></span><?=t('gen')?> </label>
 </div>
 

@@ -7,47 +7,66 @@
  */
 ?>
 
-<div class="row" style="margin-top: 20px;">
-    <form id="frm_search" role="form">
-        <div class="col-md-12">
-            <div class="col-md-6 col-md-offset-3">
-                <table class="table table-bordered">
-                    <tbody>
-                    <tr>
-                        <td width="20%" class="center_align_title_td"><?=t('search_word')?></td>
-                        <td width="80%" class="padding_1">
-                            <input class="form-control" id="search_keyword" placeholder="<?=t('title')?>, <?=t('content')?>">
-                        </td>
-                    </tr>
-                    </tbody>
-                </table>
+<!--begin::SearchForm-->
+<div class="card card-custom">
+    <div class="card-body">
+        <!--begin: Search Form-->
+        <form id="frm_search" role="form">
+            <div class="form-group row md-12" style="justify-content: center;">
+                <label class="col-1 col-form-label"><?= t('search_word') ?></label>
+                <div class="col-4">
+                    <input class="form-control" type="text" value="" id="search_keyword" placeholder="<?= t('name') ?>">
+                </div>
             </div>
 
-            <div class="col-md-12" align="center">
-                <a class="btn dark" onclick="onSearch()">&nbsp;<?=t('search')?></a>
-                <a class="btn dark btn-outline" onclick="onInit()">&nbsp;&nbsp;<?=t('initialize')?>&nbsp;&nbsp;</a>
+            <div class="row md-12" style="justify-content: center;">
+                <button class="btn btn-primary btn-primary--icon" id="kt_search" onclick="onSearch()">
+													<span>
+														<i class="la la-search"></i>
+														<span>&nbsp;<?= t('search') ?></span>
+													</span>
+                </button>&#160;&#160;
+                <button class="btn btn-secondary btn-secondary--icon" id="kt_reset" onclick="onInit()">
+													<span>
+														<i class="la la-close"></i>
+														<span><?= t('initialize') ?></span>
+													</span>
+                </button>
             </div>
+        </form>
+    </div>
+</div>
+<!--end::SearchForm-->
 
+<!--begin::Card-->
+<div class="card card-custom" style="margin-top: 20px;">
+    <div class="card-header">
+        <div class="card-title">
+											<span class="card-icon">
+												<i class="flaticon2-supermarket text-primary"></i>
+											</span>
+            <h3 class="card-label">Alarm Table</h3>
+        </div>
+        <div class="card-toolbar">
             <div class="col-md-12" style="display: flex;">
-                <a class="btn blue" onclick="onResendAll()">&nbsp;&nbsp;<?=t('resend')?>&nbsp;&nbsp;</a>
-                <div style="text-align: right; flex: 1;">
-                <a class="btn blue" onclick="onSend()">&nbsp;&nbsp;<?=t('send')?>&nbsp;&nbsp;</a>
+                <a class="btn btn-primary" onclick="onResendAll()">&nbsp;&nbsp;<?= t('resend') ?>&nbsp;&nbsp;</a>
+                <div style="text-align: right; flex: 1; margin-left: 10px;">
+                    <a class="btn btn-secondary" onclick="onSend()">&nbsp;&nbsp;<?= t('send') ?>&nbsp;&nbsp;</a>
                 </div>
             </div>
         </div>
-    </form>
-
-    <div class="col-md-12" style="margin-top: 20px;">
-        <table id="tbl_datatable" class="table table-bordered table-primary" style="width: 100%">
+    </div>
+    <div class="card-body">
+        <table id="tbl_datatable" class="table table-bordered" style="width: 100%">
             <thead class="th_custom_color">
-                <th class="no-sort"><input type='checkbox' id="cb_check_all"/></th>
-                <th><?=t('number')?></th>
-                <th><?=t('sender')?></th>
-                <th><?=t('receiver')?></th>
-                <th><?=t('title')?></th>
-                <th><?=t('content')?></th>
-                <th><?=t('date_time')?></th>
-                <th><?=t('manage')?></th>
+            <th class="no-sort"><input type='checkbox' id="cb_check_all"/></th>
+            <th><?= t('number') ?></th>
+            <th><?= t('sender') ?></th>
+            <th><?= t('receiver') ?></th>
+            <th><?= t('title') ?></th>
+            <th><?= t('content') ?></th>
+            <th><?= t('date_time') ?></th>
+            <th><?= t('manage') ?></th>
             </thead>
             <tbody>
 
@@ -68,6 +87,8 @@ require dirname(__FILE__) . "/send_popup.php";
             processing: true,
             serverSide: true,
             autoWidth: false,
+            searching: false,
+            responsive:true,
             language: {
                 "emptyTable": '<?=t('no_data')?>',
                 "info": "<span style='font-weight: 700'><?= t('all')?></span> <span style='font-weight: 700;' class='color_white_blue'>_TOTAL_</span>",
@@ -89,7 +110,7 @@ require dirname(__FILE__) . "/send_popup.php";
             ],
             order: [],
             createdRow: function (row, data, dataIndex) {
-                $('td:eq(0)', row).html("<input name='check-cell' type='checkbox' value='"+ data['uid'] +"' />");
+                $('td:eq(0)', row).html("<input name='check-cell' type='checkbox' value='" + data['uid'] + "' />");
                 $('td:last', row).html("<a class='btn-edit' onclick='onResend(" + data['uid'] + ")'><?= t('resend')?></a>&nbsp;&nbsp;"
                     + "<a class='btn-delete' data-value='" + data['uid'] + "'><?= t('delete')?></a>");
             },
@@ -100,22 +121,7 @@ require dirname(__FILE__) . "/send_popup.php";
                 [10, 20, 50, 100], // change per page values here
             ],
             // set the initial value
-            pageLength: 10,
-            pagingType: 'bootstrap_full_number', // pagination type
-            "dom": "<'row'<'col-md-6 col-sm-12'i><'col-md-6 col-sm-12'l>r><'table-scrollable't><'row'<'col-md-3 col-sm-12'><'col-md-6 col-sm-12'p>>",
-            fnDrawCallback: function (oSettings) {
-                $('.btn-delete').confirmation({
-                    title: '<?= t('msg_ask_delete')?>',
-                    onConfirm: function () {
-                        onDelete($(this).data("value"));
-                    },
-                    onCancel: $.noop,
-                    btnOkClass: 'btn-sm btn-primary',
-                    btnOkLabel: '&nbsp;&nbsp;<?= t('yes')?>&nbsp;&nbsp;&nbsp;',
-                    btnCancelClass: 'btn-sm btn-danger',
-                    btnCancelLabel: '<?= t('no')?>',
-                });
-            }
+            pageLength: 10
         });
 
         $('input[numberonly]').on('input', function (e) {
@@ -124,7 +130,7 @@ require dirname(__FILE__) . "/send_popup.php";
 
         $("#cb_check_all").change(function () {
             var checked = $("#cb_check_all").is(":checked");
-            $('input:checkbox[name="check-cell"]').each(function() {
+            $('input:checkbox[name="check-cell"]').each(function () {
                 this.checked = checked;
             });
         });
@@ -158,7 +164,7 @@ require dirname(__FILE__) . "/send_popup.php";
             }
         });
 
-        if(arrUid.length == 0) {
+        if (arrUid.length == 0) {
             showNotification("<?=t('error')?>", "<?=t('msg_select_list')?>", "warning");
             return;
         }

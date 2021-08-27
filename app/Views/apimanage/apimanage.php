@@ -1,4 +1,4 @@
-<div class="row">
+<div class="row" style="background: white;">
     <div class="col-md-12">
         <div class="col-md-12">
             <div class="btn-group"  style="float: right;margin-top: 20px;">
@@ -50,7 +50,7 @@
 </div>
 
 <form class="hidden" method="post" id="frm_go_apiwrite" action="<?=site_url('admin/apimanage/write')?>">
-    <input class="hidden" name="api_idx" id="api_idx" value="0">
+    <input type="hidden" name="api_idx" id="api_idx" value="0">
 </form>
 
 <script>
