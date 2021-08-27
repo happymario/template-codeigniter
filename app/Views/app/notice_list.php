@@ -172,7 +172,7 @@
                     $('td:eq(3)', row).text("~");
                 }
                 $('td:last', row).html(
-                    '<a class="btn btn-danger btn-delete" data-value="' + data['uid'] + '">삭제</a>');
+                    '<a class="btn btn-danger btn-delete" onclick="onDelete(' + data['uid'] + ')" data-value="' + data['uid'] + '">삭제</a>');
             },
             // pagination control
             lengthMenu: [
@@ -309,6 +309,10 @@
     }
 
     function onDelete(uid) {
+        if(!confirm("정말 삭제하시겠습니까?")) {
+            return;
+        }
+
         $.ajax({
             url: '<?= site_url("admin/appmanage/ajax_notice_delete") ?>',
             type: 'post',

@@ -310,7 +310,7 @@
                                         <!--begin::Breadcrumb-->
                                         <ul class="breadcrumb breadcrumb-transparent breadcrumb-dot font-weight-bold p-0 my-2 font-size-sm">
                                             <li class="breadcrumb-item text-muted">
-                                                <a href="" class="text-muted" id="btn_top_menu_back" onclick="history.go(-1)">&nbsp;뒤&nbsp;로&nbsp;</a>
+                                                <a href="" class="text-muted" id="btn_top_menu_back" onclick="history.go(-1)">&nbsp;Refresh&nbsp;</a>
                                             </li>
                                         </ul>
                                         <!--end::Breadcrumb-->
@@ -350,7 +350,7 @@
 
                                                 <!--begin::Item-->
                                                 <li class="navi-item">
-                                                    <a onclick="<?=site_url("admin/login/logout")?>" class="navi-link">
+                                                    <a href="<?=site_url("admin/login/logout")?>" class="navi-link">
                                                         <span class="navi-text"><?= t('logout') ?></span>
                                                     </a>
                                                 </li>

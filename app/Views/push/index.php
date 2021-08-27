@@ -106,13 +106,33 @@ require dirname(__FILE__) . "/send_popup.php";
                 },
             },
             columnDefs: [
-                {targets: '_all', orderable: false}
+                {targets: '_all', orderable: false},
+                {
+                    targets: -1,
+                    orderable: false,
+                    render: function(data, type, full, meta) {
+                        return '\
+							<div class="dropdown dropdown-inline">\
+								<a href="javascript:;" class="btn btn-sm btn-clean btn-icon" data-toggle="dropdown">\
+	                                <i class="la la-trash"></i>\
+	                            </a>\
+							  	<div class="dropdown-menu dropdown-menu-sm dropdown-menu-right">\
+									<ul class="nav nav-hoverable flex-column">\
+							    		<li class="nav-item"><a class="nav-link" onclick="onDelete(' + full['uid'] + ')"><i class="nav-icon la la-edit"></i><span class="nav-text"><?= t('yes')?></span></a></li>\
+							    		<li class="nav-item"><a class="nav-link" href="#"><i class="nav-icon la la-leaf"></i><span class="nav-text"><?= t('no')?></span></a></li>\
+									</ul>\
+							  	</div>\
+							</div>\
+							<a href="javascript:;" class="btn btn-sm btn-clean btn-icon" title="Edit details" onclick="onResend(' + full['uid'] + ')">\
+								<i class="la la-edit"></i>\
+							</a>\
+						';
+                    },
+                }
             ],
             order: [],
             createdRow: function (row, data, dataIndex) {
                 $('td:eq(0)', row).html("<input name='check-cell' type='checkbox' value='" + data['uid'] + "' />");
-                $('td:last', row).html("<a class='btn-edit' onclick='onResend(" + data['uid'] + ")'><?= t('resend')?></a>&nbsp;&nbsp;"
-                    + "<a class='btn-delete' data-value='" + data['uid'] + "'><?= t('delete')?></a>");
             },
 
             // pagination control
