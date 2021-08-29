@@ -13,18 +13,22 @@
     .main-padding {
         padding-left: 56px;
         padding-right: 56px;
+        display: flex;
+        flex: 1;
+        flex-direction: row;
     }
 </style>
 
 <div class="card card-custom">
+    <div class="card-title" style="padding: 20px;">
+        <span style="font-weight: bold;font-size: 16px;">D3 <?= t('plan_graph') ?>(Very Difficult and many features)</span>
+        <span style="display:inline-block;border:1px solid black;height:10px;width:17px; background: red;"/>
+    </div>
+
     <div class="card-body">
-        <div class="col-md-12" style="margin-top: 20px;">
-            <span style="font-weight: bold;font-size: 16px;"><?= t('plan_graph') ?></span>
-            <span style="display:inline-block;border:1px solid black;height:10px;width:17px"/>
-        </div>
         <div class="col-md-12 main-padding" style="margin-top: 20px;">
             <!-- BEGIN CHART PORTLET-->
-            <div class="col-md-5 portlet light bordered">
+            <div style="flex: 1;">
                 <div class="portlet-title">
                     <div class="caption">
                         <i class="icon-bar-chart font-green-haze"></i>
@@ -59,7 +63,7 @@
             <!-- END CHART PORTLET-->
 
             <!-- BEGIN CHART PORTLET-->
-            <div class="col-md-5 portlet light bordered" style="margin-left: 10px;">
+            <div style="flex: 1;">
                 <div class="portlet-title">
                     <div class="caption">
                         <i class="icon-bar-chart font-green-haze"></i>
@@ -102,6 +106,24 @@
     </div>
 </div>
 
+<div class="card card-custom" style="margin-top: 30px;">
+    <div class="card-title" style="padding: 20px;">
+        <span style="font-weight: bold;font-size: 16px;">ChartJS <?= t('plan_graph') ?></span>
+        <span style="display:inline-block;border:1px solid black;height:10px;width:17px; background: red;"/>
+    </div>
+
+    <div class="card-body">
+        <div class="col-md-12 main-padding" style="margin-top: 20px;">
+            <div style="flex: 1;">
+                <canvas id="myChart"></canvas>
+            </div>
+
+            <div style="flex: 1;">
+            </div>
+        </div>
+    </div>
+</div>
+
 <script>
     var maxHeight = 4000;
     $(function () {
@@ -119,6 +141,8 @@
             value: 3000
         }, {name: team + "4", value: 4000}];
         initPieChart("#chat_pie", piedata);
+
+        initChartJS();
     });
 
     function initBarChart(id, data) {
@@ -240,4 +264,37 @@
                 .attr("fill-opacity", 0.7)
                 .text(d => d.data.value.toLocaleString() + "$"));
     }
+
+    function initChartJS() {
+        const labels = [
+            'January',
+            'February',
+            'March',
+            'April',
+            'May',
+            'June',
+        ];
+        const data = {
+            labels: labels,
+            datasets: [{
+                label: 'My First dataset',
+                backgroundColor: 'rgb(255, 99, 132)',
+                borderColor: 'rgb(255, 99, 132)',
+                data: [0, 10, 5, 2, 20, 30, 45],
+            }]
+        };
+
+        const config = {
+            type: 'line',
+            data: data,
+            options: {}
+        };
+
+        var myChart = new Chart(
+            document.getElementById('myChart'),
+            config
+        );
+    }
 </script>
+
+<script src="<?=base_url("assets/common/plugins/chartjs/chart.js")?>"></script>

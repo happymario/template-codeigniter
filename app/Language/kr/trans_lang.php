@@ -85,7 +85,7 @@ $lang = array(
 
 
     // home
-    'plan_graph' =>'실적 그라프',
+    'plan_graph' =>'그라프',
     'team' => '팀',
     'plan_pie' =>'실적 분포',
     'plan' =>'계획',
