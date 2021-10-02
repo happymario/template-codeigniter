@@ -112,15 +112,14 @@
         $("#frm_api_output_edit").ajaxSubmit(options);
 
         function beforeSubmit(){
-            App.blockUI({
+            KTApp.block('#total_body', {
                 animate: true,
-                target: '#total_body',
                 boxed: false
             });
         }
 
         function afterSuccess(data) {
-            App.unblockUI('#total_body');
+            KTApp.unblock('#total_body');
             if(data == "success"){
                 $('#frm_go_api_output_list').submit();
             }else{

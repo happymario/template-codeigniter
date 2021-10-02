@@ -79,7 +79,7 @@
             url:'<?=site_url("admin/apimanage/delete_api_output_data")?>',
             data:{'id': obj, 'api_idx':'<?=$api_idx?>'},
             beforeSend:function(){
-                App.blockUI({
+                KTApp.block('#total_body', {
                     animate: true,
                     target: '#total_body',
                     boxed: false
@@ -89,7 +89,7 @@
                 if(data == "success"){
                     drawTable();
                 }else{
-                    App.unblockUI('#total_body');
+                    KTApp.unblock('#total_body');
                     showNotification("<?=t('error')?>", "<?=t('msg_error_occured')?>", "error");
                 }
             }
@@ -102,7 +102,7 @@
             url:'<?=site_url("admin/apimanage/draw_api_output_list")?>',
             data:'api_idx=' + '<?=$api_idx?>',
             success:function(data){
-                App.unblockUI('#total_body');
+                KTApp.unblock('#total_body');
                 $('#div_api_input_table').html(data);
             }
         })

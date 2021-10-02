@@ -103,6 +103,7 @@
     <script src="<?= base_url() ?>/assets/common/js/PSVNavBar.js" type="text/javascript"></script>
     <script src="<?= base_url() ?>/assets/common/js/PSVNavBarButton.js" type="text/javascript"></script>
     <script src="<?= base_url() ?>/assets/common/js/d3.min.js" type="text/javascript"></script>
+    <script src="<?= base_url() ?>/assets/common/js/jquery.form.js" type="text/javascript"></script>
     <link href="<?= base_url() ?>/assets/common/plugins/magnific-popup/magnific-popup.css" rel="stylesheet" type="text/css"/>
     <script src="<?= base_url() ?>/assets/common/plugins/magnific-popup/magnific-popup.js" type="text/javascript"></script>
     <link href="<?= base_url() ?>/assets/common/plugins/image-picker/image-picker.css" rel="stylesheet" type="text/css"/>
@@ -164,14 +165,14 @@
             url: '<?=site_url("Login/change_admin_info")?>',
             data: 'id=' + $('#admin_id').val() + '&pwd=' + $('#admin_pwd').val(),
             beforeSend: function () {
-                App.blockUI({
+                KTApp.block('#total_body', {
                     animate: true,
                     target: '#total_body',
                     boxed: false
                 });
             },
             success: function (data) {
-                App.unblockUI('#total_body');
+                KTApp.unblock('#total_body');
                 if (data == "success") {
                     $('#btn_modal_manager_setting_cancel').trigger("click");
                     showNotification("성공", "조작이 성공하였습니다.", "success");

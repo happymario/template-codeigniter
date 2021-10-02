@@ -91,7 +91,7 @@
             url:'<?=site_url("admin/apimanage/delete_api_list")?>',
             data:{'id': obj },
             beforeSend:function(){
-                App.blockUI({
+                KTApp.block('#total_body', {
                     animate: true,
                     target: '#total_body',
                     boxed: false
@@ -101,7 +101,7 @@
                 if(data == "success"){
                     drawTable();
                 }else{
-                    App.unblockUI('#total_body');
+                    KTApp.unblock('#total_body');
                     showNotification("<?=t('error')?>","<?=t('msg_error_occured')?>","error");
                 }
             }
@@ -113,7 +113,7 @@
             type:'post',
             url:'<?=site_url("admin/apimanage/draw_apilist_table")?>',
             success:function(data){
-                App.unblockUI('#total_body');
+                KTApp.unblock('#total_body');
                 $('#div_api_manage_table').html(data);
             }
         })

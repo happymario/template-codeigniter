@@ -199,20 +199,19 @@
         // $("#frm_test").submit();
 
         function beforeSubmit() {
-            App.blockUI({
+            KTApp.block('#total_body', {
                 animate: true,
-                target: '#total_body',
                 boxed: false
             });
         }
 
         function afterSuccess(data) {
-            App.unblockUI('#total_body');
+            KTApp.unblock('#total_body');
             $('#jsondecode_result').html(data);
         }
 
         function afterError(request, status, error) {
-            App.unblockUI('#total_body');
+            KTApp.unblock('#total_body');
             var data = "code:" + request.status + "\n" + "error:" + error + "\n\n" + "message:" + request.responseText;
             $('#jsondecode_result').text(data);
         }

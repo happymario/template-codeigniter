@@ -109,7 +109,7 @@
         $("#api_save_form").ajaxSubmit(options);
 
         function beforeSubmit(){
-            App.blockUI({
+            KTApp.block('#total_body', {
                 animate: true,
                 target: '#total_body',
                 boxed: false
@@ -117,7 +117,7 @@
         }
 
         function afterSuccess(data) {
-            App.unblockUI('#total_body');
+            KTApp.unblock('#total_body');
             if(data == "success"){
                 $('#frm_go_apimanage').submit();
             }else{
