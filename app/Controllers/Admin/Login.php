@@ -37,7 +37,12 @@ class Login extends AdminBase
         $setting = $setting_model->asObject()->where('status<>', STATUS_DELETE)->first();
 
         $title = t('use_agreement');
-        $term = $setting->use_agreement;
+        if($term_kind == 'use') {
+            $term = $setting->use_agreement;
+        }
+        else {
+            $term = $term_kind;
+        }
         $this->load_origin_view("layout/term", array('page_title' => $title, 'term' => $term));
     }
 
