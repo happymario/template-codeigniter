@@ -33,7 +33,7 @@ class Filters extends BaseConfig
 		'before' => [
 			// 'honeypot',
 			// 'csrf',
-            'admin_login' =>  ['except' => ['api/*', 'admin/login/', 'admin/login/*']]
+            'admin_login' =>  ['except' => ['api/*', 'admin/login/', 'admin/login/*', 'home/*']]
 		],
 		'after'  => [
 			'toolbar',
