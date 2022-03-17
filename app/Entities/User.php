@@ -12,16 +12,22 @@ class User extends BaseEntity
         'profile_url' => null
     ];
 
-    // 60자이상의 hashkey로 부호화함.
-    public function setPwd(string $pass)
+    public function setCreatedAt(string $dateString)
     {
-        $this->attributes['pwd'] = password_hash($pass, PASSWORD_DEFAULT);
-        //$this->attributes['pwd'] = $pass;
+        $this->attributes['created_at'] = new Time($dateString, 'UTC');
+
         return $this;
     }
 
-    public function checkPwd($pass, $hash) {
-        return password_verify($pass, $hash);
-        //return $pass == $hash;
+    public function getCreatedAt(string $format = 'Y-m-d H:i:s')
+    {
+        // Convert to CodeIgniter\I18n\Time object
+        $this->attributes['created_at'] = $this->mutateDate($this->attributes['created_at']);
+
+        $timezone = $this->timezone ?? app_timezone();
+
+        $this->attributes['created_at']->setTimezone($timezone);
+
+        return $this->attributes['created_at']->format($format);
     }
 }

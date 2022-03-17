@@ -7,6 +7,8 @@ use CodeIgniter\HTTP\CLIRequest;
 use CodeIgniter\HTTP\IncomingRequest;
 use CodeIgniter\HTTP\RequestInterface;
 use CodeIgniter\HTTP\ResponseInterface;
+use CodeIgniter\Validation\Exceptions\ValidationException;
+use Config\Services;
 use Psr\Log\LoggerInterface;
 
 /**
@@ -57,4 +59,31 @@ class BaseController extends Controller
 
         \helper(['url', 'common']);
 	}
+
+	public function getRequestInput(IncomingRequest $request) {
+	    $input = $request->getPost();
+	    if(empty($input)) {
+	        $input = json_decode($request->getBody(), true);
+        }
+
+	    return $input;
+    }
+
+    public function validateRequest($input, $rules, $message=[]) {
+	    $this->validator = Services::Validation()->setRules($rules);
+	    if(is_string($rules)) {
+	        $validation = config('Validation');
+	        if(!isset($validation->$rules)) {
+	            throw  ValidationException::forRuleNotFound($rules);
+            }
+
+	        if(!$message) {
+	            $errorName = $rules . '_errors';
+	            $message = $validation->$errorName ?? [];
+            }
+	        $rules = $validation->$rules;
+        }
+	    return $this->validator->setRules($rules, $message)->run($input);
+    }
+
 }

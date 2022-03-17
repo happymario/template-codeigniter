@@ -2,6 +2,7 @@
 
 namespace Config;
 
+use App\Filters\JWTAuthenticationFilter;
 use App\Filters\LoginFilter;
 use CodeIgniter\Config\BaseConfig;
 use CodeIgniter\Filters\CSRF;
@@ -20,7 +21,8 @@ class Filters extends BaseConfig
 		'csrf'     => CSRF::class,
 		'toolbar'  => DebugToolbar::class,
 		'honeypot' => Honeypot::class,
-        'admin_login' => LoginFilter::class
+        'admin_login' => LoginFilter::class,
+        'auth' => JWTAuthenticationFilter::class
 	];
 
 	/**
@@ -33,7 +35,7 @@ class Filters extends BaseConfig
 		'before' => [
 			// 'honeypot',
 			// 'csrf',
-            'admin_login' =>  ['except' => ['api/*', 'admin/login/', 'admin/login/*', 'home/*']]
+            'admin_login' =>  ['except' => ['admin/login/', 'admin/login/*', 'api/*', 'test/*']]
 		],
 		'after'  => [
 			'toolbar',
@@ -61,5 +63,12 @@ class Filters extends BaseConfig
 	 *
 	 * @var array
 	 */
-	public $filters = [];
+	public $filters = [
+        'auth' => [
+            'before' => [
+                'api/client/*',
+                'api/client'
+            ],
+        ]
+    ];
 }

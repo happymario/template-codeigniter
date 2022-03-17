@@ -19,13 +19,45 @@ class UserModel extends BaseModel
         'id', 'name', 'pwd', 'profile_url', 'profile_url_check', 'access_token', 'dev_type', 'login_time', 'logout', 'dev_token'
     ];
     protected $returnType    = 'App\Entities\User';
-    protected $useTimestamps = false;
+    protected $updatedField = ['update_at'];
+    protected $beforeInsert = ['beforeInsert'];
+    protected $beforeUpdate = ['beforeUpdate'];
 
     protected function initialize()
     {
         parent::initialize();
 
         $this->builder = $this->db->table($this->table);
+    }
+
+    protected function beforeInsert(array $data) {
+        return $this->getUpdatedDataWithHashedPassword($data);
+    }
+
+    protected function beforeUpdate(array $data) {
+        return $this->getUpdatedDataWithHashedPassword($data);
+    }
+
+    private function getUpdatedDataWithHashedPassword(array  $data) {
+        if(isset($data['data']['pwd'])) {
+            $plaintextPassword = $data['data']['pwd'];
+            $data['data']['pwd'] = $this->hashPassword($plaintextPassword);
+        }
+        return $data;
+    }
+
+    private function hashPassword($painPassword) {
+        return password_hash($painPassword, PASSWORD_BCRYPT);
+    }
+
+    public function findUserByEmailAddress($emailAddress) {
+        $user = $this->asArray()->where(['id' => $emailAddress])->first();
+
+        if(!$user) {
+            throw new \Exception('User does not exist for specified email address');
+        }
+
+        return $user;
     }
 
     public function id_duplicated($id)
