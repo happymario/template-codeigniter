@@ -273,7 +273,7 @@ $.extend( $.validator, {
 			// Alt         => 18
 			// Caps lock   => 20
 			// End         => 35
-			// Home        => 36
+			// Test        => 36
 			// Left arrow  => 37
 			// Up arrow    => 38
 			// Right arrow => 39

@@ -66,7 +66,7 @@ $lang = array(
     'error_email_duplicated' => 'Email Or Name is duplicated.',
 
     //menu
-    'menu_home' => 'Home',
+    'menu_home' => 'Test',
     'menu_users' => 'Users',
     'menu_notifications' => 'Notification List',
     'menu_photo_check' => 'Photo List',

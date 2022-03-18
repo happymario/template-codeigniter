@@ -19,9 +19,27 @@
     }
 </style>
 
-<div class="card card-custom">
+<div class="card card-custom" style="margin-top: 30px;">
     <div class="card-title" style="padding: 20px;">
-        <span style="font-weight: bold;font-size: 16px;">D3 <?= t('plan_graph') ?>(Very Difficult and many features)</span>
+        <span style="font-weight: bold;font-size: 16px;">ChartJS <?= t('plan_graph') ?></span>
+        <span style="display:inline-block;border:1px solid black;height:10px;width:17px; background: red;"/>
+    </div>
+
+    <div class="card-body">
+        <div class="col-md-12 main-padding" style="margin-top: 20px;">
+            <div style="flex: 1;">
+                <canvas id="myChart"></canvas>
+            </div>
+
+            <div style="flex: 1;">
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="card card-custom" style="margin-top:20px;">
+    <div class="card-title" style="padding: 20px;">
+        <span style="font-weight: bold;font-size: 16px;">D3 <?= t('plan_graph') ?>(Data Driven Documents: 대용량자료 시각화)</span>
         <span style="display:inline-block;border:1px solid black;height:10px;width:17px; background: red;"/>
     </div>
 
@@ -102,24 +120,6 @@
                 </div>
             </div>
             <!-- END CHART PORTLET-->
-        </div>
-    </div>
-</div>
-
-<div class="card card-custom" style="margin-top: 30px;">
-    <div class="card-title" style="padding: 20px;">
-        <span style="font-weight: bold;font-size: 16px;">ChartJS <?= t('plan_graph') ?></span>
-        <span style="display:inline-block;border:1px solid black;height:10px;width:17px; background: red;"/>
-    </div>
-
-    <div class="card-body">
-        <div class="col-md-12 main-padding" style="margin-top: 20px;">
-            <div style="flex: 1;">
-                <canvas id="myChart"></canvas>
-            </div>
-
-            <div style="flex: 1;">
-            </div>
         </div>
     </div>
 </div>

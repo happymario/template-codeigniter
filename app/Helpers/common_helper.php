@@ -1,9 +1,5 @@
 <?php
-use Fabiang\Xmpp\Protocol\Message;
-use Fabiang\Xmpp\Options;
-use Fabiang\Xmpp\Client;
-use Fabiang\Xmpp\Protocol\Roster;
-use Fabiang\Xmpp\Protocol\Presence;
+
 
 function send_email($target_email, $subject, $mail_description = '', $mail_important_string = '', $mail_footer = '') {
     if(TEST_LOCAL_MODE == true) {
@@ -41,6 +37,7 @@ function send_email($target_email, $subject, $mail_description = '', $mail_impor
     }
     return $result;
 }
+
 
 function send_sms($phone, $text) {
     if(TEST_LOCAL_MODE == true) {
@@ -258,8 +255,6 @@ function send_push_openfire($server_addr, $domain, $room_name, $dev_type = 'andr
     catch (Exception $e) {
         echo 'Message: ' .$e->getMessage();
     }
-
-
 }
 
 function make_directory($path)
