@@ -13,7 +13,7 @@ use Psr\Log\LoggerInterface;
  * Created by HappyMario
  * 2019-07-24 10:09:32
  */
-class ApiBase extends BaseController
+class Base_api extends BaseController
 {
     use ResponseTrait;
 
@@ -23,8 +23,12 @@ class ApiBase extends BaseController
     /**
      * @var UserModel
      */
-    private $userModel;
+    protected $userModel;
 
+
+    /************************************************************************
+     * Overrides
+     ************************************************************************/
     /**
      * ApiBase constructor.
      * @param RequestInterface $request
@@ -38,14 +42,51 @@ class ApiBase extends BaseController
 
         $this->api_params = new \stdClass();
         $this->userModel = model("UserModel");
+
+        helper('jwt');
     }
 
 
-    protected function _response_error_status($error, $status)
+    /************************************************************************
+     * Public
+     ************************************************************************/
+    public function get_access_token() {
+        $authenticationHeader = $this->request->getServer('HTTP_AUTHORIZATION');
+        return getJWTFromRequest($authenticationHeader);
+    }
+
+    /************************************************************************
+     * Protect
+     **********************************************************************
+     * @param $error_code
+     * @return mixed
+     */
+    protected function response_error_code($error_code)
+    {
+        return $this->response_error(ResponseInterface::HTTP_OK, $error_code);
+    }
+
+
+    /**
+     * @param $status
+     * @param array $errors
+     * @return mixed
+     */
+    protected function response_error_status($status, $errors=null)
+    {
+        return $this->response_error($status, API_RESULT_SUCCESS, $errors);
+    }
+
+    /**
+     * @param int $status
+     * @param int $error_code
+     * @param array $errors
+     * @return mixed
+     */
+    protected function response_error($status=ResponseInterface::HTTP_OK, $error_code=API_RESULT_SUCCESS, $errors=null)
     {
         $config = config('App');
         $iskorean = $config->defaultLocale === 'Kr';
-        $error_code = API_RESULT_SUCCESS;
 
         if ($status != ResponseInterface::HTTP_OK) {
             $error_code = API_RESULT_ERROR_DB;
@@ -62,7 +103,7 @@ class ApiBase extends BaseController
             $msg = $this->_get_error_msg($error_code, $iskorean);
         }
 
-        $result = array('result' => $error_code, 'msg' => $msg, 'reason' => $error);
+        $result = array('result' => $error_code, 'msg' => $msg, 'reason' => $errors);
 
         return $this->respond(
             $result,
@@ -72,7 +113,11 @@ class ApiBase extends BaseController
     }
 
 
-    protected function _response_success_status($responseArray = null)
+    /**
+     * @param array $responseArray
+     * @return mixed
+     */
+    protected function response_success($responseArray = null)
     {
         $config = config('App');
         $iskorean = $config->defaultLocale === 'Kr';
@@ -87,7 +132,13 @@ class ApiBase extends BaseController
     }
 
 
-
+    /************************************************************************
+     * Helpers
+     ***********************************************************************
+     * @param $error_code
+     * @param $iskorean
+     * @return string
+     */
     private function _get_error_msg($error_code, $iskorean)
     {
         $msg = '';
@@ -143,147 +194,5 @@ class ApiBase extends BaseController
         }
 
         return $msg;
-    }
-
-
-
-    /**************************************
-     * Old Functions
-    **************************************/
-    public function set_api_params($params = array())
-    {
-        $data = $this->request->getPost();
-        $validation = \Config\Services::validation();
-
-        $config = config('App');
-        if (array_key_exists("lang", $data) == true && 'english' !== $data['lang']) {
-            $config->defaultLocale = "Kr";
-        } else {
-            $config->defaultLocale = DEFAULT_LOCATION;
-        }
-
-        if (array_key_exists("pretty", $data) == true && '1' === $data['pretty']) {
-            define('API_RESPONSE_PRETTY', true);
-        }
-
-        $params = is_array($params) ? $params : array($params);
-        $required_params = [];
-        $validation_flag = false;
-        foreach ($params as $param) {
-            if (!is_a($param, 'App\Entities\ApiParamModel')) {
-                continue;
-            }
-
-            if (!empty($param->rules)) {
-                if (strpos($param->rules, 'required') !== false) {
-                    $required_params[] = $param->variable_name;
-                    $validation->setRule($param->variable_name, $param->variable_name, $param->rules);
-                    $validation_flag = true;
-                } else if ($data[$param->variable_name] !== null || trim($data[$param->variable_name]) !== '') {
-                    $validation->setRule($param->variable_name, $param->variable_name, $param->rules);
-                    $validation_flag = true;
-                }
-            }
-        }
-
-        if ($validation_flag && $validation->run($data) === FALSE) {
-            $this->_response_error(API_RESULT_ERROR_PARAM, '', $validation->getErrors(''));
-        }
-    }
-
-
-    public function _response_error($error_code, $msg = '', $reason = '', $status = ResponseInterface::HTTP_OK)
-    {
-        $config = config('App');
-        $iskorean = $config->defaultLocale === 'Kr';
-        if (empty($msg)) {
-            $msg = $this->_get_error_msg($error_code, $iskorean);
-        }
-
-        $result = array('result' => $error_code, 'msg' => $msg, 'reason' => $reason);
-
-        if (!defined('API_RESPONSE_PRETTY')) {
-            header('Content-Type: application/json');
-            echo json_encode($result);
-        } else {
-            echo json_encode($result, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE);
-        }
-        exit(0);
-    }
-
-
-
-    public function _response_success($responseArray = null)
-    {
-        $config = config('App');
-        $iskorean = $config->defaultLocale === 'Kr';
-
-        $responseArray = empty($responseArray) ? new \stdClass() : $responseArray;
-        $result = array('data' => $responseArray);
-        $result['result'] = API_RESULT_SUCCESS;
-        $result['msg'] = $iskorean ? '성공' : 'Success';
-        $result['reason'] = '';
-
-        if (!defined("API_RESPONSE_PRETTY")) {
-            header('Content-Type: application/json');
-            echo json_encode($result);
-        } else {
-            echo json_encode($result, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE);
-        }
-        exit(0);
-    }
-
-
-
-    public function _get_user_from_user_uid($user_uid)
-    {
-        $sql = 'select * from tb_user where uid = ? and status <> ' . STATUS_DELETE . ' limit 1';
-        $usr_row = $this->db->query($sql, [$user_uid])->row();
-        if ($usr_row === null) {
-            $this->_response_error(API_RESULT_ERROR_USER_NO_EXIST);
-        }
-
-        return $usr_row;
-    }
-
-    public function _check_access_token($access_token)
-    {
-        if ($this->userModel->invalid_access_token($access_token)) {
-            $this->_response_error(API_RESULT_ERROR_ACCESS_TOKEN);
-        }
-    }
-
-    public function _get_user_uid($access_token)
-    {
-        return $this->userModel->get_user_uid_by_access_token($access_token);
-    }
-
-    public function _get_user_info($access_token)
-    {
-        return $this->userModel->get_user_info_by_access_token($access_token);
-    }
-
-}
-
-
-class ApiParamModel
-{
-    public $variable_name = '';
-
-    /**
-     * http://www.ciboard.co.kr/user_guide/kr/libraries/form_validation.html#rule-reference
-     */
-    public $rules = '';
-
-    /**
-     * ApiParamModel constructor.
-     * @param $variable_name
-     * @param $description
-     * @param $rules
-     */
-    public function __construct($variable_name, $rules)
-    {
-        $this->variable_name = $variable_name;
-        $this->rules = $rules;
     }
 }

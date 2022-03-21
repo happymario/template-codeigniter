@@ -154,7 +154,7 @@
                 "zeroRecords": '<?= t('no_data')?>'
             },
             ajax: { // define ajax settings
-                "url": "<?=site_url('admin/appmanage/ajax_notice_list')?>", // ajax URL
+                "url": "<?=site_url('admin/app/ajax_notice_list')?>", // ajax URL
                 "type": "POST",
                 "data": function (data) {
                     onSetSearchParams(data);
@@ -234,7 +234,7 @@
 
     function onDetail(uid) {
         $.ajax({
-            url: '<?= site_url("admin/appmanage/ajax_notice_detail/") ?>' + uid,
+            url: '<?= site_url("admin/app/ajax_notice_detail/") ?>' + uid,
             type: 'GET',
             dataType: 'json',
             beforeSend: function () {
@@ -287,7 +287,7 @@
         }
 
         $.ajax({
-            url: '<?= site_url("admin/appmanage/ajax_notice_save") ?>',
+            url: '<?= site_url("admin/app/ajax_notice_save") ?>',
             type: 'POST',
             data: data,
             processData: false,
@@ -314,7 +314,7 @@
         }
 
         $.ajax({
-            url: '<?= site_url("admin/appmanage/ajax_notice_delete") ?>',
+            url: '<?= site_url("admin/app/ajax_notice_delete") ?>',
             type: 'post',
             data: 'uid=' + uid,
             beforeSend: function () {

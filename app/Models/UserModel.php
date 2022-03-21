@@ -16,7 +16,7 @@ class UserModel extends BaseModel
     protected $table = 'tb_user';
     protected $primaryKey = "uid";
     protected $allowedFields = [
-        'id', 'name', 'pwd', 'profile_url', 'profile_url_check', 'access_token', 'dev_type', 'login_time', 'logout', 'dev_token'
+        'id', 'name', 'pwd', 'profile_url', 'profile_url_check', 'access_token', 'dev_type', 'login_time', 'logout', 'dev_token', "backup_url"
     ];
     protected $returnType    = 'App\Entities\User';
     protected $updatedField = ['update_at'];
@@ -103,6 +103,11 @@ class UserModel extends BaseModel
     public function get_user_info_by_access_token($access_token)
     {
         return $this->builder->getWhere(array('access_token' => $access_token))->getRow();
+    }
+
+    public function get_login_user($access_token)
+    {
+        return $this->builder->getWhere(array('access_token' => $access_token, 'logout<>'=>STATUS_OFF, ''))->getRow('uid');
     }
 
     public function datatable_statistic($year, $month, $keyword) {

@@ -8,20 +8,22 @@ use CodeIgniter\Model;
 
 class BaseModel extends Model
 {
-    public function findById($uid) {
+    protected $statusKey = "status";
+
+    protected function findById($uid) {
         return $this->where($this->primaryKey, $uid)->first();
     }
 
     public function deleteAll($arr_id, $with_status = false) {
         if($with_status == true) {
-            $this->update($arr_id, ["status" => STATUS_DELETE]);
+            $this->update($arr_id, [$this->statusKey => STATUS_DELETE]);
         }
         return $this->doDelete($arr_id);
     }
 
     public function deleteById($id, $with_status = false) {
         if($with_status == true) {
-            $this->update($id, ["status" => STATUS_DELETE]);
+            $this->update($id, [$this->statusKey => STATUS_DELETE]);
         }
         return $this->doDelete(array($id));
     }
@@ -31,7 +33,7 @@ class BaseModel extends Model
             $this->insert($data);
         }
         else {
-            $this->where("uid", $id)->update($id, $data);
+            $this->where($this->primaryKey, $id)->update($id, $data);
         }
     }
 }

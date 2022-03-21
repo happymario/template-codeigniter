@@ -1,20 +1,30 @@
 <?php
 namespace App\Controllers\Admin;
 
+use App\Models\UserModel;
 use CodeIgniter\HTTP\RequestInterface;
 use CodeIgniter\HTTP\ResponseInterface;
 use Psr\Log\LoggerInterface;
 
-class User extends AdminBase
+class User extends Base_admin
 {
+    /**
+     * @var UserModel
+     */
+    private $userModel;
+
     /************************************************************************
      * Overrides
-     *************************************************************************/
+     ************************************************************************
+     * @param RequestInterface $request
+     * @param ResponseInterface $response
+     * @param LoggerInterface $logger
+     */
     public function initController(RequestInterface $request, ResponseInterface $response, LoggerInterface $logger)
     {
         parent::initController($request, $response, $logger);
 
-        $this->user_model = model("UserModel");
+        $this->userModel = model("UserModel");
     }
 
     /************************************************************************
@@ -37,27 +47,33 @@ class User extends AdminBase
      *************************************************************************/
     public function ajax_table()
     {
+        $this->check_ajax();
+
         $start = $this->request->getPost('start');
         $length = $this->request->getPost('length');
         $keyword = $this->request->getPost('search_keyword');
 
-        $data = $this->user_model->datatable_list($start, $length, $keyword);
+        $data = $this->userModel->datatable_list($start, $length, $keyword);
 
-        echo json_encode($data);
+        $this->ajax_result2($data);
     }
 
     public function ajax_detail($user_uid)
     {
+        $this->check_ajax();
+
         if($user_uid == null) {
-            die(AJAX_RESULT_ERROR);
+            $this->ajax_result(AJAX_RESULT_ERROR);
         }
 
-        $response_data = $this->user_model->findById($user_uid);
-        die (json_encode($response_data));
+        $response_data = $this->userModel->findById($user_uid);
+        $this->ajax_result2($response_data);
     }
 
     public function ajax_save()
     {
+        $this->check_ajax();
+
         $user_uid = $this->request->getPost('user_uid');
         $id = $this->request->getPost('id');
         $name = $this->request->getPost('name');
@@ -65,26 +81,26 @@ class User extends AdminBase
         $status = $this->request->getPost('status');
 
         if(!$this->validate(['id' => 'required', 'name '  => 'required', 'pwd '  => 'required', 'status '  => 'required'])) {
-            die(AJAX_RESULT_ERROR);
+            $this->ajax_result(AJAX_RESULT_ERROR);
         }
 
         if($user_uid != null) {
-            $is_duplicate = $this->user_model->id_duplicated_1($user_uid, $id);
+            $is_duplicate = $this->userModel->id_duplicated_1($user_uid, $id);
             if ($is_duplicate == true) {
-                die(AJAX_RESULT_DUP);
+                $this->ajax_result(AJAX_RESULT_DUP);
             }
 
-            $is_duplicate = $this->user_model->name_duplicated_1($user_uid, $name);
+            $is_duplicate = $this->userModel->name_duplicated_1($user_uid, $name);
             if ($is_duplicate == true) {
-                die(AJAX_RESULT_DUP);
+                $this->ajax_result(AJAX_RESULT_DUP);
             }
         }
         else {
-            if($this->user_model->id_duplicated($id)) {
-                die(AJAX_RESULT_DUP);
+            if($this->userModel->id_duplicated($id)) {
+                $this->ajax_result(AJAX_RESULT_DUP);
             }
-            if($this->user_model->name_duplicated($name)) {
-                die(AJAX_RESULT_DUP);
+            if($this->userModel->name_duplicated($name)) {
+                $this->ajax_result(AJAX_RESULT_DUP);
             }
         }
 
@@ -95,7 +111,7 @@ class User extends AdminBase
             'status' => $status
         );
         if (isset($_FILES['uploadfile'])) {
-            $upload_result = $this->upload_file($_FILES['uploadfile']);
+            $upload_result = $this->uploadFile($_FILES['uploadfile']);
             if($upload_result != null) {
                 $save_data['profile_url'] = $upload_result['file_url'];
                 $save_data['profile_url_check'] = STATUS_NORMAL;
@@ -105,50 +121,59 @@ class User extends AdminBase
         if($user_uid != null) {
             $save_data["uid"] = $user_uid;
         }
-        $this->user_model->save($save_data);
+        $this->userModel->save($save_data);
 
-        die (AJAX_RESULT_SUCCESS);
+        $this->ajax_result(AJAX_RESULT_SUCCESS);
     }
 
     public function ajax_delete()
     {
+        $this->check_ajax();
+
         $user_uid = $this->request->getPost('user_uid');
         if($user_uid == null) {
-            die(AJAX_RESULT_ERROR);
+            $this->ajax_result(AJAX_RESULT_ERROR);
         }
 
-        $this->user_model->deleteById($user_uid);
-        die (AJAX_RESULT_SUCCESS);
+        $this->userModel->deleteById($user_uid);
+
+        $this->ajax_result(AJAX_RESULT_SUCCESS);
     }
 
     public function ajax_photo_list() {
+        $this->check_ajax();
+
         $page_num = $this->request->getGet('page');
         $status = $this->request->getGet('status');
+
         if($page_num === null) {
-            die(AJAX_RESULT_ERROR);
+            $this->ajax_result(AJAX_RESULT_ERROR);
         }
 
-        $data = $this->user_model->photo_list($page_num, $status);
+        $data = $this->userModel->photo_list($page_num, $status);
 
-        die(json_encode($data));
+        $this->ajax_result2($data);
     }
 
     public function ajax_change_photo_status()
     {
+        $this->check_ajax();
+
         $user_uid = $this->request->getPost('user_uid');
         $status = $this->request->getPost('status');
 
         if($user_uid == null) {
-            die(AJAX_RESULT_ERROR);
+            $this->ajax_result(AJAX_RESULT_ERROR);
         }
 
         if($status < STATUS_DELETE  ||  $status > STATUS_CHECK) {
-            die(AJAX_RESULT_ERROR);
+            $this->ajax_result(AJAX_RESULT_ERROR);
         }
 
         $save_data = ["profile_url_check" => $status, "uid" => $user_uid];
 
-        $this->user_model->save($save_data);
-        die (AJAX_RESULT_SUCCESS);
+        $this->userModel->save($save_data);
+
+        $this->ajax_result(AJAX_RESULT_SUCCESS);
     }
 }

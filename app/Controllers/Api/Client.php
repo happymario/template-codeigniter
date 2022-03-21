@@ -9,7 +9,7 @@ use CodeIgniter\HTTP\Response;
 use CodeIgniter\HTTP\ResponseInterface;
 use Exception;
 
-class Client extends ApiBase
+class Client extends Base_api
 {
     use ResponseTrait;
 

@@ -67,7 +67,13 @@ class Filters extends BaseConfig
         'auth' => [
             'before' => [
                 'api/client/*',
-                'api/client'
+                'api/client',
+                'api/push/*',
+                'api/push',
+                'api/user/*',
+                'api/user',
+                'api/statistic/*',
+                'api/statistic'
             ],
         ]
     ];

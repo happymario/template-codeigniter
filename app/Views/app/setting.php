@@ -3,7 +3,7 @@
 </style>
 <div class="card card-custom">
     <div class="card-body">
-        <form id="frm_setting" role="form" action="<?= site_url("admin/appmanage/setting") ?>" method="post">
+        <form id="frm_setting" role="form" action="<?= site_url("admin/app/setting") ?>" method="post">
             <div class="row" style="margin-top: 20px;">
                 <div class="col-md-12" style="background: white;">
                     <div class="col-md-6">

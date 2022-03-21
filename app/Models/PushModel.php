@@ -145,7 +145,7 @@ EOF;
             $new_data['type'] = $data['type'];
             $new_data['title'] = $data['title'];
             $new_data['message'] = $data['message'];
-            $new_data['reg_time'] = $data['reg_time'];
+            $new_data['reg_time'] = $data['created_at'];
             $new_data['data'] = json_decode($data['data'], true);
             $list[$i] = $new_data;
         }

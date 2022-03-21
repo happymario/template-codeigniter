@@ -7,29 +7,29 @@ use CodeIgniter\API\ResponseTrait;
 use CodeIgniter\HTTP\Response;
 use CodeIgniter\HTTP\ResponseInterface;
 
-class Auth extends ApiBase
+class Auth extends Base_api
 {
     use ResponseTrait;
-
 
     /**
      * Register a new user
      * @return Response
      * @throws \ReflectionException
      */
-    public function register() {
+    public function register()
+    {
         $rules = [
-          'id' => 'required|min_length[6]|max_length[50]|valid_email', // |is_unique[tb_user.id]
-          'pwd' => 'required|min_length[8]|max_length[255]',
-          'name' => 'required',
-          'profile_url' =>'max_length[2048]'
+            'id' => 'required|min_length[6]|max_length[50]|valid_email', // |is_unique[tb_user.id]
+            'pwd' => 'required|min_length[8]|max_length[255]',
+            'name' => 'required',
+            'profile_url' => 'max_length[2048]'
         ];
 
         $input = $this->getRequestInput($this->request);
-        if(!$this->validateRequest($input, $rules)) {
-            return $this->_response_error_status(
-                $this->validator->getErrors(),
-                ResponseInterface::HTTP_BAD_REQUEST
+        if (!$this->validateRequest($input, $rules)) {
+            return $this->response_error_status(
+                ResponseInterface::HTTP_BAD_REQUEST,
+                $this->validator->getErrors()
             );
         }
 
@@ -38,7 +38,7 @@ class Auth extends ApiBase
 
         $duplicate = $userModel->id_duplicated($id);
         if ($duplicate == true) {
-            $this->_response_error(API_RESULT_ERROR_EMAIL_DUPLICATE);
+            return $this->response_error_code(API_RESULT_ERROR_EMAIL_DUPLICATE);
         }
 
         $user = new \App\Entities\User();
@@ -53,7 +53,8 @@ class Auth extends ApiBase
      * Authenticate Existing User
      * @return Response
      */
-    public function login() {
+    public function login()
+    {
         $rules = [
             'id' => 'required|min_length[6]|max_length[50]|valid_email',
             'pwd' => 'required|min_length[6]|max_length[255]|validateUser[id, pwd]',
@@ -70,14 +71,13 @@ class Auth extends ApiBase
 
         if (!$this->validateRequest($input, $rules, $errors)) {
             return $this
-                ->_response_error_status(
-                    $this->validator->getErrors(),
-                    ResponseInterface::HTTP_BAD_REQUEST
+                ->response_error_status(
+                    ResponseInterface::HTTP_BAD_REQUEST,
+                    $this->validator->getErrors()
                 );
         }
         return $this->getJWTForUser($input['id']);
     }
-
 
 
     /**
@@ -85,7 +85,8 @@ class Auth extends ApiBase
      * @param int $responseCode
      * @return mixed
      */
-    private function getJWTForUser($email, $responseCode = ResponseInterface::HTTP_OK) {
+    private function getJWTForUser($email, $responseCode = ResponseInterface::HTTP_OK)
+    {
         try {
             $model = new UserModel();
             $user = $model->findUserByEmailAddress($email);
@@ -95,10 +96,10 @@ class Auth extends ApiBase
             $user['access_token'] = getSignedJWTForUser($email);
 
             // 로그인 시도일시
-            if($responseCode == ResponseInterface::HTTP_OK) {
+            if ($responseCode == ResponseInterface::HTTP_OK) {
                 $cur_time = get_time_stamp_str();
                 $save_data = array(
-                    'access_token' =>  $user['access_token'],
+                    'access_token' => $user['access_token'],
                     'dev_type' => $this->request->getPost("dev_type"),
                     'login_time' => $cur_time,
                     'logout' => STATUS_OFF
@@ -110,12 +111,11 @@ class Auth extends ApiBase
                 $model->saveById($user['uid'], $save_data);
             }
 
-            return  $this->_response_success_status($user);
-        }
-        catch (\Exception $exception) {
-            return $this->_response_error_status([
+            return $this->response_success($user);
+        } catch (\Exception $exception) {
+            return $this->response_error_status($responseCode, [
                 'error' => $exception->getMessage()
-            ], $responseCode);
+            ]);
         }
     }
 }

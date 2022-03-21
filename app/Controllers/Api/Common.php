@@ -6,18 +6,30 @@
 
 namespace App\Controllers\Api;
 
+use App\Models\SettingModel;
 use CodeIgniter\HTTP\RequestInterface;
 use CodeIgniter\HTTP\ResponseInterface;
 use Psr\Log\LoggerInterface;
 
-class Common extends ApiBase
+class Common extends Base_api
 {
+    /**
+     * @var SettingModel
+     */
+    private $settingModel;
+
     /************************************************************************
      * Overrides
-     *************************************************************************/
+     ************************************************************************
+     * @param RequestInterface $request
+     * @param ResponseInterface $response
+     * @param LoggerInterface $logger
+     */
     public function initController(RequestInterface $request, ResponseInterface $response, LoggerInterface $logger)
     {
         parent::initController($request, $response, $logger);
+
+        $this->settingModel = new SettingModel();
     }
 
 
@@ -26,10 +38,8 @@ class Common extends ApiBase
      *************************************************************************/
     public function upload_file()
     {
-        $this->set_api_params();
-
         if (!isset($_FILES['uploadfile'])) {
-            $this->_response_error(API_RESULT_ERROR_PARAM);
+            return $this->response_error_code(API_RESULT_ERROR_PARAM);
         }
 
         $upload_file_name_only = get_unique_str();
@@ -39,10 +49,10 @@ class Common extends ApiBase
         $file_path = make_directory('temp') . DIRECTORY_SEPARATOR . $file_name;
 
         if (!move_uploaded_file($_FILES['uploadfile']['tmp_name'], $file_path)) {
-            $this->_response_error(API_RESULT_ERROR_UPLOAD);
+            return $this->response_error_code(API_RESULT_ERROR_UPLOAD);
         }
 
-        $this->_response_success([
+        return $this->response_success([
             'file_name' => $file_name,
             'file_url' => get_temp_image_url($file_name)
         ]);
@@ -51,11 +61,8 @@ class Common extends ApiBase
 
     public function multi_upload_file()
     {
-        $this->set_api_params([
-            new ApiParamModel('uploadfile', '')
-        ]);
         if (isset($_FILES['uploadfile']) == false) {
-            $this->_response_error(API_RESULT_ERROR_PARAM);
+            $this->response_error_code(API_RESULT_ERROR_PARAM);
         }
 
         $dateYm = date('Ym');
@@ -68,7 +75,7 @@ class Common extends ApiBase
             $file_path = make_directory($dateYm) . DIRECTORY_SEPARATOR . $file_name;
 
             if (!move_uploaded_file($_FILES['uploadfile']['tmp_name'][$i], $file_path)) {
-                $this->_response_error(API_RESULT_ERROR_UPLOAD);
+                $this->response_error_code(API_RESULT_ERROR_UPLOAD);
             }
             $temp = array(
                 'file_url' => get_real_image_url($dateYm . '/' . $file_name),
@@ -77,22 +84,27 @@ class Common extends ApiBase
             array_push($result, $temp);
         }
 
-        $this->_response_success(array("result" => $result));
+        $this->response_success(array("result" => $result));
     }
 
 
     public function app_info() {
-        $this->set_api_params([
-            new ApiParamModel('dev_type', 'required|in_list[android,web]')
-        ]);
+        $rules = ['dev_type' => 'required|in_list[android,web]'];
+        $input = $this->getRequestInput($this->request);
+
+        if (!$this->validateRequest($input, $rules)) {
+            return $this->response_error_status(
+                ResponseInterface::HTTP_BAD_REQUEST,
+                $this->validator->getErrors()
+            );
+        }
 
         $info = array();
         $info["api_ver"] = API_VERSION;
 
-        $setting_model = model("SettingModel");
-        $setting = $setting_model->where("status!=", STATUS_DELETE)->first();
+        $setting = $this->settingModel->where("status!=", STATUS_DELETE)->first();
         $info["client_center"] = $setting["client_phone"];
 
-        $this->_response_success($info);
+        return $this->response_success($info);
     }
 }

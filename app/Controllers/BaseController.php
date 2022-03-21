@@ -82,27 +82,25 @@ class BaseController extends Controller
 
     public function validateRequest($input, $rules, $messages=[]) {
 	    $this->validator = Services::Validation()->setRules($rules);
+	    return $this->validator->setRules($rules, $messages)->run($input);
+    }
 
-	    // If you replace the $rules array with the name of the group
-        if (is_string($rules)) {
-            $validation = config('Validation');
+    public function uploadFile($file, $dirname=TEMP_DIR)
+    {
+        $upload_file_name_only = get_unique_str();
+        $upload_file_name_ext = pathinfo($file["name"], PATHINFO_EXTENSION);
+        $file_name = $upload_file_name_only . '.' . $upload_file_name_ext;
 
-            // If the rule wasn't found in the \Config\Validation, we
-            // should throw an exception so the developer can find it.
-            if (!isset($validation->$rules)) {
-                throw ValidationException::forRuleNotFound($rules);
-            }
+        $file_path = make_directory($dirname) . DIRECTORY_SEPARATOR . $file_name;
 
-            // If no error message is defined, use the error message in the Config\Validation file
-            if (!$messages) {
-                $errorName = $rules . '_errors';
-                $messages = $validation->$errorName ?? [];
-            }
-
-            $rules = $validation->$rules;
+        if (!move_uploaded_file($file['tmp_name'], $file_path)) {
+            return null;
         }
 
-	    return $this->validator->setRules($rules, $messages)->run($input);
+        return [
+            'file_name' => $file_name,
+            'file_url' => get_temp_image_url($file_name, $dirname)
+        ];
     }
 
 }

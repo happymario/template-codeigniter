@@ -8,18 +8,30 @@
 
 namespace App\Controllers\Api;
 
+use App\Models\PushModel;
 use CodeIgniter\HTTP\RequestInterface;
 use CodeIgniter\HTTP\ResponseInterface;
 use Psr\Log\LoggerInterface;
 
-class Push extends ApiBase
+class Push extends Base_api
 {
+    /**
+     * @var PushModel
+     */
+    private $pushModel;
+
     /************************************************************************
      * Overrides
-     *************************************************************************/
+     ************************************************************************
+     * @param RequestInterface $request
+     * @param ResponseInterface $response
+     * @param LoggerInterface $logger
+     */
     public function initController(RequestInterface $request, ResponseInterface $response, LoggerInterface $logger)
     {
         parent::initController($request, $response, $logger);
+
+        $this->pushModel = new PushModel();
     }
 
 
@@ -27,21 +39,32 @@ class Push extends ApiBase
      * APIs
      *************************************************************************/
     function push_list() {
-        $this->set_api_params([
-            new ApiParamModel('access_token', 'required'),
-            new ApiParamModel('page', 'required')
-        ]);
+        $access_token = $this->get_access_token();
 
-        $page_num = $this->request->getPost("page");
-        $access_token = $this->request->getPost("access_token");
+        $user_uid = $this->userModel->get_user_uid_by_access_token($access_token);
+        if($user_uid == null) {
+            return $this->response_error_code(API_RESULT_ERROR_ACCESS_TOKEN);
+        }
 
-        $this->_check_access_token($access_token);
+        $rules = [
+            'page' => 'required'
+        ];
+        $input = $this->request->getGet();
 
-        $receiver_uid = $this->_get_user_uid($access_token);
+        if (!$this->validateRequest($input, $rules)) {
+            return $this
+                ->response_error_status(
+                    ResponseInterface::HTTP_BAD_REQUEST,
+                    $this->validator->getErrors()
+                );
+        }
 
-        $push_model = model("PushModel");
-        $list = $push_model->api_list($page_num, $receiver_uid);
+        $page_num = $input['page'];
+        $access_token = $this->get_access_token();
+        $receiver_uid = $this->userModel->get_user_uid_by_access_token($access_token);
 
-        $this->_response_success($list);
+        $list = $this->pushModel->api_list($page_num, $receiver_uid);
+
+        return $this->response_success($list);
     }
 }

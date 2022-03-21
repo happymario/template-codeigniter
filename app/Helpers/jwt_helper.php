@@ -35,3 +35,4 @@ function getSignedJWTForUser($email)
     $jwt = JWT::encode($payload, Services::getSecretKey(), 'HS256');
     return $jwt;
 }
+

@@ -145,7 +145,7 @@
                         </div>
 
                         <div class="menu-item <?= !empty($menu) && $menu == MENU_NOTICE ? 'menu-item-active' : '' ?>">
-                            <a class="menu-link" href="<?= site_url('admin/appmanage/notice_list') ?>">
+                            <a class="menu-link" href="<?= site_url('admin/app/notice_list') ?>">
 										<span class="menu-icon">
 											<!--begin::Svg Icon | path: icons/duotune/coding/cod003.svg-->
 											<span class="svg-icon svg-icon-2">
@@ -165,7 +165,7 @@
                         </div>
 
                         <div class="menu-item <?= !empty($menu) && $menu == MENU_SETTING ? 'menu-item-active' : '' ?>">
-                            <a class="menu-link" href="<?= site_url('admin/appmanage/setting') ?>">
+                            <a class="menu-link" href="<?= site_url('admin/app/setting') ?>">
 										<span class="menu-icon">
 											<!--begin::Svg Icon | path: icons/duotune/coding/cod003.svg-->
 											<span class="svg-icon svg-icon-2">

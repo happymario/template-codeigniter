@@ -1,21 +1,36 @@
 <?php
 namespace App\Controllers\Admin;
 
+use App\Models\PushModel;
+use App\Models\UserModel;
 use CodeIgniter\HTTP\RequestInterface;
 use CodeIgniter\HTTP\ResponseInterface;
 use Psr\Log\LoggerInterface;
 
-class Push extends AdminBase
+class Push extends Base_admin
 {
+    /**
+     * @var UserModel
+     */
+    private $userModel;
+    /**
+     * @var PushModel
+     */
+    private $pushModel;
+
     /************************************************************************
      * Overrides
-     *************************************************************************/
+     ************************************************************************
+     * @param RequestInterface $request
+     * @param ResponseInterface $response
+     * @param LoggerInterface $logger
+     */
     public function initController(RequestInterface $request, ResponseInterface $response, LoggerInterface $logger)
     {
         parent::initController($request, $response, $logger);
 
-        $this->user_model = model("UserModel");
-        $this->push_model = model("PushModel");
+        $this->userModel = model("UserModel");
+        $this->pushModel = model("PushModel");
     }
 
 
@@ -27,16 +42,22 @@ class Push extends AdminBase
         $this->load_view('push/index', array(), array('page_title' => t('menu_notifications'), 'menu' => MENU_NOTIFICATION));
     }
 
+
+    /************************************************************************
+     * AJAX
+     *************************************************************************/
     public function ajax_table()
     {
+        $this->check_ajax();
+
         $start = $this->request->getPost('start');
         $length = $this->request->getPost('length');
         $order = $this->request->getPost('order');
         $keyword = $this->request->getPost('search_keyword');
 
-        $data = $this->push_model->datatable_list($start, $length, $order, $keyword);
+        $data = $this->pushModel->datatable_list($start, $length, $order, $keyword);
 
-        echo json_encode($data);
+        $this->ajax_result2($data);
     }
 
     public function ajax_send_push()
@@ -46,13 +67,13 @@ class Push extends AdminBase
         $once_100 = $this->request->getPost('once_100');
 
         if(!$this->validate(['title' => 'required', 'content'  => 'required'])) {
-            die(AJAX_RESULT_ERROR);
+            $this->ajax_result(AJAX_RESULT_ERROR);
         }
 
         $setting_model = model("SettingModel");
         $setting = $setting_model->where("status<>", STATUS_DELETE)->first();
         if($setting == null) {
-            die(AJAX_RESULT_ERROR);
+            $this->ajax_result(AJAX_RESULT_ERROR);
         }
 
         $count = 0;
@@ -88,11 +109,11 @@ class Push extends AdminBase
                 'message'=> $content,
                 'data' => json_encode(array("count" => $count))
             ];
-            $this->push_model->save($save_data);
-            die(AJAX_RESULT_SUCCESS);
+            $this->pushModel->save($save_data);
+            $this->ajax_result(AJAX_RESULT_SUCCESS);
         }
         else {
-            die(AJAX_RESULT_EMPTY);
+            $this->ajax_result(AJAX_RESULT_EMPTY);
         }
     }
 
@@ -101,17 +122,17 @@ class Push extends AdminBase
         $arr_uid = $this->request->getPost('uids');
 
         if($arr_uid == null) {
-            die(AJAX_RESULT_ERROR);
+            $this->ajax_result(AJAX_RESULT_ERROR);
         }
 
         $setting_model = model("SettingModel");
         $setting = $setting_model->where("status<>", STATUS_DELETE)->first();
         if($setting == null) {
-            die(AJAX_RESULT_ERROR);
+            $this->ajax_result(AJAX_RESULT_ERROR);
         }
 
         for($i = 0; $i < count($arr_uid); $i++) {
-            $push_row = $this->push_model->findById($arr_uid[$i]);
+            $push_row = $this->pushModel->findById($arr_uid[$i]);
 
             if($push_row == null) {
                 continue;
@@ -120,12 +141,13 @@ class Push extends AdminBase
             send_push_gotify($setting["gotify_app_key"], null, null, $push_row["type"], $push_row["title"], $push_row["message"]);
         }
 
-        die(AJAX_RESULT_SUCCESS);
+        $this->ajax_result(AJAX_RESULT_SUCCESS);
     }
 
     public function ajax_push_delete() {
         $uid = $this->request->getPost('uid');
-        $this->push_model->deleteById($uid, true);
-        die (AJAX_RESULT_SUCCESS);
+        $this->pushModel->deleteById($uid, true);
+
+        $this->ajax_result(AJAX_RESULT_SUCCESS);
     }
 }

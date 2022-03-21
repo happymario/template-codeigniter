@@ -3,29 +3,43 @@
 namespace App\Controllers\Admin;
 
 use App\Models\AdminModel;
+use App\Models\SettingModel;
 use CodeIgniter\HTTP\RequestInterface;
 use CodeIgniter\HTTP\ResponseInterface;
 use Psr\Log\LoggerInterface;
 
-class Login extends AdminBase
+class Login extends Base_admin
 {
+    /**
+     * @var AdminModel
+     */
+    private $adminModel;
+    /**
+     * @var SettingModel
+     */
+    private $settingModel;
+
     /************************************************************************
      * Overrides
-     *************************************************************************/
+     ************************************************************************
+     * @param RequestInterface $request
+     * @param ResponseInterface $response
+     * @param LoggerInterface $logger
+     */
     public function initController(RequestInterface $request, ResponseInterface $response, LoggerInterface $logger)
     {
         parent::initController($request, $response, $logger);
 
         $this->adminModel = new AdminModel();
+        $this->settingModel = new SettingModel();
     }
 
 
     /************************************************************************
-     * Pages
+     * Views
      *************************************************************************/
     public function index()
     {
-        //$this->cachePage(1000); // 1000s
         echo view("login/index");
     }
 
@@ -33,8 +47,7 @@ class Login extends AdminBase
     {
         $term_kind = $this->request->getGet('term_kind');
 
-        $setting_model = model("SettingModel");
-        $setting = $setting_model->asObject()->where('status<>', STATUS_DELETE)->first();
+        $setting = $this->settingModel->asObject()->where('status<>', STATUS_DELETE)->first();
 
         $title = t('use_agreement');
         if($term_kind == 'use') {
@@ -43,7 +56,7 @@ class Login extends AdminBase
         else {
             $term = $term_kind;
         }
-        $this->load_origin_view("layout/term", array('page_title' => $title, 'term' => $term));
+        $this->load_view_without_layout("layout/term", array('page_title' => $title, 'term' => $term));
     }
 
     public function logout()
@@ -58,13 +71,12 @@ class Login extends AdminBase
      *************************************************************************/
     public function ajax_login()
     {
-        if (!$this->request->isAJAX()) {
-            $this->ajax_result(AJAX_RESULT_ERROR);
-        }
+        $this->check_ajax();
 
         $id = $this->request->getPost('id');
         $pwd = $this->request->getPost('pwd');
         $exist = $this->adminModel->checkAdmin($id, $pwd);
+
         if ($exist == null) {
             $this->ajax_result(AJAX_RESULT_EMPTY);
         } else {
@@ -75,6 +87,8 @@ class Login extends AdminBase
 
     public function ajax_change_admin_info()
     {
+        $this->check_ajax();
+
         $id = $this->request->getPost("id");
         $pwd = $this->request->getPost("pwd");
 
@@ -85,7 +99,9 @@ class Login extends AdminBase
 
         $session = session();
         $adminUid = $session->get(SESSION_ADMIN_UID);
-        $this->db->update('tb_admin', $save_data, array('uid' => $adminUid));
-        die ("success");
+
+        $this->adminModel->saveById($adminUid, $save_data);
+
+        $this->ajax_result(AJAX_RESULT_SUCCESS);
     }
 }

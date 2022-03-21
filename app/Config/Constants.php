@@ -97,6 +97,7 @@ define('ADMIN_VERSION', '1.0');
 //upload
 define('UPLOAD_PATH', FCPATH . 'uploads' . DIRECTORY_SEPARATOR);
 define('UPLOAD_URL_PATH', "uploads/");
+define('TEMP_DIR', "temp");
 
 //email
 defined('SMTP_EMAIL_ADDRESS')           OR  define('SMTP_EMAIL_ADDRESS', 'agbd@gmail.com');
@@ -117,23 +118,27 @@ define('USER_STATUS_EXIT', '3');
 // Api ResultCode
 define('STR_RESULT_CODE', 'resultcode');
 define('API_RESULT_SUCCESS', 0);    //성공
+
 define('API_RESULT_ERROR_SYSTEM', 101);  //체계 오유
 define('API_RESULT_ERROR_DB', 102);    //DB 오유
 define('API_RESULT_ERROR_PRIVILEGE', 103);    //권한 오유
 define('API_RESULT_ERROR_PARAM', 104);    //Parameter 오유
 define('API_RESULT_ERROR_UPLOAD', 105);   //화일upload 오유
-define('API_RESULT_ERROR_ACCESS_TOKEN', 106);   //접근Token 오유
-define('API_RESULT_ERROR_CERT_KEY', 107);   //인증번호 오유
-define('API_RESULT_ERROR_LOGIN_FAILED', 201); //Login 오유
-define('API_RESULT_ERROR_LOGIN_PASSWORD', 211); //비밀번호 오유
-define('API_RESULT_ERROR_USER_NO_EXIST', 202); //회원정보없음 오유
-define('API_RESULT_ERROR_EMAIL_DUPLICATE', 203);    //Email중복 오유
-define('API_RESULT_ERROR_EMAIL_NO_EXIST', 204); //Email없음 오유
-define('API_RESULT_ERROR_USER_PAUSED', 205); //정지회원 오유
-define('API_RESULT_ERROR_NICKNAME_DUPLICATE', 206);    //이름중복 오유
-define('API_RESULT_ERROR_NICKNAME_LENGTH', 207);    //이름길이 오유
-define('API_RESULT_ERROR_EMAIL_VERIFIED', 208);    //Email인증 오유
-define('API_RESULT_ERROR_PURCHASE', 209);    //결제 오유
+
+define('API_RESULT_ERROR_ACCESS_TOKEN', 201);   //접근Token 오유
+define('API_RESULT_ERROR_CERT_KEY', 202);   //인증번호 오유
+define('API_RESULT_ERROR_LOGIN_FAILED', 203); //Login 오유
+define('API_RESULT_ERROR_LOGIN_PASSWORD', 204); //비밀번호 오유
+define('API_RESULT_ERROR_USER_NO_EXIST', 205); //회원정보없음 오유
+define('API_RESULT_ERROR_EMAIL_DUPLICATE', 206);    //Email중복 오유
+define('API_RESULT_ERROR_EMAIL_NO_EXIST', 207); //Email없음 오유
+define('API_RESULT_ERROR_USER_PAUSED', 208); //정지회원 오유
+define('API_RESULT_ERROR_NICKNAME_DUPLICATE', 209);    //이름중복 오유
+define('API_RESULT_ERROR_NICKNAME_LENGTH', 210);    //이름길이 오유
+define('API_RESULT_ERROR_EMAIL_VERIFIED', 211);    //Email인증 오유
+
+define('API_RESULT_ERROR_PURCHASE', 301);    //결제 오유
+define('API_RESULT_ERROR_PURCHASE_DUPLICATED', 302);    //결제 중복 오유
 
 // push type
 define('PUSH_TYPE_NOTICE', 0);    // 공동
