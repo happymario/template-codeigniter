@@ -56,36 +56,22 @@ if (!String.prototype.startsWith) {
     };
 }
 
-function showSweetAlert(message, button_type) {
-    var sa_message = message;
-
-    swal.fire({
-        text: sa_message,
-        icon: "success",
+function showAlert(msg, is_error = false, btn = "확인", callback = null) {
+    Swal.fire({
+        text: msg,
+        icon: is_error ? "error": 'success',
         buttonsStyling: false,
-        confirmButtonText: "확인",
+        confirmButtonText: btn,
         customClass: {
-            confirmButton: button_type
+            confirmButton: is_error? "btn btn-danger": "btn btn-success"
         }
-    }).then(function() {
-        KTUtil.scrollTop();
-    });
+    }).then(function (result) {
+        if (result.isConfirmed) {
+            callback(result);
+        }
+    });;
 }
 
-function showSweetConfirm(message, button_type, callback) {
-    var sa_message = message;
-
-    swal({
-            title: '',
-            text: sa_message,
-            type: '',
-            confirmButtonClass: button_type,
-            confirmButtonText: "확인",
-            showCancelButton: true,
-            cancelButtonText: "취소",
-        },
-        callback);
-}
 
 function showNotification(no_title, message, type) {
 

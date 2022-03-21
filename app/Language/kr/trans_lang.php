@@ -33,6 +33,7 @@ $lang = array(
     'yes' =>'예',
     'no' => '아니요',
     'update' => '변경',
+    'confirm' => '확인',
     
     //messages
     'msg_success_save' => '성공적으로 보관되였습니다.',
@@ -47,14 +48,15 @@ $lang = array(
 
     'msg_input_id' => '식별자를 입력해주십시오.',
     'msg_input_pwd' => '비밀번호를 입력해주십시오.',
-    'msg_input_email' => '유효한 Email을 입력해주십시오.',
+    'msg_input_email' => 'Email을 입력해주십시오.',
     'msg_input_varname' => '변수명을 입력해주십시오.',
     'msg_input_all' => '모든 내용을 입력해주십시오.',
     'msg_input_name' =>'이름을 입력해 주세요.',
     'msg_select_photo' => '사진을 선택해주십시오.',
     'msg_select_list' => '항목들을 선택해주십시오.',
     'msg_select_profile_img_size' => '1:1비률의 사진을 선택해주십시오.',
-
+    'msg_waiting' => '잠간만 기다려주십시오...',
+    'msg_input_valid_email' => '유효한 Email을 입력해주십시오.',
 
     //api errors
     'success' => '성공',

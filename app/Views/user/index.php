@@ -1,6 +1,6 @@
 <!--begin::SearchForm-->
-<div class="card card-custom">
-    <div class="card-body">
+<div class="card card-flush">
+    <div class="card-body pt-0">
         <!--begin: Search Form-->
         <form id="frm_search" role="form">
             <div class="form-group row md-12" style="justify-content: center;">

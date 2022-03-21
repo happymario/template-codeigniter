@@ -14,9 +14,6 @@ class Test extends BaseController
     }
 
     public function howto() {
-	    // disable CSS file caching
-        $this->cachePage(0);
-
         //return view('test/example_layout');
         return view('test/example_howto');
     }

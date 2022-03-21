@@ -58,6 +58,9 @@ class BaseController extends Controller
 		// E.g.: $this->session = \Config\Services::session();
 
         \helper(['url', 'common']);
+
+        // disable CSS file caching
+        $this->cachePage(0);
 	}
 
 	public function getRequestInput(IncomingRequest $request) {
@@ -69,21 +72,37 @@ class BaseController extends Controller
 	    return $input;
     }
 
-    public function validateRequest($input, $rules, $message=[]) {
+    public function getResponse(array $responseBody, $code = ResponseInterface::HTTP_OK)
+    {
+        return $this
+            ->response
+            ->setStatusCode($code)
+            ->setJSON($responseBody);
+    }
+
+    public function validateRequest($input, $rules, $messages=[]) {
 	    $this->validator = Services::Validation()->setRules($rules);
-	    if(is_string($rules)) {
-	        $validation = config('Validation');
-	        if(!isset($validation->$rules)) {
-	            throw  ValidationException::forRuleNotFound($rules);
+
+	    // If you replace the $rules array with the name of the group
+        if (is_string($rules)) {
+            $validation = config('Validation');
+
+            // If the rule wasn't found in the \Config\Validation, we
+            // should throw an exception so the developer can find it.
+            if (!isset($validation->$rules)) {
+                throw ValidationException::forRuleNotFound($rules);
             }
 
-	        if(!$message) {
-	            $errorName = $rules . '_errors';
-	            $message = $validation->$errorName ?? [];
+            // If no error message is defined, use the error message in the Config\Validation file
+            if (!$messages) {
+                $errorName = $rules . '_errors';
+                $messages = $validation->$errorName ?? [];
             }
-	        $rules = $validation->$rules;
+
+            $rules = $validation->$rules;
         }
-	    return $this->validator->setRules($rules, $message)->run($input);
+
+	    return $this->validator->setRules($rules, $messages)->run($input);
     }
 
 }
