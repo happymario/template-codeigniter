@@ -45,7 +45,7 @@ class User extends Base_admin
     /************************************************************************
      * Ajax
      *************************************************************************/
-    public function ajax_table()
+    public function ajax_datatable()
     {
         $this->check_ajax();
 
@@ -55,7 +55,8 @@ class User extends Base_admin
 
         $data = $this->userModel->datatable_list($start, $length, $keyword);
 
-        $this->ajax_result2($data);
+        //$this->ajax_result2($data);
+        die(json_encode($data, true));
     }
 
     public function ajax_detail($user_uid)

@@ -12,32 +12,35 @@
     <div class="card-body">
         <!--begin: Search Form-->
         <form id="frm_search" role="form">
-            <div class="form-group row md-12" style="justify-content: center;">
-                <label class="col-1 col-form-label"><?= t('search_word') ?></label>
-                <div class="col-4">
-                    <input class="form-control" type="text" value="" id="search_keyword" placeholder="<?= t('name') ?>">
+            <div class="col-md-12">
+                <div class="col-md-12" style="background: white;">
+                    <div class="col-md-12">
+                        <div class="col-md-12">
+                            <table class="table table-bordered">
+                                <tbody>
+                                <tr>
+                                    <td width="20%" class="center_align_title_td"><?= t('search_word') ?></td>
+                                    <td width="80%" class="padding_1">
+                                        <input class="form-control" id="search_keyword"
+                                               placeholder="<?= t('title') ?>, <?= t('content') ?>">
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
                 </div>
-            </div>
 
-            <div class="row md-12" style="justify-content: center;">
-                <button class="btn btn-primary btn-primary--icon" id="kt_search" onclick="onSearch()">
-													<span>
-														<i class="la la-search"></i>
-														<span>&nbsp;<?= t('search') ?></span>
-													</span>
-                </button>&#160;&#160;
-                <button class="btn btn-secondary btn-secondary--icon" id="kt_reset" onclick="onInit()">
-													<span>
-														<i class="la la-close"></i>
-														<span><?= t('initialize') ?></span>
-													</span>
-                </button>
+                <div class="col-md-12" align="center" style="margin-top: 16px;">
+                    <a class="btn btn-primary" onclick="onSearch()">&nbsp;&nbsp;<?= t('search') ?>&nbsp;&nbsp;</a>
+                    <a class="btn btn-secondary btn-outline" onclick="onInit()">&nbsp;&nbsp;<?= t('initialize') ?>
+                        &nbsp;&nbsp;</a>
+                </div>
             </div>
         </form>
     </div>
 </div>
 <!--end::SearchForm-->
-
 <!--begin::Card-->
 <div class="card card-custom" style="margin-top: 20px;">
     <div class="card-header">
@@ -99,7 +102,7 @@ require dirname(__FILE__) . "/send_popup.php";
                 "zeroRecords": '<?= t('no_data')?>'
             },
             ajax: { // define ajax settings
-                "url": "<?=site_url('admin/push/ajax_table')?>", // ajax URL
+                "url": "<?=site_url('admin/push/ajax_datatable')?>", // ajax URL
                 "type": "POST",
                 "data": function (data) {
                     onSetSearchParams(data);

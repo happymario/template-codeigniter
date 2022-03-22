@@ -1,28 +1,28 @@
-<div class="row" style="margin-top: 10px;background: white;">
+<div class="row" style="margin-top: 10px;">
     <div class="col-md-12">
         <div class="col-md-12">
-            <label style="width: 100%;font-size:18px;color: black;font-weight: 700"><?=t('name')?></label>
+            <label style="width: 100%;font-size:18px;color: black;font-weight: 700"><?= t('api_name')  ?></label>
             <span><?= $info['api_name'] ?></span>
         </div>
         <div class="col-md-12" style="margin-top: 10px;">
-            <label style="width: 100%;font-size:18px;color: black;font-weight: 700"><?=t('title')?></label>
+            <label style="width: 100%;font-size:18px;color: black;font-weight: 700">API <?= t('description') ?></label>
             <span><?= $info['api_exp'] ?></span>
         </div>
 
         <div class="col-md-12" style="margin-top: 10px;">
-            <label style="width: 100%;font-size:18px;color: black;font-weight: 700"><?=t('explain')?></label>
+            <label style="width: 100%;font-size:18px;color: black;font-weight: 700"><?= t('request') ?></label>
 
-            <table class="table table-bordered">
+            <table class="table">
                 <tbody>
                 <tr>
-                    <th class="bg bg-success"><?=t('access_addr')?></th>
+                    <th class="bg bg-success">URL</th>
                     <th>
                         <a href="<?= site_url("api/" . $info['api_name']) ?>"
                            target="_blank"><?= site_url("api/" . $info['api_name']) ?></a>
                     </th>
                 </tr>
                 <tr>
-                    <th class="bg bg-success"><?=t('access_way')?></th>
+                    <th class="bg bg-success"><?= t('method') ?></th>
                     <th><?= $info['api_method'] ?></th>
                 </tr>
                 <tr>
@@ -41,31 +41,16 @@
             <form action="<?= site_url("api/" . $info['api_name']) ?>" method="<?= $info['api_method'] ?>"
                   enctype="multipart/form-data" id="frm_test">
                 <input type="hidden" name="pretty" value="1">
-                <table class="table table-hover table-bordered">
+                <table class="table table-hover">
                     <tbody>
                     <tr>
-                        <th style="text-align: center" class="bg bg-warning" width="120"><?=t('var_name')?></th>
-                        <th style="text-align: center" class="bg bg-warning" width="100"><?=t('type')?></th>
-                        <th style="text-align: center" class="bg bg-warning" width="80"><?=t('kind')?></th>
-                        <th style="text-align: center" class="bg bg-warning"><?=t('explain')?></th>
+                        <th style="text-align: center" class="bg bg-warning" width="120"><?= t('variable_name') ?></th>
+                        <th style="text-align: center" class="bg bg-warning" width="100"><?= t('data_type') ?></th>
+                        <th style="text-align: center" class="bg bg-warning" width="80"><?= t('required') ?></th>
+                        <th style="text-align: center" class="bg bg-warning"><?= t('description') ?></th>
                         <th style="text-align: center" class="bg bg-warning" width="250" style="text-align: center">
-                            <button type="button" class="btn btn-xs btn-success" onclick="testResult()"><?=t('result_view')?></button>
+                            <button type="button" class="btn btn-xs btn-success" onclick="testResult()"><?= t('view_result') ?></button>
                         </th>
-                    </tr>
-                    <tr style="display: none">
-                        <td>lang</td>
-                        <td>String</td>
-                        <td>생략가능</td>
-                        <td style="text-align: left;">
-                            오유문자렬 언어: 'korean/english', 기정값 english
-                        </td>
-                        <td>
-                            <select name="lang">
-                                <option value="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;english&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                </option>
-                                <option value="korean" selected>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;korean&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</option>
-                            </select>
-                        </td>
                     </tr>
                     <?php
                     for ($i = 0; $i < count($arr_input); $i++) {
@@ -83,7 +68,7 @@
                                     <?php
                                 } else if ($arr_input[$i]['ai_type'] == "Multi Files") {
                                     ?>
-                                    <input type="file" multiple="multiple" name="<?= $arr_input[$i]['ai_name'] ?>">
+                                    <input type="file" multiple="multiple" name="<?= $arr_input[$i]['ai_name'].'[]' ?>">
                                     <?php
                                 } else {
                                     ?>
@@ -102,52 +87,52 @@
         </div>
 
         <div class="col-md-12" style="margin-top: 10px;">
-            <label style="width: 100%;font-size:18px;color: black;font-weight: 700"><?=t('ret_val')?></label>
+            <label style="width: 100%;font-size:18px;color: black;font-weight: 700"><?= t('response') ?></label>
 
-            <table class="table table-hover table-bordered">
+            <table class="table table-hover">
                 <tbody>
                 <tr>
-                    <th colspan="2" style="text-align: center" class="bg bg-warning" width="120"><?=t('var_name')?></th>
-                    <th style="text-align: center" class="bg bg-warning" width="100"><?=t('type')?></th>
-                    <th style="text-align: center" class="bg bg-warning" width="80"><?=t('kind')?></th>
-                    <th style="text-align: center" class="bg bg-warning"><?=t('explain')?></th>
+                    <th colspan="2" style="text-align: center" class="bg bg-warning" width="120"><?= t('variable_name') ?></th>
+                    <th style="text-align: center" class="bg bg-warning" width="100"><?= t('data_type') ?></th>
+                    <th style="text-align: center" class="bg bg-warning" width="80"><?= t('required') ?></th>
+                    <th style="text-align: center" class="bg bg-warning"><?= t('description') ?></th>
                 </tr>
                 <tr>
                     <td colspan="2">result</td>
                     <td>Integer</td>
-                    <td><?=t('required')?></td>
+                    <td><?= t('required') ?></td>
                     <td style="text-align: left;">
-                        <strong>0: <?=t('success')?></strong><br>
-                        기타 오유 &nbsp;&nbsp; <a target="_blank" href="<?= site_url('admin/apimanage/apierrors') ?>"><?=t('go_error_code')?></a>
+                        <strong>0: <?= t('success') ?></strong><br>
+                        <?= t('other_error') ?>
                     </td>
                 </tr>
                 <tr>
                     <td colspan="2">msg</td>
                     <td>String</td>
-                    <td><?=t('required')?></td>
+                    <td><?= t('required') ?></td>
                     <td style="text-align: left;">
-                        <strong>오유문자렬(사용자용)</strong><br>
-                        성공인 경우 '성공', 'Success'<br>
-                        오유인 경우 오유문자렬
+                        <strong><?= t('err_msg_user') ?></strong><br>
+                        <?= t('success_in_case_of_success') ?><br>
+                        <?= t('error_msg_in_case_of_error') ?>
                     </td>
                 </tr>
                 <tr>
                     <td colspan="2">reason</td>
                     <td>String</td>
-                    <td><?=t('required')?></td>
+                    <td><?= t('required') ?></td>
                     <td style="text-align: left;">
-                        <strong>오유원인(개발자용)</strong><br>
-                        성공인 경우 빈 문자렬<br>
-                        오유인 경우 오유문자렬
+                        <strong><?= t('err_reason_dev') ?></strong><br>
+                        <?= t('empty_string_in_case_of_success') ?><br>
+                        <?= t('error_reason_in_case_of_error') ?>
                     </td>
                 </tr>
                 <tr>
                     <td colspan="2">data</td>
                     <td>Object</td>
-                    <td><?=t('success')?>일때</td>
+                    <td><?= t('only_when_success') ?></td>
                     <td style="text-align: left;">
-                        <strong>성공인 경우에만 존재함</strong><br><br>
-                        <strong style="color: red;font-size: small">※아래의 마당들은 data object 내부변수들임</strong>
+                        <strong><?= t('exists_only_when_success') ?></strong><br><br>
+                        <strong style="color: red;font-size: small"><?= t('these_are_data_object_variables') ?></strong>
                     </td>
                 </tr>
 
@@ -180,10 +165,7 @@
 
 <script>
     $(document).ready(function () {
-        $('#left_menu_apimanage_parent').addClass("active");
-        $('#left_menu_apimanage_parent').children("a:eq(0)").children("span:eq(1)").addClass("selected");
-        $('#left_menu_apimanage_parent').children("a:eq(0)").children("span:eq(2)").addClass("open");
-        $('#left_menu_apimanage_parent').children("ul:eq(0)").children("li:eq(1)").addClass("open");
+        $('#menu_api_doc').addClass('active');
         $('#page_title').html("<?=$info['api_name']?> : <?=$info['api_exp']?>");
     })
 
@@ -199,19 +181,20 @@
         // $("#frm_test").submit();
 
         function beforeSubmit() {
-            KTApp.block('#total_body', {
+            App.blockUI({
                 animate: true,
+                target: '#total_body',
                 boxed: false
             });
         }
 
         function afterSuccess(data) {
-            KTApp.unblock('#total_body');
+            App.unblockUI('#total_body');
             $('#jsondecode_result').html(data);
         }
 
         function afterError(request, status, error) {
-            KTApp.unblock('#total_body');
+            App.unblockUI('#total_body');
             var data = "code:" + request.status + "\n" + "error:" + error + "\n\n" + "message:" + request.responseText;
             $('#jsondecode_result').text(data);
         }

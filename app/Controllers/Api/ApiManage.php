@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Controllers\Admin;
+namespace App\Controllers\Api;
 
+use App\Controllers\Admin\Base_admin;
 use App\Models\ApiInputModel;
 use App\Models\ApiListModel;
 use App\Models\ApiOutputModel;

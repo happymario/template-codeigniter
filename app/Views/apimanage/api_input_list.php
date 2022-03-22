@@ -1,29 +1,29 @@
-<div class="row" style="background: white">
+<div class="row">
     <div class="col-md-12">
         <div class="col-md-12">
             <div class="btn-group"  style="float: right;margin-top: 20px;">
-                <button type="button" class="btn red" style="font-size: 13px;" id="btnMultiDel"><i class="fa fa-trash-o"></i>&nbsp;<?=t('multiple_delete')?></button>
-                <a type="button" class="btn btn-success" style="font-size: 13px;" href="<?=site_url('admin/apimanage/api_output_list')?>?id=<?=$api_idx?>">Output <?=t('list_go')?></a>
-                <a type="button" class="btn btn-primary" style="font-size: 13px;" href="<?=site_url('admin/apimanage/edit_api_input_data')?>?ai_idx=0&api_idx=<?=$api_idx?>"><i class="fa fa-plus"></i>&nbsp;Input <?=t('var')?><?=t('add')?></a>
+                <button type="button" class="btn red" style="font-size: 13px;" id="btnMultiDel"><i class="fa fa-trash-o"></i>&nbsp;<?= t('multi_delete') ?></button>
+                <a type="button" class="btn btn-success" style="font-size: 13px;" href="<?=site_url('api/ApiManage/api_output_list')?>?id=<?=$api_idx?>"><?= t('go_output_list') ?></a>
+                <a type="button" class="btn btn-primary" style="font-size: 13px;" href="<?=site_url('api/ApiManage/edit_api_input_data')?>?ai_idx=0&api_idx=<?=$api_idx?>"><i class="fa fa-plus"></i>&nbsp;<?= t('add_input_variable') ?></a>
             </div>
         </div>
     </div>
 
     <div class="col-md-12" id="div_api_input_table">
         <div class="col-md-12" style="margin-top: 10px;">
-            <label><?=t('total')?>  : <span><?=count($arr_input)?></span><?=t('gen')?> </label>
+            <label><?= t('all') ?> : <span><?=count($arr_input)?></span>건</label>
         </div>
 
         <div class="col-md-12">
-            <table id="api_input_table" class="table table-bordered">
-                <thead style="background-color: #36c6d3">
+            <table id="api_input_table" class="table">
+                <thead>
                 <th style="width: 5%;text-align: center"></th>
-                <th style="width: 15%;text-align: center"><?=t('var_name')?></th>
-                <th style="width: 15%;text-align: center"><?=t('type')?></th>
-                <th style="width: 10%;text-align: center"><?=t('kind')?></th>
-                <th style="width: 40%;text-align: center"><?=t('explain')?></th>
-                <th style="width: 8%;text-align: center"><?=t('order')?></th>
-                <th style="width: 6%;text-align: center"><?=t('update')?></th>
+                <th style="width: 15%;text-align: center"><?= t('variable_name') ?></th>
+                <th style="width: 15%;text-align: center"><?= t('data_type') ?></th>
+                <th style="width: 10%;text-align: center"><?= t('required') ?></th>
+                <th style="width: 40%;text-align: center"><?= t('description') ?></th>
+                <th style="width: 8%;text-align: center"><?= t('order') ?></th>
+                <th style="width: 6%;text-align: center"><?= t('edit') ?></th>
                 </thead>
                 <tbody>
                 <?php
@@ -36,7 +36,7 @@
                         <td><?=$arr_input[$i]['ai_ness']?></td>
                         <td style="text-align: left;white-space: pre-wrap;"><?=$arr_input[$i]['ai_exp']?></td>
                         <td><?=$arr_input[$i]['ai_sort']?></td>
-                        <td><a href="<?=site_url('admin/apimanage/edit_api_input_data')?>?ai_idx=<?=$arr_input[$i]['ai_idx']?>&api_idx=<?=$api_idx?>"><i class="fa fa-edit"></i></a></td>
+                        <td><a href="<?=site_url('api/ApiManage/edit_api_input_data')?>?ai_idx=<?=$arr_input[$i]['ai_idx']?>&api_idx=<?=$api_idx?>"><i class="fa fa-edit"></i></a></td>
                     </tr>
                     <?php
                 }
@@ -48,22 +48,20 @@
 </div>
 <script>
     $(document).ready(function(){
-        $('#left_menu_apimanage_parent').addClass("active");
-        $('#left_menu_apimanage_parent').children("a:eq(0)").children("span:eq(1)").addClass("selected");
-        $('#left_menu_apimanage_parent').children("a:eq(0)").children("span:eq(2)").addClass("open");
-        $('#left_menu_apimanage_parent').children("ul:eq(0)").children("li:eq(0)").addClass("open");
-        $('#page_title').html("<?=$api_name?>:Input <?=t('list')?>");
+        $('#menu_api_mng').addClass('active');
+        $('#page_title').html("<?=$api_name?>:Input<?= t('list') ?>");
     })
 
     $("#btnMultiDel").click(function () {
-
         var chks = document.getElementsByName("chk");
         var obj = new Object();
+        var id_arr = [];
 
         var nNum = 0;
         for (var nInd = 0; nInd < chks.length; nInd ++) {
             if (chks[nInd].checked == true) {
                 obj[nNum] = chks[nInd].value;
+                id_arr.push(chks[nInd].value);
                 nNum ++;
             }
         }
@@ -72,15 +70,15 @@
             return;
         }
 
-        if (!confirm("<?=t('msg_ask_delete')?>"))
+        if (!confirm("<?= t('really_delete') ?>"))
             return;
 
         $.ajax({
             type:'post',
-            url:'<?=site_url("admin/apimanage/delete_api_input_data")?>',
-            data:{'id': obj, 'api_idx':'<?=$api_idx?>'},
+            url:'<?=site_url("api/ApiManage/delete_api_input_data")?>',
+            data:'id=' + id_arr.join(",") + '&api_idx=<?=$api_idx?>',
             beforeSend:function(){
-                KTApp.block('#total_body', {
+                App.blockUI({
                     animate: true,
                     target: '#total_body',
                     boxed: false
@@ -90,8 +88,8 @@
                 if(data == "success"){
                     drawTable();
                 }else{
-                    KTApp.unblock('#total_body');
-                    showNotification("<?=t('error')?>", "<?=t('msg_error_occured')?>", "error");
+                    App.unblockUI('#total_body');
+                    showNotification("<?= t('error') ?>","<?= t('failed') ?>","error");
                 }
             }
         })
@@ -100,10 +98,10 @@
     function drawTable(){
         $.ajax({
             type:'post',
-            url:'<?=site_url("admin/apimanage/draw_api_input_list")?>',
+            url:'<?=site_url("api/ApiManage/draw_api_input_list")?>',
             data:'api_idx=' + '<?=$api_idx?>',
             success:function(data){
-                KTApp.unblock('#total_body');
+                App.unblockUI('#total_body');
                 $('#div_api_input_table').html(data);
             }
         })

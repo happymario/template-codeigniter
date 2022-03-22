@@ -39,13 +39,10 @@ $lang = array(
     'msg_success_save' => '성공적으로 보관되였습니다.',
     'msg_success_delete' => '성공적으로 삭제되였습니다.',
     'msg_success_oper' => '조작이 성공하였습니다.',
-
     'msg_error_not_matching_user' => '식별자 또는 비밀번호가 맞지 않습니다.',
     'msg_error_occured' => '예상치 않은 오유가 발생했습니다.',
     'msg_error_fix' => '오유를 수정해주십시오.',
-
     'msg_ask_delete' => '정말 삭제하시겠습니까?',
-
     'msg_input_id' => '식별자를 입력해주십시오.',
     'msg_input_pwd' => '비밀번호를 입력해주십시오.',
     'msg_input_email' => 'Email을 입력해주십시오.',
@@ -69,6 +66,54 @@ $lang = array(
     'error_paused' => '정지된 유저입니다.',
     'error_email_duplicated' => 'Email 또는 이름이 중복되였습니다.',
 
+    //api
+    'type' => '타입',
+    'multi_delete' => '다중 삭제',
+    'go_output_list' => '결과 리스트로 이동',
+    'add_input_variable' => '입력 파라미터 추가',
+    'variable_name' => '파라미터 이름',
+    'data_type' => '데이터 타입',
+    'required' => '필수',
+    'description' => '설명',
+    'order' => '순서',
+    'edit' => '편집',
+    'list' => '리스트',
+    'api_list' => 'API 리스트',
+    'api_doc' => 'API 문서',
+    'api_mng' => 'API 관리',
+    'really_delete' => '정말 삭제하시겠습니까?',
+    'add_output_variable' => '결과값 추가',
+    'go_input_list' => '입력파리미터 리스트로 이동',
+    'method' => '방식',
+    'note' => '노트',
+    'input_variable' => '입력 파라미터',
+    'output_variable' => '출력값',
+    'add_api' => 'API 추가',
+    'string_arr' => 'String 배열',
+    'integer_arr' => 'Integer 배열',
+    'not_required' => '필수 아님',
+    'please_input_variable_name' => '파라미터 이름을 입력하세요.',
+    'detail' => '상세',
+    'api_name' => 'API 이름',
+    'request' => '요청',
+    'view_result' => '결과 보기',
+    'response' => '응답',
+    'other_error' => '기타 오류',
+    'err_msg_user' => '오류 메시지(for User)',
+    'err_reason_dev' => '오류 원인(for Developer)',
+    'success_in_case_of_success' => '성공의 경우 \'Success\'',
+    'error_msg_in_case_of_error' => '오류인 경우 오류 메시지',
+    'empty_string_in_case_of_success' => '성공의 경우 \'\'',
+    'error_reason_in_case_of_error' => '오류인 경우 오류 원인',
+    'only_when_success' => '성공일때만',
+    'exists_only_when_success' => '성공일때만 존재',
+    'these_are_data_object_variables' => '※이 자료들은 내부 데이터들입니다.',
+    'use_yn' => 'YN이용',
+    'use' => '사용',
+    'not_use' => '사용불가',
+    'please_input_api_name' => 'API 이름을 입력해주세요.',
+    'upload_failed' => '업로드 실패',
+
     //menu
     'menu_home' => '기본페지',
     'menu_users' => '사용자 관리',
@@ -84,7 +129,6 @@ $lang = array(
 
     // login
     'login_title' =>'관&nbsp;&nbsp;리&nbsp;&nbsp;자',
-
 
     // home
     'plan_graph' =>'그라프',
@@ -145,30 +189,6 @@ $lang = array(
     'qa_phone' => "문의전화번호",
     'use_agreement' => "리용약관",
 
-    //api
-    'multiple_delete' => '다중삭제',
-    'gen' => '건',
-    'access_way' => '호출방식',
-    'explain' => '설명',
-    'etc' =>'비고',
-    'var' => '변수',
-    'total' => '전체',
-    'detail_view' =>'상세보기',
-    'list_go' => '목록가기',
-    'var_name' => '변수명',
-    'type' => '형태',
-    'kind' => '종류',
-    'order' => '순서',
-    'list' => '목록',
-    'access_addr' => '호출주소',
-    'access_info' => '호출정보',
-    'ret_val' => '리턴값',
-    'required' =>'필수',
-    'go_error_code' => '오유코드표 가기',
-    'used_status' => '사용여부',
-    'use' => '사용',
-    'no_use' => '사용안함',
-    'result_view' => '결과보기'
 );
 
 return $lang;

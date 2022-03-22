@@ -1,11 +1,11 @@
-<div class="row" style="margin-top: 30px;"  style="background: white">
+<div class="row" style="margin-top: 30px;">
     <div class="col-md-12">
-        <form method="post" action="<?=site_url('admin/apimanage/api_output_edit')?>" id="frm_api_output_edit">
+        <form method="post" action="<?=site_url('api/ApiManage/api_output_edit')?>" id="frm_api_output_edit">
             <input class="hidden" name="ai_idx" value="<?=$ai_idx?>">
             <input class="hidden" name="api_idx" value="<?=$api_idx?>">
             <div class="col-md-12">
                 <div class="col-md-2">
-                    <label style="font-size: 13px;float: right;font-weight: 700;line-height: 30px;"><?=t('var_name')?></label>
+                    <label style="font-size: 13px;float: right;font-weight: 700;line-height: 30px;"><?= t('variable_name') ?></label>
                 </div>
                 <div class="col-md-10">
                     <input class="form-control" id="ai_name" name="ai_name" value="<?php echo  $ai_idx > 0  ? $ai_name : ""; ?>">
@@ -14,7 +14,7 @@
 
             <div class="col-md-12" style="margin-top: 10px;">
                 <div class="col-md-2">
-                    <label style="font-size: 13px;float: right;font-weight: 700;"><?=t('type')?></label>
+                    <label style="font-size: 13px;float: right;font-weight: 700;"><?= t('data_type') ?></label>
                 </div>
                 <div class="col-md-10">
                     <div class="col-md-2" style="padding: 0px;">
@@ -23,8 +23,8 @@
                             <option value="Integer">Integer</option>
                             <option value="Double">Double</option>
                             <option value="Object">Object</option>
-                            <option value="String Arr">String Arr</option>
-                            <option value="Integer Arr">Integer Arr</option>
+                            <option value="<?= t('string_arr') ?>"><?= t('string_arr') ?></option>
+                            <option value="<?= t('integer_arr') ?>"><?= t('integer_arr') ?></option>
                             <option value="Object Arr">Object Arr</option>
                             <option value="File">File</option>
                             <option value="Multi Files">Multi Files</option>
@@ -36,15 +36,13 @@
             
             <div class="col-md-12" style="margin-top: 10px;">
                 <div class="col-md-2">
-                    <label style="font-size: 13px;float: right;font-weight: 700;"><?=t('kind')?></label>
+                    <label style="font-size: 13px;float: right;font-weight: 700;"><?= t('required') ?></label>
                 </div>
                 <div class="col-md-10">
                     <div class="col-md-2" style="padding: 0px;">
                         <select class="form-control" name="ai_ness" id="ai_ness">
-                            <option value="필수">필수</option>
-                            <option value="성공">성공</option>
-                            <option value="오유">오유</option>
-                            <option value="빈값">빈값</option>
+                            <option value="<?= t('required') ?>"><?= t('required') ?></option>
+                            <option value="<?= t('not_required') ?>"><?= t('not_required') ?></option>
                         </select>
                     </div>
                 </div>
@@ -52,7 +50,7 @@
             
             <div class="col-md-12" style="margin-top: 10px;">
                 <div class="col-md-2">
-                    <label style="font-size: 13px;float: right;font-weight: 700;"><?=t('explain')?></label>
+                    <label style="font-size: 13px;float: right;font-weight: 700;"><?= t('description') ?></label>
                 </div>
                 <div class="col-md-10">
                     <textarea class="form-control" rows="6" name="ai_exp"><?php echo  $ai_idx > 0  ? $ai_exp : ""; ?></textarea>
@@ -61,7 +59,7 @@
 
             <div class="col-md-12" style="margin-top: 10px;">
                 <div class="col-md-2">
-                    <label style="font-size: 13px;float: right;font-weight: 700;line-height: 30px;"><?=t('order')?></label>
+                    <label style="font-size: 13px;float: right;font-weight: 700;line-height: 30px;"><?= t('order') ?></label>
                 </div>
                 <div class="col-md-10">
                     <input class="form-control" name="ai_sort"  value="<?php echo  $ai_idx > 0  ? $ai_sort : ""; ?>">
@@ -71,8 +69,8 @@
             <div class="col-md-12" style="margin-top: 10px;">
                 <div class="col-md-12">
                     <div style="float: right;">
-                        <a class="btn btn-danger" onclick="history.go(-1)"><?=t('cancel')?></a>
-                        <a class="btn btn-success" onclick="add_api_input()"><?=t('store')?></a>
+                        <a class="btn btn-danger" onclick="history.go(-1)"><?= t('cancel') ?></a>
+                        <a class="btn btn-success" onclick="add_api_input()"><?= t('save') ?></a>
                     </div>
                 </div>
             </div>
@@ -80,16 +78,13 @@
     </div>
 </div>
 
-<form class="hidden" method="get" action="<?=site_url('admin/apimanage/api_output_list')?>" id="frm_go_api_output_list">
+<form class="hidden" method="get" action="<?=site_url('api/ApiManage/api_output_list')?>" id="frm_go_api_output_list">
     <input class="hidden" name="id" value="<?=$api_idx?>">
 </form>
 <script>
     $(document).ready(function(){
-        $('#left_menu_apimanage_parent').addClass("active");
-        $('#left_menu_apimanage_parent').children("a:eq(0)").children("span:eq(1)").addClass("selected");
-        $('#left_menu_apimanage_parent').children("a:eq(0)").children("span:eq(2)").addClass("open");
-        $('#left_menu_apimanage_parent').children("ul:eq(0)").children("li:eq(0)").addClass("open");
-        $('#page_title').html("Output<?=t('var')?> <?=t('add')?>");
+        $('#menu_api_mng').addClass('active');
+        $('#page_title').html("<?= t('add_output_variable') ?>");
 
         if('<?=$ai_idx?>' != '0'){
             $('#ai_type').val('<?=$ai_type?>');
@@ -99,7 +94,7 @@
 
     function add_api_input(){
         if($('#ai_name').val() == ""){
-            showNotification("<?=t('error')?>","<?=t('msg_input_varname')?>","warning");
+            showNotification("<?= t('error') ?>","<?= t('please_input_variable_name') ?>","warning");
             return;
         }
 
@@ -112,18 +107,19 @@
         $("#frm_api_output_edit").ajaxSubmit(options);
 
         function beforeSubmit(){
-            KTApp.block('#total_body', {
+            App.blockUI({
                 animate: true,
+                target: '#total_body',
                 boxed: false
             });
         }
 
         function afterSuccess(data) {
-            KTApp.unblock('#total_body');
+            App.unblockUI('#total_body');
             if(data == "success"){
                 $('#frm_go_api_output_list').submit();
             }else{
-                showNotification("<?=t('error')?>","<?=t('msg_error_occured')?>","error");
+                showNotification("<?= t('error') ?>","<?= t('failed') ?>","error");
             }
         }
     }

@@ -46,7 +46,7 @@ class Push extends Base_admin
     /************************************************************************
      * AJAX
      *************************************************************************/
-    public function ajax_table()
+    public function ajax_datatable()
     {
         $this->check_ajax();
 
@@ -57,7 +57,8 @@ class Push extends Base_admin
 
         $data = $this->pushModel->datatable_list($start, $length, $order, $keyword);
 
-        $this->ajax_result2($data);
+        //$this->ajax_result2($data);
+        die(json_encode($data, true));
     }
 
     public function ajax_send_push()

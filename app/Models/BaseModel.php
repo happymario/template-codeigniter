@@ -10,7 +10,7 @@ class BaseModel extends Model
 {
     protected $statusKey = "status";
 
-    protected function findById($uid) {
+    public function findById($uid) {
         return $this->where($this->primaryKey, $uid)->first();
     }
 

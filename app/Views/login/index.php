@@ -115,7 +115,7 @@
     "use strict";
 
     // Class definition
-    var KTSigninGeneral = function() {
+    var LoginGeneral = function() {
         // Elements
         var form;
         var submitButton;
@@ -242,7 +242,7 @@
     $(function () {
         // On document ready
         KTUtil.onDOMContentLoaded(function () {
-            KTSigninGeneral.init();
+            LoginGeneral.init();
         });
     });
 </script>

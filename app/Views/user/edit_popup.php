@@ -8,9 +8,8 @@
 
 ?>
 
-<div class="modal fade in" id="edit_modal" tabindex="-1" aria-hidden="true"
-     style="display: none; padding-right: 16px;">
-    <div class="modal-dialog modal-lg">
+<div class="modal fade" id="edit_modal" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered mw-650px">
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
@@ -181,7 +180,10 @@
             $(getId_1('#user_uid')).val('');
             $(getId_1('#btn_save')).html('&nbsp;&nbsp;<?= t('add')?>&nbsp;&nbsp;');
 
-            $(rootEditModelID).modal();
+            var myModal = new bootstrap.Modal(document.getElementById('edit_modal'), {
+                keyboard: false
+            });
+            myModal.show();
         }
         else {
             $(getId_1('.modal-title')).html('<?= t('modify')?>');
@@ -199,7 +201,7 @@
             $(getId_1('#user_uid')).val(userInfo['uid']);
             $(getId_1('#btn_save')).html('&nbsp;&nbsp;<?= t('modify')?>&nbsp;&nbsp;');
 
-            $(rootEditModelID).modal();
+            $(rootEditModelID).show();
         }
     }
 </script>
