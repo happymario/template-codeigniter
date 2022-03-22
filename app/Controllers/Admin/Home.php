@@ -22,6 +22,6 @@ class Home extends Base_admin
 
     public function index()
     {
-        $this->load_view('home/index', array(), array('page_title' => t('menu_home'), 'menu' => MENU_USER));
+        $this->load_view('home/index', array(), array('page_title' => t('menu_home'), 'menu' => MENU_HOME));
     }
 }

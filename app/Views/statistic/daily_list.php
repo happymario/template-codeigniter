@@ -155,7 +155,7 @@
             },
             error: function (a, b, c) {
                 hideLoading();
-                showNotification("<?=t('error')?>", "<?=t('msg_error_occured')?>", "error");
+                showNotification("<?=t('error')?>", "<?=t('msg_error_server')?>", "error");
             }
         });
     }

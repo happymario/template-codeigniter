@@ -163,6 +163,7 @@ define('AJAX_RESULT_EMPTY', 'empty');
 
 
 // Menu
+define('MENU_HOME', 'menu_home');
 define('MENU_USER', 'menu_user');
 define('MENU_PHOTO_CHECK', 'menu_photo_check');
 define('MENU_NOTIFICATION', 'menu_notification');

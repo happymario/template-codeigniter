@@ -182,6 +182,7 @@
                 type: 'post',
                 url: '<?=site_url("Admin/Login/ajax_login")?>',
                 data: 'id=' + $('[name="email"]').val() + '&pwd=' + $('[name="password"]').val(),
+                dataType: 'json',
                 beforeSend: function () {
                     // Show loading indication
                     submitButton.setAttribute('data-kt-indicator', 'on');
@@ -189,7 +190,7 @@
                     // Disable button to avoid multiple click
                     submitButton.disabled = true;
                 },
-                success: function (data) {
+                success: function (response) {
 
                     // Hide loading indication
                     submitButton.removeAttribute('data-kt-indicator');
@@ -197,7 +198,6 @@
                     // Enable button
                     submitButton.disabled = false;
 
-                    const response = JSON.parse(data);
                     if (response['result'] == '<?=AJAX_RESULT_SUCCESS?>') {
                         showAlert('<?=t('msg_success_oper')?>', false, '<?=t('confirm')?>', function (result) {
                             form.querySelector('[name="email"]').value = "";

@@ -126,7 +126,7 @@
             success: function (result) {
                 hideLoading();
                 if (result == "<?=AJAX_RESULT_ERROR?>") {
-                    showNotification("<?=t('error')?>", "<?=t('msg_error_occured')?>", "error");
+                    showNotification("<?=t('error')?>", "<?=t('msg_error_server')?>", "error");
                     return;
                 }
                 gLoading = false;
@@ -154,16 +154,16 @@
             success: function (result) {
                 hideLoading();
                 if (result == "<?=AJAX_RESULT_SUCCESS?>") {
-                    showNotification("<?=t('success')?>", "<?=t('msg_success_oper')?>", "success");
+                    showNotification("<?=t('success')?>", "<?=t('msg_success_done')?>", "success");
                     $('#user_'+user_uid).remove();
 
                 } else {
-                    showNotification("<?=t('error')?>", "<?=t('msg_error_fix')?>", "error");
+                    showNotification("<?=t('error')?>", "<?=t('msg_error_request')?>", "error");
                 }
             },
             error: function (a, b, c) {
                 hideLoading();
-                showNotification("<?=t('error')?>","<?=t('msg_error_occured')?>","error");
+                showNotification("<?=t('error')?>","<?=t('msg_error_server')?>","error");
             }
         });
     }

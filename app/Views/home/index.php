@@ -8,7 +8,7 @@
 ?>
 
 <!--begin::Toolbar-->
-<div class="toolbar bg-transparent pt-6 mb-5" id="kt_toolbar">
+<div class="toolbar toolbar-fixed bg-transparent pt-6 mb-5" id="kt_toolbar">
     <!--begin::Container-->
     <div id="kt_toolbar_container" class="container-xxl d-flex flex-stack">
         <!--begin::Page title-->
@@ -55,7 +55,7 @@
         <!--begin::Row-->
         <div class="row gx-5 gx-xl-10">
             <!--begin::Col-->
-            <div class="col-xxl-4 mb-5 mb-xl-10">
+            <div class="col-xxl-6 mb-5 mb-xl-10">
                 <!--begin::Chart widget 27-->
                 <div class="card card-flush h-xl-100">
                     <!--begin::Header-->

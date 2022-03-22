@@ -39,8 +39,8 @@ $lang = array(
     'msg_success_oper' => 'Success operation',
 
     'msg_error_not_matching_user' => 'Id or password is not correct.',
-    'msg_error_occured' => 'An unexpected error occurred.',
-    'msg_error_fix' => 'Please fix issue.',
+    'msg_error_server' => 'An unexpected error occurred.',
+    'msg_error_request' => 'Please fix issue.',
 
     'msg_ask_delete' => 'Are you sure you want to delete it?',
 

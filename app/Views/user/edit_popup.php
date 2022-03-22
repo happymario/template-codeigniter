@@ -158,7 +158,7 @@
                     } else if (result == '<?=AJAX_RESULT_DUP?>') {
                         showNotification("<?=t('error')?>", "<?=t('error_email_duplicated')?>", "error");
                     } else {
-                        showNotification("<?=t('error')?>", "<?=t('msg_error_occured')?>", "error");
+                        showNotification("<?=t('error')?>", "<?=t('msg_error_server')?>", "error");
                     }
                 }
             });
@@ -201,7 +201,10 @@
             $(getId_1('#user_uid')).val(userInfo['uid']);
             $(getId_1('#btn_save')).html('&nbsp;&nbsp;<?= t('modify')?>&nbsp;&nbsp;');
 
-            $(rootEditModelID).show();
+            var myModal = new bootstrap.Modal(document.getElementById('edit_modal'), {
+                keyboard: false
+            });
+            myModal.show();
         }
     }
 </script>

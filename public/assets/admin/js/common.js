@@ -28,15 +28,6 @@ jQuery(function () {
     });
 });
 
-
-// $(document).ajaxStart(function () {
-//     showLoading();
-// });
-//
-// $(document).ajaxComplete(function () {
-//     hideLoading();
-// });
-
 $(function () {
     $('input[numberonly]').on('input', function (e) {
         $(this).val($(this).val().replace(new RegExp('[^0-9]', 'g'), ''));
@@ -69,22 +60,19 @@ function showAlert(msg, is_error = false, btn = "확인", callback = null) {
         if (result.isConfirmed) {
             callback(result);
         }
-    });;
+    });
 }
 
-
-function showNotification(no_title, message, type) {
-
-    var shortCutFunction = type;
-    var msg = message;
-    var title = no_title || '';
-
+function showNotification(message, is_error=false) {
     toastr.options = {
         "closeButton": true,
         "debug": false,
-        "positionClass": "toast-top-right",
+        "newestOnTop": false,
+        "progressBar": false,
+        "positionClass": "toastr-top-right",
+        "preventDuplicates": false,
         "onclick": null,
-        "showDuration": "1000",
+        "showDuration": "300",
         "hideDuration": "1000",
         "timeOut": "5000",
         "extendedTimeOut": "1000",
@@ -92,10 +80,31 @@ function showNotification(no_title, message, type) {
         "hideEasing": "linear",
         "showMethod": "fadeIn",
         "hideMethod": "fadeOut"
-    }
+    };
 
-    var $toast = toastr[shortCutFunction](msg, title); // Wire up an event handler to a button in the toast, if it exists
+    if(is_error) {
+        toastr.error(message);
+    }
+    else {
+        toastr.success(message);
+    }
 }
+
+var blockUI  = null;
+function showLoading() {
+    var target = document.querySelector("#kt_content");
+    if(blockUI == null) {
+        blockUI = new KTBlockUI(target);
+    }
+    blockUI.block();
+}
+
+function hideLoading() {
+    if(blockUI != null) {
+        blockUI.release();
+    }
+}
+
 
 function select_reverse(frm, need, v1) {
     var i;
@@ -140,19 +149,6 @@ function check_required(element, message, force_force) {
     }
     return true;
 }
-
-function showLoading() {
-    KTApp.block('#total_body', {
-        overlayColor: 'red',
-        opacity: 0.1,
-        state: 'primary' // a bootstrap color
-    });
-}
-
-function hideLoading() {
-    KTApp.unblock('#total_body');
-}
-
 
 function nl2br(str){
     return str.replace(/\n/g, "<br />");

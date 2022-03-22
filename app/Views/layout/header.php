@@ -33,7 +33,7 @@
 
 <!--begin::Body-->
 <body id="kt_body"
-      class="header-fixed header-tablet-and-mobile-fixed toolbar-enabled toolbar-fixed aside-enabled aside-fixed"
+      class="header-fixed header-tablet-and-mobile-fixed toolbar-enabled aside-enabled aside-fixed <?= !empty($menu) && $menu == MENU_HOME ? '': 'toolbar-fixed'?>"
       style="--kt-toolbar-height:55px;--kt-toolbar-height-tablet-and-mobile:55px">
 <!--begin::Main-->
 <!--begin::Root-->
@@ -48,7 +48,7 @@
             <!--begin::Brand-->
             <div class="aside-logo flex-column-auto" id="kt_aside_logo">
                 <!--begin::Logo-->
-                <a href="<?=base_url()?>">
+                <a href="#">
                     <img alt="Logo" src="<?=base_url()?>/assets/admin/img/ic_logo.png" class="h-25px logo"/>
                 </a>
                 <!--end::Logo-->
@@ -83,8 +83,8 @@
                     <div class="menu menu-column menu-title-gray-800 menu-state-title-primary menu-state-icon-primary menu-state-bullet-primary menu-arrow-gray-500"
                          id="#kt_aside_menu" data-kt-menu="true" data-kt-menu-expand="false">
 
-                        <div class="menu-item <?= !empty($menu) && $menu == MENU_USER ? 'menu-item-active' : '' ?>">
-                            <a class="menu-link" href="<?= site_url('admin/user') ?>">
+                        <div class="menu-item">
+                            <a class="menu-link <?= !empty($menu) && $menu == MENU_USER ? 'active' : '' ?>" href="<?= site_url('admin/user') ?>">
 										<span class="menu-icon">
 											<!--begin::Svg Icon | path: icons/duotune/coding/cod003.svg-->
 											<span class="svg-icon svg-icon-2">
@@ -103,8 +103,8 @@
                             </a>
                         </div>
 
-                        <div class="menu-item <?= !empty($menu) && $menu == MENU_PHOTO_CHECK ? 'menu-item-active' : '' ?>">
-                            <a class="menu-link" href="<?= site_url('admin/user/photo_list') ?>">
+                        <div class="menu-item">
+                            <a class="menu-link <?= !empty($menu) && $menu == MENU_PHOTO_CHECK ? 'active' : '' ?>" href="<?= site_url('admin/user/photo_list') ?>">
 										<span class="menu-icon">
 											<!--begin::Svg Icon | path: icons/duotune/coding/cod003.svg-->
 											<span class="svg-icon svg-icon-2">
@@ -125,8 +125,8 @@
                             </a>
                         </div>
 
-                        <div class="menu-item <?= !empty($menu) && $menu == MENU_NOTIFICATION ? 'menu-item-active' : '' ?>">
-                            <a class="menu-link" href="<?= site_url('admin/push') ?>">
+                        <div class="menu-item">
+                            <a class="menu-link  <?= !empty($menu) && $menu == MENU_NOTIFICATION ? 'active' : '' ?>" href="<?= site_url('admin/push') ?>">
 										<span class="menu-icon">
 											<!--begin::Svg Icon | path: icons/duotune/coding/cod003.svg-->
 											<span class="svg-icon svg-icon-2">
@@ -144,8 +144,8 @@
                             </a>
                         </div>
 
-                        <div class="menu-item <?= !empty($menu) && $menu == MENU_NOTICE ? 'menu-item-active' : '' ?>">
-                            <a class="menu-link" href="<?= site_url('admin/app/notice_list') ?>">
+                        <div class="menu-item ">
+                            <a class="menu-link <?= !empty($menu) && $menu == MENU_NOTICE ? 'active' : '' ?>" href="<?= site_url('admin/app/notice_list') ?>">
 										<span class="menu-icon">
 											<!--begin::Svg Icon | path: icons/duotune/coding/cod003.svg-->
 											<span class="svg-icon svg-icon-2">
@@ -164,8 +164,8 @@
                             </a>
                         </div>
 
-                        <div class="menu-item <?= !empty($menu) && $menu == MENU_SETTING ? 'menu-item-active' : '' ?>">
-                            <a class="menu-link" href="<?= site_url('admin/app/setting') ?>">
+                        <div class="menu-item ">
+                            <a class="menu-link <?= !empty($menu) && $menu == MENU_SETTING ? 'active' : '' ?>" href="<?= site_url('admin/app/setting') ?>">
 										<span class="menu-icon">
 											<!--begin::Svg Icon | path: icons/duotune/coding/cod003.svg-->
 											<span class="svg-icon svg-icon-2">
@@ -190,7 +190,7 @@
                             </div>
                         </div>
                         <div data-kt-menu-trigger="click" class="menu-item menu-accordion">
-									<span class="menu-link">
+									<span class="menu-link <?= empty($menu) ? 'active' : '' ?>">
 										<span class="menu-icon">
 											<!--begin::Svg Icon | path: icons/duotune/general/gen025.svg-->
 											<span class="svg-icon svg-icon-2">

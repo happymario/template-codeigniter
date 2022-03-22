@@ -86,7 +86,7 @@
                         $(rootEditModelID).modal('hide');
                         onInit();
                     } else {
-                        showNotification("<?=t('error')?>", "<?=t('msg_error_occured')?>", "error");
+                        showNotification("<?=t('error')?>", "<?=t('msg_error_server')?>", "error");
                     }
                 }
             });

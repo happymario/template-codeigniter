@@ -195,7 +195,7 @@
                     showNotification("<?=t('success')?>", "<?=t('msg_sucess_oper')?>", "success");
                     oTable._fnReDraw();
                 } else {
-                    showNotification("<?=t('error')?>", "<?=t('msg_error_occured')?>", "error");
+                    showNotification("<?=t('error')?>", "<?=t('msg_error_server')?>", "error");
                 }
             }
         })
