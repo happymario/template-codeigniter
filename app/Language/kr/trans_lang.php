@@ -80,7 +80,6 @@ $lang = array(
     'api_list' => 'API 리스트',
     'api_doc' => 'API 문서',
     'api_mng' => 'API 관리',
-    'really_delete' => '정말 삭제하시겠습니까?',
     'add_output_variable' => '결과값 추가',
     'go_input_list' => '입력파리미터 리스트로 이동',
     'method' => '방식',

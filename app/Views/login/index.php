@@ -171,7 +171,7 @@
                         // }, 2000);
                     } else {
                         // Show error popup. For more info check the plugin's official documentation: https://sweetalert2.github.io/
-                        showAlert('<?=t('msg_input_all')?>', true);
+                        showAlert('<?=t('msg_input_all')?>');
                     }
                 });
             });
@@ -199,7 +199,7 @@
                     submitButton.disabled = false;
 
                     if (response['result'] == '<?=AJAX_RESULT_SUCCESS?>') {
-                        showAlert('<?=t('msg_success_oper')?>', false, '<?=t('confirm')?>', function (result) {
+                        showAlertError('<?=t('msg_success_done')?>', function (result) {
                             form.querySelector('[name="email"]').value = "";
                             form.querySelector('[name="password"]').value = "";
 
@@ -211,7 +211,7 @@
                         });
                     }
                     else {
-                        showAlert('<?=t('msg_error_not_matching_user')?>', true);
+                        showAlertError('<?=t('msg_error_not_matching_user')?>');
                     }
                 },
                 error: function (a, b, c) {
@@ -221,7 +221,7 @@
                     // Enable button
                     submitButton.disabled = false;
 
-                    showAlert('<?=t('error_server')?>', true);
+                    showAlertError('<?=t('error_server')?>');
                 }
             })
         };

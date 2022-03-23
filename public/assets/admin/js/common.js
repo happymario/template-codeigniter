@@ -47,23 +47,29 @@ if (!String.prototype.startsWith) {
     };
 }
 
-function showAlert(msg, is_error = false, btn = "확인", callback = null) {
+function showAlertError(msg, callback = null) {
+    showAlert(msg, "확인", null, false, callback);
+}
+
+function showAlert(msg, yesbtn = "확인", nobtn = null, success = true, callback = null) {
     Swal.fire({
         text: msg,
-        icon: is_error ? "error": 'success',
+        icon: success ? 'success': "error",
         buttonsStyling: false,
-        confirmButtonText: btn,
+        confirmButtonText: yesbtn,
         customClass: {
-            confirmButton: is_error? "btn btn-danger": "btn btn-success"
-        }
+            confirmButton: success? "btn btn-success": "btn btn-danger"
+        },
+        showCancelButton: nobtn != null && nobtn !== "",
+        cancelButtonText: nobtn
     }).then(function (result) {
-        if (result.isConfirmed) {
+        if (callback != null) {
             callback(result);
         }
     });
 }
 
-function showNotification(message, is_error=false) {
+function showNotification(message, success=false) {
     toastr.options = {
         "closeButton": true,
         "debug": false,
@@ -82,7 +88,7 @@ function showNotification(message, is_error=false) {
         "hideMethod": "fadeOut"
     };
 
-    if(is_error) {
+    if(!success) {
         toastr.error(message);
     }
     else {

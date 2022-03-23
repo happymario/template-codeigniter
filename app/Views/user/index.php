@@ -35,8 +35,7 @@
         <!--begin::Actions-->
         <div class="d-flex align-items-center gap-2 gap-lg-3">
             <!--begin::Primary button-->
-            <a href="#" class="btn btn-sm btn-primary" data-bs-toggle="modal"
-               data-bs-target="#kt_modal_create_app" onclick="UserList.onUserReg()">
+            <a class="btn btn-sm btn-primary" onclick="UserList.onUserReg()">
                  <span class="svg-icon svg-icon-md">
                     <!--begin::Svg Icon | path:assets/media/svg/icons/Design/Flatten.svg-->
                     <svg xmlns="http://www.w3.org/2000/svg"
@@ -49,7 +48,7 @@
                                   fill="#000000" opacity="0.3"/>
                         </g>
                     </svg>
-                    <!--end::Svg Icon-->
+                     <!--end::Svg Icon-->
                  </span><?= t('add_user') ?>
             </a>
             <!--end::Primary button-->
@@ -85,7 +84,8 @@
 												</span>
                         <!--end::Svg Icon-->
                         <input type="text" data-kt-ecommerce-product-filter="search"
-                               class="form-control form-control-solid w-250px ps-14" placeholder="<?= t('name').", ".t('id') ?>"
+                               class="form-control form-control-solid w-250px ps-14"
+                               placeholder="<?= t('name') . ", " . t('id') ?>"
                                id="search_keyword"/>
                     </div>
                     <!--end::Search-->
@@ -100,12 +100,12 @@
                     <div class="w-100 mw-150px">
                         <!--begin::Select2-->
                         <select class="form-select form-select-solid" data-control="select2" data-hide-search="true"
-                                data-placeholder="<?=t('status');?>" data-kt-ecommerce-product-filter="status">
+                                data-placeholder="<?= t('status'); ?>" data-kt-ecommerce-product-filter="status">
                             <option></option>
-                            <option value="all"><?=t('all');?></option>
-                            <option value="published"><?=t('normal');?></option>
-                            <option value="scheduled"><?=t('pause');?></option>
-                            <option value="inactive"><?=t('exit');?></option>
+                            <option value="all"><?= t('all'); ?></option>
+                            <option value="published"><?= t('normal'); ?></option>
+                            <option value="scheduled"><?= t('pause'); ?></option>
+                            <option value="inactive"><?= t('exit'); ?></option>
                         </select>
                         <!--end::Select2-->
                     </div>
@@ -226,17 +226,20 @@
             <!--begin::Card body-->
             <div class="card-body pt-0">
                 <!--begin: Datatable-->
-                <table id="tbl_user" class="table align-middle table-row-dashed fs-6 gy-5">
+                <table id="tbl_user" class="table align-middle table-row-dashed min-h-400px fs-6 gy-5">
                     <thead class="th_custom_color">
-                    <th class="min-w-50px"><?= t('number') ?></th>
-                    <th class="text-end min-w-70px"><?= t('email') ?></th>
-                    <th class="text-end min-w-70px"><?= t('name') ?></th>
-                    <th class="text-end min-w-70px"><?= t('photo') ?></th>
-                    <th class="text-end min-w-70px"><?= t('status') ?></th>
-                    <th class="text-end min-w-70px"><?= t('backup') ?></th>
-                    <th class="text-end min-w-70px"><?= t('manage') ?></th>
+                        <tr class="text-start text-gray-400 fw-bolder fs-7 text-uppercase gs-0">
+                            <th><?= t('number') ?></th>
+                            <th><?= t('email') ?></th>
+                            <th><?= t('name') ?></th>
+                            <th><?= t('photo') ?></th>
+                            <th><?= t('status') ?></th>
+                            <th><?= t('backup') ?></th>
+                            <th class="text-end min-w-100px"><?= t('manage') ?></th>
+                        </tr>
                     </thead>
-                    <tbody>
+
+                    <tbody class="text-gray-600 fw-bold">
 
                     </tbody>
                 </table>
@@ -287,7 +290,44 @@ require dirname(__FILE__) . "/edit_popup.php";
                     },
                 },
                 columnDefs: [
-                    {targets: '_all', orderable: false}
+                    {targets: '_all', orderable: false},
+                    {
+                        targets: -1,
+                        data: null,
+                        orderable: false,
+                        className: 'text-end',
+                        render: function (data, type, row) {
+                            const detailBtn = '<a href="#" class="menu-link px-3" data-kt-docs-table-filter="edit_row" onclick="UserList.onUserDetail('+data['uid']+')">';
+                            const delBtn = '<a href="#" class="menu-link px-3" data-kt-docs-table-filter="delete_row" onclick="UserList.onUserDel('+data['uid']+')">';
+
+                            return `
+                            <a href="#" class="btn btn-light btn-active-light-primary btn-sm" data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end" data-kt-menu-flip="top-end">
+                                Actions
+                                <span class="svg-icon svg-icon-5 m-0">
+                                    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
+                                        <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                            <polygon points="0 0 24 0 24 24 0 24"></polygon>
+                                            <path d="M6.70710678,15.7071068 C6.31658249,16.0976311 5.68341751,16.0976311 5.29289322,15.7071068 C4.90236893,15.3165825 4.90236893,14.6834175 5.29289322,14.2928932 L11.2928932,8.29289322 C11.6714722,7.91431428 12.2810586,7.90106866 12.6757246,8.26284586 L18.6757246,13.7628459 C19.0828436,14.1360383 19.1103465,14.7686056 18.7371541,15.1757246 C18.3639617,15.5828436 17.7313944,15.6103465 17.3242754,15.2371541 L12.0300757,10.3841378 L6.70710678,15.7071068 Z" fill="#000000" fill-rule="nonzero" transform="translate(12.000003, 11.999999) rotate(-180.000000) translate(-12.000003, -11.999999)"></path>
+                                        </g>
+                                    </svg>
+                                </span>
+                            </a>
+                            <div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-600 menu-state-bg-light-primary fw-bold fs-7 w-125px py-4" data-kt-menu="true">
+                                <div class="menu-item px-3">
+                                   `+detailBtn+`
+                                        Edit
+                                    </a>
+                                </div>
+
+                                <div class="menu-item px-3">
+                                    `+delBtn+`
+                                        Delete
+                                    </a>
+                                </div>
+                            </div>
+                        `;
+                        },
+                    },
                 ],
                 order: [],
                 createdRow: function (row, data, dataIndex) {
@@ -315,30 +355,15 @@ require dirname(__FILE__) . "/edit_popup.php";
                     } else {
                         $('td:eq(5)', row).html('<a href="' + data['backup_url'] + '">' + data['backup_url'] + "</a>");
                     }
-
-                    const lastHtml = '\
-                            <a href="javascript:;" class="btn btn-sm btn-clean btn-icon" title="Edit details" onclick="UserList.onUserDetail(' + data['uid'] + ')" >\
-								<i class="la la-edit"></i>\
-							</a>\
-							<div class="dropdown dropdown-inline">\
-								<a href="javascript:;" class="btn btn-sm btn-clean btn-icon" data-toggle="dropdown">\
-	                                <i class="la la-trash"></i>\
-	                            </a>\
-							  	<div class="dropdown-menu dropdown-menu-sm dropdown-menu-right">\
-									<ul class="nav nav-hoverable flex-column">\
-							    		<li class="nav-item"><a class="nav-link"  onclick="UserList.onDelete(' + data['uid'] + ')"><i class="nav-icon la la-edit"></i><span class="nav-text">' + "<?= t('yes')?>" + '</span></a></li>\
-							    		<li class="nav-item"><a class="nav-link" href="#"><i class="nav-icon la la-leaf"></i><span class="nav-text">' + "<?= t('no')?>" + '</span></a></li>\
-									</ul>\
-							  	</div>\
-							</div>\
-						';
-
-                    $('td:last', row).html(lastHtml);
                 },
                 //// pagination control
                 lengthMenu: [10, 20, 50, 100],
                 // set the initial value
                 pageLength: 10,
+            });
+
+            oTable.on('draw', function () {
+                KTMenu.createInstances();
             });
         };
 
@@ -360,15 +385,14 @@ require dirname(__FILE__) . "/edit_popup.php";
                 success: function (response) {
                     hideLoading();
                     if (response['result'] == '<?=AJAX_RESULT_SUCCESS?>') {
-                        showEditPopup(response.data);
-                    }
-                    else {
-                        showNotification('<?=t('msg_error_request')?>', true);
+                        UserEditPopup.show(response.data);
+                    } else {
+                        showNotification('<?=t('msg_error_request')?>');
                     }
                 },
                 error: function (a, b, c) {
                     hideLoading();
-                    showNotification("<?=t('msg_error_server')?>", true);
+                    showNotification("<?=t('msg_error_server')?>");
                 }
             });
         };
@@ -385,15 +409,15 @@ require dirname(__FILE__) . "/edit_popup.php";
                     hideLoading();
                     const response = JSON.parse(result);
                     if (response['result'] == '<?=AJAX_RESULT_SUCCESS?>') {
-                        showNotification("<?=t('success')?>", "<?=t('msg_success_done')?>", "success");
+                        showNotification("<?=t('msg_success_done')?>", true);
                         oTable.draw(true);
                     } else {
-                        showNotification("<?=t('error')?>", "<?=t('msg_error_server')?>", "error");
+                        showNotification("<?=t('msg_error_server')?>");
                     }
                 },
                 error: function (a, b, c) {
                     hideLoading();
-                    showNotification("<?=t('error')?>", "<?=t('msg_error_server')?>", "error");
+                    showNotification("<?=t('msg_error_server')?>");
                 }
             });
         };
@@ -409,20 +433,27 @@ require dirname(__FILE__) . "/edit_popup.php";
                 }
             },
             onInit: function () {
-                $("#search_keyword").text('');
+                $("#search_keyword").val('');
 
                 if (oTable != null) {
                     oTable.draw(true);
                 }
             },
             onUserReg: function () {
-                showEditPopup(null);
+                UserEditPopup.show();
             },
             onUserDel: function (id) {
+                if (!confirm("<?= t('msg_ask_delete') ?>"))
+                    return;
                 ajaxDelete(id);
             },
             onUserDetail: function (id) {
                 ajaxDetail(id)
+            },
+            redraw:function () {
+                if (oTable != null) {
+                    oTable.draw(true);
+                }
             }
         }
     }();

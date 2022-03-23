@@ -105,6 +105,7 @@
 <!--begin::Global Javascript Bundle(used by all pages)-->
 <script src="<?= base_url() ?>/assets/metronic/plugins/global/plugins.bundle.js"></script>
 <script src="<?= base_url() ?>/assets/metronic/js/scripts.bundle.js"></script>
+<script src="<?= base_url() ?>/assets/metronic/js/widgets.bundle.js"></script>
 <!--end::Global Javascript Bundle-->
 <!--begin::Page Vendors Javascript(used by this page)-->
 <script src="<?= base_url() ?>/assets/metronic/plugins/custom/datatables/datatables.bundle.js"></script>

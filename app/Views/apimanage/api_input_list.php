@@ -70,7 +70,7 @@
             return;
         }
 
-        if (!confirm("<?= t('really_delete') ?>"))
+        if (!confirm("<?= t('msg_ask_delete') ?>"))
             return;
 
         $.ajax({

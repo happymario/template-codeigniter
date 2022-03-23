@@ -28,16 +28,6 @@
 /*****************************************************************
   My CSS
 *****************************************************************/
-/*Table*/
-.table > tbody > tr > td {
-  text-align: center;
-  vertical-align: middle;
-}
-
-.table thead tr th {
-  text-align: center !important;
-}
-
 /*Profile*/
 .profile {
   width: 100px;

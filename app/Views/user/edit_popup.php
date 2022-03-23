@@ -5,206 +5,315 @@
  * Date: 10/3/2020
  * Time: 5:27 PM
  */
-
 ?>
 
-<div class="modal fade" id="edit_modal" tabindex="-1">
+<!--begin::Modal - Add task-->
+<div class="modal fade" id="kt_modal_add_user" tabindex="-1" aria-hidden="true">
+    <!--begin::Modal dialog-->
     <div class="modal-dialog modal-dialog-centered mw-650px">
+        <!--begin::Modal content-->
         <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
-                <h4 class="modal-title"><?=t('add_user')?></h4>
+            <!--begin::Modal header-->
+            <div class="modal-header" id="kt_modal_add_user_header">
+                <!--begin::Modal title-->
+                <h2 class="fw-bolder"><?= t('add_user') ?></h2>
+                <!--end::Modal title-->
+                <!--begin::Close-->
+                <div class="btn btn-icon btn-sm btn-active-icon-primary" data-kt-users-modal-action="close">
+                    <!--begin::Svg Icon | path: icons/duotune/arrows/arr061.svg-->
+                    <span class="svg-icon svg-icon-1">
+																	<svg xmlns="http://www.w3.org/2000/svg" width="24"
+                                                                         height="24" viewBox="0 0 24 24" fill="none">
+																		<rect opacity="0.5" x="6" y="17.3137" width="16"
+                                                                              height="2" rx="1"
+                                                                              transform="rotate(-45 6 17.3137)"
+                                                                              fill="black"/>
+																		<rect x="7.41422" y="6" width="16" height="2"
+                                                                              rx="1" transform="rotate(45 7.41422 6)"
+                                                                              fill="black"/>
+																	</svg>
+																</span>
+                    <!--end::Svg Icon-->
+                </div>
+                <!--end::Close-->
             </div>
-            <div class="modal-body">
-                <form id="frm_edit">
-                    <div class="row">
-                        <div class="col-md-6 title-flex">
-                            <label class="center_align_title_td"><?= t('id') ?></label>
-                            <input type="text" class="form-control" id="id" name="id" placeholder="<?=t('input_id')?>"/>
-                        </div>
-                        <div class="col-md-6 title-flex">
-                            <label class="center_align_title_td"><?= t('name') ?></label>
-                            <input type="text" class="form-control" id="name" name="name" placeholder="<?=t('input_name')?>"/>
-                        </div>
-                    </div>
-
-                    <div class="row">
-                        <div class="col-md-6 title-flex">
-                            <label class="center_align_title_td"><?= t('pwd') ?></label>
-                            <input type="password" class="form-control" id="pwd" name="pwd" placeholder="<?=t('input_password')?>"/>
-                        </div>
-                        <div class="col-md-6 title-flex">
-                            <label class="center_align_title_td"><?= t('status') ?></label>
-                            <select class="form-control" id="status" name="status">
-                                <option value="<?=STATUS_NORMAL?>"><?=t('normal')?></option>
-                                <option value="<?=USER_STATUS_PAUSE?>""><?=t('pause')?></option>
-                                <option value="<?=USER_STATUS_EXIT?>"><?=t('exit')?></option>
-                            </select>
-                        </div>
-                    </div>
-
-                    <div class="row">
-                        <div class="col-md-6" style="padding: 10px 20px;">
-                            <div class="profile" style="display:inline;">
-                                <img src="<?= base_url() ?>/assets/admin/img/img_photo_default.png" alt="" class="bg"/>
-                                <img id="profile_img" name="profile_img" class="img image-popup-no-margins"/>
-                                <img src="<?= base_url() ?>/assets/admin/img/ic_close_black.png" alt="" style="" id="img_del" class="del"/>
-                                <input type="file" id="uploadfile" name="uploadfile" style="display: none;">
+            <!--end::Modal header-->
+            <!--begin::Modal body-->
+            <div class="modal-body scroll-y mx-5 mx-xl-15 my-7">
+                <!--begin::Form-->
+                <form id="kt_modal_add_user_form" class="form" action="#">
+                    <!--begin::Scroll-->
+                    <div class="d-flex flex-column scroll-y me-n7 pe-7" id="kt_modal_add_user_scroll"
+                         data-kt-scroll="true" data-kt-scroll-activate="{default: false, lg: true}"
+                         data-kt-scroll-max-height="auto" data-kt-scroll-dependencies="#kt_modal_add_user_header"
+                         data-kt-scroll-wrappers="#kt_modal_add_user_scroll" data-kt-scroll-offset="300px">
+                        <!--begin::Input group-->
+                        <div class="fv-row mb-7">
+                            <!--begin::Label-->
+                            <label class="d-block fw-bold fs-6 mb-5">Avatar</label>
+                            <!--end::Label-->
+                            <!--begin::Image input-->
+                            <div class="image-input image-input-outline image-input-empty" data-kt-image-input="true"
+                                 style="background-image: url('<?= base_url() ?>/assets/admin/img/img_photo_default.png')">
+                                <!--begin::Preview existing avatar-->
+                                <div class="image-input-wrapper w-125px h-125px" style="background-image: none;"></div>
+                                <!--end::Preview existing avatar-->
+                                <!--begin::Label-->
+                                <label class="btn btn-icon btn-circle btn-active-color-primary w-25px h-25px bg-body shadow"
+                                       data-kt-image-input-action="change" data-bs-toggle="tooltip"
+                                       title="Change avatar">
+                                    <i class="bi bi-pencil-fill fs-7"></i>
+                                    <!--begin::Inputs-->
+                                    <input type="file" name="avatar" accept=".png, .jpg, .jpeg" id="uploadfile"/>
+                                    <input type="hidden" name="avatar_remove"/>
+                                    <!--end::Inputs-->
+                                </label>
+                                <!--end::Label-->
+                                <!--begin::Cancel-->
+                                <span class="btn btn-icon btn-circle btn-active-color-primary w-25px h-25px bg-body shadow"
+                                      data-kt-image-input-action="cancel" data-bs-toggle="tooltip"
+                                      title="Cancel avatar">
+																				<i class="bi bi-x fs-2"></i>
+																			</span>
+                                <!--end::Cancel-->
+                                <!--begin::Remove-->
+                                <span class="btn btn-icon btn-circle btn-active-color-primary w-25px h-25px bg-body shadow"
+                                      data-kt-image-input-action="remove" data-bs-toggle="tooltip"
+                                      title="Remove avatar">
+																				<i class="bi bi-x fs-2"></i>
+																			</span>
+                                <!--end::Remove-->
                             </div>
-                            <a class="btn btn-default" style="vertical-align: bottom; margin-left: 110px;" id="btn_upload_photo"><?= t('file_select') ?></a>
+                            <!--end::Image input-->
+                            <!--begin::Hint-->
+                            <div class="form-text">Allowed file types: png, jpg, jpeg.</div>
+                            <!--end::Hint-->
                         </div>
+                        <!--end::Input group-->
+                        <!--begin::Input group-->
+                        <div class="fv-row mb-7">
+                            <!--begin::Label-->
+                            <label class="required fw-bold fs-6 mb-2"><?= t('id') ?></label>
+                            <!--end::Label-->
+                            <!--begin::Input-->
+                            <input type="email" name="id" id="id" class="form-control form-control-solid mb-3 mb-lg-0"
+                                   placeholder="<?= t('input_id') ?>" value=""/>
+                            <!--end::Input-->
+                        </div>
+                        <!--end::Input group-->
+                        <!--begin::Input group-->
+                        <div class="fv-row mb-7">
+                            <!--begin::Label-->
+                            <label class="required fw-bold fs-6 mb-2"><?= t('name') ?></label>
+                            <!--end::Label-->
+                            <!--begin::Input-->
+                            <input type="text" name="name" id="name" class="form-control form-control-solid mb-3 mb-lg-0"
+                                   placeholder="<?= t('input_name') ?>" value=""/>
+                            <!--end::Input-->
+                        </div>
+                        <!--end::Input group-->
+
+                        <div class="row" style="margin-top: 10px;">
+                            <div class="col-md-6 title-flex">
+                                <label class="center_align_title_td"><?= t('pwd') ?></label>
+                                <input type="password" class="form-control form-control-solid mb-3 mb-lg-0" id="pwd" name="pwd"
+                                       placeholder="<?= t('input_password') ?>"/>
+                            </div>
+                            <div class="col-md-6 title-flex">
+                                <label class="center_align_title_td"><?= t('status') ?></label>
+                                <select  class="form-control form-control-solid mb-3 mb-lg-0" id="status" name="status">
+                                    <option value="<?= STATUS_NORMAL ?>"><?= t('normal') ?></option>
+                                    <option value="<?= USER_STATUS_PAUSE ?>"><?= t('pause') ?></option>
+                                    <option value="<?= USER_STATUS_EXIT ?>"><?= t('exit') ?></option>
+                                </select>
+                            </div>
+                        </div>
+                        <input type="hidden" id="user_uid" name="user_uid"/>
                     </div>
-                    <input type="hidden" id="user_uid" name="user_uid"/>
+                    <!--end::Scroll-->
+                    <!--begin::Actions-->
+                    <div class="text-center pt-15">
+                        <button type="reset" class="btn btn-light me-3" data-kt-users-modal-action="cancel"><?= t('close') ?>
+                        </button>
+                        <button type="button" class="btn btn-primary" data-kt-users-modal-action="submit" onclick="UserEditPopup.onModify()">
+                            <span class="indicator-label"><?= t('add') ?></span>
+                            <span class="indicator-progress">Please wait...
+																		<span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
+                        </button>
+                    </div>
+                    <!--end::Actions-->
                 </form>
+                <!--end::Form-->
             </div>
-            <div class="modal-footer" style="text-align: center; border-top: none; margin-top: 30px;">
-                <button type="button" class="btn btn-primary" id="btn_save">&nbsp;&nbsp;<?=t('add')?>&nbsp;&nbsp;
-                </button>
-                <button type="button" class="btn dark btn-secondary" id="btn_cancel" data-dismiss="modal">&nbsp;&nbsp;<?=t('close')?>&nbsp;&nbsp;
-                </button>
-            </div>
+            <!--end::Modal body-->
         </div>
+        <!--end::Modal content-->
     </div>
-    <!-- /.modal-content -->
+    <!--end::Modal dialog-->
 </div>
-<!-- /.modal-dialog -->
+<!--end::Modal - Add task-->
 
 <script>
-    const rootEditModelID = "#edit_modal";
-    var _URL = window.URL || window.webkitURL;
-    $(function () {
-        $(getId_1('#btn_upload_photo')).click(function () {
-            $(getId_1('#uploadfile')).click();
-        });
-        $(getId_1('#uploadfile')).change(function () {
-            if ((file = this.files[0])) {
-                var img = new Image();
-                img.onload = function() {
-                    if(this.width > 0 && this.width != this.height) {
-                        showNotification("<?=t('error')?>", '<?= t("msg_select_profile_img_size") ?>', "warning");
-                        return false;
-                    }
+    // Class Definition
+    var UserEditPopup = function () {
+        var _URL = window.URL || window.webkitURL;
 
-                    readURL(getId_1('#profile_img'), $(getId_1('#uploadfile'))[0]);
-                    $(getId_1("#profile_img")).show();
-                };
-                img.onerror = function() {
-                    //alert( "not a valid file: " + file.type);
-                };
-                img.src = _URL.createObjectURL(file);
+        var editModal;
+        var rootObj;
+        var form;
+        var selectedPhoto;
+
+        var initView = function () {
+            editModal = new bootstrap.Modal(document.getElementById('kt_modal_add_user'), {
+                keyboard: false
+            });
+            rootObj = $('#kt_modal_add_user');
+            form = document.getElementById('kt_modal_add_user').querySelector('#kt_modal_add_user_form');
+        };
+
+        var initHandler = function () {
+            rootObj.find('#uploadfile').change(function () {
+                if ((selectedPhoto = this.files[0]) != null) {
+                    var img = new Image();
+                    img.onload = function () {
+                        if (this.width > 0 && this.width != this.height) {
+                            showNotification('<?= t("msg_select_profile_img_size") ?>');
+                            selectedPhoto = null;
+                            return false;
+                        }
+
+                        readURL(rootObj.find('#profile_img'), rootObj.find('#uploadfile')[0]);
+                        rootObj.find("#profile_img").show();
+                    };
+                    img.onerror = function () {
+                        //alert( "not a valid file: " + file.type);
+                    };
+                    img.src = _URL.createObjectURL(selectedPhoto);
+                }
+            });
+
+            rootObj.find('[data-kt-users-modal-action="close"]').click(function () {
+                editModal.hide();
+            });
+        };
+
+        var ajaxModify = function () {
+            var id = rootObj.find('#id').val();
+            var name = rootObj.find('#name').val();
+            var pwd = rootObj.find('#pwd').val();
+
+            if (id === '') {
+                showNotification("<?=t('msg_input_email')?>");
+                rootObj.find('#id').focus();
+                return;
             }
-        });
-        $(getId_1("#img_del")).click(function () {
-            $(getId_1("#profile_img")).hide();
-            $(getId_1('#uploadfile')).val('');
-        });
-
-        $(getId_1('#btn_save')).click(function () {
-            if ($(getId_1('#id')).val() == '') {
-                showNotification("<?=t('error')?>", "<?=t('msg_input_id')?>", "warning");
-                $(getId_1('#id')).focus();
+            if (validateEmail(id) === false) {
+                showNotification("<?=t('msg_input_valid_email')?>");
                 return;
             }
 
-            if(validateEmail($(getId_1('#id')).val()) == false) {
-                showNotification("<?=t('error')?>", "<?=t('msg_input_email')?>", "warning");
+            if (name === '') {
+                showNotification("<?=t('msg_input_name')?>");
+                rootObj.find('#name').focus();
                 return;
             }
 
-            if ($(getId_1('#name')).val() == '') {
-                showNotification("<?=t('error')?>", "<?=t('msg_input_name')?>", "warning");
-                $(getId_1('#name')).focus();
+            if (pwd === '') {
+                showNotification("<?=t('msg_input_pwd')?>");
+                rootObj.find('#pwd').focus();
                 return;
             }
 
-            if ($(getId_1('#pwd')).val() == '') {
-                showNotification("<?=t('error')?>", "<?=t('msg_input_pwd')?>", "warning");
-                $(getId_1('#pwd')).focus();
-                return;
-            }
-
-            if ($(getId_1("#profile_img")).css("display") == "none") {
-                showNotification("<?=t('error')?>", "<?=t('select_photo')?>", "warning");
+            if (selectedPhoto == null) {
+                showNotification("<?=t('select_photo')?>");
                 return;
             }
 
             var data = new FormData();
             //Form data
-            var form_data = $(getId_1('#frm_edit')).serializeArray();
+            var form_data = $(form).serializeArray();
             $.each(form_data, function (key, input) {
                 data.append(input.name, input.value);
             });
 
-            //File data
-            var file_data = $(getId_1('#uploadfile'))[0].files;
-            if(file_data.length > 0) {
-                data.append("uploadfile", file_data[0]);
+            if (selectedPhoto != null) {
+                data.append("uploadfile", selectedPhoto);
             }
 
             $.ajax({
                 url: '<?= site_url("admin/user/ajax_save") ?>',
                 type: 'POST',
-                data: data,
                 processData: false,
                 contentType: false,
+                data: data,
+                dataType: "json",
                 beforeSend: function () {
                     showLoading();
                 },
-                success: function (result) {
+                success: function (response) {
                     hideLoading();
-                    if (result == '<?=AJAX_RESULT_SUCCESS?>') {
-                        $('#edit_modal').modal('hide');
-                        oTable.draw(true);
-                    } else if (result == '<?=AJAX_RESULT_DUP?>') {
-                        showNotification("<?=t('error')?>", "<?=t('error_email_duplicated')?>", "error");
+                    if (response.result == '<?=AJAX_RESULT_SUCCESS?>') {
+                        editModal.hide();
+                        UserList.redraw();
+                    } else if (response.result == '<?=AJAX_RESULT_DUP?>') {
+                        showNotification("<?=t('error_email_duplicated')?>");
                     } else {
-                        showNotification("<?=t('error')?>", "<?=t('msg_error_server')?>", "error");
+                        showNotification("<?=t('msg_error_request')?>");
                     }
+                },
+                error: function (a, b, c) {
+                    showAlertError('<?=t('msg_error_server')?>');
                 }
             });
+        };
+
+        return {
+            init: function () {
+                initView();
+                initHandler();
+            },
+            onModify: function () {
+                ajaxModify();
+            },
+            show: function (userInfo = null) {
+                if (userInfo == null) {
+                    rootObj.find('.modal-title').html('<?= t('add_user')?>');
+                    rootObj.find('.modal-title').html('<?= t('add_user')?>');
+                    rootObj.find('#id').val('');
+                    rootObj.find('#name').val('');
+                    rootObj.find('#pwd').val('');
+                    rootObj.find('#status').val('<?=STATUS_NORMAL?>');
+                    rootObj.find("#profile_img").hide();
+                    rootObj.find('#user_uid').val('');
+                    rootObj.find('#btn_save').html('&nbsp;&nbsp;<?= t('add')?>&nbsp;&nbsp;');
+
+                    editModal.show();
+                } else {
+                    rootObj.find('.modal-title').html('<?= t('modify')?>');
+                    rootObj.find('#id').val(userInfo['id']);
+                    rootObj.find('#name').val(userInfo['name']);
+                    rootObj.find('#pwd').val(userInfo['pwd']);
+                    rootObj.find('#status').val(userInfo['status']);
+                    selectedPhoto = userInfo['profile_url'];
+                    if (empty(userInfo['profile_url'])) {
+                        rootObj.find("#image-input-wrapper").css('background-image', '');
+                    } else {
+                        rootObj.find("#image-input-wrapper").css('background-image', 'url('+userInfo['profile_url']+')');
+                    }
+                    rootObj.find('#user_uid').val(userInfo['uid']);
+                    rootObj.find('#btn_save').html('&nbsp;&nbsp;<?= t('modify')?>&nbsp;&nbsp;');
+
+                    editModal.show();
+                }
+            },
+        }
+    }();
+
+    // Document loaded
+    $(function () {
+        // On document ready
+        KTUtil.onDOMContentLoaded(function () {
+            UserEditPopup.init();
         });
     });
-
-    function getId_1(css_identifier) {
-        return rootEditModelID + " " + css_identifier;
-    }
-
-    function showEditPopup(userInfo) {
-        if(userInfo == null) {
-            $(getId_1('.modal-title')).html('<?= t('add_user')?>');
-            $(getId_1('#id')).val('');
-            $(getId_1('#name')).val('');
-            $(getId_1('#pwd')).val('');
-            $(getId_1('#status')).val('<?=STATUS_NORMAL?>');
-            $(getId_1("#profile_img")).hide();
-            $(getId_1('#user_uid')).val('');
-            $(getId_1('#btn_save')).html('&nbsp;&nbsp;<?= t('add')?>&nbsp;&nbsp;');
-
-            var myModal = new bootstrap.Modal(document.getElementById('edit_modal'), {
-                keyboard: false
-            });
-            myModal.show();
-        }
-        else {
-            $(getId_1('.modal-title')).html('<?= t('modify')?>');
-            $(getId_1('#id')).val(userInfo['id']);
-            $(getId_1('#name')).val(userInfo['name']);
-            $(getId_1('#pwd')).val(userInfo['pwd']);
-            $(getId_1('#status')).val(userInfo['status']);
-            if(empty(userInfo['profile_url'])) {
-                $(getId_1("#profile_img")).hide();
-            }
-            else {
-                $(getId_1("#profile_img")).attr('src', userInfo['profile_url']);
-                $(getId_1("#profile_img")).show();
-            }
-            $(getId_1('#user_uid')).val(userInfo['uid']);
-            $(getId_1('#btn_save')).html('&nbsp;&nbsp;<?= t('modify')?>&nbsp;&nbsp;');
-
-            var myModal = new bootstrap.Modal(document.getElementById('edit_modal'), {
-                keyboard: false
-            });
-            myModal.show();
-        }
-    }
 </script>
