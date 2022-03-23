@@ -33,7 +33,7 @@
 
 <!--begin::Body-->
 <body id="kt_body"
-      class="header-fixed header-tablet-and-mobile-fixed toolbar-enabled aside-enabled aside-fixed <?= !empty($menu) && $menu == MENU_HOME ? '': 'toolbar-fixed'?>"
+      class="header-fixed header-tablet-and-mobile-fixed toolbar-enabled aside-enabled aside-fixed <?= !empty($menu) && $menu == MENU_HOME ? '' : 'toolbar-fixed' ?>"
       style="--kt-toolbar-height:55px;--kt-toolbar-height-tablet-and-mobile:55px">
 <!--begin::Main-->
 <!--begin::Root-->
@@ -49,7 +49,7 @@
             <div class="aside-logo flex-column-auto" id="kt_aside_logo">
                 <!--begin::Logo-->
                 <a href="#">
-                    <img alt="Logo" src="<?=base_url()?>/assets/admin/img/ic_logo.png" class="h-25px logo"/>
+                    <img alt="Logo" src="<?= base_url() ?>/assets/admin/img/ic_logo.png" class="h-25px logo"/>
                 </a>
                 <!--end::Logo-->
                 <!--begin::Aside toggler-->
@@ -83,50 +83,54 @@
                     <div class="menu menu-column menu-title-gray-800 menu-state-title-primary menu-state-icon-primary menu-state-bullet-primary menu-arrow-gray-500"
                          id="#kt_aside_menu" data-kt-menu="true" data-kt-menu-expand="false">
 
-                        <div class="menu-item">
-                            <a class="menu-link <?= !empty($menu) && $menu == MENU_USER ? 'active' : '' ?>" href="<?= site_url('admin/user') ?>">
-										<span class="menu-icon">
-											<!--begin::Svg Icon | path: icons/duotune/coding/cod003.svg-->
-											<span class="svg-icon svg-icon-2">
-												<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                                     viewBox="0 0 24 24" fill="none">
-													<path d="M16.95 18.9688C16.75 18.9688 16.55 18.8688 16.35 18.7688C15.85 18.4688 15.75 17.8688 16.05 17.3688L19.65 11.9688L16.05 6.56876C15.75 6.06876 15.85 5.46873 16.35 5.16873C16.85 4.86873 17.45 4.96878 17.75 5.46878L21.75 11.4688C21.95 11.7688 21.95 12.2688 21.75 12.5688L17.75 18.5688C17.55 18.7688 17.25 18.9688 16.95 18.9688ZM7.55001 18.7688C8.05001 18.4688 8.15 17.8688 7.85 17.3688L4.25001 11.9688L7.85 6.56876C8.15 6.06876 8.05001 5.46873 7.55001 5.16873C7.05001 4.86873 6.45 4.96878 6.15 5.46878L2.15 11.4688C1.95 11.7688 1.95 12.2688 2.15 12.5688L6.15 18.5688C6.35 18.8688 6.65 18.9688 6.95 18.9688C7.15 18.9688 7.35001 18.8688 7.55001 18.7688Z"
-                                                          fill="black"/>
-													<path opacity="0.3"
-                                                          d="M10.45 18.9687C10.35 18.9687 10.25 18.9687 10.25 18.9687C9.75 18.8687 9.35 18.2688 9.55 17.7688L12.55 5.76878C12.65 5.26878 13.25 4.8687 13.75 5.0687C14.25 5.1687 14.65 5.76878 14.45 6.26878L11.45 18.2688C11.35 18.6688 10.85 18.9687 10.45 18.9687Z"
-                                                          fill="black"/>
-												</svg>
-											</span>
-                                            <!--end::Svg Icon-->
-										</span>
+                        <div data-kt-menu-trigger="click" class="menu-item menu-accordion  <?= !empty($menu) && ($menu == MENU_USER || $menu == MENU_PHOTO_CHECK) ? 'show' : '' ?>">
+                            <a class="menu-link <?= !empty($menu) && ($menu == MENU_USER || $menu == MENU_PHOTO_CHECK) ? 'active' : '' ?>">
+                                <span class="menu-icon">
+                                    <!--begin::Svg Icon | path: icons/duotune/general/gen025.svg-->
+                                    <span class="svg-icon svg-icon-2">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                             viewBox="0 0 24 24" fill="none">
+                                            <rect x="2" y="2" width="9" height="9" rx="2" fill="black"/>
+                                            <rect opacity="0.3" x="13" y="2" width="9" height="9" rx="2"
+                                                  fill="black"/>
+                                            <rect opacity="0.3" x="13" y="13" width="9" height="9" rx="2"
+                                                  fill="black"/>
+                                            <rect opacity="0.3" x="2" y="13" width="9" height="9" rx="2"
+                                                  fill="black"/>
+                                        </svg>
+                                    </span>
+                                    <!--end::Svg Icon-->
+                                    </span>
                                 <span class="menu-title"><?= t('menu_users') ?></span>
+                                <span class="menu-arrow"></span>
+                                </span>
                             </a>
+                            <div class="menu-sub menu-sub-accordion menu-active-bg">
+                                <div class="menu-item">
+                                    <a class="menu-link <?= !empty($menu) && ($menu == MENU_USER) ? 'active' : '' ?>"
+                                       href="<?= site_url('admin/user') ?>">
+                                                    <span class="menu-bullet">
+                                                        <span class="bullet bullet-dot"></span>
+                                                    </span>
+                                        <span class="menu-title"><?= t('menu_users') ?></span>
+                                    </a>
+                                </div>
+                                <div class="menu-item">
+                                    <a class="menu-link <?= !empty($menu) && ($menu == MENU_PHOTO_CHECK) ? 'active' : '' ?>"
+                                       href="<?= site_url('admin/user/photo_list') ?>">
+                                                    <span class="menu-bullet">
+                                                        <span class="bullet bullet-dot"></span>
+                                                    </span>
+                                        <span class="menu-title"><?= t('menu_photo_check') ?></span>
+                                    </a>
+                                </div>
+                            </div>
+
                         </div>
 
                         <div class="menu-item">
-                            <a class="menu-link <?= !empty($menu) && $menu == MENU_PHOTO_CHECK ? 'active' : '' ?>" href="<?= site_url('admin/user/photo_list') ?>">
-										<span class="menu-icon">
-											<!--begin::Svg Icon | path: icons/duotune/coding/cod003.svg-->
-											<span class="svg-icon svg-icon-2">
-												<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                                     viewBox="0 0 24 24" fill="none">
-													<path d="M21 9V11C21 11.6 20.6 12 20 12H14V8H20C20.6 8 21 8.4 21 9ZM10 8H4C3.4 8 3 8.4 3 9V11C3 11.6 3.4 12 4 12H10V8Z"
-                                                          fill="black"/>
-													<path d="M15 2C13.3 2 12 3.3 12 5V8H15C16.7 8 18 6.7 18 5C18 3.3 16.7 2 15 2Z"
-                                                          fill="black"/>
-													<path opacity="0.3"
-                                                          d="M9 2C10.7 2 12 3.3 12 5V8H9C7.3 8 6 6.7 6 5C6 3.3 7.3 2 9 2ZM4 12V21C4 21.6 4.4 22 5 22H10V12H4ZM20 12V21C20 21.6 19.6 22 19 22H14V12H20Z"
-                                                          fill="black"/>
-												</svg>
-											</span>
-                                            <!--end::Svg Icon-->
-										</span>
-                                <span class="menu-title"><?= t('menu_photo_check') ?></span>
-                            </a>
-                        </div>
-
-                        <div class="menu-item">
-                            <a class="menu-link  <?= !empty($menu) && $menu == MENU_NOTIFICATION ? 'active' : '' ?>" href="<?= site_url('admin/push') ?>">
+                            <a class="menu-link  <?= !empty($menu) && $menu == MENU_NOTIFICATION ? 'active' : '' ?>"
+                               href="<?= site_url('admin/push') ?>">
 										<span class="menu-icon">
 											<!--begin::Svg Icon | path: icons/duotune/coding/cod003.svg-->
 											<span class="svg-icon svg-icon-2">
@@ -145,7 +149,8 @@
                         </div>
 
                         <div class="menu-item ">
-                            <a class="menu-link <?= !empty($menu) && $menu == MENU_NOTICE ? 'active' : '' ?>" href="<?= site_url('admin/app/notice_list') ?>">
+                            <a class="menu-link <?= !empty($menu) && $menu == MENU_NOTICE ? 'active' : '' ?>"
+                               href="<?= site_url('admin/app/notice_list') ?>">
 										<span class="menu-icon">
 											<!--begin::Svg Icon | path: icons/duotune/coding/cod003.svg-->
 											<span class="svg-icon svg-icon-2">
@@ -164,8 +169,15 @@
                             </a>
                         </div>
 
+                        <div class="menu-item">
+                            <div class="menu-content">
+                                <div class="separator mx-1 my-4"></div>
+                            </div>
+                        </div>
+
                         <div class="menu-item ">
-                            <a class="menu-link <?= !empty($menu) && $menu == MENU_SETTING ? 'active' : '' ?>" href="<?= site_url('admin/app/setting') ?>">
+                            <a class="menu-link <?= !empty($menu) && $menu == MENU_SETTING ? 'active' : '' ?>"
+                               href="<?= site_url('admin/app/setting') ?>">
 										<span class="menu-icon">
 											<!--begin::Svg Icon | path: icons/duotune/coding/cod003.svg-->
 											<span class="svg-icon svg-icon-2">
@@ -184,59 +196,6 @@
                             </a>
                         </div>
 
-                        <div class="menu-item">
-                            <div class="menu-content">
-                                <div class="separator mx-1 my-4"></div>
-                            </div>
-                        </div>
-                        <div data-kt-menu-trigger="click" class="menu-item menu-accordion">
-									<span class="menu-link <?= empty($menu) ? 'active' : '' ?>">
-										<span class="menu-icon">
-											<!--begin::Svg Icon | path: icons/duotune/general/gen025.svg-->
-											<span class="svg-icon svg-icon-2">
-												<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                                     viewBox="0 0 24 24" fill="none">
-													<rect x="2" y="2" width="9" height="9" rx="2" fill="black"/>
-													<rect opacity="0.3" x="13" y="2" width="9" height="9" rx="2"
-                                                          fill="black"/>
-													<rect opacity="0.3" x="13" y="13" width="9" height="9" rx="2"
-                                                          fill="black"/>
-													<rect opacity="0.3" x="2" y="13" width="9" height="9" rx="2"
-                                                          fill="black"/>
-												</svg>
-											</span>
-                                            <!--end::Svg Icon-->
-										</span>
-										<span class="menu-title"><?= t('menu_api') ?></span>
-										<span class="menu-arrow"></span>
-									</span>
-                            <div class="menu-sub menu-sub-accordion menu-active-bg">
-                                <div class="menu-item">
-                                    <a class="menu-link" href="<?= site_url('api/apimanage/apimanage') ?>">
-												<span class="menu-bullet">
-													<span class="bullet bullet-dot"></span>
-												</span>
-                                        <span class="menu-title"><?= t('menu_api_list') ?></span>
-                                    </a>
-                                </div>
-                                <div class="menu-item">
-                                    <a class="menu-link" href="<?= site_url('api/apimanage/apidocument') ?>">
-												<span class="menu-bullet">
-													<span class="bullet bullet-dot"></span>
-												</span>
-                                        <span class="menu-title"><?= t('menu_api_doc') ?></span>
-                                    </a>
-                                </div>
-                                <div class="menu-item">
-                                    <a class="menu-link" href="<?= site_url('api/apimanage/apierrors') ?>">
-												<span class="menu-bullet">
-													<span class="bullet bullet-dot"></span>
-												</span>
-                                        <span class="menu-title"><?= t('menu_api_code') ?></span>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
                     </div>
                     <!--end::Menu-->
                 </div>
@@ -295,8 +254,8 @@
                     <!--end::Aside mobile toggle-->
                     <!--begin::Mobile logo-->
                     <div class="d-flex align-items-center flex-grow-1 flex-lg-grow-0">
-                        <a href="<?=base_url()?>" class="d-lg-none">
-                            <img alt="Logo" src="<?=base_url()?>/assets/admin/img/ic_logo.png" class="h-30px"/>
+                        <a href="<?= base_url() ?>" class="d-lg-none">
+                            <img alt="Logo" src="<?= base_url() ?>/assets/admin/img/ic_logo.png" class="h-30px"/>
                         </a>
                     </div>
                     <!--end::Mobile logo-->
@@ -323,7 +282,7 @@
 												</span>
                                         <div class="menu-sub menu-sub-lg-down-accordion menu-sub-lg-dropdown menu-rounded-0 py-lg-4 w-lg-225px">
                                             <div class="menu-item">
-                                                <a class="menu-link py-3"  onclick="history.go(-1)">
+                                                <a class="menu-link py-3" onclick="history.go(-1)">
 															<span class="menu-bullet">
 																<span class="bullet bullet-dot"></span>
 															</span>
@@ -356,7 +315,7 @@
                                 <div class="cursor-pointer symbol symbol-30px symbol-md-40px"
                                      data-kt-menu-trigger="click" data-kt-menu-attach="parent"
                                      data-kt-menu-placement="bottom-end">
-                                    <img src="<?=base_url();?>/assets/admin/img/img_photo_default.png" alt="user"/>
+                                    <img src="<?= base_url(); ?>/assets/admin/img/img_photo_default.png" alt="user"/>
                                 </div>
                                 <!--begin::User account menu-->
                                 <div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-800 menu-state-bg menu-state-primary fw-bold py-4 fs-6 w-275px"
@@ -366,7 +325,8 @@
                                         <div class="menu-content d-flex align-items-center px-3">
                                             <!--begin::Avatar-->
                                             <div class="symbol symbol-50px me-5">
-                                                <img alt="Logo" src="<?=base_url();?>/assets/admin/img/img_photo_default.png"/>
+                                                <img alt="Logo"
+                                                     src="<?= base_url(); ?>/assets/admin/img/img_photo_default.png"/>
                                             </div>
                                             <!--end::Avatar-->
                                             <!--begin::Username-->
@@ -385,12 +345,13 @@
                                     <!--end::Menu separator-->
                                     <!--begin::Menu item-->
                                     <div class="menu-item px-5 my-1">
-                                        <a onclick="ShowManagerSettingDialog()" class="menu-link px-5"><?= t('setting') ?></a>
+                                        <a onclick="ShowManagerSettingDialog()"
+                                           class="menu-link px-5"><?= t('setting') ?></a>
                                     </div>
                                     <!--end::Menu item-->
                                     <!--begin::Menu item-->
                                     <div class="menu-item px-5">
-                                        <a href="<?=site_url("admin/login/logout")?>"
+                                        <a href="<?= site_url("admin/login/logout") ?>"
                                            class="menu-link px-5"><?= t('logout') ?></a>
                                     </div>
                                     <!--end::Menu item-->

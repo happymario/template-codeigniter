@@ -199,7 +199,7 @@
                     submitButton.disabled = false;
 
                     if (response['result'] == '<?=AJAX_RESULT_SUCCESS?>') {
-                        showAlertError('<?=t('msg_success_done')?>', function (result) {
+                        showAlert('<?=t('msg_success_done')?>', '<?=t('confirm')?>', null, true, function (result) {
                             form.querySelector('[name="email"]').value = "";
                             form.querySelector('[name="password"]').value = "";
 

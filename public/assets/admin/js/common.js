@@ -58,7 +58,8 @@ function showAlert(msg, yesbtn = "확인", nobtn = null, success = true, callbac
         buttonsStyling: false,
         confirmButtonText: yesbtn,
         customClass: {
-            confirmButton: success? "btn btn-success": "btn btn-danger"
+            confirmButton: success? "btn btn-success": "btn btn-danger",
+            cancelButton: success?  "btn btn-danger": "btn btn-success",
         },
         showCancelButton: nobtn != null && nobtn !== "",
         cancelButtonText: nobtn

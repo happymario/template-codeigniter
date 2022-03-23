@@ -19,7 +19,6 @@ class UserModel extends BaseModel
         'id', 'name', 'pwd', 'profile_url', 'profile_url_check', 'access_token', 'dev_type', 'login_time', 'logout', 'dev_token', "backup_url"
     ];
     protected $returnType    = 'App\Entities\User';
-    protected $updatedField = ['update_at'];
     protected $beforeInsert = ['beforeInsert'];
     protected $beforeUpdate = ['beforeUpdate'];
 
@@ -43,6 +42,7 @@ class UserModel extends BaseModel
             $plaintextPassword = $data['data']['pwd'];
             $data['data']['pwd'] = $this->hashPassword($plaintextPassword);
         }
+        $data['data']['updated_at'] = get_time_stamp_str();
         return $data;
     }
 
@@ -151,7 +151,7 @@ class UserModel extends BaseModel
             $temp['count'] = $point;
 
             // 가입자수
-            $where = "reg_time like '$day%' and status !=" . STATUS_DELETE;
+            $where = "created_at like '$day%' and status !=" . STATUS_DELETE;
             $sql = "select count(*) as cnt from tb_user where $where";
             $login_cnt = $this->db->query($sql)->getRow('cnt');
             $temp['login'] = $login_cnt;
@@ -233,7 +233,7 @@ EOT;
         $count_per_page = API_PAGE_CNT;
         $page_start = API_PAGE_CNT * $page_num;
         $where = "H.profile_url_check=".$status." AND H.profile_url<>''";
-        $order_by = "H.reg_time desc";
+        $order_by = "H.created_at desc";
         $select_list = "H.*";
 
         $sql = <<<EOF
@@ -258,7 +258,7 @@ EOF;
             $data = $list[$i];
             $new_data = array();
             $new_data = $data;
-            $new_data['reg_time'] = $data['reg_time'];
+            $new_data['reg_time'] = $data['created_at'];
             $list[$i] = $new_data;
         }
 

@@ -120,10 +120,6 @@ $lang = array(
     'menu_statistic' => '통계',
     'menu_notice' => '공지사항',
     'menu_setting' => 'App설정',
-    'menu_api' => 'Api',
-    'menu_api_list' => 'Api List',
-    'menu_api_doc' => 'Api Doc',
-    'menu_api_code' => 'Api Error Code',
 
     // login
     'login_title' =>'관&nbsp;&nbsp;리&nbsp;&nbsp;자',

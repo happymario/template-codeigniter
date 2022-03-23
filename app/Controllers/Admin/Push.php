@@ -146,8 +146,16 @@ class Push extends Base_admin
     }
 
     public function ajax_push_delete() {
-        $uid = $this->request->getPost('uid');
-        $this->pushModel->deleteById($uid, true);
+        $arr_uid = $this->request->getPost('uids');
+
+        if($arr_uid == null) {
+            $this->ajax_result(AJAX_RESULT_ERROR);
+        }
+
+        for($i = 0; $i < count($arr_uid); $i++) {
+            $uid = $arr_uid[$i];
+            $this->pushModel->deleteById($uid, true);
+        }
 
         $this->ajax_result(AJAX_RESULT_SUCCESS);
     }

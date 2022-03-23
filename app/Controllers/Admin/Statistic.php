@@ -41,7 +41,7 @@ class Statistic extends Base_admin
 
     public function index()
     {
-        $this->load_view('statistic/daily_list', array(), array('page_title' => t('menu_statistic'), 'menu' => MENU_STATISTIC));
+        $this->load_view('home/statistic_daily_list', array(), array('page_title' => t('menu_statistic'), 'menu' => MENU_HOME));
     }
 
 

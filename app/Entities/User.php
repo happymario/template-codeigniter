@@ -19,7 +19,7 @@ class User extends BaseEntity
         return $this;
     }
 
-    public function getCreatedAt(string $format = 'Y-m-d H:i:s')
+    public function getCreatedAt($format = 'Y-m-d H:i:s')
     {
         // Convert to CodeIgniter\I18n\Time object
         $this->attributes['created_at'] = $this->mutateDate($this->attributes['created_at']);

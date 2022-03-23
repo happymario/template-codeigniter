@@ -1,26 +1,5 @@
 <?php
 //http://192.168.0.13:8101/home/test
-
-// 현재 쓰고 있는 Lib들
-// ==== JS-Libs
-// FancyBox  => image box
-// CKEditor => web editor
-// colorbox => color selector
-// jwplayer => video player
-// clipboard.js => clipboard lib
-// audiojs => audio player
-
-// ==== PHP
-// htmlpurifier => html parser
-// PHPMailer => php mail sender
-// xmlrpc => json and xml parser
-
-
-// ==== android
-// MultisnapRecyclerView
-// stfalcon-imageviewer
-// ftp commons-net
-
 ?>
 
 <!DOCTYPE html>
