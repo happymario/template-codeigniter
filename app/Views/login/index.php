@@ -17,7 +17,7 @@
     <!--begin:: Admin JS-->
     <link rel="shortcut icon" href="<?= base_url() ?>/assets/admin/img/ic_logo.png"/>
     <link href="<?= base_url() ?>/assets/admin/css/login.css" rel="stylesheet" type="text/css"/>
-    <script src="<?= base_url() ?>/assets/common/js/jquery.js" type="text/javascript"></script>
+    <script src="<?= base_url() ?>/assets/common/plugins/jquery/jquery.js" type="text/javascript"></script>
     <script src="<?= base_url() ?>/assets/common/js/jquery.form.js" type="text/javascript"></script>
     <!--end:: Admin JS-->
 </head>

@@ -14,7 +14,7 @@ use CodeIgniter\HTTP\ResponseInterface;
 use Psr\Log\LoggerInterface;
 
 
-class App  extends Base_admin
+class More  extends Base_admin
 {
     /**
      * @var SettingModel
@@ -48,22 +48,29 @@ class App  extends Base_admin
      *************************************************************************/
     public function notice_list()
     {
-        $this->load_view('app/notice_list', array(), array('page_title' => t('menu_notice'), 'menu' => MENU_NOTICE));
+        $this->load_view('more/notice/index', array(), array('page_title' => t('menu_notice'), 'menu' => MENU_NOTICE));
     }
 
+    public function notice_add() {
+        $this->notice_detail(null);
+    }
+
+    public function notice_detail($id) {
+        $item = array();
+        if($id != null) {
+            $response_data = $this->noticeModel->where("uid", $id)->first();
+            if($response_data != null) {
+                $item = $response_data;
+            }
+        }
+
+        $this->load_view('more/notice/detail', array(), array('page_title' => t('menu_notice'), 'menu' => MENU_NOTICE, 'item' => $item));
+    }
 
     public function setting()
     {
-        if ($this->request->getPost() !== null && $this->validate([
-                'use_agreement' => 'required',
-                'client_phone'  => 'required',
-            ])) {
-            $save_data = $this->request->getPost();
-            $this->settingModel->updateData($save_data);
-        }
-
         $setting = $this->settingModel->asObject()->where('status<>', STATUS_DELETE)->first();
-        $this->load_view('app/setting', array("setting" => $setting), array('page_title' => t('menu_setting'), 'menu' => MENU_SETTING));
+        $this->load_view('more/setting', array("setting" => $setting), array('page_title' => t('menu_setting'), 'menu' => MENU_SETTING));
     }
 
 
@@ -80,7 +87,8 @@ class App  extends Base_admin
 
         $data = $this->noticeModel->datatable_list($start, $length, $order, $keyword);
 
-        $this->ajax_result2($data);
+        //$this->ajax_result2($data);
+        die(json_encode($data, true));
     }
 
 
@@ -127,6 +135,22 @@ class App  extends Base_admin
 
         $uid = $this->request->getPost('uid');
         $this->noticeModel->deleteById($uid, true);
+
+        $this->ajax_result(AJAX_RESULT_SUCCESS);
+    }
+
+    public function ajax_setting_save() {
+        $this->check_ajax();
+
+        if ($this->request->getPost() == null && !$this->validate([
+                'use_agreement' => 'required',
+                'client_phone'  => 'required',
+            ])) {
+            $this->ajax_result(AJAX_RESULT_ERROR);
+        }
+
+        $save_data = $this->request->getPost();
+        $this->settingModel->updateData($save_data);
 
         $this->ajax_result(AJAX_RESULT_SUCCESS);
     }

@@ -109,23 +109,26 @@
 <!--end::Global Javascript Bundle-->
 <!--begin::Page Vendors Javascript(used by this page)-->
 <script src="<?= base_url() ?>/assets/metronic/plugins/custom/datatables/datatables.bundle.js"></script>
+<script src="<?= base_url() ?>/assets/metronic/plugins/custom/ckeditor/ckeditor-classic.bundle.js"></script>
 <!--end::Page Vendors Javascript-->
 
 <!--begin::Page Scripts(used by this page)-->
-<script src="<?= base_url() ?>/assets/common/js/three.min.js" type="text/javascript"></script>
-<script src="<?= base_url() ?>/assets/common/js/sphoords.js" type="text/javascript"></script>
+<script src="<?= base_url() ?>/assets/common/js/d3.min.js" type="text/javascript"></script>
+<script src="<?= base_url() ?>/assets/common/js/directive.js" type="text/javascript"></script>
+<script src="<?= base_url() ?>/assets/common/js/jssor.slider.mini.js" type="text/javascript"></script>
 <script src="<?= base_url() ?>/assets/common/js/PhotoSphereViewer.js" type="text/javascript"></script>
 <script src="<?= base_url() ?>/assets/common/js/PSVNavBar.js" type="text/javascript"></script>
 <script src="<?= base_url() ?>/assets/common/js/PSVNavBarButton.js" type="text/javascript"></script>
-<script src="<?= base_url() ?>/assets/common/js/d3.min.js" type="text/javascript"></script>
-<script src="<?= base_url() ?>/assets/common/js/jquery.form.js" type="text/javascript"></script>
+<script src="<?= base_url() ?>/assets/common/js/sphoords.js" type="text/javascript"></script>
+<script src="<?= base_url() ?>/assets/common/js/three.min.js" type="text/javascript"></script>
+
 <link href="<?= base_url() ?>/assets/common/plugins/magnific-popup/magnific-popup.css" rel="stylesheet"
       type="text/css"/>
 <script src="<?= base_url() ?>/assets/common/plugins/magnific-popup/magnific-popup.js" type="text/javascript"></script>
+
 <link href="<?= base_url() ?>/assets/common/plugins/image-picker/image-picker.css" rel="stylesheet" type="text/css"/>
 <script src="<?= base_url() ?>/assets/common/plugins/image-picker/image-picker.js" type="text/javascript"></script>
 
-<script src="<?= base_url() ?>/assets/common/js/directive.js" type="text/javascript"></script>
 <script src="<?= base_url() ?>/assets/admin/js/common.js" type="text/javascript"></script>
 <!--end::Page Scripts(used by this page)-->
 <!--end::Javascript-->
@@ -205,11 +208,6 @@
     $(function () {
         $("#frm_search").submit(function () {
             return false;
-        }); // input refresh submit 막기
-        $("#search_keyword").keydown(function (key) { // 키보드 enter로 처리
-            if (key.keyCode == 13) {
-                onSearch();
-            }
         });
 
         $(document).on('click', '.image-popup-no-margins', function (e) {

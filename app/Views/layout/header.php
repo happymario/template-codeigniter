@@ -14,6 +14,7 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700"/>
     <!--end::Fonts-->
     <!--begin::Page Vendor Stylesheets(used by this page)-->
+    <link href="<?= base_url() ?>/assets/common/css/reset.css" rel="stylesheet" type="text/css"/>
     <link href="<?= base_url() ?>/assets/metronic/plugins/custom/datatables/datatables.bundle.css" rel="stylesheet"
           type="text/css"/>
     <!--end::Page Vendor Stylesheets-->
@@ -24,7 +25,8 @@
 
     <!--begin::First loading Script -->
     <link href="<?= base_url() ?>/assets/admin/css/custom.css" rel="stylesheet" type="text/css"/>
-    <script src="<?= base_url() ?>/assets/common/js/jquery.js" type="text/javascript"></script>
+
+    <script src="<?= base_url() ?>/assets/common/plugins/jquery/jquery.js" type="text/javascript"></script>
     <script src="<?= base_url() ?>/assets/common/js/jquery.form.js" type="text/javascript"></script>
     <script src="<?= base_url() ?>/assets/common/js/ajaxupload.3.6.js" type="text/javascript"></script>
     <!--end::First loading Script -->
@@ -150,7 +152,7 @@
 
                         <div class="menu-item ">
                             <a class="menu-link <?= !empty($menu) && $menu == MENU_NOTICE ? 'active' : '' ?>"
-                               href="<?= site_url('admin/app/notice_list') ?>">
+                               href="<?= site_url('admin/more/notice_list') ?>">
 										<span class="menu-icon">
 											<!--begin::Svg Icon | path: icons/duotune/coding/cod003.svg-->
 											<span class="svg-icon svg-icon-2">
@@ -177,7 +179,7 @@
 
                         <div class="menu-item ">
                             <a class="menu-link <?= !empty($menu) && $menu == MENU_SETTING ? 'active' : '' ?>"
-                               href="<?= site_url('admin/app/setting') ?>">
+                               href="<?= site_url('admin/more/setting') ?>">
 										<span class="menu-icon">
 											<!--begin::Svg Icon | path: icons/duotune/coding/cod003.svg-->
 											<span class="svg-icon svg-icon-2">
