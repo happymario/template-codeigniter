@@ -102,6 +102,7 @@
 
 <!--begin::Javascript-->
 <script>var hostUrl = "assets/";</script>
+
 <!--begin::Global Javascript Bundle(used by all pages)-->
 <script src="<?= base_url() ?>/assets/metronic/plugins/global/plugins.bundle.js"></script>
 <script src="<?= base_url() ?>/assets/metronic/js/scripts.bundle.js"></script>
@@ -128,6 +129,11 @@
 
 <link href="<?= base_url() ?>/assets/common/plugins/image-picker/image-picker.css" rel="stylesheet" type="text/css"/>
 <script src="<?= base_url() ?>/assets/common/plugins/image-picker/image-picker.js" type="text/javascript"></script>
+
+<script src="<?=base_url('/assets/common/plugins/bootstrap3/js/bootstrap.min.js')?>"></script>
+<link rel="stylesheet" href="<?=base_url('assets/common/plugins/summernote/summernote.css') ?>" />
+<link rel="stylesheet" href="<?=base_url('assets/common/plugins/summernote/summernote-bs3.css') ?>" />
+<script src="<?=base_url('/assets/common/plugins/summernote/summernote.js')?>"></script>
 
 <script src="<?= base_url() ?>/assets/admin/js/common.js" type="text/javascript"></script>
 <!--end::Page Scripts(used by this page)-->

@@ -1,3 +1,5 @@
+<!-- CKEditor는 좋은 기능들은 모두 유로인데다기, 모두 npm install로 plugin설치하니 조국에서 쓰기 어려움. summernote를 유지할것 -->
+
 <!--begin::Toolbar-->
 <div class="toolbar" id="kt_toolbar">
     <!--begin::Container-->
@@ -128,19 +130,20 @@
     // Class definition
     var SettingPage = function () {
         var form;
-        var ckEditor;
+        var editor;
 
         var initView = function () {
             form = document.getElementById('kt_setting');
-            ClassicEditor
-                .create(document.querySelector('#use_agreement'))
-                .then(editor => {
-                    ckEditor = editor;
-                    console.log(editor);
-                })
-                .catch(error => {
-                    console.error(error);
-                });
+            editor = $('#use_agreement').summernote({
+                height: 200,
+                onImageUpload: function (files, editor, welEditable) {
+                    ajaxUpload(files[0], editor, welEditable);
+                }
+            });
+
+            $('.note-editor .icon-picture').addClass('bi bi-card-image');
+            $('.note-editor .icon-play').addClass('bi bi-camera-video-fill');
+            $('.note-editor .caret').remove();
         };
 
         var initHandler = function () {
@@ -155,7 +158,7 @@
             //Form data
             var data = {
                 client_phone: titleElement.value,
-                use_agreement: ckEditor.getData()
+                use_agreement: $("#use_agreement").summernote('code')
             };
 
             $.ajax({
@@ -180,9 +183,9 @@
             });
         };
 
-        var ajaxUpload = function () {
+        var ajaxUpload = function (file, editor, welEditable) {
             var data = new FormData();
-            data.append("uploadfile", files[0]);
+            data.append("uploadfile", file);
             $.ajax({
                 data: data,
                 type: "POST",
@@ -206,7 +209,7 @@
             },
             onSave: function () {
                 const titleElement = form.querySelector('[name="client_phone"]');
-                const data = ckEditor.getData();
+                var data = $("#use_agreement").summernote('code');
 
                 if ($(titleElement).val() === '' || data == '') {
                     showNotification("<?=t('msg_input_all')?>");
