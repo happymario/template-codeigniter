@@ -84,6 +84,11 @@ class Base_admin extends BaseController
        $this->_ajax_result(AJAX_RESULT_SUCCESS, '', $data);
     }
 
+    protected function ajax_result_raw($data = array())
+    {
+        die(json_encode($data, true));
+    }
+
 
     /************************************************************************
      * Helpers

@@ -58,7 +58,7 @@ class Statistic extends Base_admin
 
         $data = $this->userModel->datatable_statistic($year, $month, $keyword);
 
-        $this->ajax_result2($data);
+        $this->ajax_result_raw($data);
     }
 
 

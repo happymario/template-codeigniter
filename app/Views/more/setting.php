@@ -96,7 +96,7 @@
                             <!--begin::Option-->
                             <div class="col">
                                 <a class="fw-bolder fs-5 mb-3"
-                                   href="<?= site_url("admin/login/term") ?>"> <?= t('use_agreement') ?> </a>
+                                   href="<?= site_url("admin/login/term")."?term_kind=use" ?>" target="_blank"> <?= t('use_agreement') ?> </a>
                                 <textarea class="form-control" rows="10" id="use_agreement"
                                           name="use_agreement"><?= !empty($setting) ? $setting->use_agreement : '' ?></textarea>
                             </div>

@@ -87,8 +87,7 @@ class More  extends Base_admin
 
         $data = $this->noticeModel->datatable_list($start, $length, $order, $keyword);
 
-        //$this->ajax_result2($data);
-        die(json_encode($data, true));
+        $this->ajax_result_raw($data);
     }
 
 
