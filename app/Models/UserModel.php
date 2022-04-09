@@ -16,7 +16,7 @@ class UserModel extends BaseModel
     protected $table = 'tb_user';
     protected $primaryKey = "uid";
     protected $allowedFields = [
-        'id', 'name', 'pwd', 'profile_url', 'profile_url_check', 'access_token', 'dev_type', 'login_time', 'logout', 'dev_token', "backup_url"
+        'id', 'name', 'pwd', 'profile_url', 'profile_url_check', 'access_token', 'dev_type', 'login_time', 'logout', 'dev_token', "backup_url", 'status'
     ];
     protected $returnType    = 'App\Entities\User';
     protected $beforeInsert = ['beforeInsert'];
