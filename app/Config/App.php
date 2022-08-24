@@ -24,7 +24,7 @@ class App extends BaseConfig
 	 * @var string
 	 * php spark serve --host 192.168.0.13 --port 8101
 	 */
-	public $baseURL = 'http://192.168.0.13:8101/';
+	public $baseURL = 'http://192.168.0.22:8101/';
 
 	/**
 	 * --------------------------------------------------------------------------
