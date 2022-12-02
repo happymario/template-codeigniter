@@ -107,4 +107,24 @@ class Common extends Base_api
 
         return $this->response_success($info);
     }
+
+    public function get_repos() {
+        $rules = [
+            'page' => 'required',
+            'q' => 'required'
+        ];
+
+        $input = $this->getRequestInput($this->request);
+        $list = [];
+        for($i = 0; $i < 100; $i++) {
+            $list[] = array("id"=>$i, "name"=> (string)$i);
+        }
+
+        return $this->respond(
+            [
+                'total' => 10,
+                'list' => $list
+            ]
+        );
+    }
 }
