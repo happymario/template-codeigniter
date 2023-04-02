@@ -8,10 +8,7 @@ class Test extends BaseController
 	{
 		return view('welcome_message');
 	}
-
-	public function phpinfo() {
-	    return phpinfo();
-    }
+	
 
     public function howto() {
         //return view('test/example_layout');
